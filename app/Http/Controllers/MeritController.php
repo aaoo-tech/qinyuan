@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class ChampionController extends Controller
+class MeritController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
-        return view('champion.index', ['title' => ' 状元榜']);
+        return view('merit.index', ['title' => '功德榜']);
     }
 
     public function recycle() {
-        return view('champion.recycle', ['title' => '回收站']);
+        return view('merit.recycle', ['title' => '回收站']);
     }
 
     public function edit(Request $request) {

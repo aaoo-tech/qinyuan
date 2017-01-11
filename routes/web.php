@@ -15,12 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/error', function () {
-    abort(404,'对不起，您无权访问该页面！');
-});
 
 Route::group(['prefix' => 'user'], function() {
     Route::get('', 'UserController@index');
+    Route::get('lock', 'UserController@lock');
 });
 
 Route::group(['prefix' => 'setting'], function() {
@@ -43,6 +41,7 @@ Route::group(['prefix' => 'card'], function() {
 
 Route::group(['prefix' => 'profile'], function() {
     Route::get('', 'ProfileController@index');
+    Route::get('edit', 'ProfileController@edit');
     // Route::get('get', 'ProfileController@get');
     // Route::gets('gets', 'ProfileController@gets');
 });
@@ -50,6 +49,7 @@ Route::group(['prefix' => 'profile'], function() {
 Route::group(['prefix' => 'history'], function() {
     Route::get('', 'HistoryController@index');
     Route::get('recycle', 'HistoryController@recycle');
+    Route::get('edit', 'HistoryController@edit');
     // Route::get('get', 'HistoryController@get');
     // Route::gets('gets', 'HistoryController@gets');
 });
@@ -57,6 +57,7 @@ Route::group(['prefix' => 'history'], function() {
 Route::group(['prefix' => 'famous'], function() {
     Route::get('', 'FamousController@index');
     Route::get('recycle', 'FamousController@recycle');
+    Route::get('edit', 'FamousController@edit');
     // Route::get('get', 'FamousController@get');
     // Route::gets('gets', 'FamousController@gets');
 });
@@ -64,6 +65,15 @@ Route::group(['prefix' => 'famous'], function() {
 Route::group(['prefix' => 'champion'], function() {
     Route::get('', 'ChampionController@index');
     Route::get('recycle', 'ChampionController@recycle');
+    Route::get('edit', 'ChampionController@edit');
+    // Route::get('get', 'ChampionController@get');
+    // Route::gets('gets', 'ChampionController@gets');
+});
+
+Route::group(['prefix' => 'merit'], function() {
+    Route::get('', 'MeritController@index');
+    Route::get('recycle', 'MeritController@recycle');
+    Route::get('edit', 'MeritController@edit');
     // Route::get('get', 'ChampionController@get');
     // Route::gets('gets', 'ChampionController@gets');
 });

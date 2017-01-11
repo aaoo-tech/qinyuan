@@ -9,8 +9,8 @@
           </div>
           <div class="other fr">
             <div class="toggle fl">
-              <a class="btn-best active" href="#">状元榜</a>
-              <a class="btn-kind" href="/merit">功德榜</a>
+              <a class="btn-best active" href="/champion">状元榜</a>
+              <a class="btn-kind" href="#">功德榜</a>
             </div>
             <div class="btn-set fl">
               <a class="btn-recycling" href="/champion/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
@@ -59,7 +59,7 @@
                   <td>本科</td>
                   <td>副院长</td>
                   <td>长沙矿山研究院</td>
-                  <td><a class="link-edit" href="/champion/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td><a class="link-edit" href="/merit/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
                 </tr>
               </tbody>
             </table>

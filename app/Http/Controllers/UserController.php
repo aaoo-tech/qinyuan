@@ -12,4 +12,9 @@ class UserController extends Controller
         $_params = $request->all();
         return view('user.index', ['title' => '用户中心']);
     }
+
+    public function lock(Request $request) {
+        $_params = $request->all();
+        return view('user.lock', ['title' => '用户锁定']);
+    }
 }

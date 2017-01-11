@@ -49,7 +49,7 @@
                   <td><a href="#" >家族地理位置分布</a></td>
                   <td>123</td>
                   <td>2016-11-04 16:40:11</td>
-                  <td><a class="link-edit" href="#" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td><a class="link-edit" href="/history/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
                 </tr>
               </tbody>
             </table>
