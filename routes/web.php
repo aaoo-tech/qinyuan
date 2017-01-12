@@ -35,6 +35,7 @@ Route::get('logout', 'AdminController@logout');
 
 Route::group(['prefix' => 'card'], function() {
     Route::get('', 'CardController@index');
+    Route::any('test', 'CardController@test');
     // Route::get('get', 'CardController@get');
     // Route::gets('gets', 'CardController@gets');
 });
@@ -86,6 +87,7 @@ Route::group(['prefix' => 'tree'], function() {
 
 Route::group(['prefix' => 'image'], function() {
     Route::get('', 'ImageController@index');
+    Route::get('detail', 'ImageController@detail');
     // Route::get('get', 'ImageController@get');
     // Route::gets('gets', 'ImageController@gets');
 });
