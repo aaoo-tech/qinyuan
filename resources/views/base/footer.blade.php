@@ -3,7 +3,7 @@
             (function($) {
               $(function() {
 
-                var navList = ['center','users','set'];
+                var navList = ['dashboard','user','setting'];
                 var n = 0;
                 var path = location.pathname.split('/');
                 for(var i in navList){

@@ -31,7 +31,7 @@
                   <td>1</td>
                   <td><a href="#" >张雨</a></td>
                   <td>2016-11-04 16:40:11</td>
-                  <td>https://cloud.baidu.com/beian/index.html</td>
+                  <td><a class="link" target="_blank" href="https://cloud.baidu.com/beian/index.html">https://cloud.baidu.com/beian/index.html</a></td>
                   <td><a href="#" >锁定</a></td>
                 </tr>
               </tbody>
