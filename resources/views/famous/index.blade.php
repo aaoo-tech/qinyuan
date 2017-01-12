@@ -7,7 +7,7 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="btn-set fl">
               <a class="btn-recycling" href="/famous/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>

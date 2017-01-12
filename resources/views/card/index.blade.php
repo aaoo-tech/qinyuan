@@ -7,7 +7,7 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="btn-set">
               <a class="btn-edit btn-pop" href="#">编辑</a>
             </div>

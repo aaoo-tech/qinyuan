@@ -3,7 +3,7 @@
     <a href="#">简体中文</a>
   </div>
   <div class="user fr">
-    <a href="#"><i class="iconfont icon-user"></i>张仲景<i class="iconfont icon-down"></i></a>
+    <a href="#"><i class="iconfont icon-user"></i>张仲景<i class="iconfont icon-triangle"></i></a>
     <div class="user-more">
       <div class="user-name"><i class="iconfont icon-user"></i><span>张仲景</span></div>
       <ul>

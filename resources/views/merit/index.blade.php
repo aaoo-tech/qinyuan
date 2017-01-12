@@ -7,7 +7,7 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="toggle fl">
               <a class="btn-best" href="/champion">状元榜</a>
               <a class="btn-kind active" href="#">功德榜</a>
