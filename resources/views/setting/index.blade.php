@@ -10,7 +10,8 @@
         </div>
         <div class="main-body">
           
-          <div class="admin-set">
+          <div class="admin-set show">
+
             <div class="form-holder add-form clearfix">
               <div class="form-title">
                 <h3>添加管理员</h3>
@@ -36,17 +37,20 @@
               </div>
               <ul>
                 <li>
+                  <span class="admin-id">1</span>
                   <span class="admin-name">张仲景</span>
                   <span>账号：</span>
                   <span class="admin-account">13933331234</span>
                 </li>
                 <li>
+                  <span class="admin-id">2</span>
                   <span class="admin-name">张玉</span>
                   <span>账号：</span>
                   <span class="admin-account">13933331234</span>
                   <a class="btn-remove" href="#">删除</a>
                 </li>
                 <li>
+                  <span class="admin-id">3</span>
                   <span class="admin-name">张雪</span>
                   <span>账号：</span>
                   <span class="admin-account">13933331234</span>

@@ -7,6 +7,18 @@
           <div class="breadcrumb fl">
             <span><i class="iconfont icon-users"></i>用户</span>
           </div>
+          <div class="other fr">
+            <div class="btn-set fl">
+              <a class="btn-lock" href="/user/lock"><i class="iconfont icon-lock"></i>已锁定用户</a>
+            </div>
+            <div class="form-holder add-famous fr">
+              <form action="#" method="POST">
+                <div class="search-input fl">
+                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入姓名"/>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
         <div class="main-body">
           <div class="common-table">
@@ -32,7 +44,7 @@
                   <td><a href="#" >张雨</a></td>
                   <td>2016-11-04 16:40:11</td>
                   <td>https://cloud.baidu.com/beian/index.html</td>
-                  <td><a href="/user/lock" >锁定</a></td>
+                  <td><a href="#" class="link-lock">锁定</a></td>
                 </tr>
               </tbody>
             </table>

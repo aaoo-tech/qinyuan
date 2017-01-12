@@ -27,7 +27,7 @@
                   <th>籍贯</th>
                   <th>学历</th>
                   <th>职务</th>
-                  <th>工作单位</th>
+                  <th>捐款金额（元）</th>
                   <th>操作</th>
                 </tr>
               </thead>
@@ -39,7 +39,7 @@
                   <td>刘峰小溪</td>
                   <td>本科</td>
                   <td>副院长</td>
-                  <td>长沙矿山研究院</td>
+                  <td>10000</td>
                   <td><a class="link-edit" href="#" >编辑</a><a class="link-remove" href="#" >删除</a></td>
                 </tr>
               </tbody>
