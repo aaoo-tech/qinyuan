@@ -4,10 +4,9 @@ body { height: 100%; font-family: Helvetica, Arial, Microsoft Yahei, sans-serif;
 
 
 /* .narrow-width  */
-html{ background-color: #999; }
+/* html{ background-color: #999; }
 body { width: 1200px; margin: 0 auto; background-color: #fff; box-shadow: 0 0 5px 1px #333 }
-
-
+ */
 
 .fl { float:left; }
 .fr { float: right; }
@@ -110,15 +109,17 @@ label { cursor: pointer; user-select: none; }
 .other .toggle { width: 135px; }
 .other .toggle a { float: left; margin: 12px 20px 0 0; line-height: 28px;  }
 .other .toggle a.active { border-bottom: 3px solid #FDBC4F; }
-.other .btn-set { margin: 9px 0; }
+.other .btn-set { margin: 9px 10px; }
 .other .btn-edit { padding: 0 21px; line-height: 32px; color: #fff; background-color: #E50011; border-radius: 3px; }
 .other .btn-submit { padding: 0 21px; line-height: 32px; color: #fff; background-color: #2caa3f; border-radius: 3px; }
 /* .other .btn-best { margin-right: 10px; line-height: 32px; } */
 /* .other .btn-kind { margin-right: 10px; line-height: 32px; } */
+.other .btn-lock,
 .other .btn-recycling { line-height: 32px; }
+.other .btn-lock .iconfont,
 .other .btn-recycling .iconfont { margin-right: 5px; font-size: 20px; }
 
-.other .search-input { padding: 0 10px; margin: 10px 20px 0; line-height: 30px; border: 1px solid #ccc; }
+.other .search-input { padding: 0 10px; margin: 10px 10px 0 20px; line-height: 30px; border: 1px solid #ccc; }
 .other .search-input input { padding-left: 10px; margin-left: 10px; border: none; border-left: 1px solid #aaa; }
 .other .search-input .icon-search { font-size: 14px; line-height: 1em; color: #aaa; }
 /* .other .search-input .icon-search: */
@@ -219,7 +220,6 @@ label { cursor: pointer; user-select: none; }
 .article-edit .article-title input { width: 380px; height: 32px; padding: 0 10px; }
 .article-edit .cont-form { margin-left: 60px; }
 
-
 .common-table table { width: 100%; }
 .common-table thead { background-color: #f8f8f8 }
 .common-table .table-foot { padding: 11px 0; background-color: #f8f8f8; border: 1px solid #ccc; border-top: none; }
@@ -232,6 +232,8 @@ label { cursor: pointer; user-select: none; }
 .common-table td .link { color: #377FC1; }
 .common-table .link-edit { margin: 0 10px; color: #21AB38; }
 .common-table .link-remove { margin: 0 10px; color: #E50012; }
+.common-table .link-lock { color: #E50012; }
+.common-table .link-unlock { color: #21AB38; }
 
 .pagination { padding: 10px 0; }
 .pagination > * { float: left; }
@@ -243,18 +245,19 @@ label { cursor: pointer; user-select: none; }
 
 .admin-set { margin-top: 15px; }
 .admin-set h3 { font-size: 14px; font-weight: bold; }
-.admin-set .add-form { height: 100px; }
+.admin-set .add-form { display: none; }
+.admin-set.show .add-form { display: block; height: 90px; }
 .admin-set .add-form .entry { margin: 16px 0 26px; }
 .admin-set .add-form input { margin: 0 20px; padding: 0 10px; line-height: 28px; }
 .admin-set .add-form .btn-set { margin: 16px 0 26px; }
 .admin-set .add-form .btn-add { width: 70px; line-height: 30px; background-color: #009943; }
 .admin-list .list-title { margin-bottom: 20px; }
 .admin-list li { padding: 10px 0; line-height: 26px; border-bottom: 1px solid #E5E3E3; }
+.admin-list li .admin-id:after { content: "."; margin-right: 5px; }
 .admin-list li .admin-name { display: inline-block; width: 60px; }
-.admin-list li a { display: inline-block; width: 60px; margin-left: 20px; text-align: center; color: #fff; background-color: #E50011; }
-
+.admin-list li a { display: none; width: 60px; margin-left: 20px; text-align: center; color: #fff; background-color: #E50011; }
+.admin-set.show .admin-list li a { display: inline-block; }
 footer { }
-
 
 /* jquery.Jcrop.min.css v0.9.12 (build:20130126) */
 .jcrop-holder{direction:ltr;text-align:left;user-select:none;}

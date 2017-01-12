@@ -9,7 +9,6 @@
                 for(var i in navList){
                   path.forEach(function(item){
                     if (navList[i] === item) {
-                      console.log(i);
                       $('.main-nav li').eq(i).find('a').addClass('active')
                     };
                   });
