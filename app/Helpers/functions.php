@@ -68,12 +68,15 @@ if(!function_exists('navdata')) {
     function navdata() {
         return [
             "card" => ["index" => "家族名片"],
-            "profile" => ["index" => "家族简介"],
-            "history" => ["index" => "史料", "recycle" => "回收站"],
-            "famous" => ["index" => "名人榜", "recycle" => "回收站"],
-            "champion" => ["index" => "状元榜", "recycle" => "回收站"],
+            "profile" => ["index" => "家族简介", "edit" => "编辑"],
+            "history" => ["index" => "史料", "recycle" => "回收站", "edit" => "编辑"],
+            "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑"],
+            "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑"],
             "tree" => ["index" => "家族树"],
-            "image" => ["index" => "影像中心"]
+            "image" => ["index" => "影像中心"],
+            "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑"],
+            "user" => ["index" => "用户", "lock" => "锁定"],
+            "setting" => ["index" => "设置"]
         ];
     }
 }
@@ -89,7 +92,7 @@ if(!function_exists('breadcrumb')) {
         if(getCurrentMethodName() == 'index') {
             echo '<a href="/dashboard"><i class="iconfont icon-home"></i>家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a>';
         }else{
-            echo '<a href="/dashboard"><i class="iconfont icon-home"></i>家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><a href = "/'. getCurrentControllerName() .'/'. getCurrentMethodName() . '">'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</a>';
+            echo '<a href="/dashboard"><i class="iconfont icon-home"></i>家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
         }
     }
 }

@@ -12,4 +12,9 @@ class ProfileController extends Controller
         $_params = $request->all();
         return view('profile.index', ['title' => '家族简介']);
     }
+
+    public function edit(Request $request) {
+        $_params = $request->all();
+        return view('base.edit', ['title' => '编辑']);
+    }
 }

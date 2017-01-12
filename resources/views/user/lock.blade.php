@@ -32,7 +32,7 @@
                   <td><a href="#" >张雨</a></td>
                   <td>2016-11-04 16:40:11</td>
                   <td>https://cloud.baidu.com/beian/index.html</td>
-                  <td><a href="/user/lock" >锁定</a></td>
+                  <td><a href="#" >1</a></td>
                 </tr>
               </tbody>
             </table>

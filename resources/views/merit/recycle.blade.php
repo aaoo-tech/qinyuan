@@ -7,25 +7,6 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
-            <div class="toggle fl">
-              <a class="btn-best active" href="#">状元榜</a>
-              <a class="btn-kind" href="/merit">功德榜</a>
-            </div>
-            <div class="btn-set fl">
-              <a class="btn-recycling" href="/champion/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
-            </div>
-            <div class="form-holder add-famous fr">
-              <form action="#" method="POST">
-                <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入姓名"/>
-                </div>
-                <div class="btn-set fr">
-                  <a class="btn-submit" href="#">添加</a>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
         <div class="main-body">
           <div class="common-table">
@@ -59,12 +40,19 @@
                   <td>本科</td>
                   <td>副院长</td>
                   <td>长沙矿山研究院</td>
-                  <td><a class="link-edit" href="/champion/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td><a class="link-edit" href="#" >编辑</a><a class="link-remove" href="#" >删除</a></td>
                 </tr>
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn" href="#" >批量删除</a>
+              <div class="left-cont fl">
+                <a class="btn" href="#" >批量删除</a>
+                <a class="btn" href="#" >批量还原</a>
+              </div>
+              <div class="right-cont">
+                <a class="btn" href="#" >还原所有</a>
+                <a class="btn" href="#" >删除所有</a>
+              </div>
             </div>
           </div>
           @include('base.pagination')

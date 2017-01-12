@@ -9,7 +9,7 @@
           </div>
           <div class="other fr">
             <div class="btn-set">
-              <a class="btn-submit" href="/profile/edit">提交</a>
+              <a class="btn-submit" href="#">编辑</a>
             </div>
           </div>
         </div>
