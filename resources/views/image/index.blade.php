@@ -14,7 +14,7 @@
             <div class="btn-set fr">
               <a class="btn-add" href="#">创建相册</a>
             </div>
-            <div class="form-holder add-famous fr">
+            <div class="form-holder search-album fr">
               <form action="#" method="POST">
                 <div class="search-input fl">
                   <i class="iconfont icon-search"></i><input type="text" placeholder="输入相册名"/>
@@ -27,7 +27,7 @@
           <div class="album-list clearfix">
 
             <div class="album">
-              <a class="album-name" href="#" title="夏子轩家的全家福">
+              <a class="album-name" href="/image/detail" title="夏子轩家的全家福">
                 <img src="{{ asset('/img/pic.jpg') }}">
                 <span>夏子轩家的全家福</span>
               </a>
