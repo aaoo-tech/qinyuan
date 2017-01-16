@@ -48,11 +48,15 @@
           </div>
         </div>
       </div>
-      <div class="pop-out">
-        <div class="pop-out-cont album-edit">
+      <div class="pop-out active">
+        <div class="pop-out-confirm album-edit active">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
           <div class="box-haader"><h2>编辑相册信息</h2></div>
           <div class="form-holder">
-
             <form action="#">
               <div class="entry">
                 <span class="label">相册名称</span>
@@ -70,6 +74,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
     <script type="text/javascript">

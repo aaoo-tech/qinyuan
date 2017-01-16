@@ -41,40 +41,47 @@ label { cursor: pointer; user-select: none; }
 .login-container .login-form .link { font-size: 14px; line-height: 20px; color: #F19919; }
 .login-container .login-form .btn-submit { width: 100px; margin: 20px 0 0 65px; line-height: 36px; }
 
-.reset-header { background-color: #EDEDED; border-bottom: 1px solid #E5E3E3; }
-.reset-header .container { width: 1000px; height: 79px; margin: 0 auto; }
-.reset-header h1 { padding-left: 20px; font-size: 20px; line-height: 79px; /* font-weight: bold; */ }
-.reset-header .pop-login { font-size: 20px; line-height: 79px; font-weight: bold;  color: #044671; }
-.reset-sub-title { border-bottom: 1px solid #E5E3E3; }
-.reset-sub-title .container { width: 1000px; height: 49px; margin: 0 auto; }
-.reset-sub-title h2 { padding-left: 88px; font-size: 16px; font-weight: bold; line-height: 49px; color: #27292C; }
-.reset-main { box-sizing: border-box; width: 1000px; padding-left: 88px; margin: 0 auto; }
-.reset-main .tag-list { width: 660px; margin-top: 40px; margin-bottom: 30px; overflow: hidden; }
-.reset-main .tag-list li { float: left; position: relative; width: 220px; }
-.reset-main .tag-list a { padding-left: 30px; font-weight: bold; line-height: 40px; background-color: #EDEDED; }
-.reset-main .tag-list a.active { color: #125189; background-color: #81BFF7; }
-.reset-main .tag-list a:after { position: absolute; z-index: 1; right: -28px; border-style: solid; border-width: 20px 14px; border-color: transparent transparent transparent #EDEDED; content: ""; }
-.reset-main .tag-list a.active:after { border-color: transparent transparent transparent #81BFF7; }
-.reset-main .tag-list i { display: inline-block; width: 24px; margin-right: 5px; line-height: 24px; text-align: center; color: #fff; background-color: #7D7F7F; border-radius: 24px; }
-.reset-main .tag-list a.active i { background-color: #125189;  }
+.forgot-header { background-color: #EDEDED; border-bottom: 1px solid #E5E3E3; }
+.forgot-header .container { width: 1000px; height: 79px; margin: 0 auto; }
+.forgot-header h1 { padding-left: 20px; font-size: 20px; line-height: 79px; /* font-weight: bold; */ }
+.forgot-header .pop-login { font-size: 20px; line-height: 79px; font-weight: bold;  color: #044671; }
+.forgot-sub-title { border-bottom: 1px solid #E5E3E3; }
+.forgot-sub-title .container { width: 1000px; height: 49px; margin: 0 auto; }
+.forgot-sub-title h2 { padding-left: 88px; font-size: 16px; font-weight: bold; line-height: 49px; color: #27292C; }
+.forgot-main { box-sizing: border-box; width: 1000px; padding-left: 88px; margin: 0 auto; }
+.forgot-main .tag-list { width: 660px; margin-top: 40px; margin-bottom: 30px; overflow: hidden; }
 
-.reset-main .tag-cont { display: none; }
-.reset-main .tag-cont.active { display: block; }
+.forgot-main .tag-list li { float: left; position: relative; width: 220px; }
+.forgot-main .tag-list span { display: block; padding-left: 30px; font-weight: bold; line-height: 40px; background-color: #EDEDED; }
+.forgot-main .tag-list span.active { color: #125189; background-color: #81BFF7; }
+.forgot-main .tag-list span:after { position: absolute; z-index: 1; right: -28px; border-style: solid; border-width: 20px 14px; border-color: transparent transparent transparent #EDEDED; content: ""; }
+.forgot-main .tag-list span.active:after { border-color: transparent transparent transparent #81BFF7; }
+.forgot-main .tag-list i { display: inline-block; width: 24px; margin-right: 5px; line-height: 24px; text-align: center; color: #fff; background-color: #7D7F7F; border-radius: 24px; }
+.forgot-main .tag-list span.active i { background-color: #125189;  }
 
-.reset-main .form-holder .entry { margin-bottom: 20px; }
-.reset-main .form-holder .error-info { padding-left: 15px; color: #E50012; }
-.reset-main .form-holder input { padding: 0 10px; line-height: 40px; font-size: 16px; }
-.reset-main .form-holder .ipt-phone { width: 360px; }
-.reset-main .btn-submit { width: 350px; line-height: 40px; }
+.forgot-main .tag-cont { display: none; }
+.forgot-main .tag-cont.active { display: block; }
 
-.reset-main .tag-cont .tip { font-size: 16px; line-height: 24px; }
-.reset-main h3 { margin-bottom: 22px; font-size: 18px; line-height: 25px; font-weight: bold; color: #27292C; }
-.reset-main .info-box { margin: 22px 0; }
-.reset-main .info-box p { font-size: 16px; line-height: 23px; color: #7D7F7F; }
+.forgot-main .form-holder .entry { margin-bottom: 20px; }
+.forgot-main .form-holder .error-info { padding-left: 15px; color: #E50012; }
+.forgot-main .form-holder input { padding: 0 10px; line-height: 40px; font-size: 16px; }
+.forgot-main .form-holder input.error { border-color: #E50012; }
+.forgot-main .form-holder .ipt-phone { width: 360px; }
+.forgot-main .btn-submit { width: 350px; line-height: 40px; }
 
-#step-3 .entry { line-height: 40px; }
-#step-3 .entry label { box-sizing: border-box; width: 100px; padding-right: 20px; font-size: 16px;  text-align: right; }
-#step-3 .btn-set { margin-left: 100px; }
+.forgot-main .tag-cont .tip { font-size: 16px; line-height: 24px; }
+.forgot-main h3 { margin-bottom: 22px; font-size: 18px; line-height: 25px; font-weight: bold; color: #27292C; }
+.forgot-main .info-box { margin: 22px 0; }
+.forgot-main .info-box p { font-size: 16px; line-height: 23px; color: #7D7F7F; }
+
+.forgot-main #step-1 .captcha { display: inline-block; width: 160px; vertical-align: top; }
+.forgot-main #step-1 .captcha a { padding: 6px 0; color: #125189; }
+.forgot-main #step-1 .captcha img { width: 82px; height: 32px; margin-right: 10px; }
+.forgot-main #step-2 .captcha { display: inline-block; }
+.forgot-main #step-2 .captcha .get-captcha { display: inline-block; width: 120px; height: 40px; margin-left: 5px; line-height: 40px; text-align: center; color: #666; background: #f7f7f7; border: 1px solid #ccc;  }
+.forgot-main #step-3 .entry { line-height: 40px; }
+.forgot-main #step-3 .entry label { box-sizing: border-box; width: 100px; padding-right: 20px; font-size: 16px;  text-align: right; }
+.forgot-main #step-3 .btn-set { margin-left: 100px; }
 
 .main-nav li { border-bottom: 1px solid #0B4171; }
 .main-nav li a { display: block; padding-left: 20px; font-size: 16px; line-height: 49px; color: #fff; text-align: left; } 
@@ -131,13 +138,15 @@ label { cursor: pointer; user-select: none; }
 
 .pop-out { display: none; position: fixed; z-index: 2; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); }
 .pop-out.active { display: block; }
+/* .pop-out-cont { display: none; } */
+.pop-out-cont.active { display: block; }
 .pop-out .login-container { position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; width: 500px; height: 400px; background-color: #fff;  }
 .pop-out .login-form { width: 270px; margin: 0 auto; }
 .pop-out .login-form h2 { padding: 60px 0 33px; font-size: 24px; line-height: 36px; text-align: center; color: #27292C; }
 .pop-out .login-form .entry { margin-top: 12px; }
 .pop-out .login-form .label { font-size: 16px; line-height: 30px; color: #27292C; }
 .pop-out .login-form input { box-sizing: border-box; width: 200px; padding: 0 10px; line-height: 26px; }
-.pop-out .login-form .checkbox { width: 20px; height: 20px; margin: 0 0 0 65px; }
+.pop-out .login-form .checkbox { width: 20px; height: 20px; margin: 0 0 0 70px; }
 .pop-out .login-form label { font-size: 14px; vertical-align: super; }
 .pop-out .login-form .btn-submit { width: 100px; margin: 20px 0 0 65px; line-height: 36px; }
 
@@ -157,18 +166,25 @@ label { cursor: pointer; user-select: none; }
 .card-edit .box-right > div { display: none; }
 .card-edit .box-right > div.active { display: block; }
 .card-edit .box-right h3 { font-size: 16px; line-height: 45px; color: #7D7F7F; }
-.card-edit .img-container { position: relative; overflow: hidden; width: 400px; height: 300px; background-color: #E0DFDF; }
-.card-edit .img-container img { width: 100%; height: auto; vertical-align: middle; }
+
+.card-edit .img-container { position: relative; overflow: hidden; width: 400px; height: 300px; line-height: 300px; vertical-align: middle; text-align: center; background-color: #E0DFDF; }
+.card-edit #set-logo .img-container { width: 300px; }
+.card-edit .img-container img { width: 400px; height: auto; vertical-align: middle; }
 .card-edit .img-container .jcrop-holder { top: 50%; transform: translateY(-50%); }
+
 .card-edit .box-right .entry { font-size: 16px; line-height: 45px; color: #7D7F7F; }
 .card-edit .box-right input { width: 200px; padding: 0 10px;  margin: 0 10px; font-size: 16px; line-height: 35px; }
 .card-edit .box-right .ipt-name input { width: 320px; }
 .card-edit .box-right .btn-set { width: 100px; margin-top: 25px; }
 .card-edit .box-right .btn-submit { line-height: 40px; }
-.card-edit #set-bg .btn-set { margin-right: 20px; font-size: 16px; }
-.card-edit #set-bg .btn-set a { line-height: 40px; }
-.card-edit #set-bg .btn-choose { display: block; line-height: 40px; color: #27292C; background-color: #E7E3E3; }
 
+.card-edit .btn-set { margin-right: 20px; font-size: 16px; }
+.card-edit .btn-set a { line-height: 40px; }
+.card-edit .btn-choose { display: block; line-height: 40px; color: #27292C; background-color: #E7E3E3; }
+
+
+.pop-out .pop-out-confirm .pop-close { position: absolute; top: 8px; right: 8px; color: #666; }
+.pop-out .pop-out-confirm .pop-close:hover { color: #333; }
 .album-edit { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 500px; height: 245px; margin: auto; background-color: #fff; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
 .album-edit .box-haader { border-bottom: 1px solid #D7D7D7; background-color: #EDEDED; }
 .album-edit .box-haader h2 { padding-left: 20px; font-size: 18px; color: #7C7F80; line-height: 49px; }

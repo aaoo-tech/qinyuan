@@ -107,18 +107,24 @@
               <div class="tree-menu">
                 <div class="menu-title"><h3>节点操作</h3></div>
                 <ul>
-                  <li><a href="#" data="">个人资料</a></li>
-                  <li><a href="#" data="">个人影像资料</a></li>
-                  <li><a href="#" data="">添加配偶</a></li>
-                  <li><a href="#" data="add_bra">添加兄妹</a></li>
-                  <li><a href="#" data="add_child">添加子女</a></li>
-                  <li><a href="#" data="remove_node">删除节点</a></li>
+                  <li><a href="#" data-type="user_info">个人资料</a></li>
+                  <li><a href="#" data-type="user_media">个人影像资料</a></li>
+                  <li><a href="#" data-type="add_mate">添加配偶</a></li>
+                  <li><a href="#" data-type="add_bra">添加兄妹</a></li>
+                  <li><a href="#" data-type="add_child">添加子女</a></li>
+                  <li><a href="#" data-type="remove_node">删除节点</a></li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
         <div class="clear"></div>
+      </div>
+      <div class="pop-out">
+        <div class="pop-out-cont user-info">
+        </div>
+        <div class="pop-out-confirm remove-node">
+        </div>
       </div>
     </div>
     <script type="text/javascript">
@@ -137,7 +143,26 @@
 
       var _person;
       var selectMenu = function(t,p){
-        console.log(t,p);
+        switch(t)
+        {
+        case 'user_info':
+
+          break;
+        case 'user_media':
+
+          break;
+        case 'add_mate':
+
+          break;
+        case 'add_bra':
+
+          break;
+        case 'add_child':
+
+          break;
+        case 'remove_node':
+
+          break;
         return false;
       }
       $('.family-tree .tree-menu a').on('click',function(){
