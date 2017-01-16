@@ -27,7 +27,7 @@ class AliyunOss
             $_result = $ossClient->uploadFile(self::bucket, $object, $_params['filepath']);
             return $_result;
         } catch (OssException $e) {
-            return $e->getMessage();
+            return false;
         }
     }
 }

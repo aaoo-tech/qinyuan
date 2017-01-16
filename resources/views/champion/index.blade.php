@@ -18,7 +18,7 @@
             <div class="form-holder add-famous fr">
               <form action="#" method="POST">
                 <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入姓名"/>
+                  <i class="iconfont icon-search"></i><input type="text" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
                 </div>
                 <div class="btn-set fr">
                   <a class="btn-submit" href="#">添加</a>
@@ -51,16 +51,18 @@
                 </tr>
               </thead>
               <tbody>
+              @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>1</td>
-                  <td><a href="#" >夏天</a></td>
-                  <td>刘峰小溪</td>
-                  <td>本科</td>
-                  <td>副院长</td>
-                  <td>长沙矿山研究院</td>
-                  <td><a class="link-edit" href="/champion/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td>{{$datum['id']}}</td>
+                  <td><a href="/champion/edit?id={{$datum['id']}}" >{{$datum['uname']}}</a></td>
+                  <td>{{$datum['addr']}}</td>
+                  <td>{{$datum['education']}}</td>
+                  <td>{{$datum['job']}}</td>
+                  <td>{{$datum['workplace']}}</td>
+                  <td><a class="link-edit" href="/champion/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/champion/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
+              @endforeach
               </tbody>
             </table>
             <div class="table-foot">

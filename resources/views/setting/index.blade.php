@@ -36,26 +36,24 @@
                 <h3>管理员(<span>3<span>)</h3>
               </div>
               <ul>
-                <li>
-                  <span class="admin-id">1</span>
-                  <span class="admin-name">张仲景</span>
-                  <span>账号：</span>
-                  <span class="admin-account">13933331234</span>
-                </li>
-                <li>
-                  <span class="admin-id">2</span>
-                  <span class="admin-name">张玉</span>
-                  <span>账号：</span>
-                  <span class="admin-account">13933331234</span>
-                  <a class="btn-remove" href="#">删除</a>
-                </li>
-                <li>
-                  <span class="admin-id">3</span>
-                  <span class="admin-name">张雪</span>
-                  <span>账号：</span>
-                  <span class="admin-account">13933331234</span>
-                  <a class="btn-remove" href="#">删除</a>
-                </li>
+              @foreach ($data as $k => $datum)
+                  @if($datum['uid'] == session('uid'))
+                    <li>
+                      <span class="admin-id">{{ $k+1 }}</span>
+                      <span class="admin-name">{{$datum['uname']}}</span>
+                      <span>账号：</span>
+                      <span class="admin-account">{{$datum['mobile']}}</span>
+                    </li>
+                  @else
+                    <li>
+                      <span class="admin-id">{{ $k+1 }}</span>
+                      <span class="admin-name">{{$datum['uname']}}</span>
+                      <span>账号：</span>
+                      <span class="admin-account">{{$datum['mobile']}}</span>
+                      <a class="btn-remove" href="/setting/del?uid={{$datum['uid']}}">删除</a>
+                    </li>
+                  @endif
+                @endforeach
               </ul>
             </div>
           </div>

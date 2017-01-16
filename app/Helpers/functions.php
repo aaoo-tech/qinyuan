@@ -47,14 +47,18 @@ if(!function_exists('getCurrentMethodName')) {
 if(!function_exists('curlPost')) {
     function curlPost($url, $_params) {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($_params));
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_HEADER,0);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_POST,1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$_params);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json; charset=utf-8',
+            'Content-Length: ' . strlen($_params))
+        ); 
         $_result = curl_exec($ch);
         curl_close($ch);
-        return $_result;
+        return json_decode($_result, true);
     }
 }
 
@@ -69,12 +73,12 @@ if(!function_exists('navdata')) {
         return [
             "card" => ["index" => "家族名片"],
             "profile" => ["index" => "家族简介", "edit" => "编辑"],
-            "history" => ["index" => "史料", "recycle" => "回收站", "edit" => "编辑"],
-            "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑"],
-            "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑"],
+            "history" => ["index" => "史料", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
+            "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
+            "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
             "tree" => ["index" => "家族树"],
             "image" => ["index" => "影像中心", "detail" => "相册详情"],
-            "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑"],
+            "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
             "user" => ["index" => "用户", "lock" => "锁定"],
             "setting" => ["index" => "设置"]
         ];

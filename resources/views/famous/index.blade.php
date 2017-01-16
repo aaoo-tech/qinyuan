@@ -14,7 +14,7 @@
             <div class="form-holder add-famous fr">
               <form action="#" method="POST">
                 <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入姓名"/>
+                  <i class="iconfont icon-search"></i><input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
                 </div>
                 <div class="btn-set fr">
                   <a class="btn-submit" href="#">添加</a>
@@ -43,14 +43,16 @@
                 </tr>
               </thead>
               <tbody>
+              @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>1</td>
-                  <td><a href="#" >夏天(24代／父亲夏雨)</a></td>
-                  <td>123</td>
-                  <td>2016-11-04 16:40:11</td>
-                  <td><a class="link-edit" href="/famous/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td>{{$datum['id']}}</td>
+                  <td><a href="/famous/edit?id={{$datum['id']}}" >{{$datum['uname']}}</a></td>
+                  <td>{{$datum['cnt']}}</td>
+                  <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
+                  <td><a class="link-edit" href="/famous/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/famous/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
+              @endforeach
               </tbody>
             </table>
             <div class="table-foot">

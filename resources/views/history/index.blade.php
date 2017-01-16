@@ -14,7 +14,7 @@
             <div class="form-holder add-history fr">
               <form action="#" method="POST">
                 <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入文章标题"/>
+                  <i class="iconfont icon-search"></i><input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入文章标题"/>
                 </div>
                 <div class="btn-set fr">
                   <a class="btn-submit" href="#">添加</a>
@@ -43,14 +43,16 @@
                 </tr>
               </thead>
               <tbody>
+              @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>1</td>
-                  <td><a href="#" >家族地理位置分布</a></td>
+                  <td>{{$datum['id']}}</td>
+                  <td><a href="/history/edit?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
                   <td>123</td>
-                  <td>2016-11-04 16:40:11</td>
-                  <td><a class="link-edit" href="/history/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
+                  <td><a class="link-edit" href="/history/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/history/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
+              @endforeach
               </tbody>
             </table>
             <div class="table-foot">
