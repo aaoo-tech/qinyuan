@@ -11,5 +11,6 @@
       <link rel="stylesheet" type="text/css" href="{{ asset('/css/rest.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
       <script type="text/javascript" src="{{ asset('/js/jquery-2.1.4.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('/js/utility.js') }}"></script>
     </head>
     <body class="{{ getCurrentControllerName() }}-{{ getCurrentMethodName() }}">
