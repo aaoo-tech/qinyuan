@@ -36,6 +36,7 @@
                 <h3>管理员(<span>3<span>)</h3>
               </div>
               <ul>
+              @if($data)
               @foreach ($data as $k => $datum)
                   @if($datum['uid'] == session('uid'))
                     <li>
@@ -54,6 +55,7 @@
                     </li>
                   @endif
                 @endforeach
+              @endif
               </ul>
             </div>
           </div>

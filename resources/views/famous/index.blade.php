@@ -43,6 +43,7 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
               @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
@@ -53,6 +54,7 @@
                   <td><a class="link-edit" href="/famous/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/famous/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
               @endforeach
+              @endif
               </tbody>
             </table>
             <div class="table-foot">

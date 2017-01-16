@@ -26,7 +26,7 @@ class HistoryController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/105/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         return view('history.index', ['title' => ' 史料', 'pagecount' => ceil(count($_result['data'])/2), 'data' => $_result['data']]);
     }
@@ -122,7 +122,11 @@ class HistoryController extends Controller
     }
 
     public function recycle() {
-        return view('history.recycle', ['title' => '回收站']);
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/131/',
+                    json_encode(['token' => session('token'), 'pageno' => '1', 'pagenum' => '10'])
+                );
+        return view('history.recycle', ['title' => '回收站', 'data' => $_result['data']]);
     }
 
     public function edit(Request $request) {
