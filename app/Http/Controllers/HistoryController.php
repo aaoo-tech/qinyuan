@@ -126,11 +126,25 @@ class HistoryController extends Controller
                     'http://120.25.218.156:12001/info/131/',
                     json_encode(['token' => session('token'), 'pageno' => '1', 'pagenum' => '10'])
                 );
+        var_dump($_result);
         return view('history.recycle', ['title' => '回收站', 'data' => $_result['data']]);
+    }
+
+    public function recycleoption(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/132/',
+                    json_encode(['token' => session('token'), 'optype' => '1', 'idlist' => '1,2,3'])
+                );
     }
 
     public function edit(Request $request) {
         $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/130/',
+                    json_encode(['token' => session('token'), 'type' => '2', 'id' => $_params['id']])
+                );
+        var_dump($_result);
         return view('history.edit', ['title' => '编辑']);
     }
 }

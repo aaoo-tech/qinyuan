@@ -28,8 +28,8 @@ Route::group(['prefix' => 'setting'], function() {
 });
 
 Route::get('admin', 'AdminController@index');
-Route::get('forgot', 'AdminController@forgot');
-Route::get('login', 'AdminController@login');
+Route::get('forgot_one', 'AdminController@forgot_one');
+Route::any('login', 'AdminController@login');
 
 Route::group(['prefix' => '', 'middleware' => 'checklogin'], function() {
     Route::get('dashboard', 'AdminController@dashboard');
@@ -59,6 +59,7 @@ Route::group(['prefix' => 'profile', 'middleware' => 'checklogin'], function() {
 Route::group(['prefix' => 'history', 'middleware' => 'checklogin'], function() {
     Route::get('', 'HistoryController@index');
     Route::get('recycle', 'HistoryController@recycle');
+    Route::get('recycleoption', 'HistoryController@recycleoption');
     Route::get('edit', 'HistoryController@edit');
     Route::any('add', 'HistoryController@add');
     Route::any('del', 'HistoryController@del');
