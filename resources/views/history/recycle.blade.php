@@ -28,14 +28,18 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>1</td>
-                  <td><a href="#" >家族地理位置分布</a></td>
+                  <td>{{$datum['id']}}</td>
+                  <td><a href="/history/recycle?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
                   <td>123</td>
-                  <td>2016-11-04 16:40:11</td>
+                  <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
                   <td><a class="link-edit" href="#" >还原</a><a class="link-remove" href="#" >删除</a></td>
                 </tr>
+              @endforeach
+              @endif
               </tbody>
             </table>
             <div class="table-foot">
