@@ -49,6 +49,7 @@ class AdminController extends Controller
     }
 
     public function login(Request $request) {
+        $_params = $request->all();
         // ['uname' => '13000000000', 'upasswd' => md5(md5('123123').'aiya')]
         $_result = curlPost(
                     'http://120.25.218.156:12001/user/100/',
