@@ -142,3 +142,11 @@
       })(jQuery)
     </script>
 @include('base.footer')
+
+ <form method="POST" action="/card/test" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <input type="file" name="myfile" />
+
+    <input type="submit" name="submit" value="Submit" />
+
+</form> 
