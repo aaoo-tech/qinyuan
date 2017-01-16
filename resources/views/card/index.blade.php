@@ -27,6 +27,11 @@
       </div>
       <div class="pop-out">
         <div class="pop-out-cont card-edit">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
           <div class="box-title"><h2>编辑名片</h2></div>
           <div class="box-left fl">
             <ul class="set-list tag-list">

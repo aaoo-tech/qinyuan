@@ -14,10 +14,15 @@
             <div class="btn-set fr">
               <a class="btn-add" href="#">创建相册</a>
             </div>
-            <div class="form-holder search-album fr">
+            <div class="form-holder form-search fr">
               <form action="#" method="POST">
-                <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入相册名"/>
+                <div class="fl">
+                  <a class="btn-search" href="#" >
+                    <i class="iconfont icon-search"></i>
+                  </a>
+                </div>
+                <div class="input-search fr">
+                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入相册名"/>
                 </div>
               </form>
             </div>
@@ -48,8 +53,8 @@
           </div>
         </div>
       </div>
-      <div class="pop-out active">
-        <div class="pop-out-confirm album-edit active">
+      <div class="pop-out">
+        <div class="pop-out-confirm album-edit">
           <div class="pop-close">
             <a href="#" title="关闭">
               <i class="iconfont icon-close"></i>

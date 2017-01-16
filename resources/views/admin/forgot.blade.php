@@ -97,6 +97,11 @@
       </div>
       <div class="pop-out">
         <div class="pop-out-cont login-container">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
           <div class="form-holder login-form ">
             <div class="form-title">
               <h2>管理员登录</h2>

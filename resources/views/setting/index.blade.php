@@ -16,17 +16,18 @@
               <div class="form-title">
                 <h3>添加管理员</h3>
               </div>
-              <form action="#" tpye="post">
+              <form action="/setting">
+                {{csrf_field()}}
                 <div class="entry fl">
                   <label>手机号</label>
-                  <input type="text" placeholder="输入待添加管理员手机号" />
+                  <input type="text" maxlength="11" placeholder="输入待添加管理员手机号" />
                 </div>
                 <div class="entry fl">
                   <label>用户名</label>
-                  <input type="text" placeholder="输入姓名" />
+                  <input type="text" maxlength="6" placeholder="输入姓名" />
                 </div>
                 <div class="btn-set fl">
-                  <a class="btn-add btn" href="#">添加</a>
+                  <a class="btn-add btn-submit btn" href="#">添加</a>
                 </div>
               </form>
             </div>
@@ -59,8 +60,6 @@
               </ul>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
