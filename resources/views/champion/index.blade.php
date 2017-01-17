@@ -7,7 +7,7 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="toggle fl">
               <a class="btn-best active" href="#">状元榜</a>
               <a class="btn-kind" href="/merit">功德榜</a>
@@ -15,13 +15,18 @@
             <div class="btn-set fl">
               <a class="btn-recycling" href="/champion/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
-            <div class="form-holder add-famous fr">
+            <div class="btn-set fr">
+              <a class="btn-add btn-pop" href="#">添加</a>
+            </div>
+            <div class="form-holder form-search fr">
               <form action="#" method="POST">
-                <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
+                <div class="fl">
+                  <a class="btn-search" href="#" >
+                    <i class="iconfont icon-search"></i>
+                  </a>
                 </div>
-                <div class="btn-set fr">
-                  <a class="btn-submit" href="#">添加</a>
+                <div class="input-search fr">
+                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>

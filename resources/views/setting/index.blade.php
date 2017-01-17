@@ -27,7 +27,7 @@
                   <input type="text" name="uname" placeholder="输入姓名" />
                 </div>
                 <div class="btn-set fl">
-                  <a class="btn-add btn" href="#">添加</a>
+                  <a class="btn-add btn-submit btn" href="#">添加</a>
                 </div>
               </form>
             </div>
@@ -60,8 +60,6 @@
               </ul>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
