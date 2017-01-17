@@ -32,16 +32,20 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>1</td>
-                  <td><a href="#" >夏天</a></td>
-                  <td>刘峰小溪</td>
-                  <td>本科</td>
-                  <td>副院长</td>
-                  <td>长沙矿山研究院</td>
-                  <td><a class="link-edit" href="#" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td>{{$datum['id']}}</td>
+                  <td><a href="#" >{{$datum['uname']}}</a></td>
+                  <td>{{$datum['addr']}}</td>
+                  <td>{{$datum['education']}}</td>
+                  <td>{{$datum['job']}}</td>
+                  <td>{{$datum['workplace']}}</td>
+                  <td><a class="link-edit" href="/champion/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove" href="/champion/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
                 </tr>
+              @endforeach
+              @endif
               </tbody>
             </table>
             <div class="table-foot">

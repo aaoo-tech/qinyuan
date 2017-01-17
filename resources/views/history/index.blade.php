@@ -55,7 +55,7 @@
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a href="/history/edit?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
-                  <td>123</td>
+                  <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
                   <td><a class="link-edit" href="/history/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/history/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>

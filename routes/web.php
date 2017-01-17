@@ -19,6 +19,8 @@ Route::get('/', function () {
 Route::group(['prefix' => 'user'], function() {
     Route::get('', 'UserController@index');
     Route::get('lock', 'UserController@lock');
+    Route::any('locked', 'UserController@locked');
+    Route::any('search', 'UserController@search');
 });
 
 Route::group(['prefix' => 'setting'], function() {
@@ -52,6 +54,7 @@ Route::group(['prefix' => 'profile', 'middleware' => 'checklogin'], function() {
     Route::get('', 'ProfileController@index');
     Route::any('add', 'ProfileController@add');
     Route::get('edit', 'ProfileController@edit');
+    Route::any('update', 'ProfileController@update');
     // Route::get('get', 'ProfileController@get');
     // Route::gets('gets', 'ProfileController@gets');
 });
@@ -77,6 +80,7 @@ Route::group(['prefix' => 'famous', 'middleware' => 'checklogin'], function() {
     Route::any('del', 'FamousController@del');
     Route::any('batechdel', 'FamousController@batechdel');
     Route::any('search', 'FamousController@search');
+    Route::any('recycleoption', 'FamousController@recycleoption');
     // Route::get('get', 'FamousController@get');
     // Route::gets('gets', 'FamousController@gets');
 });
@@ -89,6 +93,7 @@ Route::group(['prefix' => 'champion', 'middleware' => 'checklogin'], function() 
     Route::any('del', 'ChampionController@del');
     Route::any('batechdel', 'ChampionController@batechdel');
     Route::any('search', 'ChampionController@search');
+    Route::any('recycleoption', 'ChampionController@recycleoption');
     // Route::get('get', 'ChampionController@get');
     // Route::gets('gets', 'ChampionController@gets');
 });
@@ -101,6 +106,7 @@ Route::group(['prefix' => 'merit', 'middleware' => 'checklogin'], function() {
     Route::any('del', 'MeritController@del');
     Route::any('batechdel', 'MeritController@batechdel');
     Route::any('search', 'MeritController@search');
+    Route::any('recycleoption', 'MeritController@recycleoption');
     // Route::get('get', 'ChampionController@get');
     // Route::gets('gets', 'ChampionController@gets');
 });

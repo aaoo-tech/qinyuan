@@ -79,7 +79,7 @@ if(!function_exists('navdata')) {
             "tree" => ["index" => "家族树"],
             "image" => ["index" => "影像中心", "detail" => "相册详情"],
             "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
-            "user" => ["index" => "用户", "lock" => "锁定"],
+            "user" => ["index" => "用户", "lock" => "锁定", "search" => "搜索"],
             "setting" => ["index" => "设置"]
         ];
     }

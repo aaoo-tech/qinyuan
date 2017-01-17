@@ -21,7 +21,7 @@ class SettingController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/user/102/',
-                    json_encode(['token' => session('token'), 'uname' => '张三', 'mobile' => '13697456480'])
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'mobile' => $_params['mobile']])
                 );
         if($_result['ok'] === true) {
             return response()->json([

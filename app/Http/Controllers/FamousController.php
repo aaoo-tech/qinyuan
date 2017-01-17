@@ -12,9 +12,21 @@ class FamousController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'page' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            $_params['page'] = '1';
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/109/',
-                    json_encode(['token' => session('token'), 'pageno' => '1', 'pagenum' => '100'])
+                    json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '100'])
                 );
         return view('famous.index', ['title' => ' 名人榜', 'data' => $_result['data']]);
     }
@@ -83,6 +95,9 @@ class FamousController extends Controller
         $rules = [
             'keyword' => [
                 'required',
+            ],
+            'page' => [
+                'required',
             ]
         ];
         $messages = [
@@ -92,19 +107,63 @@ class FamousController extends Controller
         if ($validator->fails()) {
             $_params['keyword'] = '';
         }
+        if ($validator->fails()) {
+            $_params['page'] = '1';
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/111/',
-                    json_encode(['token' => session('token'), 'keyword' => $_params['keyword'], 'pageno' => '1', 'pagenum' => '10'])
+                    json_encode(['token' => session('token'), 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         return view('famous.index', ['title' => ' 名人榜', 'data' => $_result['data'], 'keyword' => $_params['keyword']]);
     }
 
-    public function recycle() {
-        return view('famous.recycle', ['title' => '回收站']);
+    public function recycle(Request $request) {
+        $_params = $request->all();
+        $rules = [
+            'page' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            $_params['page'] = '1';
+        }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/133/',
+                    json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
+                );
+        return view('famous.recycle', ['title' => '回收站', 'data' => $_result['data']]);
+    }
+
+    public function recycleoption(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/134/',
+                    json_encode(['token' => session('token'), 'optype' => $_params['optype'], 'idlist' => $_params['idlist']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '失败',
+                'data' => array(),
+            ]);
     }
 
     public function edit(Request $request) {
         $_params = $request->all();
-        return view('famous.edit', ['title' => '编辑']);
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/109/',
+                    json_encode(['token' => session('token'), 'pageno' => '1', 'pagenum' => '100'])
+                );
+        return view('famous.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
 }
