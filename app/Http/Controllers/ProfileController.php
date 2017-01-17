@@ -41,7 +41,7 @@ class ProfileController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/100/',
-                    json_encode(['token' => session('token'), 'title' => $_params['title'], 'content' => ['content'], 'id' => $_params['id']])
+                    json_encode(['token' => session('token'), 'title' => $_params['title'], 'content' => $_params['content'], 'id' => $_params['id']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
