@@ -64,7 +64,7 @@ class AdminController extends Controller
                     'http://120.25.218.156:12001/info/123/',
                     json_encode(['token' => $_result['data'][0]['token'], 'fid' => $_result['data'][0]['uid']])
                 );
-        $_result['data'][0]['uname'] = $_customer['data'][0]['uname'];
+        $_result['data'][0]['uname'] = isset($_customer['data'][0]['uname'])?$_customer['data'][0]['uname']:'匿名';
         if($_result['ok'] === true) {
             session($_result['data'][0]);
             return response()->json([

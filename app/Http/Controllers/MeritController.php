@@ -28,7 +28,7 @@ class MeritController extends Controller
                     'http://120.25.218.156:12001/info/117/',
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('merit.index', ['title' => '功德榜', 'data' => $_result['data']]);
     }
 
@@ -169,6 +169,11 @@ class MeritController extends Controller
 
     public function edit(Request $request) {
         $_params = $request->all();
-        return view('merit.edit', ['title' => '编辑']);
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/141/',
+                    json_encode(['token' => session('token'), 'id' => $_params['id']])
+                );
+        var_dump($_result);
+        return view('merit.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
 }
