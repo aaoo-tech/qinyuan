@@ -14,6 +14,7 @@ class SettingController extends Controller
                     'http://120.25.218.156:12001/user/103/',
                     json_encode(['token' => session('token'), 'pageno' => '1', 'pagenum' => '10'])
                 );
+        // var_dump($_result);
         return view('setting.index', ['title' => '设置', 'data' => $_result['data']]);
     }
 
