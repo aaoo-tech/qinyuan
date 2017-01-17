@@ -52,6 +52,26 @@ class FamousController extends Controller
             ]);
     }
 
+    public function update(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/108/',
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'generation' => $_params['generation'], 'father' => $_params['father'], 'id' => $_params['id']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '添加失败',
+                'data' => $_result,
+            ]);
+    }
+
     public function del(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
@@ -164,9 +184,10 @@ class FamousController extends Controller
     public function edit(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
-                    'http://120.25.218.156:12001/info/109/',
-                    json_encode(['token' => session('token'), 'pageno' => '1', 'pagenum' => '100'])
+                    'http://120.25.218.156:12001/info/139/',
+                    json_encode(['token' => session('token'), 'id' => $_params['id']])
                 );
+        var_dump($_result);
         return view('famous.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
 }

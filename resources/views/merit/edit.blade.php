@@ -18,7 +18,7 @@
 
             <div class="article-title">
               <span class="label">标&nbsp;&nbsp;题：</span>
-              <input id="ipt-title" type="post" value="赵氏家谱" />
+              <input id="ipt-title" type="post" value="{{$data['uname']}}" />
             </div>
             
             <div class="article-cont">

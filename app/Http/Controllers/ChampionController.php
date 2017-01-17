@@ -170,6 +170,11 @@ class ChampionController extends Controller
 
     public function edit(Request $request) {
         $_params = $request->all();
-        return view('champion.edit', ['title' => '编辑']);
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/140/',
+                    json_encode(['token' => session('token'), 'id' => $_params['id']])
+                );
+        var_dump($_result);
+        return view('champion.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
 }
