@@ -7,9 +7,11 @@
       <meta name="renderer" content="webkit">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title>{{ $title }} - 亲缘</title>
+      <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_ds1jqxkqnneqxgvi.css">
       <link rel="stylesheet" type="text/css" href="{{ asset('/css/rest.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
-      <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_um3wp2d6bax20529.css">
       <script type="text/javascript" src="{{ asset('/js/jquery-2.1.4.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('/js/jquery.cookie.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('/js/utility.js') }}"></script>
     </head>
     <body class="{{ getCurrentControllerName() }}-{{ getCurrentMethodName() }}">

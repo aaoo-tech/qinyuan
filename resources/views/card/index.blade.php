@@ -7,26 +7,31 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="btn-set">
-              <a class="btn-edit btn-pop" href="#">编辑</a>
+              <a class="btn-edit" href="#">编辑</a>
             </div>
           </div>
         </div>
         <div class="main-body">
           <div class="family-card" style="background-image: url({{ asset('/img/card-bg.jpg') }})">
             <div class="card-logo fl">
-              <img src="{{ asset('/img/card-logo.png') }}">
+              <img src="{{$data['zurl']}}">
             </div>
             <div class="card-info">
-              <h1>华夏张氏统谱*景玉宫房谱</h1>
-              <p>参修人数：30，0000人</p>
+              <h1>{{$data['zuname']}}</h1>
+              <p>参修人数：{{$data['zcnt']}}人</p>
             </div>
           </div>
         </div>
       </div>
       <div class="pop-out">
         <div class="pop-out-cont card-edit">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
           <div class="box-title"><h2>编辑名片</h2></div>
           <div class="box-left fl">
             <ul class="set-list tag-list">
@@ -41,29 +46,41 @@
               <div class="img-container" id="bg-box">
                 <img class="Jcrop-img" src="{{ asset('/img/card-bg.jpg') }}">
               </div>
+              <form action="#">
+                {{csrf_field()}}
+                <div class="btn-set fl">
+                  <a href="#" class="btn btn-save">保存图片</a>
+                </div>
+                <div class="btn-set fl">
+                  <label class="btn btn-choose" for="ipt-bg">重新选择</label>
+                  <input id="ipt-bg" type="file" accept="image/*" style="display:none" />
+                </div>
+              </form>
+            </div>
+            <div class="tag-cont clearfix" id="set-logo">
+              <h3>族谱头像</h3>
+              <div class="img-container">
+                <img class="Jcrop-img" src="{{ asset('/img/card-logo.png') }}">
+              </div>
               <div class="btn-set fl">
                 <a href="#" class="btn btn-save">保存图片</a>
               </div>
               <div class="btn-set fl">
-                <label class="btn btn-choose" for="ipt-bg">重新选择</label>
-                <input id="ipt-bg" type="file" accept="image/*" style="display:none" />
+                <label class="btn btn-choose" for="ipt-logo">重新选择</label>
+                <input id="ipt-logo" type="file" accept="image/*" style="display:none" />
               </div>
-            </div>
-            <div class="tag-cont" id="set-logo">
-              <h3>族谱头像</h3>
-              <div></div>
             </div>
             <div class="tag-cont" id="set-name">
               <h3>编辑族谱名称</h3>
               <div class="form-holder">
-                <form action="#" method="POST">
+                <form action="/card/avatar" method="POST">
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
-                    <input type="text" value="华夏张氏统谱*景玉宫房谱"/>
+                    <input type="zuname" value="{{$data['zuname']}}"/>
                   </div>
                   <div class="entry">
                     <span>参修人数</span>
-                    <input type="number"value="30000"/>
+                    <input type="zcnt"value="{{$data['zcnt']}}"/>
                     <span>人</span>
                   </div>
                   <div class="btn-set">
@@ -80,13 +97,22 @@
     <script type="text/javascript">
       (function($) {
         $(function() {
-          $('.Jcrop-img').Jcrop({
-            aspectRatio: 640 / 320
-          });
 
-          $('#ipt-bg').on('change',function(){
-            // console.log(this)
-            var file = this.files[0];
+          $('.btn-edit').on('click',function(){
+            $('.pop-out').addClass('active');
+            $('.card-edit').addClass('active');
+            $('#set-bg .Jcrop-img').Jcrop({
+              aspectRatio: 640 / 320
+            });
+            $('#set-logo .Jcrop-img').Jcrop({
+              aspectRatio: 1
+            });
+            return false;
+          })
+
+
+          var updataImg = function(elem,box){
+            var file = elem.files[0];
             var img = document.createElement("img");
             img.classList.add("obj");
             img.file = file;
@@ -95,26 +121,32 @@
             // if ( imageType.test(file.type) ) {
             // }
 
-            $box = $("#bg-box");
+            $box = $(box);
             $box.empty();
             $box.append(img);
+
             var reader = new FileReader();
             reader.onload = (function(aImg) {
-              jcropImg($box);
               return function(e) { 
                 aImg.src = e.target.result; 
               }; 
             })(img);
             reader.readAsDataURL(file);
+          }
 
-            function jcropImg($box){
-              $box.find('img').Jcrop({
-                aspectRatio: 640 / 320
-              });
-            }
+          $('#ipt-bg').on('change',function(){
+            var elem = this;
+            var box = $('#bg-box')
+            updataImg(elem,box);
+            // function jcropImg($box){
+            //   $box.find('img').Jcrop({
+            //     aspectRatio: 640 / 320
+            //   });
+            // }
           })
 
         });
       })(jQuery)
     </script>
 @include('base.footer')
+

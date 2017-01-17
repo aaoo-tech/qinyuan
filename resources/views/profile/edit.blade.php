@@ -1,0 +1,76 @@
+@include('base.header')
+    <div class="page-wrapper">
+      @include('base.sidebar')
+      <div class="page-right">
+        @include('base.top-nav')
+        <div class="sub-menu clearfix">
+          <div class="breadcrumb fl">
+            <?php breadcrumb(); ?>
+          </div>
+          <div class="operation fr">
+            <div class="btn-set">
+              <a class="btn-submit" href="#">提交</a>
+            </div>
+          </div>
+        </div>
+        <div class="main-body">
+          <div class="article-edit">
+            <div class="formholder cont-form">
+              <form action="#" method="post">
+                {{csrf_field()}}
+                <input name="id" value="{{$data['id']}}" type="hidden" />
+                <div class="article-title">
+                  <span class="label">标&nbsp;&nbsp;题：</span>
+                  <input id="ipt-title" name="title" type="post" value="{{$data['title']}}" />
+                </div>
+                <div class="article-cont">
+                  <span class="label fl">正&nbsp;&nbsp;文：</span>
+                  <textarea id="ipt-cont" name="content">
+                    {{$data['content']}}
+                  </textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <script type="text/javascript" src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript">
+      tinymce.init({
+        selector: '#ipt-cont',
+        language: 'zh_CN',
+        height : 500,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save table contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'preview | forecolor backcolor emoticons ',
+        image_advtab: true,
+       });
+    </script>
+@include('base.footer')
+<script type="text/javascript">
+  (function($) {
+      $(function() {
+        $('body').on('click', '.btn-submit', function() {
+          $('#ipt-cont').val(tinymce.activeEditor.getContent())
+          $.ajax({
+              url: '/profile/update',
+              data: $('.profile-edit form').serializeObject(),
+              type: 'POST'
+          }).done(function(response) {
+              if(response.success === true){
+                window.location.href = '/profile'
+              }
+          });
+          return false;
+        });
+      });
+  })(jQuery);
+</script>

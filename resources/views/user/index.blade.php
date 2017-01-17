@@ -7,23 +7,29 @@
           <div class="breadcrumb fl">
             <span><i class="iconfont icon-users"></i>用户</span>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="btn-set fl">
               <a class="btn-lock" href="/user/lock"><i class="iconfont icon-lock"></i>已锁定用户</a>
             </div>
-            <div class="form-holder add-famous fr">
+            <div class="form-holder form-search fr">
               <form action="#" method="POST">
-                <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入姓名"/>
+                {{csrf_field()}}
+                <div class="fl">
+                  <a class="btn-search" href="#" >
+                    <i class="iconfont icon-search"></i>
+                  </a>
+                </div>
+                <div class="input-search fr">
+                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <div class="main-body">
+        <div class="main-body users">
           <div class="common-table">
             <table>
-              <col width="50px"></col>
+              <col width="80px"></col>
               <col></col>
               <col></col>
               <col></col>
@@ -39,13 +45,21 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
                 <tr>
-                  <td>1</td>
-                  <td><a href="#" >张雨</a></td>
-                  <td>2016-11-04 16:40:11</td>
-                  <td>https://cloud.baidu.com/beian/index.html</td>
-                  <td><a href="#" class="link-lock">锁定</a></td>
+                  <td>{{$datum['uid']}}</td>
+                  <td><a href="#" >{{$datum['uname']}}</a></td>
+                  <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
+                  <td><a class="link" href="https://cloud.baidu.com/beian/index.html" target="_blank">{{$datum['uinfo']}}</a></td>
+                  <td><a class="link-lock" href="/user/locked?id={{$datum['uid']}}&lockflag=1" >锁定</a></td>
                 </tr>
+              @endforeach
+              @else
+                <tr>
+                  <td colspan="5">空</td>
+                </tr>
+              @endif
               </tbody>
             </table>
           </div>

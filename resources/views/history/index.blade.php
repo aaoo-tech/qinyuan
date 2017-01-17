@@ -7,17 +7,23 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="btn-set fl">
               <a class="btn-recycling" href="/history/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
-            <div class="form-holder add-history fr">
-              <form action="#" method="POST">
-                <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入文章标题"/>
+            <div class="btn-set fr">
+              <a class="btn-add btn-pop" href="#">添加</a>
+            </div>
+            <div class="form-holder form-search fr">
+              <form action="/history/search" method="POST">
+                {{csrf_field()}}
+                <div class="fl">
+                  <a class="btn-search" href="#" >
+                    <i class="iconfont icon-search"></i>
+                  </a>
                 </div>
-                <div class="btn-set fr">
-                  <a class="btn-submit" href="#">添加</a>
+                <div class="input-search fr">
+                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入文章标题"/>
                 </div>
               </form>
             </div>
@@ -43,14 +49,22 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>1</td>
-                  <td><a href="#" >家族地理位置分布</a></td>
-                  <td>123</td>
-                  <td>2016-11-04 16:40:11</td>
-                  <td><a class="link-edit" href="/history/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td>{{$datum['id']}}</td>
+                  <td><a href="/history/edit?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
+                  <td>{{$datum['cnt']}}</td>
+                  <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
+                  <td><a class="link-edit" href="/history/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove ajax-remove" href="/history/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
+              @endforeach
+              @else
+                <tr>
+                  <td colspan="6">空</td>
+                </tr>
+              @endif
               </tbody>
             </table>
             <div class="table-foot">

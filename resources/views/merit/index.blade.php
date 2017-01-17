@@ -7,21 +7,27 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="other fr">
+          <div class="operation fr">
             <div class="toggle fl">
               <a class="btn-best" href="/champion">状元榜</a>
               <a class="btn-kind active" href="#">功德榜</a>
             </div>
             <div class="btn-set fl">
-              <a class="btn-recycling" href="/champion/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
+              <a class="btn-recycling" href="/merit/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
-            <div class="form-holder add-famous fr">
+            <div class="btn-set fr">
+              <a class="btn-add btn-pop" href="#">添加</a>
+            </div>
+            <div class="form-holder form-search fr">
               <form action="#" method="POST">
-                <div class="search-input fl">
-                  <i class="iconfont icon-search"></i><input type="text" placeholder="输入姓名"/>
+                {{csrf_field()}}
+                <div class="fl">
+                  <a class="btn-search" href="#" >
+                    <i class="iconfont icon-search"></i>
+                  </a>
                 </div>
-                <div class="btn-set fr">
-                  <a class="btn-submit" href="#">添加</a>
+                <div class="input-search fr">
+                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>
@@ -51,16 +57,24 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
                 <tr>
                   <td><input type="checkbox" /></td>
-                  <td>1</td>
-                  <td><a href="#" >夏天</a></td>
-                  <td>刘峰小溪</td>
-                  <td>本科</td>
-                  <td>副院长</td>
-                  <td>10000</td>
-                  <td><a class="link-edit" href="/merit/edit" >编辑</a><a class="link-remove" href="#" >删除</a></td>
+                  <td>{{$datum['id']}}</td>
+                  <td><a href="/merit/edit?id={{$datum['addr']}}" >{{$datum['uname']}}</a></td>
+                  <td>{{$datum['addr']}}</td>
+                  <td>{{$datum['education']}}</td>
+                  <td>{{$datum['job']}}</td>
+                  <td>{{$datum['money']}}</td>
+                  <td><a class="link-edit" href="/merit/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove ajax-remove" href="/merit/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
+              @endforeach
+              @else
+                <tr>
+                  <td colspan="8">空</td>
+                </tr>
+              @endif
               </tbody>
             </table>
             <div class="table-foot">

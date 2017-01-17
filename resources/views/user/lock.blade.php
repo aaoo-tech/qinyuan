@@ -7,8 +7,13 @@
           <div class="breadcrumb fl">
             <span><i class="iconfont icon-users"></i>用户</span>
           </div>
+          <div class="operation fr">
+            <div class="btn-set fr">
+              <a class="btn-back" href="/user/">返回用户列表</a>
+            </div>
+          </div>
         </div>
-        <div class="main-body">
+        <div class="main-body users">
           <div class="common-table">
             <table>
               <col width="50px"></col>
@@ -27,13 +32,21 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
                 <tr>
-                  <td>1</td>
-                  <td><a href="#" >张雨</a></td>
-                  <td>2016-11-04 16:40:11</td>
-                  <td>https://cloud.baidu.com/beian/index.html</td>
-                  <td><a href="#" class="link-unlock">解锁</a></td>
+                  <td>{{$datum['uid']}}</td>
+                  <td><a href="#" >{{$datum['uname']}}</a></td>
+                  <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
+                  <td><a class="link" href="https://cloud.baidu.com/beian/index.html" target="_blank">{{$datum['uinfo']}}</a></td>
+                  <td><a href="/user/locked?id={{$datum['uid']}}&lockflag=0" class="link-unlock ajax-remove">解锁</a></td>
                 </tr>
+              @endforeach
+              @else
+                <tr>
+                  <td colspan="5">空</td>
+                </tr>
+              @endif
               </tbody>
             </table>
           </div>

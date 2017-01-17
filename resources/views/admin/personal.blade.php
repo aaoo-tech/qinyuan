@@ -6,6 +6,24 @@
         <div class="sub-menu clearfix">
           <div class="breadcrumb fl">
             <span>个人资料</span>
+            @if($data)
+            {{$data['uid']}}
+            {{$data['uname']}}
+            {{$data['mobile']}}
+            {{$data['father']}}
+            {{$data['monther']}}
+            {{$data['avatar']}}
+            {{$data['addr']}}
+            {{$data['profession']}}
+            {{$data['birthday']}}
+            {{$data['death']}}
+            {{$data['birther']}}
+            {{$data['seniority']}}
+            {{$data['sex']}}
+            {{$data['generation']}}
+            {{$data['idx']}}
+            {{$data['isalive']}}
+            @endif
           </div>
         </div>
       </div>
