@@ -26,7 +26,7 @@
                 <div class="article-cont">
                   <span class="label fl">正&nbsp;&nbsp;文：</span>
                   <textarea id="ipt-cont" name="content">
-                    {{$data[0]['content']}}
+                    {{$data['content']}}
                   </textarea>
                 </div>
               </form>
@@ -44,7 +44,7 @@
               <div class="formholder cont-form">
                 <form action="/history/update" method="post">
                   <textarea id="ipt-cont">
-                    {{$data[0]['content']}}
+                    {{$data['content']}}
                   </textarea>
                 </div>
               </form>
