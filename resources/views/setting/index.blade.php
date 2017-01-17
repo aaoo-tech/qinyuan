@@ -67,7 +67,7 @@
 <script type="text/javascript">
 (function($) {
     $(function() {
-      $('body').on('click', '.admin-set form .btn-add', function() {
+      $('body').on('click', '.admin-set form .btn-submit', function() {
         console.log('1');
         $.ajax({
             url: '/setting/add',
@@ -82,4 +82,4 @@
       });
     });
 })(jQuery);
-</script>>
+</script>

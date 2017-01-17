@@ -24,7 +24,7 @@
             <div class="article-cont">
               <span class="label fl">正&nbsp;&nbsp;文：</span>
               <div class="formholder cont-form">
-                <form action="#" method="post">
+                <form action="/history/update" method="post">
                   <textarea id="ipt-cont">
                     {{$data[0]['content']}}
                   </textarea>

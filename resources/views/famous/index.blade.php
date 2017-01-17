@@ -15,7 +15,7 @@
               <a class="btn-add btn-pop" href="#">添加</a>
             </div>
             <div class="form-holder form-search fr">
-              <form action="#" method="POST">
+              <form action="/famous/search" method="POST">
                 <div class="fl">
                   <a class="btn-search" href="#" >
                     <i class="iconfont icon-search"></i>
@@ -53,7 +53,7 @@
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
-                  <td><a href="/famous/edit?id={{$datum['id']}}" >{{$datum['uname']}}</a></td>
+                  <td><a href="/famous/edit?id={{$datum['id']}}" >{{$datum['uname']}}({{$datum['generation']}}代／父亲{{$datum['father']}})</a></td>
                   <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
                   <td><a class="link-edit" href="/famous/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/famous/del?id={{$datum['id']}}" >删除</a></td>

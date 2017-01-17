@@ -32,13 +32,17 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
                 <tr>
-                  <td>1</td>
-                  <td><a href="#" >张雨</a></td>
-                  <td>2016-11-04 16:40:11</td>
-                  <td><a class="link" href="https://cloud.baidu.com/beian/index.html" target="_blank">https://cloud.baidu.com/beian/index.html</a></td>
-                  <td><a href="#" class="link-unlock">解锁</a></td>
+                  <td>{{$datum['uid']}}</td>
+                  <td><a href="#" >{{$datum['uname']}}</a></td>
+                  <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
+                  <td><a class="link" href="https://cloud.baidu.com/beian/index.html" target="_blank">{{$datum['uinfo']}}</a></td>
+                  <td><a href="/user/locked?id={{$datum['uid']}}&lockflag=0" class="link-unlock">解锁</a></td>
                 </tr>
+              @endforeach
+              @endif
               </tbody>
             </table>
           </div>

@@ -34,9 +34,9 @@
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a href="/history/recycle?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
-                  <td>123</td>
+                  <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
-                  <td><a class="link-edit" href="#" >还原</a><a class="link-remove" href="#" >删除</a></td>
+                  <td><a class="link-edit" href="/history/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove" href="/history/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
                 </tr>
               @endforeach
               @endif
