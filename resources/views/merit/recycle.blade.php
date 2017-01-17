@@ -42,9 +42,13 @@
                   <td>{{$datum['education']}}</td>
                   <td>{{$datum['job']}}</td>
                   <td>{{$datum['money']}}</td>
-                  <td><a class="link-edit" href="/merit/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove" href="/merit/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
+                  <td><a class="link-restore ajax-remove" href="/merit/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove ajax-remove" href="/merit/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="8">空</td>
+                </tr>
               @endif
               </tbody>
             </table>

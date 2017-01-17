@@ -36,9 +36,13 @@
                   <td><a href="/history/recycle?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
                   <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
-                  <td><a class="link-edit" href="/history/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove" href="/history/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
+                  <td><a class="link-restore ajax-remove" href="/history/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove ajax-remove" href="/history/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="6">空</td>
+                </tr>
               @endif
               </tbody>
             </table>

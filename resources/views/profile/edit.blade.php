@@ -50,12 +50,8 @@
           'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
         ],
         toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+        toolbar2: 'preview | forecolor backcolor emoticons ',
         image_advtab: true,
-        templates: [
-          { title: 'Test template 1', content: 'Test 1' },
-          { title: 'Test template 2', content: 'Test 2' }
-        ],
        });
     </script>
 @include('base.footer')
@@ -70,9 +66,7 @@
               type: 'POST'
           }).done(function(response) {
               if(response.success === true){
-
-                console.log($('#ipt-cont').val(),response);
-                  // window.location.href = '/profile'
+                window.location.href = '/profile'
               }
           });
           return false;

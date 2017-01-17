@@ -15,8 +15,8 @@
               <a class="btn-add btn-pop" href="#">添加</a>
             </div>
             <div class="form-holder form-search fr">
-              {{csrf_field()}}
-              <form action="#" method="POST">
+              <form action="/history/search" method="POST">
+                {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >
                     <i class="iconfont icon-search"></i>
@@ -57,9 +57,13 @@
                   <td><a href="/history/edit?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
                   <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
-                  <td><a class="link-edit" href="/history/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/history/del?id={{$datum['id']}}" >删除</a></td>
+                  <td><a class="link-edit" href="/history/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove ajax-remove" href="/history/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="6">空</td>
+                </tr>
               @endif
               </tbody>
             </table>

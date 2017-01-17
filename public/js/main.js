@@ -27,10 +27,6 @@
       return false;
     })
 
-    // $('.pop-out .pop-out-cont').on('click',function(e){
-    //   e.stopPropagation();
-    // })
-
     $('.tag-list a').on('click', function(){
       var $elem = $(this);
       var id = $elem.attr('data-tag');
@@ -46,43 +42,125 @@
     })
 
 
+    // $('.form-search input').on('keypress', function(e) {
+    //   if(e.keyCode == 13) {
+    //     $(this).trigger('blur');
+    //   }
+    // })
+    // .on('keydown', function(e) {
+    //   if(e.keyCode == 27) {
+    //   }
+    // })
+
 
     $('.add-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
       var url = $form.attr('action');
       $.ajax({
-        url: url, 
+        url: url,
+        data: $form.serialize(),
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
       }).done(function(response) {
+        $('#loading').removeClass('active');
         if (response.success == true) {
-          console.log(response);
+          window.location.reload();
         } else {
-          console.log(response);
         }
       });
       return false
     })
 
-    $('td .link-remove').on('click',function(){
+
+
+    $('td .link-lock').on('click',function(){
       var $elem = $(this);
       var url = $elem.attr('href');
       $.ajax({
         url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
       }).done(function(response) {
+        $('#loading').removeClass('active');
         if (response.success == true) {
           $elem.closest('tr').remove();
         } else {
-
         }
       });
       return false
     })
 
 
+    $('td .ajax-remove').on('click',function(){
+      var $elem = $(this);
+      var $tr = $elem.closest('tr');
+      var $tbody = $tr.closest('tbody');
+      var n = $tr.find('td').length;
+      var url = $elem.attr('href');
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          $tr.remove();
+          if(!$tbody.find('tr').length){
+            $tbody.html('<td colspan="'+ n +'">空</td>')
+          }
+        } else {
+        }
+      });
+      return false
+    })
+
+
+    $('li .ajax-remove').on('click',function(){
+      var $elem = $(this);
+      var url = $elem.attr('href');
+
+      $.ajax({
+        url: url,
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+           window.location.reload();
+        } else {
+        }
+      });
+      return false
+    })
+
+
+    $('.card-edit .submit').on('click',function(){
+      var $elem = $(this);
+      var $form = $(this).closest('form');
+      var url = $form.attr('action');
+      $.ajax({
+        url: url,
+        data: $form.serialize(),
+        beforeSend: function() {
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+        }
+      });
+      return false
+    })
 
 
     // forgot
-
     $('#step-2 a.get-captcha').on('click',function(){
       var $a = $(this);
       var $span = $('#step-2 span.get-captcha')

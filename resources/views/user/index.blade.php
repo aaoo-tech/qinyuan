@@ -55,6 +55,10 @@
                   <td><a class="link-lock" href="/user/locked?id={{$datum['uid']}}&lockflag=1" >锁定</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="5">空</td>
+                </tr>
               @endif
               </tbody>
             </table>

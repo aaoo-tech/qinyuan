@@ -36,9 +36,13 @@
                   <td><a href="#" >{{$datum['uname']}}({{$datum['generation']}}代／父亲{{$datum['father']}})</a></td>
                   <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
-                  <td><a class="link-edit" href="/famous/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove" href="/famous/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
+                  <td><a class="link-restore ajax-remove" href="/famous/recycleoption?idlist={{$datum['id']}}&optype=3" >还原</a><a class="link-remove ajax-remove" href="/famous/recycleoption?idlist={{$datum['id']}}&optype=4" >删除</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="6">空</td>
+                </tr>
               @endif
               </tbody>
             </table>

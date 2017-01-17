@@ -57,9 +57,13 @@
                   <td><a href="/famous/edit?id={{$datum['id']}}" >{{$datum['uname']}}({{$datum['generation']}}代／父亲{{$datum['father']}})</a></td>
                   <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
-                  <td><a class="link-edit" href="/famous/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/famous/del?id={{$datum['id']}}" >删除</a></td>
+                  <td><a class="link-edit" href="/famous/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove ajax-remove" href="/famous/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="6">空</td>
+                </tr>
               @endif
               </tbody>
             </table>

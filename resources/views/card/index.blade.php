@@ -14,9 +14,9 @@
           </div>
         </div>
         <div class="main-body">
-          <div class="family-card" style="background-image: url({{$data['zurl']}})">
+          <div class="family-card" style="background-image: url({{ asset('/img/card-bg.jpg') }})">
             <div class="card-logo fl">
-              <img src="{{$data['zurl2']}}">
+              <img src="{{$data['zurl']}}">
             </div>
             <div class="card-info">
               <h1>{{$data['zuname']}}</h1>
@@ -73,14 +73,14 @@
             <div class="tag-cont" id="set-name">
               <h3>编辑族谱名称</h3>
               <div class="form-holder">
-                <form action="#" method="POST">
+                <form action="/card/avatar" method="POST">
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
-                    <input type="text" value="{{$data['zuname']}}"/>
+                    <input type="zuname" value="{{$data['zuname']}}"/>
                   </div>
                   <div class="entry">
                     <span>参修人数</span>
-                    <input type="number"value="{{$data['zcnt']}}"/>
+                    <input type="zcnt"value="{{$data['zcnt']}}"/>
                     <span>人</span>
                   </div>
                   <div class="btn-set">
@@ -127,7 +127,6 @@
 
             var reader = new FileReader();
             reader.onload = (function(aImg) {
-              // jcropImg($box);
               return function(e) { 
                 aImg.src = e.target.result; 
               }; 
@@ -150,11 +149,9 @@
       })(jQuery)
     </script>
 @include('base.footer')
-
+<!-- 
  <form method="POST" action="/card/avatar" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="file" name="avatar" />
-
     <input type="submit" name="submit" value="Submit" />
-
-</form> 
+</form>  -->

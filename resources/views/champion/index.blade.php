@@ -67,9 +67,13 @@
                   <td>{{$datum['education']}}</td>
                   <td>{{$datum['job']}}</td>
                   <td>{{$datum['workplace']}}</td>
-                  <td><a class="link-edit" href="/champion/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/champion/del?id={{$datum['id']}}" >删除</a></td>
+                  <td><a class="link-edit" href="/champion/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove ajax-remove" href="/champion/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr>
+                  <td colspan="8">空</td>
+                </tr>
               @endif
               </tbody>
             </table>

@@ -11,12 +11,11 @@
         <div class="main-body">
           
           <div class="admin-set show">
-
             <div class="form-holder add-form clearfix">
               <div class="form-title">
                 <h3>添加管理员</h3>
               </div>
-              <form action="#" tpye="post">
+              <form action="/setting/add" method="post">
                 {{csrf_field()}}
                 <div class="entry fl">
                   <label>手机号</label>
@@ -52,7 +51,7 @@
                       <span class="admin-name">{{$datum['uname']}}</span>
                       <span>账号：</span>
                       <span class="admin-account">{{$datum['mobile']}}</span>
-                      <a class="btn-remove" href="/setting/del?uid={{$datum['uid']}}">删除</a>
+                      <a class="link-remove ajax-remove" href="/setting/del?uid={{$datum['uid']}}">删除</a>
                     </li>
                   @endif
                 @endforeach
@@ -64,22 +63,3 @@
       </div>
     </div>
 @include('base.footer')
-<script type="text/javascript">
-(function($) {
-    $(function() {
-      $('body').on('click', '.admin-set form .btn-submit', function() {
-        console.log('1');
-        $.ajax({
-            url: '/setting/add',
-            data: $('.admin-set form').serializeObject(),
-            type: 'POST'
-        }).done(function(response) {
-            if(response.success === true){
-                window.location.href = '/setting'
-            }
-        });
-        return false;
-      });
-    });
-})(jQuery);
-</script>
