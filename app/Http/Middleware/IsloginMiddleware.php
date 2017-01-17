@@ -17,7 +17,11 @@ class IsLoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!empty(session('uid')) && !empty(session('token')) === true && session('uid') > 0){
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/center/100/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'ztype' => '1'])
+                );
+        if($_result['ok'] === true){
                 return $next($request);
         }
         return redirect()->action('AdminController@index');

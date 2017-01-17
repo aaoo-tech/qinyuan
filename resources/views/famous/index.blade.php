@@ -59,6 +59,8 @@
                   <td><a class="link-edit" href="/famous/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove" href="/famous/del?id={{$datum['id']}}" >删除</a></td>
                 </tr>
               @endforeach
+              @else
+                <tr></tr>
               @endif
               </tbody>
             </table>

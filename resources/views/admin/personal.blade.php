@@ -6,6 +6,7 @@
         <div class="sub-menu clearfix">
           <div class="breadcrumb fl">
             <span>个人资料</span>
+            @if($data)
             {{$data['uid']}}
             {{$data['uname']}}
             {{$data['mobile']}}
@@ -22,6 +23,7 @@
             {{$data['generation']}}
             {{$data['idx']}}
             {{$data['isalive']}}
+            @endif
           </div>
         </div>
       </div>

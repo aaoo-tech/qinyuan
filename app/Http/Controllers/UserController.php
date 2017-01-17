@@ -29,7 +29,12 @@ class UserController extends Controller
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('user.index', ['title' => '用户中心', 'totalpage' => $_result['totalpage'], 'data' => $_result['data']]);
+        foreach ($_result['data'] as $value) {
+            if($value['islock'] == 0) {
+                $result[] = $value;
+            }
+        }
+        return view('user.index', ['title' => '用户中心', 'totalpage' => $_result['totalpage'], 'data' => $result]);
     }
 
     public function lock(Request $request) {
@@ -55,7 +60,6 @@ class UserController extends Controller
 
     public function locked(Request $request) {
         $_params = $request->all();
-        var_dump($_params);
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/129/',
                     json_encode(['token' => session('token'), 'uid' => $_params['id'], 'lockflag' => $_params['lockflag']])
@@ -70,7 +74,7 @@ class UserController extends Controller
         return response()->json([
                 'success' => false,
                 'message' => '失败',
-                'data' => $_result,
+                'data' => array(),
             ]);
     }
 

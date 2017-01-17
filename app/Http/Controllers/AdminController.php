@@ -9,7 +9,11 @@ use App\Http\Requests;
 class AdminController extends Controller
 {
     public function index(Request $request) {
-        if(session('uid') > 0) {
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/center/100/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'ztype' => '1'])
+                );
+        if($_result['ok'] === true) {
             return redirect()->action('AdminController@dashboard');
         }
         $_params = $request->all();
@@ -26,7 +30,7 @@ class AdminController extends Controller
                     json_encode(['token' => session('token'), 'fid' => session('uid')])
                 );
         // var_dump($_result);
-        return view('admin.personal', ['title' => '个人资料', 'data' => $_result['data'][0]]);
+        return view('admin.personal', ['title' => '个人资料', 'data' => isset($_result['data'][0])?$_result['data'][0]:$_result['data']]);
     }
 
     public function help() {
