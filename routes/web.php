@@ -27,6 +27,9 @@ Route::group(['prefix' => 'setting'], function() {
     Route::get('', 'SettingController@index');
     Route::any('add', 'SettingController@add');
     Route::any('del', 'SettingController@del');
+    Route::any('code', 'SettingController@code');
+    Route::any('updatepassword', 'SettingController@updatepassword');
+    Route::any('upadtemobile', 'SettingController@upadtemobile');
 });
 
 Route::get('admin', 'AdminController@index');
@@ -46,6 +49,7 @@ Route::group(['prefix' => 'card', 'middleware' => 'checklogin'], function() {
     Route::any('picurl', 'CardController@picurl');
     Route::any('avatar', 'CardController@avatar');
     Route::any('test', 'CardController@test');
+    Route::any('zuname', 'CardController@zuname');
     // Route::get('get', 'CardController@get');
     // Route::gets('gets', 'CardController@gets');
 });
@@ -120,6 +124,12 @@ Route::group(['prefix' => 'tree', 'middleware' => 'checklogin'], function() {
 Route::group(['prefix' => 'image', 'middleware' => 'checklogin'], function() {
     Route::get('', 'ImageController@index');
     Route::get('detail', 'ImageController@detail');
+    Route::get('createdir', 'ImageController@createdir');
+    Route::get('udpatedir', 'ImageController@udpatedir');
+    Route::get('uploadfile', 'ImageController@uploadfile');
+    Route::get('delfile', 'ImageController@delfile');
+    Route::get('video', 'ImageController@video');
+    Route::get('deldir', 'ImageController@deldir');
     // Route::get('get', 'ImageController@get');
     // Route::gets('gets', 'ImageController@gets');
 });

@@ -14,13 +14,13 @@
           </div>
         </div>
         <div class="main-body">
-          <div class="family-card" style="background-image: url({{ asset('/img/card-bg.jpg') }})">
+          <div class="family-card" style="background-image: url({{$data['zurl']}})">
             <div class="card-logo fl">
-              <img src="{{ asset('/img/card-logo.png') }}">
+              <img src="{{$data['zurl2']}}">
             </div>
             <div class="card-info">
-              <h1>华夏张氏统谱*景玉宫房谱</h1>
-              <p>参修人数：30，0000人</p>
+              <h1>{{$data['zuname']}}</h1>
+              <p>参修人数：{{$data['zcnt']}}人</p>
             </div>
           </div>
         </div>
@@ -76,11 +76,11 @@
                 <form action="#" method="POST">
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
-                    <input type="text" value="华夏张氏统谱*景玉宫房谱"/>
+                    <input type="text" value="{{$data['zuname']}}"/>
                   </div>
                   <div class="entry">
                     <span>参修人数</span>
-                    <input type="number"value="30000"/>
+                    <input type="number"value="{{$data['zcnt']}}"/>
                     <span>人</span>
                   </div>
                   <div class="btn-set">
@@ -151,9 +151,9 @@
     </script>
 @include('base.footer')
 
- <form method="POST" action="/card/test" enctype="multipart/form-data">
+ <form method="POST" action="/card/avatar" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <input type="file" name="myfile" />
+    <input type="file" name="avatar" />
 
     <input type="submit" name="submit" value="Submit" />
 

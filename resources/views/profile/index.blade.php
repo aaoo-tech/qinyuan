@@ -21,7 +21,7 @@
             </div>
 
             <div class="summary-cont article">
-              {{$data[0]['content']}}
+              <?php echo $data[0]['content']; ?>
             </div>
           </div>
         </div>

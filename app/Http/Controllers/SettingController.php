@@ -56,4 +56,64 @@ class SettingController extends Controller
                 'data' => array(),
             ]);
     }
+
+    public function code(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/user/105/',
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'mobile' => $_params['mobile']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '失败',
+                'data' => array(),
+            ]);
+    }
+
+    public function updatemobile(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/user/107/',
+                    json_encode(['token' => session('token'), 'uid' => $_params['id'], 'upasswd' => $_params['upasswd'], 'mobile' => $_params['mobile']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '失败',
+                'data' => array(),
+            ]);
+    }
+
+    public function updatepassword(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/user/106/',
+                    json_encode(['token' => session('token'), 'uid' => $_params['id'], 'newpasswd' => $_params['newpasswd'], 'authcode' => $_params['authcode']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '删除失败',
+                'data' => array(),
+            ]);
+    }
 }
