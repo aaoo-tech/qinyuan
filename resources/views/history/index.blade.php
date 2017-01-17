@@ -15,6 +15,7 @@
               <a class="btn-add btn-pop" href="#">添加</a>
             </div>
             <div class="form-holder form-search fr">
+              {{csrf_field()}}
               <form action="#" method="POST">
                 <div class="fl">
                   <a class="btn-search" href="#" >

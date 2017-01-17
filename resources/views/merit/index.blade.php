@@ -20,6 +20,7 @@
             </div>
             <div class="form-holder form-search fr">
               <form action="#" method="POST">
+                {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >
                     <i class="iconfont icon-search"></i>

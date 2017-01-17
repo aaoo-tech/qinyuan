@@ -16,6 +16,7 @@
             </div>
             <div class="form-holder form-search fr">
               <form action="#" method="POST">
+                {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >
                     <i class="iconfont icon-search"></i>
@@ -78,18 +79,19 @@
           </div>
           <div class="box-haader"><h2>添加名人</h2></div>
           <div class="form-holder add-form">
-            <form action="#">
+            <form action="/info/108/">
+              {{csrf_field()}}
               <div class="entry">
                 <span class="label">姓&nbsp;&nbsp;名</span>
-                <input type="text" placeholder="姓名"/>
+                <input type="text" name="uname" placeholder="姓名"/>
               </div>
               <div class="entry">
                 <span class="label">代&nbsp;&nbsp;数</span>
-                <input type="text" placeholder="代数"/>
+                <input type="text" name="generation" placeholder="代数"/>
               </div>
               <div class="entry">
                 <span class="label">父亲姓名</span>
-                <input type="text" placeholder="父亲姓名"/>
+                <input type="text" name="father" placeholder="父亲姓名"/>
               </div>
               <div class="box-footer clearfix">
                 <div class="btn-set fr">

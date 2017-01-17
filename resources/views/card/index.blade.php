@@ -46,13 +46,16 @@
               <div class="img-container" id="bg-box">
                 <img class="Jcrop-img" src="{{ asset('/img/card-bg.jpg') }}">
               </div>
-              <div class="btn-set fl">
-                <a href="#" class="btn btn-save">保存图片</a>
-              </div>
-              <div class="btn-set fl">
-                <label class="btn btn-choose" for="ipt-bg">重新选择</label>
-                <input id="ipt-bg" type="file" accept="image/*" style="display:none" />
-              </div>
+              <form action="#">
+                {{csrf_field()}}
+                <div class="btn-set fl">
+                  <a href="#" class="btn btn-save">保存图片</a>
+                </div>
+                <div class="btn-set fl">
+                  <label class="btn btn-choose" for="ipt-bg">重新选择</label>
+                  <input id="ipt-bg" type="file" accept="image/*" style="display:none" />
+                </div>
+              </form>
             </div>
             <div class="tag-cont clearfix" id="set-logo">
               <h3>族谱头像</h3>

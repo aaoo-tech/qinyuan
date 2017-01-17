@@ -39,8 +39,8 @@
         <div class="pop-out-cont album-edit">
           <div class="box-haader"><h2>编辑相册信息</h2></div>
           <div class="form-holder">
-
             <form action="#">
+              {{csrf_field()}}
               <div class="entry">
                 <span class="label">相册名称</span>
                 <input type="text" name="" value="夏子轩家的全家福" />

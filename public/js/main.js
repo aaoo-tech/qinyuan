@@ -19,6 +19,12 @@
 
     $('.pop-out .pop-close').on('click',function(){
       $('.pop-out').removeClass('active');
+      return false;
+    })
+
+    $('.pop-out .btn-cancel').on('click',function(){
+      $('.pop-out').removeClass('active');
+      return false;
     })
 
     // $('.pop-out .pop-out-cont').on('click',function(e){
@@ -56,9 +62,6 @@
       });
       return false
     })
-
-
-
 
     $('td .link-remove').on('click',function(){
       var $elem = $(this);

@@ -20,7 +20,7 @@
                 {{csrf_field()}}
                 <div class="entry fl">
                   <label>手机号</label>
-                  <input type="text" maxlength="11" placeholder="输入待添加管理员手机号" />
+                  <input type="text" maxlength="11" name="mobile" placeholder="输入待添加管理员手机号" />
                 </div>
                 <div class="entry fl">
                   <label>用户名</label>
