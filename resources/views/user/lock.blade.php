@@ -39,7 +39,7 @@
                   <td><a href="#" >{{$datum['uname']}}</a></td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
                   <td><a class="link" href="https://cloud.baidu.com/beian/index.html" target="_blank">{{$datum['uinfo']}}</a></td>
-                  <td><a href="/user/locked?id={{$datum['uid']}}&lockflag=0" class="link-unlock">解锁</a></td>
+                  <td><a href="/user/locked?id={{$datum['uid']}}&lockflag=0" class="link-unlock ajax-remove">解锁</a></td>
                 </tr>
               @endforeach
               @else

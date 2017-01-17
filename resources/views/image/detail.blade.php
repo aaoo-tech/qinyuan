@@ -7,8 +7,8 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="fl">
-            <a class="btn" href="#">上传图片</a>
+          <div class="btn-set fl">
+            <a class="btn btn-upload" href="#">上传图片</a>
           </div>
           <div class="operation fr">
             <div class="info fl">

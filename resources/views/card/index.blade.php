@@ -149,9 +149,4 @@
       })(jQuery)
     </script>
 @include('base.footer')
-<!-- 
- <form method="POST" action="/card/avatar" enctype="multipart/form-data">
-    {{ csrf_field() }}
-    <input type="file" name="avatar" />
-    <input type="submit" name="submit" value="Submit" />
-</form>  -->
+

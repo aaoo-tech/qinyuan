@@ -34,36 +34,36 @@
                 <div class="persons fl">
                   <div class="person p-man current" data-uid="x">
                     <p class="p-pic"></p>
-                    <p class="p-name">张端可</p>
-                    <p class="p-sort">(行2)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gen clearfix">
-                <div class="gen-info">
-                  <span>1代(天)</span>
-                </div>
-                <div class="persons fl">
-                  <div class="person p-man " data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张天德</p>
-                    <p class="p-sort">(行2)</p>
-                  </div>
-                  <div class="person p-man" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端落</p>
-                    <p class="p-sort">(行1)</p>
-                  </div>
-                  <div class="person p-man current" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端可</p>
-                    <p class="p-sort">(行2)</p>
+                    <p class="p-name">张天可</p>
+                    <p class="p-sort">(行3)</p>
                   </div>
                 </div>
               </div>
               <div class="gen clearfix">
                 <div class="gen-info">
                   <span>2代(端)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man " data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端德</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端落</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-man current" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端可</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>3代(端)</span>
                 </div>
                 <div class="persons fl">
                   <div class="person p-man" data-uid="x">
@@ -356,19 +356,17 @@
       var selectMenu = function(t,p){
         switch(t){
           case 'user_info':
-
             break;
           case 'user_media':
-
             break;
           case 'add_mate':
-
+            alert('添加配偶')
             break;
           case 'add_bra':
-
+            alert('添加兄弟')
             break;
           case 'add_child':
-
+            alert('添加子女')
             break;
           case 'remove_node':
             var uid = $(p).data(uid);

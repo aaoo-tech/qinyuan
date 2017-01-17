@@ -49,6 +49,42 @@
                 </ul>
               </div>
             </div>
+            <div class="album">
+              <a class="album-name" href="/image/detail" title="夏子轩家的全家福">
+                <img src="{{ asset('/img/pic.jpg') }}">
+                <span>夏子轩家的全家福</span>
+              </a>
+              <span class="pic-sum">16</span>
+              <ul class="album-info">
+                <li>创建人：夏雪</li>
+                <li>创建时间：2016.11.05</li>
+              </ul>
+              <div class="btn-menu">
+                <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
+                <ul class="fr">
+                  <li><a class="btn-pop" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
+                  <li><a href="#"><i class="iconfont icon-remove"></i>删除</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="album">
+              <a class="album-name" href="/image/detail" title="夏子轩家的全家福">
+                <img src="{{ asset('/img/pic.jpg') }}">
+                <span>夏子轩家的全家福</span>
+              </a>
+              <span class="pic-sum">16</span>
+              <ul class="album-info">
+                <li>创建人：夏雪</li>
+                <li>创建时间：2016.11.05</li>
+              </ul>
+              <div class="btn-menu">
+                <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
+                <ul class="fr">
+                  <li><a class="btn-pop" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
+                  <li><a href="#"><i class="iconfont icon-remove"></i>删除</a></li>
+                </ul>
+              </div>
+            </div>
 
           </div>
         </div>

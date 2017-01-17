@@ -12,7 +12,7 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/center/111/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => '771'])
                 );
         // var_dump($_result);
         return view('image.index', ['title' => '家族名片']);
@@ -22,9 +22,20 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '0', 'dirname' => 'test12346', 'type' => '1', 'jurisdiction' => '2'])
                 );
-        // var_dump($request);
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '失败',
+                'data' => array(),
+            ]);
     }
 
     public function deldir(Request $request) {
@@ -51,7 +62,7 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/102/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '1', 'ftype' => '1', 'fname' => '233', 'jurisdiction' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '771', 'ftype' => '1', 'fname' => '233dd', 'jurisdiction' => '2'])
                 );
         if($_result['ok'] === true) {
             return response()->json([

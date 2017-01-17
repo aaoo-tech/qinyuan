@@ -36,7 +36,7 @@ class CardController extends Controller
         // var_dump($file->getMimeType());
         if ($request->hasFile('myfile') && $request->file('myfile')->isValid()) {
             $_result = $request->file('myfile')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            var_dump($_result);
+            // var_dump($_result);
             // $res = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
             // var_dump($res);
         }
