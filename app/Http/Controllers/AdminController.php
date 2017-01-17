@@ -21,7 +21,12 @@ class AdminController extends Controller
     }
 
     public function personal() {
-        return view('admin.personal', ['title' => '个人资料']);
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/123/',
+                    json_encode(['token' => session('token'), 'fid' => session('uid')])
+                );
+        // var_dump($_result);
+        return view('admin.personal', ['title' => '个人资料', 'data' => $_result['data'][0]]);
     }
 
     public function help() {

@@ -28,6 +28,7 @@ class MeritController extends Controller
                     'http://120.25.218.156:12001/info/117/',
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
+        var_dump($_result);
         return view('merit.index', ['title' => '功德榜', 'data' => $_result['data']]);
     }
 
@@ -111,10 +112,12 @@ class MeritController extends Controller
         ];
         $validator = Validator::make($_params, $rules, $messages);
         if ($validator->fails()) {
-            $_params['keyword'] = '';
-        }
-        if ($validator->fails()) {
-            $_params['page'] = '1';
+            if(isset($validator->failed()['keyword'])){
+                $_params['keyword'] = '';
+            }
+            if(isset($validator->failed()['page'])){
+                $_params['page'] = '1';
+            }
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/119/',

@@ -14,7 +14,7 @@ class TreeController extends Controller
                     'http://120.25.218.156:12001/tree/100/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '15555', 'genetation' => '1'])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('tree.index', ['title' => '家族名片']);
     }
 

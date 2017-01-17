@@ -14,7 +14,7 @@ class ImageController extends Controller
                     'http://120.25.218.156:12001/center/111/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => '1'])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('image.index', ['title' => '家族名片']);
     }
 
@@ -22,8 +22,9 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '1'])
                 );
+        // var_dump($request);
     }
 
     public function deldir(Request $request) {

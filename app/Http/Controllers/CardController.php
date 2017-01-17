@@ -54,7 +54,7 @@ class CardController extends Controller
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'ztype' => '1'])
                 );
         // var_dump($_result);
-        return view('card.index', ['title' => '家族名片']);
+        return view('card.index', ['title' => '家族名片', 'data' => $_result['data'][0]]);
     }
 
     public function picurl(Request $request) {
@@ -106,6 +106,26 @@ class CardController extends Controller
                 'success' => false,
                 'message' => '修改失败',
                 'data' => array(),
+            ]);
+    }
+
+    public function zuname(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/103/',
+                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'zuname' => $_params['zuname'], 'zcnt' => $_params['zcnt']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '修改失败',
+                'data' => $_result,
             ]);
     }
 }
