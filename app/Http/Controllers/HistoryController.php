@@ -132,7 +132,7 @@ class HistoryController extends Controller
                     json_encode(['token' => session('token'), 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('history.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
+        return view('history.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function recycle(Request $request) {

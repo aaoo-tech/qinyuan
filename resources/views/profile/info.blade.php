@@ -28,13 +28,11 @@
                 <input name="id" value="{{$data['id']}}" type="hidden" />
                 <div class="article-title">
                   <span class="label">标&nbsp;&nbsp;题：</span>
-                  <input id="ipt-title" name="title" type="post" value="{{$data['title']}}" />
+                  <input id="ipt-title" name="title" type="post" value="<?php echo $data['title'];?>" />
                 </div>
                 <div class="article-cont">
-                  <span class="label fl">正&nbsp;&nbsp;文：</span>
-                  <textarea id="ipt-cont" name="content">
-                    {{$data['content']}}
-                  </textarea>
+
+                    <?php echo $data['content']; ?>
                 </div>
               </form>
             </div>
