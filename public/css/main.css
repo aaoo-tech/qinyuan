@@ -1,8 +1,6 @@
 html { height: 100%; /* width: 1336px; */ }
 body { height: 100%; font-family: Helvetica, Arial, Microsoft Yahei, sans-serif; font-size: 14px; color: #27292C; }
 
-
-
 /* .narrow-width  */
 /* html{ background-color: #999; }
 body { width: 1200px; margin: 0 auto; background-color: #fff; box-shadow: 0 0 5px 1px #333 }
@@ -177,7 +175,8 @@ label { cursor: pointer; user-select: none; }
 .center-list li:nth-of-type(6) a { background-position: -400px 0; }
 .center-list li:nth-of-type(7) a { background-position: -480px 0; }
 
-.family-summary .summary-title h1 { margin: 20px 0; font-size: 24px; text-align: center; }
+/* .family-summary .summary-title h1 { margin: 20px 0; font-size: 24px; text-align: center; } */
+.family-summary iframe { display: block; width: 360px; height: 720px; margin: 0 auto; border: 1px solid #eee; }
 
 .article { background-color: #fff; font-size: 14px; }
 
