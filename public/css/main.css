@@ -102,7 +102,7 @@ label { cursor: pointer; user-select: none; }
 .main-menu .user .icon-triangle { margin-left: 10px; font-size: 14px; }
 
 .main-menu .user .user-more { display: none; position: absolute; top: 54px; left: -44px; box-shadow: 0 0 5px 1px #ccc; }
-.main-menu .user.active .user-more { display: block; }
+.main-menu .user.active .user-more { display: block; z-index: 1; }
 .main-menu .user .user-more:after { position: absolute; top: -12px; right: 80px; border: 6px solid #fff; border-color: transparent transparent #0a4670 transparent; content: ""; }
 .user-more .user-name { width: 172px; line-height: 60px; color:#fff; background-color: #0a4670; }
 .user-more .user-name .icon-user { margin-left: 10px; font-size: 32px; color: #fff; }
@@ -214,6 +214,24 @@ label { cursor: pointer; user-select: none; }
 .article-edit .article-title input { width: 380px; height: 32px; padding: 0 10px; }
 .article-edit .mce-tinymce { margin-left: 60px; }
 
+.common-table table { width: 100%; }
+.common-table thead { background-color: #f8f8f8 }
+.common-table tbody:empty { height: 50px; }
+.common-table .table-foot { padding: 11px 0; background-color: #f8f8f8; border: 1px solid #ccc; border-top: none; }
+.common-table .table-foot .btn { display: inline-block; width: 80px; margin: 0 10px; }
+.common-table .table-foot .right-cont { width: 50%; }
+.common-table .table-foot .right-cont { width: 50%; margin-left: 50%; text-align: right; }
+.common-table th,
+.common-table td { padding: 16px 0; border: 1px solid #ccc; text-align: center; }
+.common-table td a { display: inline-block; }
+.common-table td .link { color: #377FC1; }
+.common-table .link-restore,
+.common-table .link-edit { margin: 0 10px; color: #21AB38; }
+.common-table .link-remove { margin: 0 10px; color: #E50012; }
+.common-table .link-lock { color: #E50012; }
+.common-table .link-unlock { color: #21AB38; }
+
+
 
 .family-tree { overflow: auto; }
 .family-tree .container { position: relative; height: 750px; margin-left: 50px; overflow-y: auto; }
@@ -251,22 +269,13 @@ label { cursor: pointer; user-select: none; }
 .family-tree .tree-menu li a { padding-left: 10px; line-height: 36px; background-color: #fff; }
 .family-tree .tree-menu li a:hover { background-color: #eee }
 
-.common-table table { width: 100%; }
-.common-table thead { background-color: #f8f8f8 }
-.common-table tbody:empty { height: 50px; }
-.common-table .table-foot { padding: 11px 0; background-color: #f8f8f8; border: 1px solid #ccc; border-top: none; }
-.common-table .table-foot .btn { display: inline-block; width: 80px; margin: 0 10px; }
-.common-table .table-foot .right-cont { width: 50%; }
-.common-table .table-foot .right-cont { width: 50%; margin-left: 50%; text-align: right; }
-.common-table th,
-.common-table td { padding: 16px 0; border: 1px solid #ccc; text-align: center; }
-.common-table td a { display: inline-block; }
-.common-table td .link { color: #377FC1; }
-.common-table .link-restore,
-.common-table .link-edit { margin: 0 10px; color: #21AB38; }
-.common-table .link-remove { margin: 0 10px; color: #E50012; }
-.common-table .link-lock { color: #E50012; }
-.common-table .link-unlock { color: #21AB38; }
+.personal-info dl { line-height: 24px; }
+.personal-info dt { float: left;  font-weight: bold; }
+.personal-info dd { margin-left: 100px; }
+.personal-info dd:empty:after { content: "*"; }
+
+
+
 
 .album { position: relative; float: left; width: 140px; margin-right: 50px; border: 1px solid #ccc; border-radius: 3px; }
 .album:before { position: absolute; bottom: -4px; left: 3px; width: 134px; height: 2px; border-style: solid; border-color: #ccc; border-width: 0 1px 1px; border-radius: 0 0 3px 3px; content: ""; }
