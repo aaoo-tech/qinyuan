@@ -73,8 +73,6 @@
       return false
     })
 
-
-
     $('td .link-lock').on('click',function(){
       var $elem = $(this);
       var url = $elem.attr('href');
