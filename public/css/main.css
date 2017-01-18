@@ -176,7 +176,8 @@ label { cursor: pointer; user-select: none; }
 .center-list li:nth-of-type(7) a { background-position: -480px 0; }
 
 /* .family-summary .summary-title h1 { margin: 20px 0; font-size: 24px; text-align: center; } */
-.family-summary iframe { display: block; width: 360px; height: 720px; margin: 0 auto; border: 1px solid #eee; }
+.family-summary { width: 420px;  margin: 0 auto;  background: url(../img/iphone.png) center no-repeat; background-size: cover;  }
+.family-summary iframe { display: block; width: 360px; height: 667px; margin: 0 auto; border: 1px solid #eee; }
 
 .article { background-color: #fff; font-size: 14px; }
 
