@@ -1,5 +1,5 @@
 <div class="pagination clearfix">
-@if($totalpage != 0)
+@if(isset($totalpage) && $totalpage != 0)
   <div class="container fl">
     <?php for($i=1; $i <= $totalpage; $i++){ ?>
     <a class="page-first" href="#"><i class="iconfont icon-first"></i></a>

@@ -34,7 +34,7 @@ class UserController extends Controller
                 $result[] = $value;
             }
         }
-        return view('user.index', ['title' => '用户中心', 'totalpage' => $_result['totalpage'], 'data' => $result]);
+        return view('user.index', ['title' => '用户中心', 'data' => $result]);
     }
 
     public function lock(Request $request) {

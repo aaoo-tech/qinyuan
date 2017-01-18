@@ -28,7 +28,7 @@ class FamousController extends Controller
                     'http://120.25.218.156:12001/info/109/',
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('famous.index', ['title' => ' 名人榜', 'data' => $_result['data']]);
     }
 
