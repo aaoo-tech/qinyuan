@@ -16,7 +16,7 @@
         <div class="main-body">
           <div class="article-edit">
             <div class="formholder cont-form">
-              <form action="#" method="post">
+              <form action="/profile/update" method="POST">
                 {{csrf_field()}}
                 <input name="id" value="{{$data['id']}}" type="hidden" />
                 <div class="article-title">
@@ -54,23 +54,23 @@
         image_advtab: true,
        });
     </script>
-@include('base.footer')
-<script type="text/javascript">
-  (function($) {
-      $(function() {
-        $('body').on('click', '.btn-submit', function() {
-          $('#ipt-cont').val(tinymce.activeEditor.getContent())
-          $.ajax({
-              url: '/profile/update',
-              data: $('.profile-edit form').serializeObject(),
-              type: 'POST'
-          }).done(function(response) {
-              if(response.success === true){
-                window.location.href = '/profile'
-              }
+    <script type="text/javascript">
+      (function($) {
+          $(function() {
+            $('body').on('click', '.btn-submit', function() {
+              $('#ipt-cont').val(tinymce.activeEditor.getContent())
+              $.ajax({
+                  url: '/profile/update',
+                  data: $('.cont-form form').serializeObject(),
+                  type: 'POST'
+              }).done(function(response) {
+                  if(response.success === true){
+                    window.location.href = '/profile'
+                  }
+              });
+              return false;
+            });
           });
-          return false;
-        });
-      });
-  })(jQuery);
-</script>
+      })(jQuery);
+    </script>
+@include('base.footer')

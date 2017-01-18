@@ -15,14 +15,9 @@
             {{$data['birther']}}
             {{$data['generation']}}
             {{$data['seniority']}} -->
-
           <div class="personal-info">
             <div class="p-avatar">
-              @if(!!$data['sex'])
-                <img src="{{$data['avatar']}}">
-              @else
-                123
-              @endif
+              <img src="{{$data['avatar']}}">
             </div>
             <span>*为缺少数据</span>
             <dl>
@@ -65,7 +60,7 @@
             </dl>
           </div>
           @else
-          <span>预览效果</span>
+          <span>没数据-预览效果</span>
           <div class="personal-info">
             <div class="p-avatar">
             </div>
