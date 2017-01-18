@@ -50,7 +50,7 @@
                 <img class="Jcrop-img" src="{{ asset('/img/card-bg.jpg') }}">
               </div>
               <div class="form-holder">
-                <form action="#"  method="POST">
+                <form action="/card/picurl"  method="POST">
                   {{csrf_field()}}
                   <input class="img-size" type="hidden" name="size">
                   <div class="btn-set fl">
@@ -58,7 +58,7 @@
                   </div>
                   <div class="btn-set fl">
                     <label class="btn btn-choose" for="ipt-bg">重新选择</label>
-                    <input id="ipt-bg" type="file" name="img" style="display:none" accept="image/gif,image/jpeg,image/jpg,image/png"/>
+                    <input id="ipt-bg" type="file" name="picurl" style="display:none" accept="image/gif,image/jpeg,image/jpg,image/png"/>
                   </div>
                 </form>
               </div>
@@ -69,7 +69,7 @@
                 <img class="Jcrop-img" src="{{ asset('/img/card-logo.png') }}">
               </div>
               <div class="form-holder">
-                <form action="#" method="POST">
+                <form action="/card/avatar" method="POST">
                   {{csrf_field()}}
                   <input class="img-size" type="hidden" name="size">
                   <div class="btn-set fl">
@@ -77,7 +77,7 @@
                   </div>
                   <div class="btn-set fl">
                     <label class="btn btn-choose" for="ipt-logo">重新选择</label>
-                    <input id="ipt-logo" type="file" name="img" style="display:none" accept="image/gif,image/jpeg,image/jpg,image/png"/>
+                    <input id="ipt-logo" type="file" name="avatar" style="display:none" accept="image/gif,image/jpeg,image/jpg,image/png"/>
                   </div>
                 </form>
               </div>
@@ -85,7 +85,7 @@
             <div class="tag-cont" id="set-name">
               <h3>编辑族谱名称</h3>
               <div class="form-holder">
-                <form action="/card/avatar" method="POST">
+                <form action="/card/zuname" method="POST">
                   {{csrf_field()}}
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
@@ -93,7 +93,7 @@
                   </div>
                   <div class="entry">
                     <span>参修人数</span>
-                    <input type="zcnt"value="{{$data['zcnt']}}"/>
+                    <input type="zcnt" value="{{$data['zcnt']}}"/>
                     <span>人</span>
                   </div>
                   <div class="btn-set">
