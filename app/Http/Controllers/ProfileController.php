@@ -65,4 +65,13 @@ class ProfileController extends Controller
                 );
         return view('profile.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
+
+    public function info(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/center/101/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => '1', 'pagenum' => '10'])
+                );
+        return view('profile.info', ['title' => '详情', 'data' => $_result['data'][0]]);
+    }
 }

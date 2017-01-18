@@ -59,6 +59,7 @@ Route::group(['prefix' => 'profile', 'middleware' => 'checklogin'], function() {
     Route::any('add', 'ProfileController@add');
     Route::get('edit', 'ProfileController@edit');
     Route::any('update', 'ProfileController@update');
+    Route::any('info', 'ProfileController@info');
     // Route::get('get', 'ProfileController@get');
     // Route::gets('gets', 'ProfileController@gets');
 });
@@ -74,6 +75,7 @@ Route::group(['prefix' => 'history', 'middleware' => 'checklogin'], function() {
     Route::any('search', 'HistoryController@search');
     Route::any('update', 'HistoryController@update');
     Route::any('create', 'HistoryController@create');
+    Route::any('info', 'HistoryController@info');
     // Route::get('get', 'HistoryController@get');
     // Route::gets('gets', 'HistoryController@gets');
 });

@@ -182,8 +182,18 @@ class HistoryController extends Controller
                     'http://120.25.218.156:12001/info/130/',
                     json_encode(['token' => session('token'), 'type' => '2', 'id' => $_params['id']])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('history.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
+    }
+
+    public function info(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/130/',
+                    json_encode(['token' => session('token'), 'type' => '2', 'id' => $_params['id']])
+                );
+        // var_dump($_result);
+        return view('history.info', ['title' => '详情', 'data' => $_result['data'][0]]);
     }
 
     public function update(Request $request) {

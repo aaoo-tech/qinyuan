@@ -50,7 +50,7 @@
                 <img class="Jcrop-img" src="{{ asset('/img/card-bg.jpg') }}">
               </div>
               <div class="form-holder">
-                <form action="/card/picurl"  method="POST">
+                <form action="/card/picurl" method="POST" enctype="multipart/form-data">
                   {{csrf_field()}}
                   <input class="img-size" type="hidden" name="size">
                   <div class="btn-set fl">
@@ -69,7 +69,7 @@
                 <img class="Jcrop-img" src="{{ asset('/img/card-logo.png') }}">
               </div>
               <div class="form-holder">
-                <form action="/card/avatar" method="POST">
+                <form action="/card/avatar" method="POST" enctype="multipart/form-data">
                   {{csrf_field()}}
                   <input class="img-size" type="hidden" name="size">
                   <div class="btn-set fl">

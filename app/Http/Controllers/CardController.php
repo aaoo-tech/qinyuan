@@ -59,28 +59,41 @@ class CardController extends Controller
 
     public function picurl(Request $request) {
         $_params = $request->all();
-        $file = $request->file('picurl');
-        $entension = $file->getClientOriginalExtension();
         if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
+            $file = $request->file('picurl');
+            $mimeType = $file->getMimeType();
+            $entension = $file->getClientOriginalExtension();
+            var_dump(substr($mimeType,6));
             $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+            // $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+            $targ_w = $targ_h = 150;
+            $jpeg_quality = 90;
+
+            $src = $_result->getpathName();
+            $img_r = imagecreatefromjpeg($src);
+            $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
+
+            imagecopyresampled($dst_r,$img_r,0,0,236,136,$targ_w,$targ_h,210,210);
+
+            // header('Content-type: '.$mimeType.'; charset=utf-8');
+            $t = imagejpeg($dst_r,null,$jpeg_quality);
         }
-        $_result = curlPost(
-                    'http://120.25.218.156:12001/info/102/',
-                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'picurl' => $_pic['info']['url']])
-                );
-        if($_result['ok'] === true) {
-            return response()->json([
-                    'success' => true,
-                    'message' => '',
-                    'data' => $_result,
-                ]);
-        }
-        return response()->json([
-                'success' => false,
-                'message' => '修改失败',
-                'data' => array(),
-            ]);
+        // $_result = curlPost(
+        //             'http://120.25.218.156:12001/info/102/',
+        //             json_encode(['token' => session('token'), 'zid' => session('zid'), 'picurl' => $_pic['info']['url']])
+        //         );
+        // if($_result['ok'] === true) {
+        //     return response()->json([
+        //             'success' => true,
+        //             'message' => '',
+        //             'data' => $_result,
+        //         ]);
+        // }
+        // return response()->json([
+        //         'success' => false,
+        //         'message' => '修改失败',
+        //         'data' => $_result,
+        //     ]);
     }
 
     public function avatar(Request $request) {
