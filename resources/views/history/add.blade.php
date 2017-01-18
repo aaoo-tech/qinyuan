@@ -60,7 +60,7 @@
             $('body').on('click', '.btn-add', function() {
               $('#ipt-cont').val(tinymce.activeEditor.getContent())
               $.ajax({
-                url: '/history/add',
+                url: '/history/create',
                 data: $('.cont-form form').serializeObject(),
                 type: 'POST',
                 beforeSend: function() { 
@@ -69,7 +69,7 @@
               }).done(function(response) {
                 $('#loading').removeClass('active');
                 if(response.success === true){
-                  window.location.href = '/history'
+                  // window.location.href = '/history'
                 }
               });
               return false;

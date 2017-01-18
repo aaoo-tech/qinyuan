@@ -15,14 +15,13 @@
         </div>
         <div class="main-body">
           <div class="family-summary">
-
-            <div class="summary-title">
+            <iframe class="profile-info" src="/profile/info"></iframe>
+<!--             <div class="summary-title">
               <h1>{{$data[0]['title']}}</h1>
-            </div>
-
-            <div class="summary-cont article">
+            </div> -->
+<!--             <div class="summary-cont article">
               <?php echo $data[0]['content']; ?>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

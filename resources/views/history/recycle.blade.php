@@ -52,8 +52,8 @@
                 <a class="btn btn-batch" href="/history/recycleoption?optype=3&idlist=" >批量还原</a>
               </div>
               <div class="right-cont">
-                <a class="btn btn-all" href="#" >还原所有</a>
-                <a class="btn btn-all" href="#" >删除所有</a>
+                <a class="btn btn-all" href="/history/recycleoption?optype=1&idlist=" >还原所有</a>
+                <a class="btn btn-all" href="/history/recycleoption?optype=2&idlist=" >删除所有</a>
               </div>
             </div>
           </div>
@@ -64,6 +64,26 @@
     <script type="text/javascript">
       (function($) {
           $(function() {
+
+            $('.table-foot .btn-batch').on('click', function() {
+              var url = $(this).attr('href');
+              $.ajax({
+                url: url, 
+                beforeSend: function() { 
+                  $('#loading').addClass('active');
+                }
+              }).done(function(response) {
+                $('#loading').removeClass('active');
+                if (response.success == true) {
+                  window.location.reload();
+                } else {
+
+                }
+              })
+              return false
+            })
+
+
             $('.table-foot .btn-batch').on('click', function() {
               var $tr = $('table tr');
               var n = $tr.find('td').length;

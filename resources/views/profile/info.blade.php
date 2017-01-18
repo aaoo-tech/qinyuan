@@ -1,4 +1,21 @@
-@include('base.header')
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>家族简介</title>
+</head>
+<body>
+  {{$data['title']}}
+  {{$data['content']}}
+</body>
+</html>
+
+
+
+
+
+
+<!-- @include('base.header')
     <div class="page-wrapper">
       @include('base.sidebar')
       <div class="page-right">
@@ -25,4 +42,4 @@
         </div>
       </div>
     </div>
-@include('base.footer')
+@include('base.footer') -->
