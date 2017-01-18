@@ -11,8 +11,9 @@
     </select>
     <span>页</span>
     <a class="page-jump btn" href="#">跳页</a>
+    @if(isset($totalpage)) {{$totalpage}} @else 0 @endif
   </div>
   <div class="sum-info fr">
-    <span>共14位注册用户</span>
+    <span>共@if(isset($total)) {{$total}} @else 0 @endif位注册用户</span>
   </div>
 </div>
