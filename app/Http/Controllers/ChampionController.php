@@ -32,17 +32,47 @@ class ChampionController extends Controller
         return view('champion.index', ['title' => '状元榜', 'data' => $_result['data']]);
     }
 
-    public function add(Request $request) {
+    public function add() {
+        return view('champion.add', ['title' => ' 增加']);
+    }
+
+    public function create(Request $request) {
         $_params = $request->all();
-        $file = $request->file('picurl');
-        $entension = $file->getClientOriginalExtension();
-        if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
-            $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
-        }
+        // $file = $request->file('picurl');
+        // $entension = $file->getClientOriginalExtension();
+        // if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
+        //     $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+        //     $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+        // }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/112/',
-                    json_encode(['token' => session('token'), 'uname' => '张三', 'addr' => '湖北', 'education' => '本科', 'job' => '暂无', 'workplace' => '暂无', 'avatar' => $_pic['info']['url']])
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'addr' => $_params['addr'], 'education' => $_params['education'], 'job' => $_params['job'], 'workplace' => $_params['workplace'], 'avatar' => ''])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '添加失败',
+                'data' => array(),
+            ]);
+    }
+
+    public function update(Request $request) {
+        $_params = $request->all();
+        // $file = $request->file('picurl');
+        // $entension = $file->getClientOriginalExtension();
+        // if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
+        //     $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+        //     $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+        // }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/112/',
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'addr' => $_params['addr'], 'education' => $_params['education'], 'job' => $_params['job'], 'workplace' => $_params['workplace'], 'avatar' => '', 'id' => $_params['id']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -84,7 +114,7 @@ class ChampionController extends Controller
         foreach ($_params['ids'] as $id) {
             $_result = curlPost(
                         'http://120.25.218.156:12001/info/114/',
-                        json_encode(['token' => session('token'), 'id' => $_params['id']])
+                        json_encode(['token' => session('token'), 'id' => $id])
                     );
             if($_result['ok'] === true) {
                 $i++;
@@ -174,7 +204,7 @@ class ChampionController extends Controller
                     'http://120.25.218.156:12001/info/140/',
                     json_encode(['token' => session('token'), 'id' => $_params['id']])
                 );
-        // var_dump($_result);
+        var_dump($_result);
         return view('champion.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
 }

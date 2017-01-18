@@ -104,7 +104,7 @@ class UserController extends Controller
                     'http://120.25.218.156:12001/info/128/',
                     json_encode(['token' => session('token'), 'uname' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('user.index', ['title' => ' 史料', 'data' => $_result['data'], 'keyword' => $_params['keyword']]);
     }
 }

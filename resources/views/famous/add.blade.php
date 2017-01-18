@@ -16,23 +16,18 @@
         <div class="main-body">
           <div class="article-edit">
             <div class="formholder cont-form">
-              <form action="/merit/update" method="post">
+              <form action="/famous/create" method="post">
                 {{csrf_field()}}
-                <input name="id" value="{{$data['id']}}" type="hidden" />
-
                   <span class="label">姓名：</span>
-                  <input id="ipt-title" name="uname" type="post" value="{{$data['uname']}}" /><br/>
-                  <span class="label">籍贯：</span>
-                  <input id="ipt-title" name="addr" type="post" value="{{$data['addr']}}" /><br/>
-                  <span class="label">学历：</span>
-                  <input id="ipt-title" name="education" type="post" value="{{$data['education']}}" /><br/>
-                  <span class="label">职务：</span>
-                  <input id="ipt-title" name="job" type="post" value="{{$data['job']}}" /><br/>
-                  <span class="label">捐款金额（元）：</span>
-                  <input id="ipt-title" name="money" type="post" value="{{$data['money']}}" /><br/>
+                  <input id="ipt-title" name="uname" type="text" value="" /><br/>
+                  <span class="label">父亲：</span>
+                  <input id="ipt-title" name="father" type="text" value="" /><br/>
+                  <span class="label">第几代：</span>
+                  <input id="ipt-title" name="generation" type="text" value="" /><br/>
                   <input type="submit" name="" value="submit" />
               </form>
             </div>
+          </div>
         </div>
       </div>
     </div>

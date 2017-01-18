@@ -53,7 +53,7 @@ class CardController extends Controller
                     'http://120.25.218.156:12001/center/100/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'ztype' => '1'])
                 );
-        // var_dump($_result);
+        var_dump($_result);
         return view('card.index', ['title' => '家族名片', 'data' => $_result['data'][0]]);
     }
 

@@ -12,10 +12,10 @@
       });
     }
 
-    $('.btn-pop').on('click',function(){
-      $('.pop-out').addClass('active');
-      return false;
-    })
+    // $('.btn-pop').on('click',function(){
+    //   $('.pop-out').addClass('active');
+    //   return false;
+    // })
 
     $('.pop-out .pop-close').on('click',function(){
       $('.pop-out').removeClass('active');

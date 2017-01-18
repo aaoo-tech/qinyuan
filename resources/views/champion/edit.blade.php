@@ -16,19 +16,21 @@
         <div class="main-body">
           <div class="article-edit">
             <div class="formholder cont-form">
-              <form action="#" method="post">
+              <form action="/champion/update" method="post">
                 {{csrf_field()}}
                 <input name="id" value="{{$data['id']}}" type="hidden" />
-                <div class="article-title">
-                  <span class="label">标&nbsp;&nbsp;题：</span>
-                  <input id="ipt-title" name="title" type="post" value="" />
-                </div>
-                <div class="article-cont">
-                  <span class="label fl">正&nbsp;&nbsp;文：</span>
-                  <textarea id="ipt-cont" name="content">
-                    
-                  </textarea>
-                </div>
+
+                  <span class="label">姓名：</span>
+                  <input id="ipt-title" name="uname" type="post" value="{{$data['uname']}}" /><br/>
+                  <span class="label">籍贯：</span>
+                  <input id="ipt-title" name="addr" type="post" value="{{$data['addr']}}" /><br/>
+                  <span class="label">学历：</span>
+                  <input id="ipt-title" name="education" type="post" value="{{$data['education']}}" /><br/>
+                  <span class="label">职务：</span>
+                  <input id="ipt-title" name="job" type="post" value="{{$data['job']}}" /><br/>
+                  <span class="label">工作单位：</span>
+                  <input id="ipt-title" name="workplace" type="post" value="{{$data['workplace']}}" /><br/>
+                  <input type="submit" name="" value="submit">
               </form>
             </div>
         </div>

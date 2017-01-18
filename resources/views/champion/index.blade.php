@@ -16,7 +16,7 @@
               <a class="btn-recycling" href="/champion/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
             <div class="btn-set fr">
-              <a class="btn-add btn-pop" href="#">添加</a>
+              <a class="btn-add btn-pop" href="/champion/add">添加</a>
             </div>
             <div class="form-holder form-search fr">
               <form action="#" method="POST">

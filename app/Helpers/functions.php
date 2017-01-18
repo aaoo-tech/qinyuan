@@ -73,12 +73,12 @@ if(!function_exists('navdata')) {
         return [
             "card" => ["index" => "家族名片"],
             "profile" => ["index" => "家族简介", "edit" => "编辑"],
-            "history" => ["index" => "史料", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
-            "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
-            "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
+            "history" => ["index" => "史料", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
+            "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
+            "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
             "tree" => ["index" => "家族树"],
             "image" => ["index" => "影像中心", "detail" => "相册详情"],
-            "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
+            "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
             "user" => ["index" => "用户", "lock" => "锁定", "search" => "搜索"],
             "setting" => ["index" => "设置"]
         ];

@@ -46,14 +46,14 @@
               <div class="img-container" id="bg-box">
                 <img class="Jcrop-img" src="{{ asset('/img/card-bg.jpg') }}">
               </div>
-              <form action="#">
+              <form action="/card/picurl">
                 {{csrf_field()}}
                 <div class="btn-set fl">
                   <a href="#" class="btn btn-save">保存图片</a>
                 </div>
                 <div class="btn-set fl">
                   <label class="btn btn-choose" for="ipt-bg">重新选择</label>
-                  <input id="ipt-bg" type="file" accept="image/*" style="display:none" />
+                  <input id="ipt-bg" type="file" name="picurl" accept="image/*" style="display:none" />
                 </div>
               </form>
             </div>
@@ -67,13 +67,13 @@
               </div>
               <div class="btn-set fl">
                 <label class="btn btn-choose" for="ipt-logo">重新选择</label>
-                <input id="ipt-logo" type="file" accept="image/*" style="display:none" />
+                <input id="ipt-logo" type="file" name="avatar" accept="image/*" style="display:none" />
               </div>
             </div>
             <div class="tag-cont" id="set-name">
               <h3>编辑族谱名称</h3>
               <div class="form-holder">
-                <form action="/card/avatar" method="POST">
+                <form action="/card/zuname" method="POST">
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
                     <input type="zuname" value="{{$data['zuname']}}"/>
