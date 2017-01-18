@@ -54,12 +54,11 @@
 <script type="text/javascript">
   (function($) {
     $(function() {
-      // if ($.cookie("rmbUser") == "true") {
-      //   $("#isAuto").attr("checked", true);
-      //   $("#txt_uname").val($.cookie("username"));
-      //   $("#txt_upasswd").val($.cookie("password"));
-      // }
-
+      if ($.cookie("rmbUser") == "true") {
+        $("#isAuto").attr("checked", true);
+        $("#txt_uname").val($.cookie("username"));
+        $("#txt_upasswd").val($.cookie("password"));
+      }
       $('.login-form .btn-submit').on('click',function(){
         var uname = $('.uname input').val();
         var upasswd = $('.upasswd input').val();
@@ -72,24 +71,20 @@
             data: $('.login-form form').serializeObject(),
             type: 'POST'
           }).done(function(response) {
-            console.log(response);
             if(response.success === true){
-              window.location.href = '/dashboard'
-              $.cookie("token", response.data.data[0].token, { expires: 30 });
-              $.cookie("uid", response.data.data[0].uid, { expires: 30 });
-              $.cookie("zid", response.data.data[0].zid, { expires: 30 });
-              // if (isRmb) {
-              //   var str_username = $("#txt_uname").val();
-              //   var str_password = $("#txt_upasswd").val();
-              //   $.cookie("rmbUser", "true", { expires: 30 });
-              //   $.cookie("username", str_username, { expires: 30 });
-              //   $.cookie("password", str_password, { expires: 30 });
-              // }
-              // else {
-              //   $.cookie("rmbUser", "false", { expire: -1 });
-              //   $.cookie("username", "", { expires: -1 });
-              //   $.cookie("password", "", { expires: -1 });
-              // }
+              if (isRmb) {
+                var str_username = $("#txt_uname").val();
+                var str_password = $("#txt_upasswd").val();
+                $.cookie("rmbUser", "true", { expires: 30 });
+                $.cookie("username", str_username, { expires: 30 });
+                $.cookie("password", str_password, { expires: 30 });
+              }
+              else {
+                $.cookie("rmbUser", "false", { expire: -1 });
+                $.cookie("username", "", { expires: -1 });
+                $.cookie("password", "", { expires: -1 });
+              }
+              window.location.reload();
             }else{
               $error.text(response.message).addClass('active')
             }
@@ -98,6 +93,9 @@
           $('.uname').addClass('error')
         }
         return false;
+      })
+      $('.login-form #txt_uname').on('focus',function(){
+        $('.uname').removeClass('error')
       })
 
     });

@@ -90,7 +90,36 @@
         </div>
       </div>
       <div class="pop-out">
+
         <div class="pop-out-confirm album-edit">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
+          <div class="box-haader"><h2>编辑相册信息</h2></div>
+          <div class="form-holder">
+            <form action="#">
+              {{csrf_field()}}
+              <inpu1
+              <div class="entry">
+                <span class="label">相册名称</span>
+                <input type="text" name="fname" value="夏子轩家的全家福" />
+                <span class="tip">(相册名称最多8个字)</span>
+              </div>
+            </form>
+          </div>
+          <div class="box-footer clearfix">
+            <div class="btn-set fr">
+              <a class="btn btn-cancel"href="#">取消</a>
+            </div>
+            <div class="btn-set fr">
+              <a class="btn btn-submit" href="#">确定</a>
+            </div>
+          </div>
+        </div>
+
+<!--         <div class="pop-out-confirm album-edit">
           <div class="pop-close">
             <a href="#" title="关闭">
               <i class="iconfont icon-close"></i>
@@ -114,7 +143,7 @@
               <a class="btn btn-submit" href="#">确定</a>
             </div>
           </div>
-        </div>
+        </div> -->
         
       </div>
     </div>
