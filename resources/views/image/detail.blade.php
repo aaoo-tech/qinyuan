@@ -12,7 +12,7 @@
           </div>
           <div class="operation fr">
             <div class="info fl">
-              <span class="album-sum">22</span>张相片
+              <span class="album-sum">4</span>张相片
             </div>
             <div class="btn-set fr">
               <a class="btn-add" href="#">批量管理</a>
@@ -26,7 +26,43 @@
             <div class="pic">
               <label for="pic-1"></label>
               <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" href="/image/detail" title="夏子轩家的全家福">
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+                <img src="{{ asset('/img/pic.jpg') }}">
+                <span>夏子轩家的全家福</span>
+              </a>
+            </div>
+
+            <div class="pic">
+              <label for="pic-1"></label>
+              <input type="checkbox" style="display:none" id="pic-1"/>
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+                <img src="{{ asset('/img/pic.jpg') }}">
+                <span>夏子轩家的全家福</span>
+              </a>
+            </div>
+
+            <div class="pic">
+              <label for="pic-1"></label>
+              <input type="checkbox" style="display:none" id="pic-1"/>
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+                <img src="{{ asset('/img/pic.jpg') }}">
+                <span>夏子轩家的全家福</span>
+              </a>
+            </div>
+
+            <div class="pic">
+              <label for="pic-1"></label>
+              <input type="checkbox" style="display:none" id="pic-1"/>
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+                <img src="{{ asset('/img/pic.jpg') }}">
+                <span>夏子轩家的全家福</span>
+              </a>
+            </div>
+
+            <div class="pic">
+              <label for="pic-1"></label>
+              <input type="checkbox" style="display:none" id="pic-1"/>
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
                 <img src="{{ asset('/img/pic.jpg') }}">
                 <span>夏子轩家的全家福</span>
               </a>
@@ -36,7 +72,7 @@
         </div>
       </div>
       <div class="pop-out">
-        <div class="pop-out-cont album-edit">
+        <div class="pop-out-cont album-edit pop-cont-1">
           <div class="box-haader"><h2>编辑相册信息</h2></div>
           <div class="form-holder">
             <form action="#">

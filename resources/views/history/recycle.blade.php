@@ -65,7 +65,7 @@
       (function($) {
           $(function() {
 
-            $('.table-foot .btn-batch').on('click', function() {
+            $('.table-foot .btn-all').on('click', function() {
               var url = $(this).attr('href');
               $.ajax({
                 url: url, 
@@ -82,7 +82,6 @@
               })
               return false
             })
-
 
             $('.table-foot .btn-batch').on('click', function() {
               var $tr = $('table tr');
