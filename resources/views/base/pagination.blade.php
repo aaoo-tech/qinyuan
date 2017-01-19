@@ -27,28 +27,35 @@
       $_query = http_build_query($_params);
     ?>
     @if($i == $_page)
-      <span class="current">@if($i > 3)...@endif{{$i}}@if($i < $totalpage-3)...@endif</span>
+      <span class="current">@if($i >= 3) ... @endif{{$i}}@if($i <= $totalpage-3) ... @endif</span>
     @elseif($i == 1)
       <?php
         $_params['page'] = 1;
         $_query = http_build_query($_params);
       ?>
       <a class="page-first" href="{{$_base}}?{{$_query}}"><i class="iconfont icon-first"></i></a>
+      @if($_page-1 > 7)<span>...</span>@endif
     @elseif($i == $totalpage)
       <?php
         $_params['page'] = $totalpage;
         $_query = http_build_query($_params);
       ?>
+      @if(($_page+7) < $totalpage)<span>...</span>@endif
       <a class="page-last" href="{{$_base}}?{{$_query}}"><i class="iconfont icon-last"></i></a>
-    @elseif($i < $_page+3 && $i < $_page+3)
+    @elseif($i > $_page+3 && $i < $_page+7)
       <?php
-        $_params['page'] = ($i+3 < $totalpage)?$i+3:$totalpage;
+        $_params['page'] = $i;
         $_query = http_build_query($_params);
       ?>
-      @if($i+3 < $totalpage)
-      <a href="{{$_base}}?{{$_query}}">{{$i+3}}</a>
-      @endif
+      <a href="{{$_base}}?{{$_query}}">{{$i}}</a>
+    @elseif($i > $_page-7 && $i < (($_page-3) > 1?$_page-3:$_page))
+      <?php
+        $_params['page'] = $i;
+        $_query = http_build_query($_params);
+      ?>
+      <a href="{{$_base}}?{{$_query}}">{{$i}}</a>
     @else
+
     @endif
     <?php } ?>
     @if($_page < $totalpage)
@@ -74,7 +81,7 @@
       页
     </span>
   </div>
-@elseif(isset($totalpage))
+@elseif(isset($totalpage) && $totalpage > 0 && $totalpage <= 10)
   <div class="container fl">
     @if($_page > 1)
       <?php
