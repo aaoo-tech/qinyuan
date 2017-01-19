@@ -16,7 +16,7 @@
         <div class="main-body">
           <div class="article-edit">
             <div class="formholder cont-form">
-              <form action="#" method="post">
+              <form action="/profile/update" method="POST">
                 {{csrf_field()}}
                 <input name="id" value="{{$data['id']}}" type="hidden" />
                 <div class="article-title">
@@ -37,40 +37,43 @@
     </div> 
 
     <script type="text/javascript" src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery.form.js') }}"></script>
     <script type="text/javascript">
       tinymce.init({
         selector: '#ipt-cont',
         language: 'zh_CN',
         height : 500,
         theme: 'modern',
+        convert_urls: false,
         plugins: [
-          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak imageupload',
           'searchreplace wordcount visualblocks visualchars code fullscreen',
           'insertdatetime media nonbreaking save contextmenu directionality',
           'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
         ],
-        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        toolbar2: 'preview | forecolor backcolor emoticons ',
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link ',
+        toolbar2: 'forecolor backcolor | preview imageupload ',
         image_advtab: true,
+        imageupload_url: '{:D("File/uploadPicture")}'
        });
     </script>
-@include('base.footer')
-<script type="text/javascript">
-  (function($) {
-      $(function() {
-        $('body').on('click', '.btn-submit', function() {
-          $('#ipt-cont').val(tinymce.activeEditor.getContent())
-          $.ajax({
-              url: '/profile/update',
-              data: $('.profile-edit form').serializeObject(),
-              type: 'POST'
-          }).done(function(response) {
-              if(response.success === true){
-                window.location.href = '/profile'
-              }
+    <script type="text/javascript">
+      (function($) {
+          $(function() {
+            $('body').on('click', '.btn-submit', function() {
+              $('#ipt-cont').val(tinymce.activeEditor.getContent())
+              $.ajax({
+                  url: '/profile/update',
+                  data: $('.cont-form form').serializeObject(),
+                  type: 'POST'
+              }).done(function(response) {
+                  if(response.success === true){
+                    window.location.href = '/profile'
+                  }
+              });
+              return false;
+            });
           });
-          return false;
-        });
-      });
-  })(jQuery);
-</script>
+      })(jQuery);
+    </script>
+@include('base.footer')

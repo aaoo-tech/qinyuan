@@ -9,7 +9,7 @@
           </div>
           <div class="operation fr">
             <div class="btn-set">
-              <a class="btn-edit" href="#">编辑</a>
+              <a class="btn-edit" data-pop="pop-cont-1" href="#">编辑</a>
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="pop-out">
-        <div class="pop-out-cont card-edit">
+        <div class="pop-out-cont card-edit pop-cont-1">
           <div class="pop-close">
             <a href="#" title="关闭">
               <i class="iconfont icon-close"></i>
@@ -206,6 +206,7 @@
               if (response.success == true) {
                 $('.pop-out').removeClass('active');
               } else {
+                
               }
             });
             return false

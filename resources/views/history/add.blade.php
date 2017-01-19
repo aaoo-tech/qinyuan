@@ -9,7 +9,7 @@
           </div>
           <div class="operation fr">
             <div class="btn-set">
-              <a class="btn-submit" href="#">提交</a>
+              <a class="btn-submit btn-add" href="#">提交</a>
             </div>
           </div>
         </div>
@@ -41,12 +41,40 @@
       tinymce.init({
         selector: '#ipt-cont',
         language: 'zh_CN',
-        height : 500
-      });
-
-      // $('.btn-submit').on('click',function(){
-      //   // $('.family-article form').submit();
-      //   return false
-      // })
+        height : 500,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'preview | forecolor backcolor emoticons ',
+        image_advtab: true,
+       });
+    </script>
+    <script type="text/javascript">
+      (function($) {
+          $(function() {
+            $('body').on('click', '.btn-add', function() {
+              $('#ipt-cont').val(tinymce.activeEditor.getContent())
+              $.ajax({
+                url: '/history/create',
+                data: $('.cont-form form').serializeObject(),
+                type: 'POST',
+                beforeSend: function() { 
+                  $('#loading').addClass('active');
+                }
+              }).done(function(response) {
+                $('#loading').removeClass('active');
+                if(response.success === true){
+                  // window.location.href = '/history'
+                }
+              });
+              return false;
+            });
+          });
+      })(jQuery);
     </script>
 @include('base.footer')

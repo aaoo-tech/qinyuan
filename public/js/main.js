@@ -1,29 +1,38 @@
 (function($) {
   $(function() {
 
-    var navList = ['dashboard','user','setting'];
-    var n = 0;
-    var path = location.pathname.split('/');
-    for(var i in navList){
-      path.forEach(function(item){
-        if (navList[i] === item) {
-          $('.main-nav li').eq(i).find('a').addClass('active')
-        };
-      });
-    }
+    // var navList = ['dashboard','user','setting'];
+    // var n = 0;
+    // var path = location.pathname.split('/');
+    // for(var i in navList){
+    //   path.forEach(function(item){
+    //     if (navList[i] === item) {
+    //       $('.main-nav li').eq(i).find('a').addClass('active')
+    //     };
+    //   });
+    // }
 
-    // $('.btn-pop').on('click',function(){
-    //   $('.pop-out').addClass('active');
-    //   return false;
-    // })
+    // $('body').each(function(){
+    //   this.addEventListener('',function(e){
+        
+    //   },false);
+    // });
+
+    $('.btn-pop').on('click',function(){
+      $('.pop-out').addClass('active');
+      var pcc = $(this).data('pop');
+      $('.btn-pop .'+pcc).addClass('active')
+      return false;
+    })
 
     $('.pop-out .pop-close').on('click',function(){
       $('.pop-out').removeClass('active');
+      $('.pop-out > div').removeClass('active');
       return false;
     })
 
     $('.pop-out .btn-cancel').on('click',function(){
-      $('.pop-out').removeClass('active');
+      $('.pop-out > div').removeClass('active');
       return false;
     })
 
@@ -84,8 +93,10 @@
       }).done(function(response) {
         $('#loading').removeClass('active');
         if (response.success == true) {
-          $elem.closest('tr').remove();
+          // $elem.closest('tr').remove();
+          window.location.reload();
         } else {
+
         }
       });
       return false
@@ -106,11 +117,13 @@
       }).done(function(response) {
         $('#loading').removeClass('active');
         if (response.success == true) {
-          $tr.remove();
-          if(!$tbody.find('tr').length){
-            $tbody.html('<td colspan="'+ n +'">空</td>')
-          }
+          // $tr.remove();
+          // if(!$tbody.find('tr').length){
+          //   $tbody.html('<td colspan="'+ n +'">空</td>')
+          // }
+          window.location.reload();
         } else {
+
         }
       });
       return false
@@ -129,8 +142,9 @@
       }).done(function(response) {
         $('#loading').removeClass('active');
         if (response.success == true) {
-           window.location.reload();
+          window.location.reload();
         } else {
+
         }
       });
       return false
@@ -152,6 +166,7 @@
         if (response.success == true) {
           window.location.reload();
         } else {
+
         }
       });
       return false

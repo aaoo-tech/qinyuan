@@ -46,8 +46,9 @@
           </div>
         </div>
       </div>
-      <footer class="page-footer">
-      </footer>
+      <div id="loading">
+        <div class="wheel"></div>
+      </div>
     </div>
   </body>
 </html>
@@ -69,8 +70,12 @@
           $.ajax({
             url: '/login',
             data: $('.login-form form').serializeObject(),
-            type: 'POST'
+            type: 'POST',
+            beforeSend: function() { 
+              $('#loading').addClass('active');
+            }
           }).done(function(response) {
+            $('#loading').removeClass('active');
             if(response.success === true){
               if (isRmb) {
                 var str_username = $("#txt_uname").val();

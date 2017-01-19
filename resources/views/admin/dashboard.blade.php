@@ -21,7 +21,6 @@
             </ul>
           </div>
         </div>
-        
       </div>
     </div>
 @include('base.footer')

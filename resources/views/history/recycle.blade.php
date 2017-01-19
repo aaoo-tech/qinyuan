@@ -30,7 +30,7 @@
               <tbody>
               @if($data)
               @foreach ($data as $datum)
-                <tr>
+                <tr data-id="{{$datum['id']}}">
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a href="/history/recycle?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
@@ -48,12 +48,12 @@
             </table>
             <div class="table-foot">
               <div class="left-cont fl">
-                <a class="btn" href="#" >批量删除</a>
-                <a class="btn" href="#" >批量还原</a>
+                <a class="btn btn-batch" href="/history/recycleoption?optype=4&idlist=" >批量删除</a>
+                <a class="btn btn-batch" href="/history/recycleoption?optype=3&idlist=" >批量还原</a>
               </div>
               <div class="right-cont">
-                <a class="btn" href="#" >还原所有</a>
-                <a class="btn" href="#" >删除所有</a>
+                <a class="btn btn-all" href="/history/recycleoption?optype=1&idlist=" >还原所有</a>
+                <a class="btn btn-all" href="/history/recycleoption?optype=2&idlist=" >删除所有</a>
               </div>
             </div>
           </div>
@@ -61,4 +61,64 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      (function($) {
+          $(function() {
+
+            $('.table-foot .btn-batch').on('click', function() {
+              var url = $(this).attr('href');
+              $.ajax({
+                url: url, 
+                beforeSend: function() { 
+                  $('#loading').addClass('active');
+                }
+              }).done(function(response) {
+                $('#loading').removeClass('active');
+                if (response.success == true) {
+                  window.location.reload();
+                } else {
+
+                }
+              })
+              return false
+            })
+
+
+            $('.table-foot .btn-batch').on('click', function() {
+              var $tr = $('table tr');
+              var n = $tr.find('td').length;
+              var $tbody = $('table tbody');
+              var idList = [];
+              var trList = [];
+              $('table tr input[type="checkbox"]').each(function(i,elem){
+                if(elem.checked){
+                  idList.push($(this).closest('tr').data('id'));
+                  trList.push($(this).closest('tr')[0]);
+                }
+              });
+              var url = $(this).attr('href')+idList.toString();
+              $.ajax({
+                url: url, 
+                beforeSend: function() { 
+                  $('#loading').addClass('active');
+                }
+              }).done(function(response) {
+                $('#loading').removeClass('active');
+                if (response.success == true) {
+                  // trList.forEach(function(elem){
+                  //   $(elem).remove();
+                  // });
+                  // if(!$tbody.find('tr').length){
+                  //   $tbody.html('<td colspan="'+ n +'">空</td>')
+                  // }
+                  window.location.reload();
+                } else {
+
+                }
+              });
+              return false;
+            });
+          });
+      })(jQuery);
+    </script>
 @include('base.footer')

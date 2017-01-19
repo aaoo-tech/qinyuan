@@ -1,26 +1,23 @@
-@include('base.header')
-    <div class="page-wrapper">
-      @include('base.sidebar')
-      <div class="page-right">
-        @include('base.top-nav')
-        <div class="main-body">
-          <div class="article-edit">
-            <div class="formholder cont-form">
-              <form action="#" method="post">
-                {{csrf_field()}}
-                <input name="id" value="{{$data['id']}}" type="hidden" />
-                <div class="article-title">
-                  <span class="label">标&nbsp;&nbsp;题：</span>
-                  <input id="ipt-title" name="title" type="post" value="<?php echo $data['title'];?>" />
-                </div>
-                <div class="article-cont">
-
-                    <?php echo $data['content']; ?>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-@include('base.footer')
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>家族简介</title>
+  <style type="text/css">
+    ::-webkit-scrollbar {width: 6px;height:6px;}
+    ::-webkit-scrollbar-track-piece{background-color: #eee;margin: -2px;}
+    ::-webkit-scrollbar-thumb{background: #aaa;min-height: 150px;min-width: 150px;border-radius: 10px;}
+    ::-webkit-scrollbar-thumb:vertical:hover{background: #555555}
+    ::-webkit-scrollbar-thumb:horizontal:hover{background: #555555}
+    body { font-family: Helvetica, Arial, Microsoft Yahei, sans-serif; font-size: 14px; color: #27292C; }
+    h1 { text-align: center; }
+    h2 { font-size: 18px; }
+    .article {  }
+    .article p { font-size: 16px; line-height: 24px; }
+  </style>
+</head>
+<body>
+  <h1><?php echo $data['title'];?></h1>
+  <div class="article"><?php echo $data['content'];?></div>
+</body>
+</html>

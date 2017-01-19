@@ -4,7 +4,7 @@
       <div class="page-right">
         @include('base.top-nav')
         <div class="main-body">
-          <div class="article-edit">
+          <div class="article-iframe">
             <div class="formholder cont-form">
               <form action="/history/update" method="post">
                 {{csrf_field()}}
