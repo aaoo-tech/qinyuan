@@ -107,16 +107,21 @@
       <a class="page-next" href="#"><i class="iconfont icon-next"></i></a>
     @endif
 
-    <span>转到</span>
-    <select>
-      <option>1</option>
-    </select>
-    <span>页</span>
-    <a class="page-jump btn" href="#">跳页</a>
-    @if(isset($totalpage)) {{$totalpage}} @else 0 @endif
+      <span>转到</span>
+      <input type="text" id="ipt-page-number" maxlength="4"/>
+      <a class="page-jump btn" href="{{$_base}}?{{$_query}}">跳页</a>
+      <span>
+        共
+        @if(isset($totalpage)) 
+        <i class="max-page">{{$totalpage}}</i>
+        @else 
+        <i class="max-page">0</i> 
+        @endif
+        页
+      </span>
     </div>
 @endif
   <div class="sum-info fr">
-    <span>共@if(isset($total)) {{$total}} @else 0 @endif位注册用户</span>
+    <span>共@if(isset($total)) {{$total}} @else 0 @endif条记录</span>
   </div>
 </div>
