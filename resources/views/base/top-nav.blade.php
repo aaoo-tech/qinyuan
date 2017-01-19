@@ -9,7 +9,7 @@
       <ul>
         <li><a href="/personal">个人资料</a>
         <li><a href="/help">帮助中心</a>
-        <li><a href="/logout">退出</a>
+        <li><a class="btn-logout" href="#">退出</a>
       </ul>
     </div>
   </div>

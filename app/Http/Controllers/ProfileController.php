@@ -41,7 +41,7 @@ class ProfileController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/100/',
-                    json_encode(['token' => session('token'), 'title' => $_params['title'], 'content' => $_params['content'], 'id' => $_params['id']])
+                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'title' => $_params['title'], 'content' => $_params['content'], 'id' => $_params['id']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -53,7 +53,7 @@ class ProfileController extends Controller
         return response()->json([
                 'success' => false,
                 'message' => '添加失败',
-                'data' => array(),
+                'data' => $_result,
             ]);
     }
 
@@ -64,5 +64,14 @@ class ProfileController extends Controller
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => '1', 'pagenum' => '10'])
                 );
         return view('profile.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
+    }
+
+    public function info(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/center/101/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => '1', 'pagenum' => '10'])
+                );
+        return view('profile.info', ['title' => '详情', 'data' => $_result['data'][0]]);
     }
 }

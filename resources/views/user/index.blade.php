@@ -12,7 +12,7 @@
               <a class="btn-lock" href="/user/lock"><i class="iconfont icon-lock"></i>已锁定用户</a>
             </div>
             <div class="form-holder form-search fr">
-              <form action="#" method="POST">
+              <form action="/user/search" method="POST">
                 {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >

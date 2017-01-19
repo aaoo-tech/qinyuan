@@ -32,17 +32,47 @@ class MeritController extends Controller
         return view('merit.index', ['title' => '功德榜', 'data' => $_result['data']]);
     }
 
-    public function add(Request $request) {
+    public function add() {
+        return view('merit.add', ['title' => ' 增加']);
+    }
+
+    public function create(Request $request) {
         $_params = $request->all();
-        $file = $request->file('picurl');
-        $entension = $file->getClientOriginalExtension();
-        if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
-            $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
-        }
+        // $file = $request->file('picurl');
+        // $entension = $file->getClientOriginalExtension();
+        // if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
+        //     $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+        //     $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+        // }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/116/',
-                    json_encode(['token' => session('token'), 'uname' => '张三', 'addr' => '湖北', 'education' => '本科', 'job' => '暂无', 'money' => '10000', 'avatar' => $_pic['info']['url']])
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'addr' => $_params['addr'], 'education' => $_params['education'], 'job' => $_params['job'], 'money' => $_params['money'], 'avatar' => ''])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '添加失败',
+                'data' => array(),
+            ]);
+    }
+
+    public function update(Request $request) {
+        $_params = $request->all();
+        // $file = $request->file('picurl');
+        // $entension = $file->getClientOriginalExtension();
+        // if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
+        //     $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+        //     $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+        // }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/116/',
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'addr' => $_params['addr'], 'education' => $_params['education'], 'job' => $_params['job'], 'money' => $_params['money'], 'avatar' => '', 'id' => $_params['id']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -84,7 +114,7 @@ class MeritController extends Controller
         foreach ($_params['ids'] as $id) {
             $_result = curlPost(
                         'http://120.25.218.156:12001/info/118/',
-                        json_encode(['token' => session('token'), 'id' => $_params['id']])
+                        json_encode(['token' => session('token'), 'id' => $id])
                     );
             if($_result['ok'] === true) {
                 $i++;

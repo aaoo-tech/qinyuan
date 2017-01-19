@@ -32,11 +32,15 @@ class FamousController extends Controller
         return view('famous.index', ['title' => ' 名人榜', 'data' => $_result['data']]);
     }
 
-    public function add(Request $request) {
+    public function add() {
+        return view('famous.add', ['title' => ' 增加']);
+    }
+
+    public function create(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/108/',
-                    json_encode(['token' => session('token'), 'uname' => '755', 'generation' => '1', 'father' => '1'])
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'generation' => $_params['generation'], 'father' => $_params['father']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -98,7 +102,7 @@ class FamousController extends Controller
         foreach ($_params['ids'] as $id) {
             $_result = curlPost(
                         'http://120.25.218.156:12001/info/110/',
-                        json_encode(['token' => session('token'), 'id' => $_params['id']])
+                        json_encode(['token' => session('token'), 'id' => $id])
                     );
             if($_result['ok'] === true) {
                 $i++;

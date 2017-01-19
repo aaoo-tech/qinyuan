@@ -52,8 +52,10 @@ if(!function_exists('curlPost')) {
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch,CURLOPT_POST,1);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$_params);
+        curl_setopt($ch,CURLOPT_TIMEOUT_MS,30000);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json; charset=utf-8',
+            'Expect:',
             'Content-Length: ' . strlen($_params))
         ); 
         $_result = curl_exec($ch);
@@ -73,12 +75,12 @@ if(!function_exists('navdata')) {
         return [
             "card" => ["index" => "家族名片"],
             "profile" => ["index" => "家族简介", "edit" => "编辑"],
-            "history" => ["index" => "史料", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
-            "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
-            "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
+            "history" => ["index" => "史料", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
+            "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
+            "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
             "tree" => ["index" => "家族树"],
             "image" => ["index" => "影像中心", "detail" => "相册详情"],
-            "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索"],
+            "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
             "user" => ["index" => "用户", "lock" => "锁定", "search" => "搜索"],
             "setting" => ["index" => "设置"]
         ];
@@ -94,9 +96,9 @@ if(!function_exists('navdata')) {
 if(!function_exists('breadcrumb')) {
     function breadcrumb() {
         if(getCurrentMethodName() == 'index') {
-            echo '<a href="/dashboard"><i class="iconfont icon-home"></i>家族中心</a><span>'. navdata()[getCurrentControllerName()]['index'] .'</span>';
+            echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><span>'. navdata()[getCurrentControllerName()]['index'] .'</span>';
         }else{
-            echo '<a href="/dashboard"><i class="iconfont icon-home"></i>家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
+            echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
         }
     }
 }

@@ -19,7 +19,7 @@
       @include('base.sidebar')
       <div class="page-right">
         @include('base.top-nav')
-        503 
+        500
       </div>
     </div>
     <script type="text/javascript">

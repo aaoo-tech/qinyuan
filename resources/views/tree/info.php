@@ -32,7 +32,7 @@
                   <span>1代(天)</span>
                 </div>
                 <div class="persons fl">
-                  <div class="person p-man current" data-uid="x" data-media-url='/image' data-info-url='/personal'>
+                  <div class="person p-man current" data-uid="x">
                     <p class="p-pic"></p>
                     <p class="p-name">张天可</p>
                     <p class="p-sort">(行3)</p>
@@ -115,6 +115,162 @@
                   </div>
                 </div>
               </div>
+<!--               <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>3代(和)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic">
+                      <img src="{{ asset('/img/tr1.jpg') }}">
+                    </p>
+                    <p class="p-name">张和落</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张和可</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-woman current" data-uid="x">
+                    <p class="p-pic "></p>
+                    <p class="p-name">张和雪</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>2代(端)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端落</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端可</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-woman current" data-uid="x">
+                    <p class="p-pic "></p>
+                    <p class="p-name">张端雪</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端雨</p>
+                    <p class="p-sort">(行4)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端安</p>
+                    <p class="p-sort">(行5)</p>
+                  </div>
+                  <div class="person p-man " data-uid="x">
+                    <p class="p-pic">
+                      <img src="{{ asset('/img/tr1.jpg') }}">
+                    </p>
+                    <p class="p-name">张端平</p>
+                    <p class="p-sort">(行6)</p>
+                  </div>
+                  <div class="person p-wife p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">李秀芳</p>
+                    <p class="p-sort">(配偶)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端祥</p>
+                    <p class="p-sort">(行7)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端月</p>
+                    <p class="p-sort">(行8)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>3代(和)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic">
+                      <img src="{{ asset('/img/tr1.jpg') }}">
+                    </p>
+                    <p class="p-name">张和落</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张和可</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-woman current" data-uid="x">
+                    <p class="p-pic "></p>
+                    <p class="p-name">张和雪</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>2代(端)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端落</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端可</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic "></p>
+                    <p class="p-name">张端雪</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端雨</p>
+                    <p class="p-sort">(行4)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端安</p>
+                    <p class="p-sort">(行5)</p>
+                  </div>
+                  <div class="person p-man " data-uid="x">
+                    <p class="p-pic">
+                      <img src="{{ asset('/img/tr1.jpg') }}">
+                    </p>
+                    <p class="p-name">张端平</p>
+                    <p class="p-sort">(行6)</p>
+                  </div>
+                  <div class="person p-wife p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">李秀芳</p>
+                    <p class="p-sort">(配偶)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端祥</p>
+                    <p class="p-sort">(行7)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端月</p>
+                    <p class="p-sort">(行8)</p>
+                  </div>
+                </div>
+              </div> -->
               <div class="tree-menu">
                 <div class="menu-title"><h3>节点操作</h3></div>
                 <ul>
@@ -200,12 +356,8 @@
       var selectMenu = function(t,p){
         switch(t){
           case 'user_info':
-            var url = $(p).data('info-url')
-            window.location.href = url
             break;
           case 'user_media':
-            var url = $(p).data('media-url')
-            window.location.href = url
             break;
           case 'add_mate':
             alert('添加配偶')

@@ -9,35 +9,34 @@
           </div>
           <div class="operation fr">
             <div class="btn-set">
-              <a class="btn-submit" href="#">提交</a>
+              <a class="btn-submit btn-add" href="#">提交</a>
             </div>
           </div>
         </div>
         <div class="main-body">
           <div class="article-edit">
             <div class="formholder cont-form">
-              <form action="/profile/update" method="POST">
+              <form action="/history/create" method="post">
                 {{csrf_field()}}
-                <input name="id" value="{{$data['id']}}" type="hidden" />
                 <div class="article-title">
                   <span class="label">标&nbsp;&nbsp;题：</span>
-                  <input id="ipt-title" name="title" type="post" value="{{$data['title']}}" />
+                  <input id="ipt-title" name="title" type="post" value="" />
                 </div>
                 <div class="article-cont">
                   <span class="label fl">正&nbsp;&nbsp;文：</span>
                   <textarea id="ipt-cont" name="content">
-                    {{$data['content']}}
+                    
                   </textarea>
                 </div>
               </form>
             </div>
           </div>
+        
         </div>
       </div>
-    </div> 
+    </div>
 
     <script type="text/javascript" src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/jquery.form.js') }}"></script>
     <script type="text/javascript">
       tinymce.init({
         selector: '#ipt-cont',
@@ -62,16 +61,20 @@
     <script type="text/javascript">
       (function($) {
           $(function() {
-            $('body').on('click', '.btn-submit', function() {
+            $('body').on('click', '.btn-add', function() {
               $('#ipt-cont').val(tinymce.activeEditor.getContent())
               $.ajax({
-                  url: '/profile/update',
-                  data: $('.cont-form form').serializeObject(),
-                  type: 'POST'
+                url: '/history/create',
+                data: $('.cont-form form').serializeObject(),
+                type: 'POST',
+                beforeSend: function() { 
+                  $('#loading').addClass('active');
+                }
               }).done(function(response) {
-                  if(response.success === true){
-                    window.location.href = '/profile'
-                  }
+                $('#loading').removeClass('active');
+                if(response.success === true){
+                  window.location.href = '/history'
+                }
               });
               return false;
             });

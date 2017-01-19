@@ -12,7 +12,7 @@
               <a class="btn-recycling" href="/history/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
             <div class="btn-set fr">
-              <a class="btn-add btn-pop" href="#">添加</a>
+              <a class="btn-add" href="/history/add">添加</a>
             </div>
             <div class="form-holder form-search fr">
               <form action="/history/search" method="POST">
@@ -23,7 +23,7 @@
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入文章标题"/>
+                  <input type="text" id="ipt-keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入文章标题"/>
                 </div>
               </form>
             </div>
@@ -51,10 +51,10 @@
               <tbody>
               @if($data)
               @foreach ($data as $datum)
-                <tr>
+                <tr data-id="{{$datum['id']}}">
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
-                  <td><a href="/history/edit?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
+                  <td><a class="link-info" href="/history/info?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
                   <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
                   <td><a class="link-edit" href="/history/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove ajax-remove" href="/history/del?id={{$datum['id']}}" >删除</a></td>
@@ -68,11 +68,69 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn" href="#" >批量删除</a>
+              <a class="btn btn-batch" href="/history/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')
         </div>
       </div>
+      <div class="pop-out">
+        <div class="pop-out-window">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
+          <div class="box-haader"><h2>史料</h2></div>
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
+          <iframe name="historyFrame" src="#"></iframe>
+          <script type="text/javascript">
+            function frameLoad(){
+              $('.pop-out-window').addClass('active')
+            }
+          </script>
+        </div>
+      </div>
     </div>
+    <script type="text/javascript">
+      (function($) {
+        $(function() {
+          $('.table-foot .btn-batch').on('click', function() {
+            var $tr = $('table tr');
+            var n = $tr.find('td').length;
+            var $tbody = $('table tbody');
+            var idList = [];
+            var trList = [];
+            $('table tr input[type="checkbox"]').each(function(i,elem){
+              if(elem.checked){
+                idList.push($(this).closest('tr').data('id'));
+                trList.push($(this).closest('tr'));
+              }
+            });
+            var url = $(this).attr('href');
+            idList.forEach(function(id){
+              url += 'ids[]='+id + '&'
+            });
+            $.ajax({
+              url: url, 
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+              if (response.success == true) {
+                window.location.reload();
+              } else {
+
+              }
+            });
+            return false;
+          });
+        });
+      })(jQuery);
+    </script>
 @include('base.footer')

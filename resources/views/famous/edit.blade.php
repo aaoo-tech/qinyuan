@@ -16,19 +16,16 @@
         <div class="main-body">
           <div class="article-edit">
             <div class="formholder cont-form">
-              <form action="#" method="post">
+              <form action="/famous/update" method="post">
                 {{csrf_field()}}
                 <input name="id" value="{{$data['id']}}" type="hidden" />
-                <div class="article-title">
-                  <span class="label">标&nbsp;&nbsp;题：</span>
-                  <input id="ipt-title" name="title" type="post" value="" />
-                </div>
-                <div class="article-cont">
-                  <span class="label fl">正&nbsp;&nbsp;文：</span>
-                  <textarea id="ipt-cont" name="content">
-                   
-                  </textarea>
-                </div>
+                  <span class="label">姓名：</span>
+                  <input id="ipt-title" name="uname" type="text" value="{{$data['uname']}}" /><br/>
+                  <span class="label">父亲：</span>
+                  <input id="ipt-title" name="father" type="text" value="{{$data['father']}}" /><br/>
+                  <span class="label">第几代：</span>
+                  <input id="ipt-title" name="generation" type="text" value="{{$data['generation']}}" /><br/>
+                  <input type="submit" name="" value="submit" />
               </form>
             </div>
           </div>
