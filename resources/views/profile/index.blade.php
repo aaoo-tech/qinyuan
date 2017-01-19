@@ -16,12 +16,6 @@
         <div class="main-body">
           <div class="family-summary">
             <iframe class="profile-info" src="/profile/info"></iframe>
-<!--             <div class="summary-title">
-              <h1>{{$data[0]['title']}}</h1>
-            </div> -->
-<!--             <div class="summary-cont article">
-              <?php echo $data[0]['content']; ?>
-            </div> -->
           </div>
         </div>
       </div>

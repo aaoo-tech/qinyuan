@@ -10,10 +10,14 @@
     ::-webkit-scrollbar-thumb:vertical:hover{background: #555555}
     ::-webkit-scrollbar-thumb:horizontal:hover{background: #555555}
     body { font-family: Helvetica, Arial, Microsoft Yahei, sans-serif; font-size: 14px; color: #27292C; }
+    h1 { text-align: center; }
+    h2 { font-size: 18px; }
+    .article {  }
+    .article p { font-size: 16px; line-height: 24px; }
   </style>
 </head>
 <body>
-  <?php echo $data['title'];?>
-  <?php echo $data['content']; ?>
+  <h1><?php echo $data['title'];?></h1>
+  <div class="article"><?php echo $data['content'];?></div>
 </body>
 </html>
