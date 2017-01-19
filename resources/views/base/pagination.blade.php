@@ -129,6 +129,6 @@
     </div>
 @endif
   <div class="sum-info fr">
-    <span>共@if(isset($total)) {{$total}} @else 0 @endif条记录</span>
+    <span>共@if(isset($total)) {{$total}} @else * @endif条记录</span>
   </div>
 </div>

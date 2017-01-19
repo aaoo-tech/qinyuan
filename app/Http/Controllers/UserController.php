@@ -57,7 +57,7 @@ class UserController extends Controller
                     'http://120.25.218.156:12001/info/127/',
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        return view('user.lock', ['title' => '用户锁定', 'totalpage' => $_result['totalpage'], 'data' => $_result['data']]);
+        return view('user.lock', ['title' => '用户锁定', 'data' => $_result['data']]);
     }
 
     public function locked(Request $request) {
