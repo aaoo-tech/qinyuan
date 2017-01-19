@@ -43,6 +43,7 @@
         selector: '#ipt-cont',
         language: 'zh_CN',
         height : 500,
+        content_css: '{{ asset("/css/tinymce.css") }}',
         theme: 'modern',
         convert_urls: false,
         plugins: [

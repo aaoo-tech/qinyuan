@@ -1,17 +1,6 @@
 (function($) {
   $(function() {
 
-    // var navList = ['dashboard','user','setting'];
-    // var n = 0;
-    // var path = location.pathname.split('/');
-    // for(var i in navList){
-    //   path.forEach(function(item){
-    //     if (navList[i] === item) {
-    //       $('.main-nav li').eq(i).find('a').addClass('active')
-    //     };
-    //   });
-    // }
-
     // $('body').each(function(){
     //   this.addEventListener('',function(e){
         
@@ -50,16 +39,42 @@
       return false;
     })
 
+    // search
+    $('.form-search input').on('keypress', function(e) {
+      if(e.keyCode == 13) {
+        var $elem = $(this);
+        var $form = $elem.closest('form');
+        var val = $elem.val()
+        var url = $form.attr('action')+'?keyword='+val;
+        window.location.href = url;
+        return false;
+      }
+    })
+    .on('keydown', function(e) {
+      if(e.keyCode == 27) {
+        $(this).blur();
+        return false;
+      }
+    })
 
-    // $('.form-search input').on('keypress', function(e) {
-    //   if(e.keyCode == 13) {
-    //     $(this).trigger('blur');
-    //   }
-    // })
-    // .on('keydown', function(e) {
-    //   if(e.keyCode == 27) {
-    //   }
-    // })
+   // pagination
+    $('.pagination .page-jump').on('click',function(){
+      var ipt = $('#ipt-page-number').val();
+      var max = parseInt($('.max-page').text());
+      var url = $(this).attr('href');
+      console.log(url)
+      if(!isNaN(ipt)&&ipt>=0&&ipt<=max){
+        url=url.replace(/page=\d/,'page='+ipt);
+        window.location.href = url;
+      }else{
+        $('#ipt-page-number').addClass('error')
+      }
+      return false
+    });
+
+    $('#ipt-page-number').on('focus',function(){
+      $(this).removeClass('error')
+    })
 
 
     $('.add-form .btn-submit').on('click',function(){
@@ -129,11 +144,23 @@
       return false
     })
 
+    $('td .link-info').on('click',function(){
+      var url = $(this).attr('href');
+      $('.pop-out-window iframe').attr('src',url);
+      $('.pop-out')
+      .addClass('active')
+      // .find('.pop-out-window').addClass('active')
+
+      var frame = $('.pop-out-window iframe').attr('name');
+      
+      // window.open(url)
+      return false
+    })
+
 
     $('li .ajax-remove').on('click',function(){
       var $elem = $(this);
       var url = $elem.attr('href');
-
       $.ajax({
         url: url,
         beforeSend: function() { 
@@ -171,6 +198,7 @@
       });
       return false
     })
+
 
 
     // forgot

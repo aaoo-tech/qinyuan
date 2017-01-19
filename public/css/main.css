@@ -18,7 +18,7 @@ label { cursor: pointer; user-select: none; }
 
 .col40{ width: 40% }
 .col60{ width: 60% }
-
+input.error{ border-color: #E50012; color: #E50012; }
 .btn { line-height: 26px; color: #fff; text-align: center; background-color: #135189; border-radius: 3px; }
 
 /* .page-width {  margin: 0 au to; } */
@@ -34,7 +34,7 @@ label { cursor: pointer; user-select: none; }
 .login-container .login-form .entry { margin-top: 12px; }
 .login-container .login-form .label { font-size: 16px; line-height: 30px; color: #27292C; }
 .login-container .login-form input { box-sizing: border-box; width: 200px; padding: 0 10px; line-height: 26px; }
-.login-container .login-form .error input{ border-color: #E50012; color: #E50012; }
+
 .login-container .login-form .checkbox { width: 20px; height: 20px; margin: 0 0 0 65px; }
 .login-container .login-form label { font-size: 14px; vertical-align: super; }
 .login-container .login-form .link { font-size: 14px; line-height: 20px; color: #F19919; }
@@ -131,7 +131,8 @@ label { cursor: pointer; user-select: none; }
 .operation .btn-recycling .iconfont { margin-right: 5px; font-size: 20px; }
 
 .operation .form-search { margin: 10px 10px 0 20px; line-height: 30px; }
-.operation .form-search .btn-search { height: 14px; padding: 8px; font-size: 14px; line-height: 14px; border: 1px solid #ccc; border-right: none; }
+.operation .form-search .btn-search { position: relative; height: 14px; padding: 8px 16px 8px 8px; font-size: 14px; line-height: 14px; border: 1px solid #ccc; border-right: none; }
+.operation .form-search .btn-search:after { position: absolute; top: 5px; right: 8px; height: 20px; border-right: 1px solid #ccc; content: ""; }
 .operation .form-search .icon-search { font-size: 14px; line-height: 1em; color: #aaa; vertical-align: middle; }
 .operation .form-search .input-search input { font-size: 14px; line-height: 30px; border: none; border: 1px solid #ccc; border-left: none; }
 
@@ -161,7 +162,7 @@ label { cursor: pointer; user-select: none; }
 .pagination .container span { margin: 2px 8px; line-height: 20px; color: #aaa; }
 .pagination .container .iconfont { font-size: 12px; color: #aaa; }
 .pagination .container .page-jump { margin: 0; font-size: 12px; line-height: 24px; }
-.pagination .container select { height: 22px; margin: 1px 0; width: 40px; padding: 2px; }
+.pagination .container #ipt-page-number {  width: 40px; height: 22px; padding: 2px 5px; margin: 1px 5px 1px 0; }
 .pagination .sum-info { padding-right: 20px; line-height: 46px; color: #666 }
 
 .center-list { padding: 115px 0 0 90px; }
@@ -319,7 +320,7 @@ label { cursor: pointer; user-select: none; }
 
 .pop-out { display: none; position: fixed; z-index: 2; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,.5); }
 .pop-out.active { display: block; }
-.pop-out { /* display: none; */ position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; background-color: #fff; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
+.pop-out-cont { /* display: none; */ position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; background-color: #fff; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
 .pop-out-cont.active { display: block; }
 .pop-out .box-haader { border-bottom: 1px solid #D7D7D7; background-color: #EDEDED; }
 .pop-out .box-haader h2 { padding-left: 20px; font-size: 18px; color: #7C7F80; line-height: 49px; }
@@ -384,6 +385,12 @@ label { cursor: pointer; user-select: none; }
 .pop-out .pop-out-confirm .box-footer .btn-set { margin-right: 20px; }
 .pop-out .pop-out-confirm .box-footer .btn-set a { width: 70px; line-height: 36px; }
 .pop-out .pop-out-confirm .box-footer .btn-cancel { color: #27292C; background-color: #E7E3E3; }
+
+.pop-out .pop-out-window { position: absolute; top: 50px; right: 0; left: 0; width: 375px; height: 677px; margin: auto; background-color: #eee; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
+.pop-out .pop-out-window.active { background-color: #fff; }
+.pop-out .pop-out-window iframe { opacity: 0; width: 100%; height: 100%; }
+.pop-out .pop-out-window.active iframe { opacity: 1; }
+
 
 
 #alert-error { display: none; position: fixed; position: fixed; z-index: 2; top: 40%; right: 0; left: 0; width: 100px; height: 100px; margin: auto; text-align: center; background-color: rgba(0,0,0,.5); border-radius: 5px; }
