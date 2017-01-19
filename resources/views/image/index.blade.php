@@ -12,7 +12,7 @@
               <span class="album-sum">7</span>个相册
             </div>
             <div class="btn-set fr">
-              <a class="btn-add" href="#">创建相册</a>
+              <a class="btn-add btn-pop" data-pop="pop-cont-2"  href="#">创建相册</a>
             </div>
             <div class="form-holder form-search fr">
               <form action="#" method="POST">
@@ -44,7 +44,7 @@
               <div class="btn-menu">
                 <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
                 <ul class="fr">
-                  <li><a class="btn-pop" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
+                  <li><a class="btn-pop" data-pop="pop-cont-1" href="#" ><i class="iconfont icon-edit"></i>编辑</a></li>
                   <li><a href="#"><i class="iconfont icon-remove"></i>删除</a></li>
                 </ul>
               </div>
@@ -62,7 +62,7 @@
               <div class="btn-menu">
                 <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
                 <ul class="fr">
-                  <li><a class="btn-pop" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
+                  <li><a class="btn-pop" data-pop="pop-cont-1" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
                   <li><a href="#"><i class="iconfont icon-remove"></i>删除</a></li>
                 </ul>
               </div>
@@ -80,7 +80,7 @@
               <div class="btn-menu">
                 <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
                 <ul class="fr">
-                  <li><a class="btn-pop" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
+                  <li><a class="btn-pop" data-pop="pop-cont-1" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
                   <li><a href="#"><i class="iconfont icon-remove"></i>删除</a></li>
                 </ul>
               </div>
@@ -89,9 +89,9 @@
           </div>
         </div>
       </div>
-      <div class="pop-out">
+      <div class="pop-out active">
 
-        <div class="pop-out-confirm album-edit">
+        <div class="pop-out-confirm album-edit pop-cont-1">
           <div class="pop-close">
             <a href="#" title="关闭">
               <i class="iconfont icon-close"></i>
@@ -101,7 +101,7 @@
           <div class="form-holder">
             <form action="#">
               {{csrf_field()}}
-              <inpu1
+              <inpu type="hidden" id="ipt-album-id">
               <div class="entry">
                 <span class="label">相册名称</span>
                 <input type="text" name="fname" value="夏子轩家的全家福" />
@@ -119,32 +119,26 @@
           </div>
         </div>
 
-<!--         <div class="pop-out-confirm album-edit">
+        <div class="pop-out-confirm album-add pop-cont-2 active">
           <div class="pop-close">
             <a href="#" title="关闭">
               <i class="iconfont icon-close"></i>
             </a>
           </div>
-          <div class="box-haader"><h2>编辑相册信息</h2></div>
-          <div class="form-holder">
-            <form action="#">
-              <div class="entry">
-                <span class="label">相册名称</span>
-                <input type="text" name="" value="夏子轩家的全家福" />
-                <span class="tip">(相册名称最多8个字)</span>
-              </div>
-            </form>
+          <div class="box-haader"><h2>创建成功</h2></div>
+          <div class="box-cont">
+            <p>相册创建成功，是否马上上传照片到此相册？</p>
           </div>
           <div class="box-footer clearfix">
             <div class="btn-set fr">
-              <a class="btn btn-cancel"href="#">取消</a>
+              <a class="btn btn-cancel"href="#">否</a>
             </div>
             <div class="btn-set fr">
-              <a class="btn btn-submit" href="#">确定</a>
+              <a class="btn btn-submit" href="#">是</a>
             </div>
           </div>
-        </div> -->
-        
+        </div>
+
       </div>
     </div>
     <script type="text/javascript">

@@ -1,3 +1,18 @@
+      <div id="login-out-alert">
+        <div class="container">
+          <div class="box-haader"><span>提示</span></div>
+          <div class="box-cont">
+            <p>你确定要退出亲缘后台吗？</p>
+            <div class="btn-set fl">
+              <a class="btn btn-submit" href="/logout">确定</a>
+            </div>
+            <div class="btn-set fr">
+              <a class="btn btn-cancel" href="#">取消</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="loading">
         <div class="wheel"></div>
       </div>
@@ -9,8 +24,7 @@
       (function($) {
         $(function() {
           var c = "{{getCurrentControllerName()}}";
-          console.log(c)
-          $('.page-left .main-nav li a').removeClass('active');
+          $('.main-nav li a').removeClass('active');
           if(c != 'user' && c != 'setting'){
             $('.main-nav li.admin a').addClass('active');
           }else{

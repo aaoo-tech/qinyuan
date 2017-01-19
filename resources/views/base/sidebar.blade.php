@@ -1,4 +1,4 @@
-<div class="page-left fl">
+<div class="page-left">
   <div class="logo">
     <img src="{{ asset('/img/logo.png') }}">
   </div>
