@@ -23,7 +23,7 @@
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入文章标题"/>
+                  <input type="text" id="ipt-keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入文章标题"/>
                 </div>
               </form>
             </div>

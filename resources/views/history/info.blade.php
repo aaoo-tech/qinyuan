@@ -14,6 +14,7 @@
     h2 { font-size: 18px; }
     .article {  }
     .article p { font-size: 16px; line-height: 24px; }
+    .article img { width: 100%; height: auto; }
   </style>
   <script type="text/javascript">
     window.onload=function(){

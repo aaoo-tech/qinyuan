@@ -95,12 +95,12 @@
             }
           });
         } else {
-          $('.uname').addClass('error')
+          $('#txt_uname').addClass('error')
         }
         return false;
       })
-      $('.login-form #txt_uname').on('focus',function(){
-        $('.uname').removeClass('error')
+      $('#txt_uname').on('focus',function(){
+        $(this).removeClass('error')
       })
 
     });
