@@ -43,7 +43,7 @@ class ProfileController extends Controller
                     'http://120.25.218.156:12001/info/100/',
                     json_encode(['token' => session('token'), 'zid' => session('zid'), 'title' => $_params['title'], 'content' => $_params['content'], 'id' => $_params['id']])
                 );
-        if($_result['ok'] === true) {
+        if($_result['ok'] === true) { 
             return response()->json([
                     'success' => true,
                     'message' => '',

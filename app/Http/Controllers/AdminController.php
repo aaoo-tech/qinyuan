@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Helpers\AliyunOss;
+
 class AdminController extends Controller
 {
     public function index(Request $request) {
@@ -94,5 +96,20 @@ class AdminController extends Controller
         if (!$request->session()->has('token')) {
             return redirect()->action('AdminController@index');
         }
+    }
+
+    public function upload(Request $request) {
+        $_params = $request->all();
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $file = $request->file('file');
+            $mimeType = $file->getMimeType();
+            $entension = $file->getClientOriginalExtension();
+            $_result = $request->file('file')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+            $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+        }
+        return response()->json([
+                'error' => false,
+                'path' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url'])
+            ]);
     }
 }
