@@ -29,9 +29,11 @@ class UserController extends Controller
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        foreach ($_result['data'] as $value) {
-            if($value['islock'] == 0) {
-                $result[] = $value;
+        if(isset($_result['data'])){
+            foreach ($_result['data'] as $value) {
+                if($value['islock'] == 0) {
+                    $result[] = $value;
+                }
             }
         }
         return view('user.index', ['title' => '用户中心', 'data' => $result]);

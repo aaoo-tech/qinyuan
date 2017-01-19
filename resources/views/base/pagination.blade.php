@@ -27,13 +27,29 @@
       $_query = http_build_query($_params);
     ?>
     @if($i == $_page)
-      <span class="current">{{$i}}</span>
+      <span class="current">@if($i > 3)...@endif{{$i}}@if($i < $totalpage-3)...@endif</span>
     @elseif($i == 1)
-      <a class="page-first" href=""><i class="iconfont icon-first"></i></a>
+      <?php
+        $_params['page'] = 1;
+        $_query = http_build_query($_params);
+      ?>
+      <a class="page-first" href="{{$_base}}?{{$_query}}"><i class="iconfont icon-first"></i></a>
     @elseif($i == $totalpage)
-      <a class="page-last" href=""><i class="iconfont icon-last"></i></a>
+      <?php
+        $_params['page'] = $totalpage;
+        $_query = http_build_query($_params);
+      ?>
+      <a class="page-last" href="{{$_base}}?{{$_query}}"><i class="iconfont icon-last"></i></a>
+    @elseif($i < $_page+3 && $i < $_page+3)
+      <?php
+        $_params['page'] = ($i+3 < $totalpage)?$i+3:$totalpage;
+        $_query = http_build_query($_params);
+      ?>
+      @if($i+3 < $totalpage)
+      <a href="{{$_base}}?{{$_query}}">{{$i+3}}</a>
+      @endif
     @else
-      <a href="{{$_base}}?{{$_query}}">{{$i}}</a>
+      
     @endif
     <?php } ?>
     @if($_page < $totalpage)
