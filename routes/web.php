@@ -42,6 +42,7 @@ Route::group(['prefix' => '', 'middleware' => 'checklogin'], function() {
     Route::get('help', 'AdminController@help');
     Route::get('message', 'AdminController@message');
     Route::get('logout', 'AdminController@logout');
+    Route::any('upload', 'AdminController@upload');
 });
 
 Route::group(['prefix' => 'card', 'middleware' => 'checklogin'], function() {
