@@ -54,7 +54,8 @@
         toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link ',
         toolbar2: 'forecolor backcolor | preview imageupload ',
         image_advtab: true,
-        imageupload_url: '{:D("File/uploadPicture")}'
+        imageupload_url: '{:D("File/uploadPicture")}',
+        imageupload_csrf: '{{csrf_field()}}'
        });
     </script>
     <script type="text/javascript">

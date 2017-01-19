@@ -32,7 +32,7 @@
                 <input class="fr" id="txt_upasswd" type="password" maxlength="16" name="upasswd"/>
               </div>
               <div class="entry clearfix">
-                <input class="checkbox" id="isAuto" type="checkbox" name="isAuto"/>
+                <input class="checkbox" id="isAuto" type="checkbox"/>
                 <label for="isAuto">记住密码</label>
                 <div class="link fr">
                   <a href="/forgot_one">忘记密码?</a>
