@@ -17,14 +17,14 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'user'], function() {
-    Route::get('', 'UserController@index');
-    Route::get('lock', 'UserController@lock');
+    Route::any('', 'UserController@index');
+    Route::any('lock', 'UserController@lock');
     Route::any('locked', 'UserController@locked');
     Route::any('search', 'UserController@search');
 });
 
 Route::group(['prefix' => 'setting'], function() {
-    Route::get('', 'SettingController@index');
+    Route::any('', 'SettingController@index');
     Route::any('add', 'SettingController@add');
     Route::any('del', 'SettingController@del');
     Route::any('code', 'SettingController@code');
@@ -32,21 +32,21 @@ Route::group(['prefix' => 'setting'], function() {
     Route::any('upadtemobile', 'SettingController@upadtemobile');
 });
 
-Route::get('admin', 'AdminController@index');
-Route::get('forgot_one', 'AdminController@forgot_one');
+Route::any('admin', 'AdminController@index');
+Route::any('forgot_one', 'AdminController@forgot_one');
 Route::any('login', 'AdminController@login');
 
 Route::group(['prefix' => '', 'middleware' => 'checklogin'], function() {
-    Route::get('dashboard', 'AdminController@dashboard');
-    Route::get('personal', 'AdminController@personal');
-    Route::get('help', 'AdminController@help');
-    Route::get('message', 'AdminController@message');
-    Route::get('logout', 'AdminController@logout');
+    Route::any('dashboard', 'AdminController@dashboard');
+    Route::any('personal', 'AdminController@personal');
+    Route::any('help', 'AdminController@help');
+    Route::any('message', 'AdminController@message');
+    Route::any('logout', 'AdminController@logout');
     Route::any('upload', 'AdminController@upload');
 });
 
 Route::group(['prefix' => 'card', 'middleware' => 'checklogin'], function() {
-    Route::get('', 'CardController@index');
+    Route::any('', 'CardController@index');
     Route::any('picurl', 'CardController@picurl');
     Route::any('avatar', 'CardController@avatar');
     Route::any('test', 'CardController@test');
@@ -56,9 +56,9 @@ Route::group(['prefix' => 'card', 'middleware' => 'checklogin'], function() {
 });
 
 Route::group(['prefix' => 'profile', 'middleware' => 'checklogin'], function() {
-    Route::get('', 'ProfileController@index');
+    Route::any('', 'ProfileController@index');
     Route::any('add', 'ProfileController@add');
-    Route::get('edit', 'ProfileController@edit');
+    Route::any('edit', 'ProfileController@edit');
     Route::any('update', 'ProfileController@update');
     Route::any('info', 'ProfileController@info');
     // Route::get('get', 'ProfileController@get');
@@ -66,10 +66,10 @@ Route::group(['prefix' => 'profile', 'middleware' => 'checklogin'], function() {
 });
 
 Route::group(['prefix' => 'history', 'middleware' => 'checklogin'], function() {
-    Route::get('', 'HistoryController@index');
-    Route::get('recycle', 'HistoryController@recycle');
-    Route::get('recycleoption', 'HistoryController@recycleoption');
-    Route::get('edit', 'HistoryController@edit');
+    Route::any('', 'HistoryController@index');
+    Route::any('recycle', 'HistoryController@recycle');
+    Route::any('recycleoption', 'HistoryController@recycleoption');
+    Route::any('edit', 'HistoryController@edit');
     Route::any('add', 'HistoryController@add');
     Route::any('del', 'HistoryController@del');
     Route::any('batchdel', 'HistoryController@batchdel');
@@ -82,9 +82,9 @@ Route::group(['prefix' => 'history', 'middleware' => 'checklogin'], function() {
 });
 
 Route::group(['prefix' => 'famous', 'middleware' => 'checklogin'], function() {
-    Route::get('', 'FamousController@index');
-    Route::get('recycle', 'FamousController@recycle');
-    Route::get('edit', 'FamousController@edit');
+    Route::any('', 'FamousController@index');
+    Route::any('recycle', 'FamousController@recycle');
+    Route::any('edit', 'FamousController@edit');
     Route::any('add', 'FamousController@add');
     Route::any('del', 'FamousController@del');
     Route::any('batchdel', 'FamousController@batchdel');

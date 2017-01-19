@@ -24,6 +24,7 @@ class IsLoginMiddleware
         if($_result['ok'] === true){
                 return $next($request);
         }
+        $request->session()->flush();
         return redirect()->action('AdminController@index');
     }
 }

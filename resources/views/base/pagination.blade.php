@@ -69,7 +69,7 @@
     <a class="page-jump btn" href="#">跳页</a>
     @if(isset($totalpage)) {{$totalpage}} @else 0 @endif
   </div>
-@else
+@elseif(isset($totalpage))
   <div class="container fl">
     @if($_page > 1)
       <?php

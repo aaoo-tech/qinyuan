@@ -204,7 +204,7 @@ class ChampionController extends Controller
                     'http://120.25.218.156:12001/info/140/',
                     json_encode(['token' => session('token'), 'id' => $_params['id']])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('champion.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
 }
