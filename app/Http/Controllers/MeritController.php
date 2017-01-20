@@ -203,7 +203,7 @@ class MeritController extends Controller
                     'http://120.25.218.156:12001/info/141/',
                     json_encode(['token' => session('token'), 'id' => $_params['id']])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('merit.edit', ['title' => '编辑', 'data' => $_result['data'][0]]);
     }
 }

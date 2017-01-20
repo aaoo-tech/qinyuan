@@ -27,25 +27,25 @@ class CardController extends Controller
     //     return view('card.index', ['title' => '家族名片']);
     // }
 
-    public function test(Request $request) {
-        $_params = $request->all();
-        $file = $request->file('myfile');
-        // $clientName = $file->getClientOriginalName();
-        $entension = $file->getClientOriginalExtension();
-        // var_dump($file->getMaxFilesize());
-        // var_dump($file->getMimeType());
-        if ($request->hasFile('myfile') && $request->file('myfile')->isValid()) {
-            $_result = $request->file('myfile')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            // var_dump($_result);
-            // $res = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
-            // var_dump($res);
-        }
-        return response()->json([
-                'success' => false,
-                'message' => '',
-                'data' => array(),
-            ]);
-    }
+    // public function test(Request $request) {
+    //     $_params = $request->all();
+    //     $file = $request->file('myfile');
+    //     // $clientName = $file->getClientOriginalName();
+    //     $entension = $file->getClientOriginalExtension();
+    //     // var_dump($file->getMaxFilesize());
+    //     // var_dump($file->getMimeType());
+    //     if ($request->hasFile('myfile') && $request->file('myfile')->isValid()) {
+    //         $_result = $request->file('myfile')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+    //         // var_dump($_result);
+    //         // $res = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+    //         // var_dump($res);
+    //     }
+    //     return response()->json([
+    //             'success' => false,
+    //             'message' => '',
+    //             'data' => array(),
+    //         ]);
+    // }
 
     public function index(Request $request) {
         $_params = $request->all();
@@ -53,7 +53,7 @@ class CardController extends Controller
                     'http://120.25.218.156:12001/center/100/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'ztype' => '1'])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         return view('card.index', ['title' => '家族名片', 'data' => $_result['data'][0]]);
     }
 

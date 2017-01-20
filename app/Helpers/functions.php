@@ -52,9 +52,10 @@ if(!function_exists('curlPost')) {
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch,CURLOPT_POST,1);
         curl_setopt($ch,CURLOPT_POSTFIELDS,$_params);
-        curl_setopt( $ch, CURLOPT_TIMEOUT_MS,3000);
+        curl_setopt($ch,CURLOPT_TIMEOUT_MS,30000);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json; charset=utf-8',
+            'Expect:',
             'Content-Length: ' . strlen($_params))
         ); 
         $_result = curl_exec($ch);

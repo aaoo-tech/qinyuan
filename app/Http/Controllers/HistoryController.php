@@ -26,10 +26,10 @@ class HistoryController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/105/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '3'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('history.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/3), 'data' => $_result['data']]);
+        return view('history.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function add() {
@@ -129,10 +129,10 @@ class HistoryController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/107/',
-                    json_encode(['token' => session('token'), 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '3'])
+                    json_encode(['token' => session('token'), 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('history.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/3), 'data' => $_result['data']]);
+        return view('history.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function recycle(Request $request) {
@@ -151,9 +151,9 @@ class HistoryController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/131/',
-                    json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '3'])
+                    json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        return view('history.recycle', ['title' => '回收站', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/3), 'data' => $_result['data']]);
+        return view('history.recycle', ['title' => '回收站', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function recycleoption(Request $request) {
