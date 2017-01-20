@@ -187,7 +187,7 @@
 
           $('.form-holder .btn-save').on('click',function(){
             var $elem = $(this);
-            $elem.closest('form').submit();
+            // $elem.closest('form').submit();
             return false
           })
 
@@ -195,20 +195,20 @@
             var $elem = $(this);
             var $form = $(this).closest('form');
             var url = $form.attr('action');
-            $.ajax({
-              url: url,
-              data: $form.serialize(),
-              beforeSend: function() { 
-                $('#loading').addClass('active');
-              }
-            }).done(function(response) {
-              $('#loading').removeClass('active');
-              if (response.success == true) {
-                $('.pop-out').removeClass('active');
-              } else {
+            // $.ajax({
+            //   url: url,
+            //   data: $form.serialize(),
+            //   beforeSend: function() { 
+            //     $('#loading').addClass('active');
+            //   }
+            // }).done(function(response) {
+            //   $('#loading').removeClass('active');
+            //   if (response.success == true) {
+            //     $('.pop-out').removeClass('active');
+            //   } else {
                 
-              }
-            });
+            //   }
+            // });
             return false
           })
 

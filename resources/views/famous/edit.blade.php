@@ -14,36 +14,28 @@
           </div>
         </div>
         <div class="main-body">
-          <div class="article-edit">
-            <div class="formholder cont-form">
-              <form action="/famous/update" method="post">
-                {{csrf_field()}}
-                <input name="id" value="{{$data['id']}}" type="hidden" />
-                  <span class="label">姓名：</span>
-                  <input id="ipt-title" name="uname" type="text" value="{{$data['uname']}}" /><br/>
-                  <span class="label">父亲：</span>
-                  <input id="ipt-title" name="father" type="text" value="{{$data['father']}}" /><br/>
-                  <span class="label">第几代：</span>
-                  <input id="ipt-title" name="generation" type="text" value="{{$data['generation']}}" /><br/>
-                  <input type="submit" name="" value="submit" />
-              </form>
-            </div>
+          <div class="form-holder table-form">
+            <form action="/famous/update" method="post">
+              {{csrf_field()}}
+              <input name="id" value="{{$data['id']}}" type="hidden" />
+              <div class="entry">
+                <span class="label">姓名：</span>
+                <input id="ipt-title" name="uname" type="text" value="{{$data['uname']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">父亲：</span>
+                <input id="ipt-title" name="father" type="text" value="{{$data['father']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">第几代：</span>
+                <input id="ipt-title" name="generation" type="text" placeholder="请输入数字" value="{{$data['generation']}}" />
+              </div>
+              <div class="btn-set">
+                <a class="btn btn-submit" href="#">保存</a>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-
-    <script type="text/javascript" src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript">
-      tinymce.init({
-        selector: '#ipt-cont',
-        language: 'zh_CN',
-        height : 500
-      });
-
-      $('.btn-submit').on('click',function(){
-        $('.family-article form').submit();
-        return false
-      })
-    </script>
 @include('base.footer')

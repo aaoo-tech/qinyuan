@@ -65,7 +65,8 @@ input.error{ border-color: #E50012; color: #E50012; }
 .forgot-main .tag-cont.active { display: block; }
 
 .forgot-main .form-holder .entry { margin-bottom: 20px; }
-.forgot-main .form-holder .error-info { padding-left: 15px; color: #E50012; }
+.forgot-main .form-holder .error-info { display: none; padding-left: 15px; color: #E50012; }
+.forgot-main .form-holder .error-info.active { display: inline; }
 .forgot-main .form-holder input { padding: 0 10px; line-height: 40px; font-size: 16px; }
 .forgot-main .form-holder input.error { border-color: #E50012; }
 .forgot-main .form-holder .ipt-phone { width: 360px; }
@@ -235,8 +236,10 @@ input.error{ border-color: #E50012; color: #E50012; }
 .common-table .link-remove { margin: 0 10px; color: #E50012; }
 .common-table .link-lock { color: #E50012; }
 .common-table .link-unlock { color: #21AB38; }
-
-
+.common-table.message-table th { font-weight: bold; }
+.common-table.message-table td { text-align: inherit; padding-left: 20px; }
+.common-table.message-table td a { color: #E52939; }
+.common-table.message-table .table-foot .btn { width: 120px; background-color: #2BA93F; }
 
 .family-tree { overflow: auto; }
 .family-tree .container { position: relative; height: 750px; margin-left: 50px; overflow-y: auto; }
@@ -280,10 +283,13 @@ input.error{ border-color: #E50012; color: #E50012; }
 .personal-info dd { margin-left: 100px; }
 .personal-info dd:empty:after { content: "*"; }
 
+.table-form .entry { margin-bottom: 20px; line-height: 40px; }
+.table-form .label { display: inline-block; width: 80px;  font-weight: bold; }
+.table-form .entry input { height: 36px; padding: 5px 10px; font-size: 14px; }
+.table-form .btn-set { margin: 30px 0 0 85px; }
+.table-form .btn-set .btn-submit { width: 100px; height: 36px; line-height: 36px; color: #fff; background-color: #135189; }
 
-
-
-.album { position: relative; float: left; width: 140px; margin-right: 50px; border: 1px solid #ccc; border-radius: 3px; }
+.album { position: relative; float: left; width: 140px; margin-right: 50px; margin-bottom: 50px; border: 1px solid #ccc; border-radius: 3px; }
 .album:before { position: absolute; bottom: -4px; left: 3px; width: 134px; height: 2px; border-style: solid; border-color: #ccc; border-width: 0 1px 1px; border-radius: 0 0 3px 3px; content: ""; }
 .album:after { position: absolute; bottom: -7px; left: 6px; width: 128px; height: 2px; border-style: solid; border-color: #ccc; border-width: 0 1px 1px; border-radius: 0 0 3px 3px; content: ""; }
 .album .album-name { font-size: 16px; line-height: 22px; overflow: hidden; text-overflow: ellipsis; }
@@ -355,7 +361,6 @@ input.error{ border-color: #E50012; color: #E50012; }
 .pop-out .card-edit .box-right h3 { font-size: 16px; line-height: 45px; color: #7D7F7F; }
 .pop-out .card-edit .img-container { position: relative; overflow: hidden; width: 400px; height: 300px; line-height: 300px; vertical-align: middle; text-align: center; background-color: #E0DFDF; }
 .pop-out .card-edit #set-logo .img-container { width: 300px; }
-
 .pop-out .card-edit .img-container img { width: 400px; height: auto; vertical-align: middle; }
 .pop-out .card-edit #set-logo .img-container img { width: 240px; height: auto; }
 .pop-out .card-edit .img-container .jcrop-holder { top: 50%; transform: translateY(-50%); }
@@ -377,10 +382,20 @@ input.error{ border-color: #E50012; color: #E50012; }
 .pop-out .famous-edit .box-footer .btn-set { margin-right: 20px; }
 .pop-out .famous-edit .box-footer .btn-set a { width: 70px; line-height: 36px; }
 
+.pop-out .pic-add { width: 900px; height: 600px; }
+.pop-out .pic-add .form-holder { padding: 20px; }
+.pop-out .pic-add .btn-choose { display: inline-block; height: 80px; width: 80px; font-size: 40px; line-height: 80px; text-align: center; border: 1px solid #ccc; }
+.pop-out .pic-add .form-holder .entry-pic { height: 400px; }
+.pop-out .pic-add .form-holder .entry-name { margin: 20px 20px 20px 100px; line-height: 40px; text-align: center; }
+.pop-out .pic-add .form-holder .entry-name input { width: 300px; height: 38px; margin: 0 20px; }
+.pop-out .pic-add .form-holder .btn-submit { margin: 20px 80px 20px 0px; padding: 6px 30px; }
+
+
 .pop-out .pop-out-confirm { display: none; position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; background-color: #fff; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
 .pop-out .pop-out-confirm.active { display: block; }
 .pop-out .remove-node,
 .pop-out .album-add,
+.pop-out .album-remove,
 .pop-out .album-edit { width: 500px; height: 245px; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
 .pop-out .pop-out-confirm .form-holder { padding: 54px 0 55px 70px; }
 .pop-out .pop-out-confirm .form-holder .label { margin-right: 10px; font-size: 16px; color: #7D7F7F; }
@@ -391,6 +406,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 .pop-out .pop-out-confirm .box-footer .btn-set { margin-right: 20px; }
 .pop-out .pop-out-confirm .box-footer .btn-set a { width: 70px; line-height: 36px; }
 .pop-out .pop-out-confirm .box-footer .btn-cancel { color: #27292C; background-color: #E7E3E3; }
+.pop-out .album-remove .box-cont p,
 .pop-out .album-add .box-cont p { padding: 60px 0; text-align: center; font-size: 16px; line-height: 20px; }
 
 

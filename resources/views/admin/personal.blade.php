@@ -19,7 +19,6 @@
             <div class="p-avatar">
               <img src="{{$data['avatar']}}">
             </div>
-            <span>*为缺少数据</span>
             <dl>
               <dt>姓名：</dt>
               <dd>{{$data['uname']}}</dd>
@@ -64,7 +63,6 @@
           <div class="personal-info">
             <div class="p-avatar">
             </div>
-            <span>没数据-预览效果</span>
             <dl>
               <dt>姓名：</dt><dd>xxx</dd>
               <dt>姓别：</dt><dd>男</dd>
