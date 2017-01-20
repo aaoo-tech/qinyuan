@@ -26,70 +26,79 @@
             <div class="pic">
               <label for="pic-1"></label>
               <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩广东南国鼎峰装饰江苏区总设计师">
                 <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
+                <span>夏子轩广东南国鼎峰装饰江苏区总设计师</span>
               </a>
             </div>
 
             <div class="pic">
               <label for="pic-1"></label>
               <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+              <a class="pic-name" href="/img/pic.jpg" title="国际注册高级室内设计师">
                 <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
+                <span>国际注册高级室内设计师</span>
               </a>
             </div>
 
             <div class="pic">
               <label for="pic-1"></label>
               <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+              <a class="pic-name" href="/img/pic.jpg" title="广东南国鼎峰装饰江苏区总设计师资深收费设计师">
                 <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
+                <span>广东南国鼎峰装饰江苏区总设计师资深收费设计师</span>
               </a>
             </div>
 
             <div class="pic">
               <label for="pic-1"></label>
               <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩">
                 <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
+                <span>夏子轩</span>
               </a>
             </div>
 
             <div class="pic">
               <label for="pic-1"></label>
               <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" href="/img/pic.jpg" title="夏子轩家的全家福">
+              <a class="pic-name" href="/img/pic.jpg" title="夏子轩">
                 <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
+                <span>夏子轩</span>
               </a>
             </div>
 
           </div>
         </div>
       </div>
-      <div class="pop-out">
-        <div class="pop-out-cont album-edit pop-cont-1">
-          <div class="box-haader"><h2>编辑相册信息</h2></div>
+      <div class="pop-out active">
+        <div class="pop-out-cont pic-add pop-cont-1 active">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
+          <div class="box-haader"><h2>上传相片</h2></div>
           <div class="form-holder">
             <form action="#">
               {{csrf_field()}}
+              <div class="preview">
+                <!-- <img src=""> -->
+              </div>
               <div class="entry">
-                <span class="label">相册名称</span>
-                <input type="text" name="" value="夏子轩家的全家福" />
-                <span class="tip">(相册名称最多8个字)</span>
+                <label class="btn-choose" for="ipt-pic"><i class="iconfont icon-add"></i></label>
+                <input id="ipt-pic" type="file" name="picurl" style="display:none" accept="image/gif,image/jpeg,image/jpg,image/png"/>
+              </div>
+              <div class="entry">
+                <span class="label">统一添加照片描述</span>
+                <input type="text" name="" maxlength="20" value="" />
+                <span class="tip">(描述最多20个字)</span>
               </div>
             </form>
           </div>
           <div class="box-footer clearfix">
             <div class="btn-set fr">
-              <a class="btn btn-cancel"href="#">取消</a>
-            </div>
-            <div class="btn-set fr">
-              <a class="btn btn-submit" href="#">确定</a>
+              <a class="btn btn-submit" href="#">保存</a>
             </div>
           </div>
         </div>

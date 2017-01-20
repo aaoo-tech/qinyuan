@@ -283,7 +283,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 
 
 
-.album { position: relative; float: left; width: 140px; margin-right: 50px; border: 1px solid #ccc; border-radius: 3px; }
+.album { position: relative; float: left; width: 140px; margin-right: 50px; margin-bottom: 50px; border: 1px solid #ccc; border-radius: 3px; }
 .album:before { position: absolute; bottom: -4px; left: 3px; width: 134px; height: 2px; border-style: solid; border-color: #ccc; border-width: 0 1px 1px; border-radius: 0 0 3px 3px; content: ""; }
 .album:after { position: absolute; bottom: -7px; left: 6px; width: 128px; height: 2px; border-style: solid; border-color: #ccc; border-width: 0 1px 1px; border-radius: 0 0 3px 3px; content: ""; }
 .album .album-name { font-size: 16px; line-height: 22px; overflow: hidden; text-overflow: ellipsis; }
@@ -355,7 +355,6 @@ input.error{ border-color: #E50012; color: #E50012; }
 .pop-out .card-edit .box-right h3 { font-size: 16px; line-height: 45px; color: #7D7F7F; }
 .pop-out .card-edit .img-container { position: relative; overflow: hidden; width: 400px; height: 300px; line-height: 300px; vertical-align: middle; text-align: center; background-color: #E0DFDF; }
 .pop-out .card-edit #set-logo .img-container { width: 300px; }
-
 .pop-out .card-edit .img-container img { width: 400px; height: auto; vertical-align: middle; }
 .pop-out .card-edit #set-logo .img-container img { width: 240px; height: auto; }
 .pop-out .card-edit .img-container .jcrop-holder { top: 50%; transform: translateY(-50%); }
@@ -377,10 +376,16 @@ input.error{ border-color: #E50012; color: #E50012; }
 .pop-out .famous-edit .box-footer .btn-set { margin-right: 20px; }
 .pop-out .famous-edit .box-footer .btn-set a { width: 70px; line-height: 36px; }
 
+.pop-out .pic-add { width: 900px; height: 600px; padding: 20px; }
+.pop-out .pic-add .btn-choose { display: inline-block; height: 80px; width: 80px; font-size: 40px; line-height: 80px; text-align: center; border: 1px solid #ccc; }
+
+
+
 .pop-out .pop-out-confirm { display: none; position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; background-color: #fff; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
 .pop-out .pop-out-confirm.active { display: block; }
 .pop-out .remove-node,
 .pop-out .album-add,
+.pop-out .album-remove,
 .pop-out .album-edit { width: 500px; height: 245px; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
 .pop-out .pop-out-confirm .form-holder { padding: 54px 0 55px 70px; }
 .pop-out .pop-out-confirm .form-holder .label { margin-right: 10px; font-size: 16px; color: #7D7F7F; }
@@ -391,6 +396,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 .pop-out .pop-out-confirm .box-footer .btn-set { margin-right: 20px; }
 .pop-out .pop-out-confirm .box-footer .btn-set a { width: 70px; line-height: 36px; }
 .pop-out .pop-out-confirm .box-footer .btn-cancel { color: #27292C; background-color: #E7E3E3; }
+.pop-out .album-remove .box-cont p,
 .pop-out .album-add .box-cont p { padding: 60px 0; text-align: center; font-size: 16px; line-height: 20px; }
 
 
