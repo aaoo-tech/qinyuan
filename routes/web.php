@@ -32,6 +32,8 @@ Route::group(['prefix' => 'setting'], function() {
     Route::any('upadtemobile', 'SettingController@upadtemobile');
 });
 
+Route::any('info/{type}/{id}', 'InfoController@index');
+
 Route::any('admin', 'AdminController@index');
 Route::any('forgot_one', 'AdminController@forgot_one');
 Route::any('login', 'AdminController@login');
