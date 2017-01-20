@@ -10,7 +10,7 @@
     ::-webkit-scrollbar-thumb{background: #aaa;min-height: 150px;min-width: 150px;border-radius: 10px;}
     ::-webkit-scrollbar-thumb:vertical:hover{background: #555555}
     ::-webkit-scrollbar-thumb:horizontal:hover{background: #555555}
-    body { font-family: Helvetica, Arial, Microsoft Yahei, sans-serif; font-size: 16px; }
+    body { font-family: Helvetica, Arial, Microsoft Yahei, sans-serif; font-size: 16px; word-break: break-all; }
     h1 { margin: 15px 0 10px; text-align: center; font-size: 24px; }
     h2 { margin: 20px 0 10px; font-size: 20px; }
     p { margin: 10px 0; }

@@ -57,26 +57,56 @@
         $(this).blur();
         return false;
       }
+    });
+
+    $('.form-search .btn-search').on('click', function() {
+      var $elem = $(this);
+      var $form = $elem.closest('form');
+      var val = $form.find('.input-search input').val();
+      var url = $form.attr('action')+'?keyword='+val;
+      window.location.href = url;
+      return false;
     })
 
    // pagination
-    $('.pagination .page-jump').on('click',function(){
+
+    var jumpPage = function(){
       var ipt = $('#ipt-page-number').val();
       var max = parseInt($('.max-page').text());
-      var url = $(this).attr('href');
-      console.log(url)
+      var url = $('.pagination .page-jump').attr('href');
       if(!isNaN(ipt)&&ipt>=0&&ipt<=max){
         url=url.replace(/page=\d/,'page='+ipt);
         window.location.href = url;
       }else{
         $('#ipt-page-number').addClass('error')
       }
+    }
+
+    $('.pagination .page-jump').on('click',function(){
+      jumpPage();
       return false
+    });
+
+    $('#ipt-page-number').on('keypress', function(e) {
+      if(e.keyCode == 13) {
+        jumpPage();
+        return false;
+      }
+    })
+    .on('keydown', function(e) {
+      if(e.keyCode == 27) {
+        $(this).val('').blur();
+        return false;
+      }
     });
 
     $('#ipt-page-number').on('focus',function(){
       $(this).removeClass('error')
     })
+
+
+
+
 
 
     $('.add-form .btn-submit').on('click',function(){
@@ -98,6 +128,29 @@
       });
       return false
     })
+
+    // famous|champion|merit edit
+
+    $('.table-form .btn-submit').on('click',function(){
+      var $elem = $(this);
+      var $form = $(this).closest('form');
+      var url = $form.attr('action');
+      $.ajax({
+        url: url,
+        data: $form.serialize(),
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.href='/famous';
+        } else {
+        }
+      });
+      return false
+    })
+
 
     $('td .link-lock').on('click',function(){
       var $elem = $(this);

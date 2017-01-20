@@ -52,7 +52,7 @@
               @if($data)
               @foreach ($data as $datum)
                 <tr data-id="{{$datum['id']}}">
-                  <td><input type="checkbox" /></td>
+                  <td><input autocomplete="off" type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a class="link-info" href="/history/info?id={{$datum['id']}}" >{{$datum['title']}}</a></td>
                   <td>{{$datum['cnt']}}</td>
