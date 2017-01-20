@@ -14,40 +14,36 @@
           </div>
         </div>
         <div class="main-body">
-          <div class="article-edit">
-            <div class="formholder cont-form">
-              <form action="/merit/update" method="post">
-                {{csrf_field()}}
-                <input name="id" value="{{$data['id']}}" type="hidden" />
-
-                  <span class="label">姓名：</span>
-                  <input id="ipt-title" name="uname" type="post" value="{{$data['uname']}}" /><br/>
-                  <span class="label">籍贯：</span>
-                  <input id="ipt-title" name="addr" type="post" value="{{$data['addr']}}" /><br/>
-                  <span class="label">学历：</span>
-                  <input id="ipt-title" name="education" type="post" value="{{$data['education']}}" /><br/>
-                  <span class="label">职务：</span>
-                  <input id="ipt-title" name="job" type="post" value="{{$data['job']}}" /><br/>
-                  <span class="label">捐款金额（元）：</span>
-                  <input id="ipt-title" name="money" type="post" value="{{$data['money']}}" /><br/>
-                  <input type="submit" name="" value="submit" />
-              </form>
-            </div>
-        </div>
+          <div class="form-holder table-form">
+            <form action="/famous/update" method="post">
+              {{csrf_field()}}
+              <input name="id" value="{{$data['id']}}" type="hidden" />
+              <div class="entry">
+                <span class="label">姓名：</span>
+                <input id="ipt-title" name="uname" type="post" value="{{$data['uname']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">籍贯：</span>
+                <input id="ipt-title" name="addr" type="post" value="{{$data['addr']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">学历：</span>
+                <input id="ipt-title" name="education" type="post" value="{{$data['education']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">职务：</span>
+                <input id="ipt-title" name="job" type="post" value="{{$data['job']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">捐款金额：</span>
+                <input id="ipt-title" name="money" type="post" value="{{$data['money']}}" />
+                <span>（元）</span>
+              </div>
+              <div class="btn-set">
+                <a class="btn btn-submit" href="#">保存</a>
+              </div>
+            </form>
+          </div>
       </div>
     </div>
-
-    <script type="text/javascript" src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript">
-      tinymce.init({
-        selector: '#ipt-cont',
-        language: 'zh_CN',
-        height : 500
-      });
-
-      $('.btn-submit').on('click',function(){
-        $('.family-article form').submit();
-        return false
-      })
-    </script>
 @include('base.footer')

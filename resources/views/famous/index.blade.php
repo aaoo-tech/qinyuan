@@ -54,7 +54,7 @@
                 <tr>
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
-                  <td><a class="link-info" href="/famous/edit?id={{$datum['id']}}" >{{$datum['uname']}}({{$datum['generation']}}代／父亲{{$datum['father']}})</a></td>
+                  <td><a class="" href="/famous/edit?id={{$datum['id']}}" >{{$datum['uname']}}({{$datum['generation']}}代／父亲{{$datum['father']}})</a></td>
                   <td>{{$datum['cnt']}}</td>
                   <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
                   <td><a class="link-edit" href="/famous/edit?id={{$datum['id']}}" >编辑</a><a class="link-remove ajax-remove" href="/famous/del?id={{$datum['id']}}" >删除</a></td>
@@ -68,7 +68,7 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn" href="#" >批量删除</a>
+              <a class="btn btn-batch" href="/famous/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')
@@ -107,4 +107,39 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      (function($) {
+        $(function() {
+          $('.table-foot .btn-batch').on('click', function() {
+            var $tr = $('table tr');
+            var n = $tr.find('td').length;
+            var $tbody = $('table tbody');
+            var idList = [];
+            $('table tr input[type="checkbox"]').each(function(i,elem){
+              if(elem.checked){
+                idList.push($(this).closest('tr').data('id'));
+              }
+            });
+            var url = $(this).attr('href');
+            idList.forEach(function(id){
+              url += 'ids[]='+id + '&'
+            });
+            $.ajax({
+              url: url, 
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+              if (response.success == true) {
+                window.location.reload();
+              } else {
+
+              }
+            });
+            return false;
+          });
+        });
+      })(jQuery);
+    </script>
 @include('base.footer')
