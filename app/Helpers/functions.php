@@ -60,6 +60,17 @@ if(!function_exists('curlPost')) {
         ); 
         $_result = curl_exec($ch);
         curl_close($ch);
+        //reject overly long 2 byte sequences, as well as characters above U+10000 and replace with ?
+        $_result = preg_replace('/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]'.
+         '|[\x00-\x7F][\x80-\xBF]+'.
+         '|([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*'.
+         '|[\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})'.
+         '|[\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))|(?![\x80-\xBF]{2})|[\x80-\xBF]{3,})/S',
+         '?', $_result );
+         
+        //reject overly long 3 byte sequences and UTF-16 surrogates and replace with ?
+        $_result = preg_replace('/\xE0[\x80-\x9F][\x80-\xBF]'.
+         '|\xED[\xA0-\xBF][\x80-\xBF]/S','?', $_result );
         return json_decode($_result, true);
     }
 }
@@ -99,6 +110,33 @@ if(!function_exists('breadcrumb')) {
             echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><span>'. navdata()[getCurrentControllerName()]['index'] .'</span>';
         }else{
             echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
+        }
+    }
+}
+
+/**
+ * 初始化图片
+ *
+ * @return object
+ */
+if(!function_exists('initi_img')) {
+    function initi_img($type, $srcimg) {
+        switch ($type) {
+            case 'jpg':
+                return imagecreatefromjpeg($srcimg);
+                break;
+            case 'gif':
+                return imagecreatefromgif($srcimg);
+                break;
+            case 'png':
+                return imagecreatefrompng($srcimg);
+                break;
+            case 'bmp':
+                return imagecreatefrombmp($srcimg);
+                break;
+            default:
+                return false;
+                break;
         }
     }
 }
