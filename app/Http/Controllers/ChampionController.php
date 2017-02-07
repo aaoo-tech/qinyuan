@@ -29,7 +29,7 @@ class ChampionController extends Controller
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('champion.index', ['title' => '状元榜', 'data' => $_result['data']]);
+        return view('champion.index', ['title' => '状元榜', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function add() {
@@ -153,7 +153,7 @@ class ChampionController extends Controller
                     'http://120.25.218.156:12001/info/115/',
                     json_encode(['token' => session('token'), 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        return view('champion.index', ['title' => '状元榜', 'data' => $_result['data'], 'keyword' => $_params['keyword']]);
+        return view('champion.index', ['title' => '状元榜', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data'], 'keyword' => $_params['keyword']]);
     }
 
     public function recycle(Request $request) {
@@ -175,7 +175,7 @@ class ChampionController extends Controller
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('champion.recycle', ['title' => '回收站', 'data' => $_result['data']]);
+        return view('champion.recycle', ['title' => '回收站', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function recycleoption(Request $request) {

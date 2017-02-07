@@ -16,13 +16,13 @@
         <div class="main-body">
           <div class="family-card">
             <div class="card-banner">
-              <img src="{{asset('/img/card-bg.jpg')}}">
+              <img src="{{$data['picurl']}}">
             </div>
             <div class="card-logo fl">
-              <img src="{{$data['zurl']}}">
+              <img src="{{$data['avatar']}}">
             </div>
             <div class="card-info">
-              <h1>{{$data['zuname']}}</h1>
+              <h1>{{$data['zname']}}</h1>
               <p>参修人数：{{$data['zcnt']}}人</p>
             </div>
           </div>
@@ -89,7 +89,7 @@
                   {{csrf_field()}}
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
-                    <input type="zuname" value="{{$data['zuname']}}"/>
+                    <input type="zuname" value="{{$data['zname']}}"/>
                   </div>
                   <div class="entry">
                     <span>参修人数</span>
@@ -187,7 +187,7 @@
 
           $('.form-holder .btn-save').on('click',function(){
             var $elem = $(this);
-            // $elem.closest('form').submit();
+            $elem.closest('form').submit();
             return false
           })
 
