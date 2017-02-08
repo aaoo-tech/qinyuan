@@ -19,23 +19,23 @@
               {{csrf_field()}}
               <div class="entry">
                 <span class="label">姓名：</span>
-                <input id="ipt-title" name="uname" type="post" value="" />
+                <input id="ipt-title" name="uname" type="text" value="" />
               </div>
               <div class="entry">
                 <span class="label">籍贯：</span>
-                <input id="ipt-title" name="addr" type="post" value="" />
+                <input id="ipt-title" name="addr" type="text" value="" />
               </div>
               <div class="entry">
                 <span class="label">学历：</span>
-                <input id="ipt-title" name="education" type="post" value="" />
+                <input id="ipt-title" name="education" type="text" value="" />
               </div>
               <div class="entry">
                 <span class="label">职务：</span>
-                <input id="ipt-title" name="job" type="post" value="" />
+                <input id="ipt-title" name="job" type="text" value="" />
               </div>
               <div class="entry">
                 <span class="label">工作单位：</span>
-                <input id="ipt-title" name="workplace" type="post" value="" />
+                <input id="ipt-title" name="workplace" type="text" value="" />
               </div>
               <div class="btn-set">
                 <a class="btn btn-submit" href="#">保存</a>

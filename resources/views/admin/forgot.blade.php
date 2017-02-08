@@ -59,7 +59,7 @@
               <div class="form-title">
                 <h3>验证码</h3>
               </div>
-              <form action="#" type="post">
+              <form action="#" mode="post">
                 <div class="entry clearfix">
                   <input class="fl" type="text" placeholder="请输入手机验证码" />
                   <div class="captcha">
@@ -76,7 +76,7 @@
           </div>
           <div class="tag-cont" id="step-3">
             <div class="form-holder forgot-form">
-              <form action="#" type="post">
+              <form action="#" method="post">
                 <div class="entry entry-pw clearfix">
                   <label class="fl">新密码</label>
                   <input class="fl" maxlength="16" type="password" placeholder="请您输入新密码" />
