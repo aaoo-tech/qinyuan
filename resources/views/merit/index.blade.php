@@ -19,7 +19,7 @@
               <a class="btn-add btn-pop" href="/merit/add">添加</a>
             </div>
             <div class="form-holder form-search fr">
-              <form action="#" method="POST">
+              <form action="/merit/search" method="POST">
                 {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >
