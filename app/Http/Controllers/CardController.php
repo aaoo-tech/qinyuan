@@ -59,6 +59,8 @@ class CardController extends Controller
 
     public function picurl(Request $request) {
         $_params = $request->all();
+        $_size = json_decode($_params['size'], true);
+        // var_dump($_params);
         if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
             $file = $request->file('picurl');
             $mimeType = $file->getMimeType();
@@ -67,15 +69,24 @@ class CardController extends Controller
             // $targ_w = 640;
             // $targ_h = 300;
             // $jpeg_quality = 90;
-            $t = cut_img(['type' => $entension, 'original_image' => $_result->getpathName(), 'path' => 'storage/uploads/cut-'.$_result->getfileName(), 'x' => 800, 'y' => 600, 'w' => 640, 'h' => 300, 'targ_w' => 640, 'targ_h' => 300]);
-            if($t === false){
-                return response()->json([
-                        'success' => false,
-                        'message' => '图片剪切失败',
-                        'data' => array(),
-                    ]);
+            // var_dump($_size);
+            if(!empty($_params['size'])){
+                $_image_size = getimagesize($_result->getpathName());
+                $_x_scale = $_image_size[0]/400;
+                $_scale = $_image_size[0]/$_image_size[1];
+                $_y_scale = $_image_size[1]/(400/$_scale);
+                $t = cut_img(['type' => $entension, 'original_image' => $_result->getpathName(), 'path' => 'storage/uploads/cut-'.$_result->getfileName(), 'x' => $_size['x']*$_x_scale, 'y' => $_size['y']*$_y_scale, 'w' => $_size['w']*$_x_scale, 'h' => $_size['h']*$_y_scale, 'targ_w' => $_size['w']*$_x_scale, 'targ_h' => $_size['h']*$_y_scale]);
+                if($t === false){
+                    return response()->json([
+                            'success' => false,
+                            'message' => '图片剪切失败',
+                            'data' => array(),
+                        ]);
+                }
+                $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => 'storage/uploads/cut-'.$_result->getfileName()]);
+            }else{
+                $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => $_result->getpathName()]);
             }
-            $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => 'storage/uploads/cut-'.$_result->getfileName()]);
         }else{
             return response()->json([
                     'success' => false,
@@ -103,20 +114,29 @@ class CardController extends Controller
 
     public function avatar(Request $request) {
         $_params = $request->all();
+        $_size = json_decode($_params['size'], true);
         $file = $request->file('avatar');
         $entension = $file->getClientOriginalExtension();
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $_result = $request->file('avatar')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
             // $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
-            $t = cut_img(['type' => $entension, 'original_image' => $_result->getpathName(), 'path' => 'storage/uploads/cut-'.$_result->getfileName(), 'x' => 800, 'y' => 600, 'w' => 640, 'h' => 300, 'targ_w' => 100, 'targ_h' => 100]);
-            if($t === false){
-                return response()->json([
-                        'success' => false,
-                        'message' => '图片剪切失败',
-                        'data' => array(),
-                    ]);
+            if(!empty($_params['size'])){
+                $_image_size = getimagesize($_result->getpathName());
+                $_x_scale = $_image_size[0]/300;
+                $_scale = $_image_size[0]/$_image_size[1];
+                $_y_scale = $_image_size[1]/(300/$_scale);
+                $t = cut_img(['type' => $entension, 'original_image' => $_result->getpathName(), 'path' => 'storage/uploads/cut-'.$_result->getfileName(), 'x' => $_size['x']*$_x_scale, 'y' => $_size['y']*$_y_scale, 'w' => $_size['w']*$_x_scale, 'h' => $_size['h']*$_y_scale, 'targ_w' => $_size['w']*$_x_scale, 'targ_h' => $_size['h']*$_y_scale]);
+                if($t === false){
+                    return response()->json([
+                            'success' => false,
+                            'message' => '图片剪切失败',
+                            'data' => array(),
+                        ]);
+                }
+                $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => 'storage/uploads/cut-'.$_result->getfileName()]);
+            }else{
+                $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => $_result->getpathName()]);
             }
-            $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => 'storage/uploads/cut-'.$_result->getfileName()]);
         }else{
             return response()->json([
                     'success' => false,
