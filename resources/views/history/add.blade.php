@@ -25,7 +25,6 @@
                 <div class="article-cont">
                   <span class="label fl">正&nbsp;&nbsp;文：</span>
                   <textarea id="ipt-cont" name="content">
-                    
                   </textarea>
                 </div>
               </form>
@@ -37,6 +36,7 @@
     </div>
 
     <script type="text/javascript" src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/jquery.form.js') }}"></script>
     <script type="text/javascript">
       tinymce.init({
         selector: '#ipt-cont',
