@@ -9,13 +9,13 @@
           </div>
           <div class="operation fr">
             <div class="btn-set">
-              <a class="btn-submit" href="#">提交</a>
+              <a class="btn-back" href="#">返回</a>
             </div>
           </div>
         </div>
         <div class="main-body">
           <div class="form-holder table-form">
-            <form action="/famous/update" method="post">
+            <form action="/merit/update" method="post">
               {{csrf_field()}}
               <input name="id" value="{{$data['id']}}" type="hidden" />
               <div class="entry">

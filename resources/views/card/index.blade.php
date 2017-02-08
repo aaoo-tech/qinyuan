@@ -47,7 +47,7 @@
             <div class="tag-cont clearfix active" id="set-bg">
               <h3>设置背景</h3>
               <div class="img-container" id="bg-box">
-                <img class="Jcrop-img" src="{{ asset('/img/card-bg.jpg') }}">
+                <img class="Jcrop-img" src="{{$data['picurl']}}">
               </div>
               <div class="form-holder">
                 <form action="/card/picurl" method="POST" enctype="multipart/form-data">
@@ -66,7 +66,7 @@
             <div class="tag-cont clearfix" id="set-logo">
               <h3>族谱头像</h3>
               <div class="img-container" id="logo-box">
-                <img class="Jcrop-img" src="{{ asset('/img/card-logo.png') }}">
+                <img class="Jcrop-img" src="{{$data['avatar']}}">
               </div>
               <div class="form-holder">
                 <form action="/card/avatar" method="POST" enctype="multipart/form-data">
@@ -120,13 +120,11 @@
           var jcropImg = function(){
             $('#set-bg .Jcrop-img').Jcrop({
               aspectRatio:  640 / 320,
-              onSelect:     inputCoords,
               onChange:     inputCoords
             })
 
             $('#set-logo .Jcrop-img').Jcrop({
               aspectRatio: 1,
-              onSelect:     inputCoords,
               onChange:     inputCoords
             })
           }
@@ -195,20 +193,20 @@
             var $elem = $(this);
             var $form = $(this).closest('form');
             var url = $form.attr('action');
-            // $.ajax({
-            //   url: url,
-            //   data: $form.serialize(),
-            //   beforeSend: function() { 
-            //     $('#loading').addClass('active');
-            //   }
-            // }).done(function(response) {
-            //   $('#loading').removeClass('active');
-            //   if (response.success == true) {
-            //     $('.pop-out').removeClass('active');
-            //   } else {
+            $.ajax({
+              url: url,
+              data: $form.serialize(),
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+              if (response.success == true) {
+                $('.pop-out').removeClass('active');
+              } else {
                 
-            //   }
-            // });
+              }
+            });
             return false
           })
 

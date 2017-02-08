@@ -148,7 +148,6 @@
               $('.entry-phone input').addClass('error');
               $('#step-1 .error-info').addClass('active');
             }
-            console.log(phone,captcha)
             return false;
           })
 

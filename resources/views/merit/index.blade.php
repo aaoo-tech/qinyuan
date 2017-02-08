@@ -16,7 +16,7 @@
               <a class="btn-recycling" href="/merit/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
             <div class="btn-set fr">
-              <a class="btn-add btn-pop" href="/merit/add">添加</a>
+              <a class="btn-add" href="/merit/add">添加</a>
             </div>
             <div class="form-holder form-search fr">
               <form action="/merit/search" method="POST">
@@ -27,7 +27,7 @@
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
+                  <input type="text" name="keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>

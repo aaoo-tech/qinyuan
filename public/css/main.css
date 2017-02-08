@@ -363,7 +363,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 .pop-out .card-edit #set-logo .img-container { width: 300px; }
 .pop-out .card-edit .img-container img { width: 400px; height: auto; vertical-align: middle; }
 .pop-out .card-edit #set-logo .img-container img { width: 240px; height: auto; }
-.pop-out .card-edit .img-container .jcrop-holder { top: 50%; transform: translateY(-50%); }
+.pop-out .card-edit .img-container .jcrop-holder { margin: 0 auto; top: 50%; transform: translateY(-50%); }
 .pop-out .card-edit .box-right .entry { font-size: 16px; line-height: 45px; color: #7D7F7F; }
 .pop-out .card-edit .box-right input { width: 200px; padding: 0 10px;  margin: 0 10px; font-size: 16px; line-height: 35px; }
 .pop-out .card-edit .box-right .ipt-name input { width: 320px; }
