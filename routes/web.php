@@ -16,14 +16,14 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'user'], function() {
+Route::group(['prefix' => 'user', 'middleware' => 'checklogin'], function() {
     Route::any('', 'UserController@index');
     Route::any('lock', 'UserController@lock');
     Route::any('locked', 'UserController@locked');
     Route::any('search', 'UserController@search');
 });
 
-Route::group(['prefix' => 'setting'], function() {
+Route::group(['prefix' => 'setting', 'middleware' => 'checklogin'], function() {
     Route::any('', 'SettingController@index');
     Route::any('add', 'SettingController@add');
     Route::any('del', 'SettingController@del');

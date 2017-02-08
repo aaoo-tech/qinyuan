@@ -50,8 +50,8 @@ class CardController extends Controller
     public function index(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
-                    'http://120.25.218.156:12001/center/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'ztype' => '1'])
+                    'http://120.25.218.156:12001/info/142/',
+                    json_encode(['token' => session('token'), 'zid' => session('zid')])
                 );
         // var_dump($_result);
         return view('card.index', ['title' => '家族名片', 'data' => $_result['data'][0]]);
@@ -63,37 +63,42 @@ class CardController extends Controller
             $file = $request->file('picurl');
             $mimeType = $file->getMimeType();
             $entension = $file->getClientOriginalExtension();
-            var_dump(substr($mimeType,6));
             $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            // $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
-            $targ_w = $targ_h = 150;
-            $jpeg_quality = 90;
-
-            $src = $_result->getpathName();
-            $img_r = imagecreatefromjpeg($src);
-            $dst_r = ImageCreateTrueColor( $targ_w, $targ_h );
-
-            imagecopyresampled($dst_r,$img_r,0,0,236,136,$targ_w,$targ_h,210,210);
-
-            // header('Content-type: '.$mimeType.'; charset=utf-8');
-            $t = imagejpeg($dst_r,null,$jpeg_quality);
+            // $targ_w = 640;
+            // $targ_h = 300;
+            // $jpeg_quality = 90;
+            $t = cut_img(['type' => $entension, 'original_image' => $_result->getpathName(), 'path' => 'storage/uploads/cut-'.$_result->getfileName(), 'x' => 800, 'y' => 600, 'w' => 640, 'h' => 300, 'targ_w' => 640, 'targ_h' => 300]);
+            if($t === false){
+                return response()->json([
+                        'success' => false,
+                        'message' => '图片剪切失败',
+                        'data' => array(),
+                    ]);
+            }
+            $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => 'storage/uploads/cut-'.$_result->getfileName()]);
+        }else{
+            return response()->json([
+                    'success' => false,
+                    'message' => '上传图片失败',
+                    'data' => array(),
+                ]);
         }
-        // $_result = curlPost(
-        //             'http://120.25.218.156:12001/info/102/',
-        //             json_encode(['token' => session('token'), 'zid' => session('zid'), 'picurl' => $_pic['info']['url']])
-        //         );
-        // if($_result['ok'] === true) {
-        //     return response()->json([
-        //             'success' => true,
-        //             'message' => '',
-        //             'data' => $_result,
-        //         ]);
-        // }
-        // return response()->json([
-        //         'success' => false,
-        //         'message' => '修改失败',
-        //         'data' => $_result,
-        //     ]);
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/101/',
+                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'picurl' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url'])])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '修改失败',
+                'data' => $_result,
+            ]);
     }
 
     public function avatar(Request $request) {
@@ -102,11 +107,26 @@ class CardController extends Controller
         $entension = $file->getClientOriginalExtension();
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $_result = $request->file('avatar')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+            // $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+            $t = cut_img(['type' => $entension, 'original_image' => $_result->getpathName(), 'path' => 'storage/uploads/cut-'.$_result->getfileName(), 'x' => 800, 'y' => 600, 'w' => 640, 'h' => 300, 'targ_w' => 100, 'targ_h' => 100]);
+            if($t === false){
+                return response()->json([
+                        'success' => false,
+                        'message' => '图片剪切失败',
+                        'data' => array(),
+                    ]);
+            }
+            $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => 'storage/uploads/cut-'.$_result->getfileName()]);
+        }else{
+            return response()->json([
+                    'success' => false,
+                    'message' => '上传图片失败',
+                    'data' => array(),
+                ]);
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/102/',
-                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'avatar' => $_pic['info']['url']])
+                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'avatar' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url'])])
                 );
         if($_result['ok'] === true) {
             return response()->json([

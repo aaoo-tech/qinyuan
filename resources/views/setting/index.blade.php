@@ -33,7 +33,7 @@
 
             <div class="admin-list">
               <div class="list-title">
-                <h3>管理员(<span>3<span>)</h3>
+                <h3>管理员(<span>{{count($data)}}<span>)</h3>
               </div>
               <ul>
               @if($data)

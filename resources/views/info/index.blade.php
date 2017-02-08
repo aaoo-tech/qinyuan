@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>亲缘</title>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_ds1jqxkqnneqxgvi.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/rest.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
-    <script type="text/javascript" src="{{ asset('/js/jquery-2.1.4.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/jquery.cookie.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/utility.js') }}"></script>
-  </head>
-  <body class="info">
-    <?php echo $data['title']; ?>
-    <?php echo $data['content']; ?>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <title>{{$title}}</title>
+  <style type="text/css">
+    ::-webkit-scrollbar {width: 6px;height:6px;}
+    ::-webkit-scrollbar-track-piece{background-color: #eee;margin: -2px;}
+    ::-webkit-scrollbar-thumb{background: #aaa;min-height: 150px;min-width: 150px;border-radius: 10px;}
+    ::-webkit-scrollbar-thumb:vertical:hover{background: #555555}
+    ::-webkit-scrollbar-thumb:horizontal:hover{background: #555555}
+    body { font-family: Helvetica, Arial, Microsoft Yahei, sans-serif; font-size: 16px; word-break: all; }
+    h1 { margin: 15px 0 10px; text-align: center; font-size: 24px; }
+    h2 { margin: 20px 0 10px; font-size: 20px; }
+    p { margin: 10px 0; }
+    .para { font-size: 16px; line-height: 1.4em; }
+    img { width: 100%; height: auto; margin: 10px 0 10px;}
+  </style>
+</head>
+<body>
+@if(isset($data))
+  <h1><?php echo $data['title'];?></h1>
+  <div class="article"><?php echo $data['content'];?></div>
+@endif
+</body>
 </html>

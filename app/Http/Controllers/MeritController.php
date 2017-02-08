@@ -29,7 +29,7 @@ class MeritController extends Controller
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('merit.index', ['title' => '功德榜', 'data' => $_result['data']]);
+        return view('merit.index', ['title' => '功德榜', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function add() {
@@ -153,7 +153,7 @@ class MeritController extends Controller
                     'http://120.25.218.156:12001/info/119/',
                     json_encode(['token' => session('token'), 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        return view('merit.index', ['title' => '功德榜', 'data' => $_result['data'], 'keyword' => $_params['keyword']]);
+        return view('merit.index', ['title' => '功德榜', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data'], 'keyword' => $_params['keyword']]);
     }
 
     public function recycle(Request $request) {
@@ -174,7 +174,7 @@ class MeritController extends Controller
                     'http://120.25.218.156:12001/info/137/',
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        return view('merit.recycle', ['title' => '回收站', 'data' => $_result['data']]);
+        return view('merit.recycle', ['title' => '回收站', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function recycleoption(Request $request) {

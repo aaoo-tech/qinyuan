@@ -60,6 +60,17 @@ if(!function_exists('curlPost')) {
         ); 
         $_result = curl_exec($ch);
         curl_close($ch);
+        //reject overly long 2 byte sequences, as well as characters above U+10000 and replace with ?
+        $_result = preg_replace('/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]'.
+         '|[\x00-\x7F][\x80-\xBF]+'.
+         '|([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*'.
+         '|[\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})'.
+         '|[\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))|(?![\x80-\xBF]{2})|[\x80-\xBF]{3,})/S',
+         '?', $_result );
+         
+        //reject overly long 3 byte sequences and UTF-16 surrogates and replace with ?
+        $_result = preg_replace('/\xE0[\x80-\x9F][\x80-\xBF]'.
+         '|\xED[\xA0-\xBF][\x80-\xBF]/S','?', $_result );
         return json_decode($_result, true);
     }
 }
@@ -100,5 +111,81 @@ if(!function_exists('breadcrumb')) {
         }else{
             echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
         }
+    }
+}
+
+/**
+ * 初始化图片
+ *
+ * @return object
+ */
+if(!function_exists('initi_img')) {
+    function initi_img($type, $srcimg) {
+        switch ($type) {
+            case 'jpg':
+                return imagecreatefromjpeg($srcimg);
+                break;
+            case 'gif':
+                return imagecreatefromgif($srcimg);
+                break;
+            case 'png':
+                return imagecreatefrompng($srcimg);
+                break;
+            case 'bmp':
+                return imagecreatefrombmp($srcimg);
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+}
+
+/**
+ * 生成保存图片
+ *
+ * @return object
+ */
+if(!function_exists('new_img')) {
+    function new_img($type, $dst_r, $path) {
+        switch ($type) {
+            case 'jpg':
+                return imagejpeg($dst_r, $path);
+                break;
+            case 'gif':
+                return imagegif($dst_r, $path);
+                break;
+            case 'png':
+                return imagepng($dst_r, $path);
+                break;
+            case 'bmp':
+                return imagebmp($dst_r, $path);
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+}
+
+/**
+ * 剪切图片
+ *
+ * @return object
+ */
+if(!function_exists('cut_img')) {
+    function cut_img($_params) {
+        $img_r = initi_img($_params['type'], $_params['original_image']);
+        if($img_r === false){
+            return false;
+        }
+            // $targ_w = 640;
+            // $targ_h = 300;
+        $dst_r = ImageCreateTrueColor($_params['targ_w'], $_params['targ_h']);
+        imagecopyresampled($dst_r, $img_r, 0, 0, $_params['x'], $_params['y'], $_params['targ_w'], $_params['targ_h'], $_params['w'], $_params['h']);
+        $t = new_img($_params['type'], $dst_r, $_params['path']);
+        imagedestroy($img_r);
+        imagedestroy($dst_r);
+        return $t;
     }
 }

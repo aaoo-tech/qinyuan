@@ -54,12 +54,12 @@
             </table>
             <div class="table-foot">
               <div class="left-cont fl">
-                <a class="btn" href="#" >批量删除</a>
-                <a class="btn" href="#" >批量还原</a>
+                <a class="btn" href="/champion/recycleoption?idlist=&optype=4" >批量删除</a>
+                <a class="btn" href="/champion/recycleoption?idlist=&optype=3" >批量还原</a>
               </div>
               <div class="right-cont">
-                <a class="btn" href="#" >还原所有</a>
-                <a class="btn" href="#" >删除所有</a>
+                <a class="btn" href="/champion/recycleoption?idlist=&optype=1" >还原所有</a>
+                <a class="btn" href="/champion/recycleoption?idlist=&optype=2" >删除所有</a>
               </div>
             </div>
           </div>
