@@ -9,12 +9,11 @@
           </div>
           <div class="operation fr">
             <div class="btn-set">
-              <a class="btn-submit" href="#">提交</a>
+              <a class="btn-back" href="#">返回</a>
             </div>
           </div>
         </div>
         <div class="main-body">
-
           <div class="form-holder table-form">
             <form action="/champion/update" method="post">
               {{csrf_field()}}
@@ -39,7 +38,6 @@
                 <span class="label">工作单位：</span>
                 <input id="ipt-title" name="workplace" type="post" value="{{$data['workplace']}}" />
               </div>
-
               <div class="btn-set">
                 <a class="btn btn-submit" href="#">保存</a>
               </div>

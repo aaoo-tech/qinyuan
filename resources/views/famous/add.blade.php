@@ -14,19 +14,25 @@
           </div>
         </div>
         <div class="main-body">
-          <div class="article-edit">
-            <div class="formholder cont-form">
-              <form action="/famous/create" method="post">
-                {{csrf_field()}}
-                  <span class="label">姓名：</span>
-                  <input id="ipt-title" name="uname" type="text" value="" /><br/>
-                  <span class="label">父亲：</span>
-                  <input id="ipt-title" name="father" type="text" value="" /><br/>
-                  <span class="label">第几代：</span>
-                  <input id="ipt-title" name="generation" type="text" value="" /><br/>
-                  <input type="submit" name="" value="submit" />
-              </form>
-            </div>
+          <div class="form-holder table-form">
+            <form action="/famous/create" method="post">
+              {{csrf_field()}}
+              <div class="entry">
+                <span class="label">姓名：</span>
+                <input id="ipt-title" name="uname" type="text" value="" />
+              </div>
+              <div class="entry">
+                <span class="label">父亲：</span>
+                <input id="ipt-title" name="father" type="text" value="" />
+              </div>
+              <div class="entry">
+                <span class="label">第几代：</span>
+                <input id="ipt-title" name="generation" type="text" placeholder="请输入数字" value="" />
+              </div>
+              <div class="btn-set">
+                <a class="btn btn-submit" href="#">保存</a>
+              </div>
+            </form>
           </div>
         </div>
       </div>

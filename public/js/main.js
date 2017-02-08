@@ -104,11 +104,6 @@
       $(this).removeClass('error')
     })
 
-
-
-
-
-
     $('.add-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
@@ -144,7 +139,7 @@
       }).done(function(response) {
         $('#loading').removeClass('active');
         if (response.success == true) {
-          window.location.href='/famous';
+          window.history.back()
         } else {
         }
       });

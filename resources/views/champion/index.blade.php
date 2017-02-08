@@ -16,10 +16,10 @@
               <a class="btn-recycling" href="/champion/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
             <div class="btn-set fr">
-              <a class="btn-add btn-pop" href="/champion/add">添加</a>
+              <a class="btn-add" href="/champion/add">添加</a>
             </div>
             <div class="form-holder form-search fr">
-              <form action="#" method="POST">
+              <form action="/champion/search" method="POST">
                 {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >
@@ -27,7 +27,7 @@
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
+                  <input type="text" name="keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>
