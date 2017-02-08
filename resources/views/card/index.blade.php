@@ -89,11 +89,11 @@
                   {{csrf_field()}}
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
-                    <input type="zuname" value="{{$data['zname']}}"/>
+                    <input name="zuname" value="{{$data['zname']}}"/>
                   </div>
                   <div class="entry">
                     <span>参修人数</span>
-                    <input type="zcnt" value="{{$data['zcnt']}}"/>
+                    <input name="zcnt" value="{{$data['zcnt']}}"/>
                     <span>人</span>
                   </div>
                   <div class="btn-set">
@@ -166,7 +166,8 @@
             var box = $('#bg-box');
             var cb = function (){
               box.find('img').Jcrop({
-                aspectRatio: 640 / 320
+                aspectRatio: 640 / 320,
+                onChange:     inputCoords
               });
             }
             updataImg(elem,box,cb);
@@ -177,7 +178,8 @@
             var box = $('#logo-box');
             var cb = function (){
               box.find('img').Jcrop({
-                aspectRatio: 1
+                aspectRatio: 1,
+                onChange:     inputCoords
               });
             }
             updataImg(elem,box,cb);

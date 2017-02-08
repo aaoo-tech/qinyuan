@@ -15,7 +15,7 @@
         </div>
         <div class="main-body">
           <div class="form-holder table-form">
-            <form action="/merit/add" method="post">
+            <form action="/merit/create" method="post">
               {{csrf_field()}}
               <div class="entry">
                 <span class="label">姓名：</span>
