@@ -96,12 +96,13 @@ class UserController extends Controller
         $validator = Validator::make($_params, $rules, $messages);
         if ($validator->fails()) {
             if(isset($validator->failed()['keyword'])){
-                $_params['keyword'] = '';
+                $_params['keyword'] = ' ';
             }
             if(isset($validator->failed()['page'])){
                 $_params['page'] = '1';
             }
         }
+        // var_dump($_params);
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/128/',
                     json_encode(['token' => session('token'), 'uname' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])

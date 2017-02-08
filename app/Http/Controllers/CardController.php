@@ -126,7 +126,7 @@ class CardController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/102/',
-                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'avatar' => $_pic['info']['url']])
+                    json_encode(['token' => session('token'), 'zid' => session('zid'), 'avatar' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url'])])
                 );
         if($_result['ok'] === true) {
             return response()->json([
