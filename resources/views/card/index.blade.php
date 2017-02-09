@@ -204,7 +204,8 @@
             }).done(function(response) {
               $('#loading').removeClass('active');
               if (response.success == true) {
-                $('.pop-out').removeClass('active');
+                // $('.pop-out').removeClass('active');
+                location.reload();
               } else {
                 
               }

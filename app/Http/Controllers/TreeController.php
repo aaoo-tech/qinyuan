@@ -12,7 +12,7 @@ class TreeController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/tree/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '15555', 'genetation' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => -1, 'genetation' => '1'])
                 );
         $generation = [];
         foreach ($_result['data'] as $val) {
@@ -20,8 +20,9 @@ class TreeController extends Controller
                 $generation[] = $val['generation'];
             }
         }
+        var_dump($_result);
         sort($generation);
-        
+
         $_g_p = [];
         foreach ($generation as $val) {
             $_g_p[$val] = [];
@@ -31,6 +32,13 @@ class TreeController extends Controller
                 }
             }
         }
+        // var_dump($_g_p);
+
+        // usort($_g_p, function($a, $b) {
+        //     if ($a['idx'] == $b['idx'])
+        //         return 0;
+        //     return ($a['idx'] > $b['idx']) ? -1 : 1;
+        // });
         // var_dump($_g_p);
         // for($i=0; $i<count($_result['data']); $i++){
         //     if($_result['data'][$i]['pid'] = )
