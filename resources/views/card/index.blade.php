@@ -16,13 +16,13 @@
         <div class="main-body">
           <div class="family-card">
             <div class="card-banner">
-              <img src="{{asset('/img/card-bg.jpg')}}">
+              <img src="{{$data['picurl']}}">
             </div>
             <div class="card-logo fl">
-              <img src="{{$data['zurl']}}">
+              <img src="{{$data['avatar']}}">
             </div>
             <div class="card-info">
-              <h1>{{$data['zuname']}}</h1>
+              <h1>{{$data['zname']}}</h1>
               <p>参修人数：{{$data['zcnt']}}人</p>
             </div>
           </div>
@@ -47,7 +47,7 @@
             <div class="tag-cont clearfix active" id="set-bg">
               <h3>设置背景</h3>
               <div class="img-container" id="bg-box">
-                <img class="Jcrop-img" src="{{ asset('/img/card-bg.jpg') }}">
+                <img class="Jcrop-img" src="{{$data['picurl']}}">
               </div>
               <div class="form-holder">
                 <form action="/card/picurl" method="POST" enctype="multipart/form-data">
@@ -66,7 +66,7 @@
             <div class="tag-cont clearfix" id="set-logo">
               <h3>族谱头像</h3>
               <div class="img-container" id="logo-box">
-                <img class="Jcrop-img" src="{{ asset('/img/card-logo.png') }}">
+                <img class="Jcrop-img" src="{{$data['avatar']}}">
               </div>
               <div class="form-holder">
                 <form action="/card/avatar" method="POST" enctype="multipart/form-data">
@@ -89,11 +89,11 @@
                   {{csrf_field()}}
                   <div class="entry ipt-name">
                     <span>族谱名称</span>
-                    <input type="zuname" value="{{$data['zuname']}}"/>
+                    <input name="zuname" value="{{$data['zname']}}"/>
                   </div>
                   <div class="entry">
                     <span>参修人数</span>
-                    <input type="zcnt" value="{{$data['zcnt']}}"/>
+                    <input name="zcnt" value="{{$data['zcnt']}}"/>
                     <span>人</span>
                   </div>
                   <div class="btn-set">
@@ -106,6 +106,7 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="{{ asset('/js/jquery.form.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/Jcrop/jquery.Jcrop.min.js') }}"></script>
     <script type="text/javascript">
       (function($) {
@@ -120,13 +121,11 @@
           var jcropImg = function(){
             $('#set-bg .Jcrop-img').Jcrop({
               aspectRatio:  640 / 320,
-              onSelect:     inputCoords,
               onChange:     inputCoords
             })
 
             $('#set-logo .Jcrop-img').Jcrop({
               aspectRatio: 1,
-              onSelect:     inputCoords,
               onChange:     inputCoords
             })
           }
@@ -168,7 +167,8 @@
             var box = $('#bg-box');
             var cb = function (){
               box.find('img').Jcrop({
-                aspectRatio: 640 / 320
+                aspectRatio: 640 / 320,
+                onChange:     inputCoords
               });
             }
             updataImg(elem,box,cb);
@@ -179,7 +179,8 @@
             var box = $('#logo-box');
             var cb = function (){
               box.find('img').Jcrop({
-                aspectRatio: 1
+                aspectRatio: 1,
+                onChange:     inputCoords
               });
             }
             updataImg(elem,box,cb);
@@ -187,7 +188,18 @@
 
           $('.form-holder .btn-save').on('click',function(){
             var $elem = $(this);
-            // $elem.closest('form').submit();
+            $elem.closest('form').ajaxSubmit({
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              },
+              success: function(response){
+                if (response.success == true) {
+                  location.reload();
+                } else {
+
+                } 
+              }
+            });
             return false
           })
 
@@ -195,20 +207,21 @@
             var $elem = $(this);
             var $form = $(this).closest('form');
             var url = $form.attr('action');
-            // $.ajax({
-            //   url: url,
-            //   data: $form.serialize(),
-            //   beforeSend: function() { 
-            //     $('#loading').addClass('active');
-            //   }
-            // }).done(function(response) {
-            //   $('#loading').removeClass('active');
-            //   if (response.success == true) {
-            //     $('.pop-out').removeClass('active');
-            //   } else {
+            $.ajax({
+              url: url,
+              data: $form.serialize(),
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+              if (response.success == true) {
+                // $('.pop-out').removeClass('active');
+                location.reload();
+              } else {
                 
-            //   }
-            // });
+              }
+            });
             return false
           })
 

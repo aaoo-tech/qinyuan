@@ -65,58 +65,7 @@
       (function($) {
           $(function() {
 
-            $('.table-foot .btn-all').on('click', function() {
-              var url = $(this).attr('href');
-              $.ajax({
-                url: url, 
-                beforeSend: function() { 
-                  $('#loading').addClass('active');
-                }
-              }).done(function(response) {
-                $('#loading').removeClass('active');
-                if (response.success == true) {
-                  window.location.reload();
-                } else {
 
-                }
-              })
-              return false
-            })
-
-            $('.table-foot .btn-batch').on('click', function() {
-              var $tr = $('table tr');
-              var n = $tr.find('td').length;
-              var $tbody = $('table tbody');
-              var idList = [];
-              var trList = [];
-              $('table tr input[type="checkbox"]').each(function(i,elem){
-                if(elem.checked){
-                  idList.push($(this).closest('tr').data('id'));
-                  trList.push($(this).closest('tr')[0]);
-                }
-              });
-              var url = $(this).attr('href')+idList.toString();
-              $.ajax({
-                url: url, 
-                beforeSend: function() { 
-                  $('#loading').addClass('active');
-                }
-              }).done(function(response) {
-                $('#loading').removeClass('active');
-                if (response.success == true) {
-                  // trList.forEach(function(elem){
-                  //   $(elem).remove();
-                  // });
-                  // if(!$tbody.find('tr').length){
-                  //   $tbody.html('<td colspan="'+ n +'">空</td>')
-                  // }
-                  window.location.reload();
-                } else {
-
-                }
-              });
-              return false;
-            });
           });
       })(jQuery);
     </script>

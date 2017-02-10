@@ -16,10 +16,10 @@
               <a class="btn-recycling" href="/merit/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
             <div class="btn-set fr">
-              <a class="btn-add btn-pop" href="/merit/add">添加</a>
+              <a class="btn-add" href="/merit/add">添加</a>
             </div>
             <div class="form-holder form-search fr">
-              <form action="#" method="POST">
+              <form action="/merit/search" method="POST">
                 {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >
@@ -27,7 +27,7 @@
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
+                  <input type="text" name="keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>
@@ -59,7 +59,7 @@
               <tbody>
               @if($data)
               @foreach ($data as $datum)
-                <tr>
+                <tr data-id="{{$datum['id']}}">
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a href="/merit/edit?id={{$datum['addr']}}" >{{$datum['uname']}}</a></td>
@@ -78,7 +78,7 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn" href="#" >批量删除</a>
+              <a class="btn btn-batch-to-recycle" href="/merit/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')

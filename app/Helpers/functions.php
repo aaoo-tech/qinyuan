@@ -140,3 +140,52 @@ if(!function_exists('initi_img')) {
         }
     }
 }
+
+/**
+ * 生成保存图片
+ *
+ * @return object
+ */
+if(!function_exists('new_img')) {
+    function new_img($type, $dst_r, $path) {
+        switch ($type) {
+            case 'jpg':
+                return imagejpeg($dst_r, $path);
+                break;
+            case 'gif':
+                return imagegif($dst_r, $path);
+                break;
+            case 'png':
+                return imagepng($dst_r, $path);
+                break;
+            case 'bmp':
+                return imagebmp($dst_r, $path);
+                break;
+            default:
+                return false;
+                break;
+        }
+    }
+}
+
+/**
+ * 剪切图片
+ *
+ * @return object
+ */
+if(!function_exists('cut_img')) {
+    function cut_img($_params) {
+        $img_r = initi_img($_params['type'], $_params['original_image']);
+        if($img_r === false){
+            return false;
+        }
+            // $targ_w = 640;
+            // $targ_h = 300;
+        $dst_r = ImageCreateTrueColor($_params['targ_w'], $_params['targ_h']);
+        imagecopyresampled($dst_r, $img_r, 0, 0, $_params['x'], $_params['y'], $_params['targ_w'], $_params['targ_h'], $_params['w'], $_params['h']);
+        $t = new_img($_params['type'], $dst_r, $_params['path']);
+        imagedestroy($img_r);
+        imagedestroy($dst_r);
+        return $t;
+    }
+}

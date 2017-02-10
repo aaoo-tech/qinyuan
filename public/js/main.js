@@ -104,11 +104,6 @@
       $(this).removeClass('error')
     })
 
-
-
-
-
-
     $('.add-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
@@ -138,13 +133,13 @@
       $.ajax({
         url: url,
         data: $form.serialize(),
-        beforeSend: function() { 
+        beforeSend: function() {
           $('#loading').addClass('active');
         }
       }).done(function(response) {
         $('#loading').removeClass('active');
         if (response.success == true) {
-          window.location.href='/famous';
+          self.location=document.referrer;
         } else {
         }
       });
@@ -232,6 +227,86 @@
       return false
     })
 
+    // 批量去回收站
+    $('.common-table .table-foot .btn-batch-to-recycle').on('click', function() {
+      var $tr = $('.common-table table tr');
+      var n = $tr.find('td').length;
+      var $tbody = $('.common-table table tbody');
+      var idList = [];
+      var trList = [];
+      $('.common-table table tr input[type="checkbox"]').each(function(i,elem){
+        if(elem.checked){
+          idList.push($(this).closest('tr').data('id'));
+          trList.push($(this).closest('tr'));
+        }
+      });
+      var url = $(this).attr('href');
+      idList.forEach(function(id){
+        url += 'ids[]='+id + '&'
+      });
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      });
+      return false;
+    });
+
+    // 回收站 批量还原或删除
+    $('.table-foot .btn-batch').on('click', function() {
+      var $tr = $('table tr');
+      var n = $tr.find('td').length;
+      var $tbody = $('table tbody');
+      var idList = [];
+      $('table tr input[type="checkbox"]').each(function(i,elem){
+        if(elem.checked){
+          idList.push($(this).closest('tr').data('id'));
+        }
+      });
+      var url = $(this).attr('href')+idList.toString();
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      });
+      return false;
+    });
+
+    // 还原或删除所有
+    $('.table-foot .btn-all').on('click', function() {
+      var url = $(this).attr('href');
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      })
+      return false
+    })
+
 
     $('.card-edit .submit').on('click',function(){
       var $elem = $(this);
@@ -265,54 +340,6 @@
       $('#login-out-alert').removeClass('active');
       return false;
     });
-
-    // forgot
-    $('#step-2 a.get-captcha').on('click',function(){
-      var $a = $(this);
-      var $span = $('#step-2 span.get-captcha')
-      var $i = $span.find('i');
-      var second = $i.attr('data-second')-0;
-      var s = second;
-      $a.hide();
-      $span.show();
-      var timer = setInterval(function(){
-        $i.text(s);
-        if (s === 0) {
-          clearInterval(timer);
-          $i.text(second);
-          $span.hide();
-          $a.show();
-          return 
-        };
-        s = s - 1;
-        $i.text(s);
-      },1000)
-    })
-
-    $('forgot-main form btn-ajax').on('click',function(){
-      var $elem = $(this);
-      var $form = $(this).closest('form');
-      var url = $form.attr('action');
-      $.ajax({
-        url: url, 
-        beforeSend: function() { 
-          
-        }
-      }).done(function(response) {
-        
-        // response = $.parseJSON(response);
-        if (response.success == true) {
-
-        } else {
-
-        }
-      });
-    });
-
-
-
-
-
 
   });
 })(jQuery)

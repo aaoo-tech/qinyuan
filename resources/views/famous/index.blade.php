@@ -12,7 +12,7 @@
               <a class="btn-recycling" href="/famous/recycle"><i class="iconfont icon-recycling"></i>回收站</a>
             </div>
             <div class="btn-set fr">
-              <a class="btn-add btn-pop" href="/famous/add">添加</a>
+              <a class="btn-add" href="/famous/add">添加</a>
             </div>
             <div class="form-holder form-search fr">
               <form action="/famous/search" method="POST">
@@ -23,7 +23,7 @@
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
+                  <input type="text" name="keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>
@@ -51,7 +51,7 @@
               <tbody>
               @if($data)
               @foreach ($data as $datum)
-                <tr>
+                <tr data-id="{{$datum['id']}}">
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a class="" href="/famous/edit?id={{$datum['id']}}" >{{$datum['uname']}}({{$datum['generation']}}代／父亲{{$datum['father']}})</a></td>
@@ -68,7 +68,7 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn btn-batch" href="/famous/batchdel?" >批量删除</a>
+              <a class="btn btn-batch-to-recycle" href="/famous/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')
@@ -107,39 +107,4 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      (function($) {
-        $(function() {
-          $('.table-foot .btn-batch').on('click', function() {
-            var $tr = $('table tr');
-            var n = $tr.find('td').length;
-            var $tbody = $('table tbody');
-            var idList = [];
-            $('table tr input[type="checkbox"]').each(function(i,elem){
-              if(elem.checked){
-                idList.push($(this).closest('tr').data('id'));
-              }
-            });
-            var url = $(this).attr('href');
-            idList.forEach(function(id){
-              url += 'ids[]='+id + '&'
-            });
-            $.ajax({
-              url: url, 
-              beforeSend: function() { 
-                $('#loading').addClass('active');
-              }
-            }).done(function(response) {
-              $('#loading').removeClass('active');
-              if (response.success == true) {
-                window.location.reload();
-              } else {
-
-              }
-            });
-            return false;
-          });
-        });
-      })(jQuery);
-    </script>
 @include('base.footer')

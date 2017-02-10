@@ -21,7 +21,7 @@
                 <input name="id" value="{{$data['id']}}" type="hidden" />
                 <div class="article-title">
                   <span class="label">标&nbsp;&nbsp;题：</span>
-                  <input id="ipt-title" name="title" type="post" value="{{$data['title']}}" />
+                  <input id="ipt-title" name="title" type="text" value="{{$data['title']}}" />
                 </div>
                 <div class="article-cont">
                   <span class="label fl">正&nbsp;&nbsp;文：</span>

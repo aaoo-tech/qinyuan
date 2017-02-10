@@ -7,46 +7,43 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="operation fr">
+<!--           <div class="operation fr">
             <div class="btn-set">
-              <a class="btn-submit" href="#">提交</a>
+              <a class="btn-back" href="#">返回</a>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="main-body">
-          <div class="article-edit">
-            <div class="formholder cont-form">
-              <form action="/merit/create" method="post">
-                {{csrf_field()}}
-
-                  <span class="label">姓名：</span>
-                  <input id="ipt-title" name="uname" type="post" value="" /><br/>
-                  <span class="label">籍贯：</span>
-                  <input id="ipt-title" name="addr" type="post" value="" /><br/>
-                  <span class="label">学历：</span>
-                  <input id="ipt-title" name="education" type="post" value="" /><br/>
-                  <span class="label">职务：</span>
-                  <input id="ipt-title" name="job" type="post" value="" /><br/>
-                  <span class="label">捐款金额（元）：</span>
-                  <input id="ipt-title" name="money" type="post" value="" /><br/>
-                  <input type="submit" name="" value="submit" />
-              </form>
-            </div>
+          <div class="form-holder table-form">
+            <form action="/merit/create" method="post">
+              {{csrf_field()}}
+              <div class="entry">
+                <span class="label">姓名：</span>
+                <input id="ipt-title" name="uname" type="text" value="" />
+              </div>
+              <div class="entry">
+                <span class="label">籍贯：</span>
+                <input id="ipt-title" name="addr" type="text" value="" />
+              </div>
+              <div class="entry">
+                <span class="label">学历：</span>
+                <input id="ipt-title" name="education" type="text" value="" />
+              </div>
+              <div class="entry">
+                <span class="label">职务：</span>
+                <input id="ipt-title" name="job" type="text" value="" />
+              </div>
+              <div class="entry">
+                <span class="label">捐款金额：</span>
+                <input id="ipt-title" name="money" type="text" value="" />
+                <span>（元）</span>
+              </div>
+              <div class="btn-set">
+                <a class="btn btn-submit" href="#">保存</a>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-
-    <script type="text/javascript" src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript">
-      tinymce.init({
-        selector: '#ipt-cont',
-        language: 'zh_CN',
-        height : 500
-      });
-
-      $('.btn-submit').on('click',function(){
-        $('.family-article form').submit();
-        return false
-      })
-    </script>
 @include('base.footer')
