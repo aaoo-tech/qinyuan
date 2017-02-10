@@ -20,23 +20,23 @@
               <input name="id" value="{{$data['id']}}" type="hidden" />
               <div class="entry">
                 <span class="label">姓名：</span>
-                <input id="ipt-title" name="uname" type="post" value="{{$data['uname']}}" />
+                <input id="ipt-title" name="uname" type="text" value="{{$data['uname']}}" />
               </div>
               <div class="entry">
                 <span class="label">籍贯：</span>
-                <input id="ipt-title" name="addr" type="post" value="{{$data['addr']}}" />
+                <input id="ipt-title" name="addr" type="text" value="{{$data['addr']}}" />
               </div>
               <div class="entry">
                 <span class="label">学历：</span>
-                <input id="ipt-title" name="education" type="post" value="{{$data['education']}}" />
+                <input id="ipt-title" name="education" type="text" value="{{$data['education']}}" />
               </div>
               <div class="entry">
                 <span class="label">职务：</span>
-                <input id="ipt-title" name="job" type="post" value="{{$data['job']}}" />
+                <input id="ipt-title" name="job" type="text" value="{{$data['job']}}" />
               </div>
               <div class="entry">
                 <span class="label">捐款金额：</span>
-                <input id="ipt-title" name="money" type="post" value="{{$data['money']}}" />
+                <input id="ipt-title" name="money" type="text" value="{{$data['money']}}" />
                 <span>（元）</span>
               </div>
               <div class="btn-set">

@@ -20,7 +20,7 @@
                 {{csrf_field()}}
                 <div class="article-title">
                   <span class="label">标&nbsp;&nbsp;题：</span>
-                  <input id="ipt-title" type="post" name="title" value="赵氏家谱" />
+                  <input id="ipt-title" type="text" name="title" value="赵氏家谱" />
                 </div>
                 <div class="article-cont">
                   <span class="label fl">正&nbsp;&nbsp;文：</span>
