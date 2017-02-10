@@ -20,7 +20,7 @@ class TreeController extends Controller
                 $generation[] = $val['generation'];
             }
         }
-        var_dump($_result);
+        // var_dump($_result);
         sort($generation);
 
         $_g_p = [];

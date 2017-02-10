@@ -7,11 +7,11 @@
           <div class="breadcrumb fl">
             <?php breadcrumb(); ?>
           </div>
-          <div class="operation fr">
+<!--           <div class="operation fr">
             <div class="btn-set">
               <a class="btn-back" href="#">返回</a>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="main-body">
           <div class="form-holder table-form">

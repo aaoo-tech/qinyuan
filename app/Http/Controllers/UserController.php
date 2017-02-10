@@ -29,6 +29,7 @@ class UserController extends Controller
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
+        $result = [];
         if(isset($_result['data'])){
             foreach ($_result['data'] as $value) {
                 if($value['islock'] == 0) {

@@ -35,8 +35,8 @@
                   <input type="text" placeholder="请输入验证码" />
                   <div class="captcha">
                     <a href="#">
-                      <!-- <img src="{{captcha_src()}}" alt="captcha" onclick='this.src=this.src+"?"+Math.random()' /> -->
-                      <img src="{{ asset('/img/captcha.png') }}">
+                      <img src="{{captcha_src()}}" alt="captcha" onclick='this.src=this.src+"?"+Math.random()' />
+                      <!-- <img src="{{ asset('/img/captcha.png') }}"> -->
                       <span>换一张</span>
                     </a>
                   </div>
@@ -60,7 +60,7 @@
               <div class="form-title">
                 <h3>验证码</h3>
               </div>
-              <form action="#" mode="post">
+              <form action="#" type="post">
                 <div class="entry clearfix">
                   <input class="fl" type="text" placeholder="请输入手机验证码" />
                   <div class="captcha">
@@ -77,7 +77,7 @@
           </div>
           <div class="tag-cont" id="step-3">
             <div class="form-holder forgot-form">
-              <form action="#" method="post">
+              <form action="#" type="post">
                 <div class="entry entry-pw clearfix">
                   <label class="fl">新密码</label>
                   <input class="fl" maxlength="16" type="password" placeholder="请您输入新密码" />
