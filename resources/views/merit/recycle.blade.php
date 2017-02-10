@@ -34,7 +34,7 @@
               <tbody>
               @if($data)
               @foreach ($data as $datum)
-                <tr>
+                <tr data-id="{{$datum['id']}}">
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a href="#" >{{$datum['uname']}}</a></td>
@@ -54,8 +54,8 @@
             </table>
             <div class="table-foot">
               <div class="left-cont fl">
-                <a class="btn btn-batch" href="/merit/recycleoption?idlist=&optype=4" >批量删除</a>
-                <a class="btn btn-batch" href="/merit/recycleoption?idlist=&optype=3" >批量还原</a>
+                <a class="btn btn-batch" href="/merit/recycleoption?optype=4&idlist=" >批量删除</a>
+                <a class="btn btn-batch" href="/merit/recycleoption?optype=3&idlist=" >批量还原</a>
               </div>
               <div class="right-cont">
                 <a class="btn btn-all" href="/merit/recycleoption?idlist=&optype=1" >还原所有</a>
