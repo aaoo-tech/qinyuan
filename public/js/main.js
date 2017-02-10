@@ -133,13 +133,13 @@
       $.ajax({
         url: url,
         data: $form.serialize(),
-        beforeSend: function() { 
+        beforeSend: function() {
           $('#loading').addClass('active');
         }
       }).done(function(response) {
         $('#loading').removeClass('active');
         if (response.success == true) {
-          window.history.back()
+          self.location=document.referrer;
         } else {
         }
       });

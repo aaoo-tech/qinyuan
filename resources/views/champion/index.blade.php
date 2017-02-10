@@ -78,7 +78,7 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn" href="#" >批量删除</a>
+              <a class="btn" href="/champion/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')
