@@ -35,8 +35,8 @@
                   <input type="text" placeholder="请输入验证码" />
                   <div class="captcha">
                     <a href="#">
-                      <img src="{{captcha_src()}}" alt="captcha" onclick='this.src=this.src+"?"+Math.random()' />
-                      <!-- <img src="{{ asset('/img/captcha.png') }}"> -->
+                      <!-- <img src="{{captcha_src()}}" alt="captcha" onclick='this.src=this.src+"?"+Math.random()' /> -->
+                      <img src="{{ asset('/img/captcha.png') }}">
                       <span>换一张</span>
                     </a>
                   </div>
