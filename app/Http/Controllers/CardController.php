@@ -28,23 +28,25 @@ class CardController extends Controller
     // }
 
     // public function test(Request $request) {
-    //     $_params = $request->all();
-    //     $file = $request->file('myfile');
-    //     // $clientName = $file->getClientOriginalName();
-    //     $entension = $file->getClientOriginalExtension();
-    //     // var_dump($file->getMaxFilesize());
-    //     // var_dump($file->getMimeType());
-    //     if ($request->hasFile('myfile') && $request->file('myfile')->isValid()) {
-    //         $_result = $request->file('myfile')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-    //         // var_dump($_result);
-    //         // $res = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
-    //         // var_dump($res);
-    //     }
-    //     return response()->json([
-    //             'success' => false,
-    //             'message' => '',
-    //             'data' => array(),
-    //         ]);
+    //     // $_params = $request->all();
+    //     // $file = $request->file('myfile');
+    //     // // $clientName = $file->getClientOriginalName();
+    //     // $entension = $file->getClientOriginalExtension();
+    //     // // var_dump($file->getMaxFilesize());
+    //     // // var_dump($file->getMimeType());
+    //     // if ($request->hasFile('myfile') && $request->file('myfile')->isValid()) {
+    //     //     $_result = $request->file('myfile')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+    //     //     // var_dump($_result);
+    //     //     // $res = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+    //     //     // var_dump($res);
+    //     // }
+    //     // return response()->json([
+    //     //         'success' => false,
+    //     //         'message' => '',
+    //     //         'data' => array(),
+    //     //     ]);
+    //     // AliyunOss::ossGetObjectToLocalFile();
+    //     // var_dump(basename('http://img.aiyaapp.com/jiapu/cut-c5cf6bde471933372231b68706042daf.png'));
     // }
 
     public function index(Request $request) {
@@ -60,16 +62,13 @@ class CardController extends Controller
     public function picurl(Request $request) {
         $_params = $request->all();
         $_size = json_decode($_params['size'], true);
-        // var_dump($_params);
+
         if ($request->hasFile('picurl') && $request->file('picurl')->isValid()) {
             $file = $request->file('picurl');
             $mimeType = $file->getMimeType();
             $entension = $file->getClientOriginalExtension();
             $_result = $request->file('picurl')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            // $targ_w = 640;
-            // $targ_h = 300;
-            // $jpeg_quality = 90;
-            // var_dump($_size);
+
             if(!empty($_params['size'])){
                 $_image_size = getimagesize($_result->getpathName());
                 $_x_scale = $_image_size[0]/400;
@@ -88,11 +87,43 @@ class CardController extends Controller
                 $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => $_result->getpathName()]);
             }
         }else{
-            return response()->json([
-                    'success' => false,
-                    'message' => '上传图片失败',
-                    'data' => array(),
-                ]);
+            if(!empty($_params['size'])){
+                $_result = curlPost(
+                            'http://120.25.218.156:12001/info/142/',
+                            json_encode(['token' => session('token'), 'zid' => session('zid')])
+                        );
+                $_filename = basename($_result['data'][0]['picurl']);
+                $_d = AliyunOss::ossGetObjectToLocalFile(['filename' => $_filename]);
+                if($_d === false){
+                    return response()->json([
+                            'success' => false,
+                            'message' => '图片剪切失败',
+                            'data' => array(),
+                        ]);
+                }
+                $_filepath  = 'storage/uploads/'.$_filename;
+                $entension = pathinfo($_filepath, PATHINFO_EXTENSION);
+
+                $_image_size = getimagesize($_filepath);
+                $_x_scale = $_image_size[0]/400;
+                $_scale = $_image_size[0]/$_image_size[1];
+                $_y_scale = $_image_size[1]/(400/$_scale);
+                $t = cut_img(['type' => $entension, 'original_image' => $_filepath, 'path' => 'storage/uploads/cut-'.$_filename, 'x' => $_size['x']*$_x_scale, 'y' => $_size['y']*$_y_scale, 'w' => $_size['w']*$_x_scale, 'h' => $_size['h']*$_y_scale, 'targ_w' => $_size['w']*$_x_scale, 'targ_h' => $_size['h']*$_y_scale]);
+                if($t === false){
+                    return response()->json([
+                            'success' => false,
+                            'message' => '图片剪切失败',
+                            'data' => array(),
+                        ]);
+                }
+                $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_filename, 'filepath' => 'storage/uploads/cut-'.$_filename]);
+            }else{
+                return response()->json([
+                        'success' => false,
+                        'message' => '上传图片失败',
+                        'data' => array(),
+                    ]);
+            }
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/101/',
@@ -115,16 +146,18 @@ class CardController extends Controller
     public function avatar(Request $request) {
         $_params = $request->all();
         $_size = json_decode($_params['size'], true);
-        $file = $request->file('avatar');
-        $entension = $file->getClientOriginalExtension();
+
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $file = $request->file('avatar');
+            $mimeType = $file->getMimeType();
+            $entension = $file->getClientOriginalExtension();
             $_result = $request->file('avatar')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
-            // $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+
             if(!empty($_params['size'])){
                 $_image_size = getimagesize($_result->getpathName());
-                $_x_scale = $_image_size[0]/300;
+                $_x_scale = $_image_size[0]/244;
                 $_scale = $_image_size[0]/$_image_size[1];
-                $_y_scale = $_image_size[1]/(300/$_scale);
+                $_y_scale = $_image_size[1]/(244/$_scale);
                 $t = cut_img(['type' => $entension, 'original_image' => $_result->getpathName(), 'path' => 'storage/uploads/cut-'.$_result->getfileName(), 'x' => $_size['x']*$_x_scale, 'y' => $_size['y']*$_y_scale, 'w' => $_size['w']*$_x_scale, 'h' => $_size['h']*$_y_scale, 'targ_w' => $_size['w']*$_x_scale, 'targ_h' => $_size['h']*$_y_scale]);
                 if($t === false){
                     return response()->json([
@@ -138,11 +171,43 @@ class CardController extends Controller
                 $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_result->getfileName(), 'filepath' => $_result->getpathName()]);
             }
         }else{
-            return response()->json([
-                    'success' => false,
-                    'message' => '上传图片失败',
-                    'data' => array(),
-                ]);
+            if(!empty($_params['size'])){
+                $_result = curlPost(
+                            'http://120.25.218.156:12001/info/142/',
+                            json_encode(['token' => session('token'), 'zid' => session('zid')])
+                        );
+                $_filename = basename($_result['data'][0]['avatar']);
+                $_d = AliyunOss::ossGetObjectToLocalFile(['filename' => $_filename]);
+                if($_d === false){
+                    return response()->json([
+                            'success' => false,
+                            'message' => '图片剪切失败',
+                            'data' => array(),
+                        ]);
+                }
+                $_filepath  = 'storage/uploads/'.$_filename;
+                $entension = pathinfo($_filepath, PATHINFO_EXTENSION);
+
+                $_image_size = getimagesize($_filepath);
+                $_x_scale = $_image_size[0]/244;
+                $_scale = $_image_size[0]/$_image_size[1];
+                $_y_scale = $_image_size[1]/(244/$_scale);
+                $t = cut_img(['type' => $entension, 'original_image' => $_filepath, 'path' => 'storage/uploads/cut-'.$_filename, 'x' => $_size['x']*$_x_scale, 'y' => $_size['y']*$_y_scale, 'w' => $_size['w']*$_x_scale, 'h' => $_size['h']*$_y_scale, 'targ_w' => $_size['w']*$_x_scale, 'targ_h' => $_size['h']*$_y_scale]);
+                if($t === false){
+                    return response()->json([
+                            'success' => false,
+                            'message' => '图片剪切失败',
+                            'data' => array(),
+                        ]);
+                }
+                $_pic = AliyunOss::ossUploadFile(['filename' => 'cut-'.$_filename, 'filepath' => 'storage/uploads/cut-'.$_filename]);
+            }else{
+                return response()->json([
+                        'success' => false,
+                        'message' => '上传图片失败',
+                        'data' => array(),
+                    ]);
+            }
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/102/',
