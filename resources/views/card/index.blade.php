@@ -106,6 +106,7 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="{{ asset('/js/jquery.form.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/Jcrop/jquery.Jcrop.min.js') }}"></script>
     <script type="text/javascript">
       (function($) {
@@ -187,7 +188,18 @@
 
           $('.form-holder .btn-save').on('click',function(){
             var $elem = $(this);
-            $elem.closest('form').submit();
+            $elem.closest('form').ajaxSubmit({
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              },
+              success: function(response){
+                if (response.success == true) {
+                  location.reload();
+                } else {
+
+                } 
+              }
+            });
             return false
           })
 
