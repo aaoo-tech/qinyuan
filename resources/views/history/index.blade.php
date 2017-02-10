@@ -68,7 +68,7 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn btn-batch" href="/history/batchdel?" >批量删除</a>
+              <a class="btn btn-batch-to-recycle" href="/history/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')
@@ -96,41 +96,4 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      (function($) {
-        $(function() {
-          // $('.table-foot .btn-batch').on('click', function() {
-          //   var $tr = $('table tr');
-          //   var n = $tr.find('td').length;
-          //   var $tbody = $('table tbody');
-          //   var idList = [];
-          //   var trList = [];
-          //   $('table tr input[type="checkbox"]').each(function(i,elem){
-          //     if(elem.checked){
-          //       idList.push($(this).closest('tr').data('id'));
-          //       trList.push($(this).closest('tr'));
-          //     }
-          //   });
-          //   var url = $(this).attr('href');
-          //   idList.forEach(function(id){
-          //     url += 'ids[]='+id + '&'
-          //   });
-          //   $.ajax({
-          //     url: url, 
-          //     beforeSend: function() { 
-          //       $('#loading').addClass('active');
-          //     }
-          //   }).done(function(response) {
-          //     $('#loading').removeClass('active');
-          //     if (response.success == true) {
-          //       window.location.reload();
-          //     } else {
-
-          //     }
-          //   });
-          //   return false;
-          // });
-        });
-      })(jQuery);
-    </script>
 @include('base.footer')

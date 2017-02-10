@@ -227,6 +227,86 @@
       return false
     })
 
+    // 批量去回收站
+    $('.common-table .table-foot .btn-batch-to-recycle').on('click', function() {
+      var $tr = $('.common-table table tr');
+      var n = $tr.find('td').length;
+      var $tbody = $('.common-table table tbody');
+      var idList = [];
+      var trList = [];
+      $('.common-table table tr input[type="checkbox"]').each(function(i,elem){
+        if(elem.checked){
+          idList.push($(this).closest('tr').data('id'));
+          trList.push($(this).closest('tr'));
+        }
+      });
+      var url = $(this).attr('href');
+      idList.forEach(function(id){
+        url += 'ids[]='+id + '&'
+      });
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      });
+      return false;
+    });
+
+    // 回收站 批量还原或删除
+    $('.table-foot .btn-batch').on('click', function() {
+      var $tr = $('table tr');
+      var n = $tr.find('td').length;
+      var $tbody = $('table tbody');
+      var idList = [];
+      $('table tr input[type="checkbox"]').each(function(i,elem){
+        if(elem.checked){
+          idList.push($(this).closest('tr').data('id'));
+        }
+      });
+      var url = $(this).attr('href')+idList.toString();
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      });
+      return false;
+    });
+
+    // 还原或删除所有
+    $('.table-foot .btn-all').on('click', function() {
+      var url = $(this).attr('href');
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      })
+      return false
+    })
+
 
     $('.card-edit .submit').on('click',function(){
       var $elem = $(this);
