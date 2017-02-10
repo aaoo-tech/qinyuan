@@ -59,7 +59,7 @@
               <tbody>
               @if($data)
               @foreach ($data as $datum)
-                <tr>
+                <tr data-id="{{$datum['id']}}">
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
                   <td><a href="/champion/edit?id={{$datum['id']}}" >{{$datum['uname']}}</a></td>
@@ -78,7 +78,7 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn" href="#" >批量删除</a>
+              <a class="btn btn-batch-to-recycle" href="/champion/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')
