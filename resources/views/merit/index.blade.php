@@ -62,7 +62,7 @@
                 <tr data-id="{{$datum['id']}}">
                   <td><input type="checkbox" /></td>
                   <td>{{$datum['id']}}</td>
-                  <td><a href="/merit/edit?id={{$datum['addr']}}" >{{$datum['uname']}}</a></td>
+                  <td><a href="/merit/edit?id={{$datum['id']}}" >{{$datum['uname']}}</a></td>
                   <td>{{$datum['addr']}}</td>
                   <td>{{$datum['education']}}</td>
                   <td>{{$datum['job']}}</td>
