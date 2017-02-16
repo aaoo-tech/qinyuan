@@ -7,13 +7,13 @@
     //   },false);
     // });
 
-    $('.btn-pop').on('click',function(){
-      $('.pop-out').addClass('active');
-      var pcc = $(this).data('pop');
-      $('.pop-out .' + pcc).addClass('active');
+    // $('.btn-pop').on('click',function(){
+    //   $('.pop-out').addClass('active');
+    //   var pcc = $(this).data('pop');
+    //   $('.pop-out .' + pcc).addClass('active');
 
-      return false;
-    })
+    //   return false;
+    // })
 
     $('.pop-out .pop-close').on('click',function(){
       $('.pop-out').removeClass('active');

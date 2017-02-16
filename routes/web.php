@@ -35,7 +35,11 @@ Route::group(['prefix' => 'setting', 'middleware' => 'checklogin'], function() {
 Route::any('info/{type}/{id}', 'InfoController@index');
 
 Route::any('admin', 'AdminController@index');
+Route::any('forgot', 'AdminController@forgot');
 Route::any('forgot_one', 'AdminController@forgot_one');
+Route::any('forgot_two', 'AdminController@forgot_two');
+Route::any('forgot_three', 'AdminController@forgot_three');
+Route::any('sendcode', 'AdminController@sendcode');
 Route::any('login', 'AdminController@login');
 
 Route::group(['prefix' => '', 'middleware' => 'checklogin'], function() {

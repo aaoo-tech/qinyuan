@@ -7,7 +7,7 @@
           </div>
           <h1 class="fl">密码设置</h1>
             <div class="fr">
-              <a class="btn-pop pop-login" data-pop="pop-cont-1" href="#">登录</a>
+              <a class="btn-pop pop-login" data-pop="pop-cont-1" href="/admin">登录</a>
             </div>
           </div>
         </div>
@@ -25,19 +25,19 @@
         <div class="steps">
           <div class="tag-cont active" id="step-1">
             <div class="form-holder">
-              <form action="#" method="post">
+              <form action="/forgot_one" method="post">
                 {{ csrf_field() }}
                 <div class="entry entry-phone">
-                  <input type="text" maxlength="11" placeholder="请输入您的手机号码" />
+                  <input type="text" maxlength="11" name="mobile" placeholder="请输入您的手机号码" />
                   <span class="error-info">返回的错误信息</span>
                 </div>
                 <div class="entry entry-captcha">
-                  <input type="text" placeholder="请输入验证码" />
+                  <input type="text" name="captcha" placeholder="请输入验证码" />
                   <div class="captcha">
                     <a href="#">
-                      <!-- <img src="{{captcha_src()}}" alt="captcha" onclick='this.src=this.src+"?"+Math.random()' /> -->
-                      <img src="{{ asset('/img/captcha.png') }}">
-                      <span>换一张</span>
+                      <img src="{{captcha_src()}}" alt="captcha" id="captcha" onclick='this.src=this.src+"?"+Math.random()' />
+                      <!-- <img src="{{ asset('/img/captcha.png') }}"> -->
+                      <span onclick='document.getElementById("captcha").src=document.getElementById("captcha").src+"?"+Math.random()'>换一张</span>
                     </a>
                   </div>
                 </div>
@@ -53,18 +53,18 @@
               <h3>手机验证</h3>
               <p>
                 <span>手机号：</span>
-                <span>139******34</span>
+                <span class="mobile">139******34</span>
               </p>
             </div>
             <div class="form-holder">
               <div class="form-title">
                 <h3>验证码</h3>
               </div>
-              <form action="#" type="post">
+              <form action="/forgot_two" type="post">
                 <div class="entry clearfix">
-                  <input class="fl" type="text" placeholder="请输入手机验证码" />
+                  <input class="fl" type="text" name="authcode" placeholder="请输入手机验证码" />
                   <div class="captcha">
-                    <a class="get-captcha" href="#">发送验证码</a>
+                    <a class="get-captcha" href="/sendcode">发送验证码</a>
                     <span class="get-captcha" style="display:none" href="#">重新发送(<i data-second='10'>10</i>)</span>
                     <span>验证码已发送</span>
                   </div>
@@ -77,15 +77,15 @@
           </div>
           <div class="tag-cont" id="step-3">
             <div class="form-holder forgot-form">
-              <form action="#" type="post">
+              <form action="/forgot_three" type="post">
                 <div class="entry entry-pw clearfix">
                   <label class="fl">新密码</label>
-                  <input class="fl" maxlength="16" type="password" placeholder="请您输入新密码" />
+                  <input class="fl" maxlength="16" type="password" name="newpassword" placeholder="请您输入新密码" />
                   <span class="error-info">请您填写形式正确的密码(6-16位的数字、字母)</span>
                 </div>
                 <div class="entry entry-repw clearfix">
                   <label class="fl">确认新密码</label>
-                  <input class="fl" maxlength="16" type="password" placeholder="再次输入新密码" />
+                  <input class="fl" maxlength="16" type="password" name="repassword" placeholder="再次输入新密码" />
                   <span class="error-info ">两次密码不同</span>
                 </div>
                 <div class="btn-set">
@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class="pop-out">
+<!--       <div class="pop-out">
         <div class="pop-out-cont pop-cont-1 login-container">
           <div class="pop-close">
             <a href="#" title="关闭">
@@ -126,7 +126,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <script type="text/javascript">
       (function($) {
@@ -134,22 +134,45 @@
 
           $('#step-1 .btn-submit').on('click',function(){
             var phone = $('.entry-phone input').val();
-            var captcha = $('.entry-captcha input').val().toLowerCase();
-            var re = /^1\d{10}$/
+            // var captcha = $('.entry-captcha input').val().toLowerCase();
+            // var re = /^1\d{10}$/
             if (re.test(phone)) {
-              if (captcha!='phvq') {
-                $('.entry-captcha input').addClass('error');
-              }else{
-                $('#step-1').removeClass('active');
-                $('#step-2').addClass('active');
-                $('.tag-list li span').removeClass('active');
-                $('.tag-list li span').eq(1).addClass('active');
-              };
+              // if (captcha!='phvq') {
+              //   $('.entry-captcha input').addClass('error');
+              // }else{
+              //   $('#step-1').removeClass('active');
+              //   $('#step-2').addClass('active');
+              //   $('.tag-list li span').removeClass('active');
+              //   $('.tag-list li span').eq(1).addClass('active');
+              // };
             }else{
               $('.entry-phone input').addClass('error');
               $('#step-1 .error-info').addClass('active');
+              return false;
             }
-            return false;
+            // return false;
+            var $elem = $(this);
+            var $form = $(this).closest('form');
+            var url = $form.attr('action');
+            $.ajax({
+              url: url,
+              data: $form.serialize(),
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+              if (response.success == true) {
+                $('#step-1').removeClass('active');
+                $('#step-2').addClass('active');
+                // console.log($('#step-1 form input[name="mobile"]').val());
+                $('#step-2 .mobile').text($('#step-1 form input[name="mobile"]').val());
+                $('.tag-list li span').removeClass('active');
+                $('.tag-list li span').eq(1).addClass('active');
+              } else {
+              }
+            });
+            return false
           })
 
           $('#step-2 .btn-submit').on('click',function(){
@@ -180,6 +203,20 @@
               s = s - 1;
               $i.text(s);
             },1000)
+            var $elem = $(this);
+            var $form = $(this).closest('form');
+            var url = $(this).attr('href');
+            // console.log($('#step-2 .mobile').text());
+            $.ajax({
+              url: url,
+              data: 'mobile='+$('#step-2 .mobile').text(),
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+            });
+            return false
           })
 
           $('#step-3 .btn-submit').on('click',function(){
@@ -190,13 +227,29 @@
               if (pw!==repw) {
                 $('.entry-repw input').addClass('error');
                 $('.entry-repw .error-info').addClass('active');
-              }else{
-                alert('修改密码成功！')
-              };
+              }
             }else{
               $('.entry-pw input').addClass('error');
               $('.entry-pw .error-info').addClass('active');
             };
+            var $elem = $(this);
+            var $form = $(this).closest('form');
+            var url = $form.attr('action');
+            // console.log($('#step-2 .mobile').text());
+            $.ajax({
+              url: url,
+              data: $form.serialize()+'&mobile='+$('#step-2 .mobile').text()+'&authcode='+$('#step-2 form input[name="authcode"]').val(),
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+              if (response.success == true) {
+                window.location.href = "/admin";
+              }else{
+                window.location.href = "/forgot";
+              }
+            });
             return false;
           })
 
