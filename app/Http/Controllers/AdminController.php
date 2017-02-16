@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -43,20 +45,124 @@ class AdminController extends Controller
         return view('admin.message', ['title' => '通知']);
     }
 
-    public function forgot_one() {
+    public function forgot() {
+        return view('admin.forgot', ['title' => '找回密码']);
+    }
+
+    public function forgot_one(Request $request) {
+        $_params = $request->all();
+        // $_result = curlPost(
+        //             'http://120.25.218.156:12001/user/105/',
+        //             json_encode(['token' => session('token'), 'uid' => session('uid'), 'mobile' => ''])
+        //         );
+        // $rules = ['captcha' => 'required|captcha'];
+        $rules = [
+            'mobile' => [
+                'required',
+            ],
+            'captcha' => [
+                'required',
+                'captcha',
+            ],
+        ];
+        $validator = Validator::make($_params, $rules);
+        if ($validator->fails())
+        {
+            return response()->json([
+                    'success' => false,
+                    'message' => $validator->errors()->all(),
+                    'data' => array(),
+                ]);
+        }
+        else
+        {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => array(),
+                ]);
+        }
+        // return view('admin.forgot', ['title' => '通知']);
+    }
+
+    public function forgot_two(Request $request) {
+        $_params = $request->all();
+        return view('admin.forgot', ['title' => '通知']);
+    }
+
+    public function sendcode(Request $request) {
+        $_params = $request->all();
+        $rules = [
+            'mobile' => [
+                'required',
+            ],
+        ];
+        $validator = Validator::make($_params, $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                    'success' => false,
+                    'message' => '',
+                    'data' => array(),
+                ]);
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/user/105/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'mobile' => ''])
+                    json_encode(['mobile' => $_params['mobile']])
                 );
-        return view('admin.forgot', ['title' => '通知']);
+        if($_result['ok'] === true){
+            // Cache::put('code_'.$_params['mobile'], $_code, 5);
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '',
+                'data' => $_result,
+            ]);
     }
 
-    public function forgot_two() {
-        return view('admin.forgot', ['title' => '通知']);
-    }
-
-    public function forgot_three() {
-        return view('admin.forgot', ['title' => '通知']);
+    public function forgot_three(Request $request) {
+        $_params = $request->all();
+        $rules = [
+            'mobile' => [
+                'required',
+            ],
+            'newpassword' => [
+                'required',
+                'same:repassword'
+            ],
+             'authcode' => [
+                'required',
+            ],
+            'repassword' => 'required',
+        ];
+        $validator = Validator::make($_params, $rules);
+        if ($validator->fails()) {
+            return response()->json([
+                    'success' => false,
+                    'message' => $validator->errors()->all(),
+                    'data' => array(),
+                ]);
+        }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/user/109/',
+                    json_encode(['mobile' => $_params['mobile'], 'newpasswd' => $_params['newpassword'], 'authcode' => $_params['authcode']])
+                );
+        if($_result['ok'] === true){
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => array(),
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '',
+                'data' => $_result,
+            ]);
     }
 
     public function login(Request $request) {
@@ -82,7 +188,7 @@ class AdminController extends Controller
         return response()->json([
                 'success' => false,
                 'message' => '账号密码错误',
-                'data' => array(),
+                'data' => $_result,
             ]);
     }
 

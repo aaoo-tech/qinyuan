@@ -29,15 +29,17 @@ class UserController extends Controller
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        $result = [];
-        if(isset($_result['data'])){
-            foreach ($_result['data'] as $value) {
-                if($value['islock'] == 0) {
-                    $result[] = $value;
-                }
-            }
-        }
-        return view('user.index', ['title' => '用户中心', 'total' => count($result), 'totalpage' => ceil(count($result)/10), 'data' => $result]);
+        // $result = [];
+        // if(isset($_result['data'])){
+        //     foreach ($_result['data'] as $value) {
+        //         if($value['islock'] == 0) {
+        //             $result[] = $value;
+        //         }
+        //     }
+        // }
+        echo count($_result['data']);
+        return view('user.index', ['title' => '用户中心', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10),
+                     'data' => $_result['data']]);
     }
 
     public function lock(Request $request) {
