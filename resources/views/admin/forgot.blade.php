@@ -245,8 +245,6 @@
               $('#loading').removeClass('active');
               if (response.success == true) {
                 window.location.href = "/admin";
-              }else{
-                window.location.href = "/forgot";
               }
             });
             return false;
