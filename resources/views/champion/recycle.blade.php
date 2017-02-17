@@ -54,13 +54,20 @@
             </table>
             <div class="table-foot">
               <div class="left-cont fl">
-                <a class="btn btn-batch" href="/champion/recycleoption?optype=4&idlist=" >批量删除</a>
-                <a class="btn btn-batch" href="/champion/recycleoption?optype=3&idlist=" >批量还原</a>
+                <a class="btn btn-batch btn-batch-change btn-remove disable" href="/champion/recycleoption?optype=4&idlist=" >批量删除</a>
+                <a class="btn btn-batch btn-batch-change btn-restore disable" href="/champion/recycleoption?optype=3&idlist=" >批量还原</a>
               </div>
+              @if($data)
               <div class="right-cont">
-                <a class="btn btn-all" href="/champion/recycleoption?idlist=&optype=1" >还原所有</a>
-                <a class="btn btn-all" href="/champion/recycleoption?idlist=&optype=2" >删除所有</a>
+                <a class="btn btn-all btn-restore" href="/champion/recycleoption?idlist=&optype=1 " >还原所有</a>
+                <a class="btn btn-all btn-remove able" href="/champion/recycleoption?idlist=&optype=2" >删除所有</a>
               </div>
+              @else
+              <div class="right-cont">
+                <a class="btn btn-all disable" href="/champion/recycleoption?idlist=&optype=1" >还原所有</a>
+                <a class="btn btn-all disable" href="/champion/recycleoption?idlist=&optype=2" >删除所有</a>
+              </div>
+              @endif
             </div>
           </div>
           @include('base.pagination')

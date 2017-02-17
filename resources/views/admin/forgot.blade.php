@@ -29,14 +29,13 @@
                 {{ csrf_field() }}
                 <div class="entry entry-phone">
                   <input type="text" maxlength="11" name="mobile" placeholder="请输入您的手机号码" />
-                  <span class="error-info">返回的错误信息</span>
+                  <span class="error-info">请输入正确的手机号</span>
                 </div>
                 <div class="entry entry-captcha">
-                  <input type="text" name="captcha" placeholder="请输入验证码" />
+                  <input type="text" name="captcha" maxlength="5" placeholder="请输入验证码" />
                   <div class="captcha">
                     <a href="#">
                       <img src="{{captcha_src()}}" alt="captcha" id="captcha" onclick='this.src=this.src+"?"+Math.random()' />
-                      <!-- <img src="{{ asset('/img/captcha.png') }}"> -->
                       <span onclick='document.getElementById("captcha").src=document.getElementById("captcha").src+"?"+Math.random()'>换一张</span>
                     </a>
                   </div>
@@ -133,43 +132,40 @@
         $(function() {
 
           $('#step-1 .btn-submit').on('click',function(){
-            // var phone = $('.entry-phone input').val();
-            // var captcha = $('.entry-captcha input').val().toLowerCase();
-            // var re = /^1\d{10}$/
-            // if (re.test(phone)) {
-            //   if (captcha!='phvq') {
-            //     $('.entry-captcha input').addClass('error');
-            //   }else{
-            //     $('#step-1').removeClass('active');
-            //     $('#step-2').addClass('active');
-            //     $('.tag-list li span').removeClass('active');
-            //     $('.tag-list li span').eq(1).addClass('active');
-            //   };
-            // }else{
-            //   $('.entry-phone input').addClass('error');
-            //   $('#step-1 .error-info').addClass('active');
-            // }
-            // return false;
-            var $elem = $(this);
-            var $form = $(this).closest('form');
-            var url = $form.attr('action');
-            $.ajax({
-              url: url,
-              data: $form.serialize(),
-              beforeSend: function() { 
-                $('#loading').addClass('active');
-              }
-            }).done(function(response) {
-              $('#loading').removeClass('active');
-              if (response.success == true) {
-                $('#step-1').removeClass('active');
-                $('#step-2').addClass('active');
-                $('.tag-list li span').removeClass('active');
-                $('.tag-list li span').eq(1).addClass('active');
-              } else {
-              }
-            });
-            return false
+            var phone = $('.entry-phone input').val();
+            var captcha = $('.entry-captcha input').val().toLowerCase();
+            var t_phone = /^1\d{10}$/;
+            var t_captcha = /\w{5}$/;
+            if (!t_phone.test(phone)) {
+              $('.entry-phone input').addClass('error');
+              $('#step-1 .error-info').addClass('active');
+            }else{
+              if (!t_captcha.test(captcha)) {
+                $('.entry-captcha input').addClass('error');
+              }else{
+                var $elem = $(this);
+                var $form = $(this).closest('form');
+                var url = $form.attr('action');
+                $.ajax({
+                  url: url,
+                  data: $form.serialize(),
+                  beforeSend: function() { 
+                    $('#loading').addClass('active');
+                  }
+                }).done(function(response) {
+                  $('#loading').removeClass('active');
+                  if (response.success == true) {
+                    $('#step-1').removeClass('active');
+                    $('#step-2').addClass('active');
+                    $('.tag-list li span').removeClass('active');
+                    $('.tag-list li span').eq(1).addClass('active');
+                  } else {
+                    console.log(response);
+                  }
+                });
+              };
+            }
+            return false;
           })
 
           $('#step-2 .btn-submit').on('click',function(){

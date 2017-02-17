@@ -227,8 +227,23 @@
       return false
     })
 
+    // table底部操作 启用／禁用
+    $('.common-table table tr input[type="checkbox"]').on('change', function() {
+      var $btn = $('.common-table .table-foot .btn-batch')
+      $btn.removeClass('able').addClass('disable');
+      var list = $('.common-table table tr input[type="checkbox"]');
+      for(var i=0, len=list.length;i<len;i++){
+        if(list[i].checked){
+          $btn.addClass('able').removeClass('disable');
+          return
+        }
+      }
+    })
+    $('.common-table .table-foot').on('click','.btn.disable', function() {
+      return false;
+    })
     // 批量去回收站
-    $('.common-table .table-foot .btn-batch-to-recycle').on('click', function() {
+    $('.common-table .table-foot').on('click','.btn-to-recycle.able', function() {
       var $tr = $('.common-table table tr');
       var n = $tr.find('td').length;
       var $tbody = $('.common-table table tbody');
@@ -260,50 +275,68 @@
       return false;
     });
 
-    // 回收站 批量还原或删除
-    $('.table-foot .btn-batch').on('click', function() {
-      var $tr = $('table tr');
-      var n = $tr.find('td').length;
-      var $tbody = $('table tbody');
-      var idList = [];
-      $('table tr input[type="checkbox"]').each(function(i,elem){
-        if(elem.checked){
-          idList.push($(this).closest('tr').data('id'));
-        }
-      });
-      var url = $(this).attr('href')+idList.toString();
-      $.ajax({
-        url: url, 
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
-
-        }
-      });
+    // 回收站－批量 还原/删除
+    $('.table-foot').on('click','.btn-batch-change.able', function() {
+      var _href = $(this).attr('href');
+      var message = ''
+      if($(this).hasClass('btn-remove')){
+        message = '确定要删除所选文件吗？';
+      }else{
+        message = '确定要还原所选文件吗？';
+      }
+      _alert(message,function(){
+        var $tr = $('.common-table tr');
+        var n = $tr.find('td').length;
+        var $tbody = $('.common-table tbody');
+        var idList = [];
+        $('.common-table tr input[type="checkbox"]').each(function(i,elem){
+          if(elem.checked){
+            idList.push($(this).closest('tr').data('id'));
+          }
+        });
+        var url = _href+idList.toString();
+        $.ajax({
+          url: url, 
+          beforeSend: function() { 
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          if (response.success == true) {
+            window.location.reload();
+          } else {
+            alert('发生错误');
+          }
+        });
+        return false;
+      })
       return false;
     });
 
     // 还原或删除所有
-    $('.table-foot .btn-all').on('click', function() {
-      var url = $(this).attr('href');
-      $.ajax({
-        url: url, 
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
-
-        }
-      })
+    $('.table-foot .btn-all.able').on('click', function() {
+      var _href = $(this).attr('href');
+      if($(this).hasClass('btn-remove')){
+        message = '确定要删除所有文件吗？';
+      }else{
+        message = '确定要还原所有文件吗？';
+      }
+      _alert(message,function(){
+        $.ajax({
+          url: _href, 
+          beforeSend: function() { 
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          if (response.success == true) {
+            window.location.reload();
+          } else {
+            alert('发生错误');
+          }
+        })
+        return false
+      });
       return false
     })
 
@@ -330,14 +363,28 @@
     })
 
     // logout
-    $('.btn-logout').on('click',function(){
-      $('#login-out-alert').addClass('active');
-      $('.main-menu .user').removeClass('active');
-      return false;
-    });
 
-    $('#login-out-alert .btn-cancel').on('click',function(){
-      $('#login-out-alert').removeClass('active');
+    function _alert(massage,doFunc){
+      var $container = $('#pop-out-alert');
+      $container.addClass('active');
+      $container.find('.alert-tip').text(massage);
+      $container.find('.btn-submit').on('click',doFunc);
+      $container.find('.btn-cancel').on('click',function(){
+        $container.removeClass('active');
+      });
+      return false;
+    }
+
+
+    $('.btn-logout').on('click',function(){
+      _alert('你确定要退出亲缘后台吗？',function(){
+        $.ajax({
+          url: '/logout',
+        }).done(function() {
+          window.location.reload();
+        })
+      });
+      $('.main-menu .user').removeClass('active');
       return false;
     });
 
