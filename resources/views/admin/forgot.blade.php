@@ -65,7 +65,7 @@
                   <div class="captcha">
                     <a class="get-captcha" href="/sendcode">发送验证码</a>
                     <span class="get-captcha" style="display:none" href="#">重新发送(<i data-second='10'>10</i>)</span>
-                    <span>验证码已发送</span>
+                    <!-- <span>验证码已发送</span> -->
                   </div>
                 </div>
                 <div class="btn-set">
