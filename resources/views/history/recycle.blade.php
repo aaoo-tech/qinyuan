@@ -48,13 +48,20 @@
             </table>
             <div class="table-foot">
               <div class="left-cont fl">
-                <a class="btn btn-batch" href="/history/recycleoption?optype=4&idlist=" >批量删除</a>
-                <a class="btn btn-batch" href="/history/recycleoption?optype=3&idlist=" >批量还原</a>
+                <a class="btn btn-batch btn-batch-change btn-remove disable" href="/history/recycleoption?optype=4&idlist=" >批量删除</a>
+                <a class="btn btn-batch btn-batch-change btn-restore disable" href="/history/recycleoption?optype=3&idlist=" >批量还原</a>
               </div>
+              @if($data)
               <div class="right-cont">
-                <a class="btn btn-all" href="/history/recycleoption?optype=1&idlist=" >还原所有</a>
-                <a class="btn btn-all" href="/history/recycleoption?optype=2&idlist=" >删除所有</a>
+                <a class="btn btn-all btn-restore able" href="/history/recycleoption?optype=1&idlist=" >还原所有</a>
+                <a class="btn btn-all btn-remove able" href="/history/recycleoption?optype=2&idlist=" >删除所有</a>
               </div>
+              @else
+              <div class="right-cont">
+                <a class="btn btn-all disable" href="/history/recycleoption?optype=1&idlist=" >还原所有</a>
+                <a class="btn btn-all disable" href="/history/recycleoption?optype=2&idlist=" >删除所有</a>
+              </div>
+              @endif
             </div>
           </div>
           @include('base.pagination')

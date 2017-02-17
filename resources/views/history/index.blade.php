@@ -68,7 +68,7 @@
               </tbody>
             </table>
             <div class="table-foot">
-              <a class="btn btn-batch-to-recycle" href="/history/batchdel?" >批量删除</a>
+              <a class="btn btn-batch btn-to-recycle disable" href="/history/batchdel?" >批量删除</a>
             </div>
           </div>
           @include('base.pagination')
