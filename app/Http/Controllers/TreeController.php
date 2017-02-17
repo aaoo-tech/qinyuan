@@ -12,7 +12,7 @@ class TreeController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/tree/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => -1, 'genetation' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => session('uid'), 'genetation' => '2'])
                 );
         $generation = [];
         foreach ($_result['data'] as $val) {
@@ -22,17 +22,34 @@ class TreeController extends Controller
         }
         // var_dump($_result);
         sort($generation);
-
-        $_g_p = [];
-        foreach ($generation as $val) {
-            $_g_p[$val] = [];
-            foreach ($_result['data'] as $value) {
-                if($val == $value['generation']){
-                    array_push($_g_p[$val], $value);
+        $result = [];
+        for($i=0; $i<count($_result['data']); $i++){
+            if($_result['data'][$i]['sex'] !=2 && $_result['data'][$i]['sex'] !=3){
+                $result[$i] = $_result['data'][$i];
+                $result[$i]['mate'] = [];
+                foreach ($_result['data'] as $value) {
+                    if($value['pid'] == $_result['data'][$i]['uid'] && $value['sex'] ==2 || $value['sex'] ==3){
+                        array_push($result[$i]['mate'], $value);
+                    }
                 }
             }
         }
-        // var_dump($_g_p);
+        // var_dump($result);
+
+        $_generation_p = [];
+        foreach ($generation as $val) {
+            $_generation_p[$val] = [];
+            // $_mate = [];
+            foreach ($result as $value) {
+                if($value['sex'] == 2 || $value['sex'] == 3){
+                    array_push($_mate, $value);
+                }
+                if($val == $value['generation'] && $value['sex'] != 2 && $value['sex'] != 3){
+                    array_push($_generation_p[$val], $value);
+                }
+            }
+        }
+        // var_dump($_generation_p);
 
         // usort($_g_p, function($a, $b) {
         //     if ($a['idx'] == $b['idx'])

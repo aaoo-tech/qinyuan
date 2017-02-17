@@ -133,23 +133,22 @@
         $(function() {
 
           $('#step-1 .btn-submit').on('click',function(){
-            var phone = $('.entry-phone input').val();
+            // var phone = $('.entry-phone input').val();
             // var captcha = $('.entry-captcha input').val().toLowerCase();
             // var re = /^1\d{10}$/
-            if (re.test(phone)) {
-              // if (captcha!='phvq') {
-              //   $('.entry-captcha input').addClass('error');
-              // }else{
-              //   $('#step-1').removeClass('active');
-              //   $('#step-2').addClass('active');
-              //   $('.tag-list li span').removeClass('active');
-              //   $('.tag-list li span').eq(1).addClass('active');
-              // };
-            }else{
-              $('.entry-phone input').addClass('error');
-              $('#step-1 .error-info').addClass('active');
-              return false;
-            }
+            // if (re.test(phone)) {
+            //   if (captcha!='phvq') {
+            //     $('.entry-captcha input').addClass('error');
+            //   }else{
+            //     $('#step-1').removeClass('active');
+            //     $('#step-2').addClass('active');
+            //     $('.tag-list li span').removeClass('active');
+            //     $('.tag-list li span').eq(1).addClass('active');
+            //   };
+            // }else{
+            //   $('.entry-phone input').addClass('error');
+            //   $('#step-1 .error-info').addClass('active');
+            // }
             // return false;
             var $elem = $(this);
             var $form = $(this).closest('form');
