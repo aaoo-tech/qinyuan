@@ -193,6 +193,7 @@
                 $('#loading').addClass('active');
               },
               success: function(response){
+                $('#loading').removeClass('active');
                 if (response.success == true) {
                   location.reload();
                 } else {

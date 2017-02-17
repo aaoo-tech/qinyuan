@@ -1,10 +1,10 @@
-      <div id="login-out-alert">
+      <div id="pop-out-alert">
         <div class="container">
           <div class="box-haader"><span>提示</span></div>
           <div class="box-cont">
-            <p>你确定要退出亲缘后台吗？</p>
+            <p class="alert-tip">你确定要执行这项操作吗？</p>
             <div class="btn-set fl">
-              <a class="btn btn-submit" href="/logout">确定</a>
+              <a class="btn btn-submit" href="#">确定</a>
             </div>
             <div class="btn-set fr">
               <a class="btn btn-cancel" href="#">取消</a>
