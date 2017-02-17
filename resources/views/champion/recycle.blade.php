@@ -59,7 +59,7 @@
               </div>
               @if($data)
               <div class="right-cont">
-                <a class="btn btn-all btn-restore" href="/champion/recycleoption?idlist=&optype=1 " >还原所有</a>
+                <a class="btn btn-all btn-restore able" href="/champion/recycleoption?idlist=&optype=1 " >还原所有</a>
                 <a class="btn btn-all btn-remove able" href="/champion/recycleoption?idlist=&optype=2" >删除所有</a>
               </div>
               @else
