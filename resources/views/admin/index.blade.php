@@ -35,7 +35,7 @@
                 <input class="checkbox" id="isAuto" type="checkbox"/>
                 <label for="isAuto">记住密码</label>
                 <div class="link fr">
-                  <a href="/forgot_one">忘记密码?</a>
+                  <a href="/forgot">忘记密码?</a>
                 </div>
               </div>
               <div class="btn-set">
