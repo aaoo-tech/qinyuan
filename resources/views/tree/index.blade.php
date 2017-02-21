@@ -23,98 +23,99 @@
             </div>
           </div>
         </div>
-        
         <div class="main-body">
           <div class="family-tree">
             <div class="container">
-              <div class="gen clearfix">
-                <div class="gen-info">
-                  <span>1代(天)</span>
+              <div class="tree-part-1">
+                <div class="tree-section clearfix">
+                  <ul class="tree-g1">
+                    <li class="border"></li>
+                    <li class="gen-info">101代</li>
+                    <li class="person p-man" ><p class="p-name">张1</p></li>
+                    <li class="person p-man" ><p class="p-name">张1</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻1</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻1</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻1</p></li>
+                    <li class="person p-man" ><p class="p-name">张1</p></li>
+                    <li class="person p-man current" ><p class="p-name">张1</p></li>
+                  </ul>
                 </div>
-                <div class="persons fl">
-                  <div class="person p-man current" data-uid="x" data-media-url='/image' data-info-url='/personal'>
-                    <p class="p-pic"></p>
-                    <p class="p-name">张天可</p>
-                    <p class="p-sort">(行3)</p>
-                  </div>
+                <div class="tree-section clearfix">
+                  <ul class="tree-g2">
+                    <li class="border"></li>
+                    <li class="gen-info">102代</li>
+                    <li class="person p-man" ><p class="p-name">张2</p></li>
+                    <li class="person p-man" ><p class="p-name">张2</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻2</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻2</p></li>
+                    <li class="person p-man current" ><p class="p-name">张2</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻2</p></li>
+                    <li class="person p-man" ><p class="p-name">张2</p></li>
+                  </ul>
                 </div>
-              </div>
-              <div class="gen clearfix">
-                <div class="gen-info">
-                  <span>2代(端)</span>
-                </div>
-                <div class="persons fl">
-                  <div class="person p-man " data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端德</p>
-                    <p class="p-sort">(行1)</p>
-                  </div>
-                  <div class="person p-woman" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端落</p>
-                    <p class="p-sort">(行2)</p>
-                  </div>
-                  <div class="person p-man current" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端可</p>
-                    <p class="p-sort">(行3)</p>
-                  </div>
-                </div>
-              </div>
-              <div class="gen clearfix">
-                <div class="gen-info">
-                  <span>3代(端)</span>
-                </div>
-                <div class="persons fl">
-                  <div class="person p-man" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端落</p>
-                    <p class="p-sort">(行1)</p>
-                  </div>
-                  <div class="person p-man" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端可</p>
-                    <p class="p-sort">(行2)</p>
-                  </div>
-                  <div class="person p-woman" data-uid="x">
-                    <p class="p-pic "></p>
-                    <p class="p-name">张端雪</p>
-                    <p class="p-sort">(行3)</p>
-                  </div>
-                  <div class="person p-woman" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端雨</p>
-                    <p class="p-sort">(行4)</p>
-                  </div>
-                  <div class="person p-man" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端安</p>
-                    <p class="p-sort">(行5)</p>
-                  </div>
-                  <div class="person p-man " data-uid="x">
-                    <p class="p-pic">
-                      <img src="{{ asset('/img/tr1.jpg') }}">
-                    </p>
-                    <p class="p-name">张端平</p>
-                    <p class="p-sort">(行6)</p>
-                  </div>
-                  <div class="person p-wife p-woman" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">李秀芳</p>
-                    <p class="p-sort">(配偶)</p>
-                  </div>
-                  <div class="person p-man" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端祥</p>
-                    <p class="p-sort">(行7)</p>
-                  </div>
-                  <div class="person p-woman" data-uid="x">
-                    <p class="p-pic"></p>
-                    <p class="p-name">张端月</p>
-                    <p class="p-sort">(行8)</p>
-                  </div>
+                <div class="tree-section clearfix">
+                  <ul class="tree-g3">
+                    <li class="border"></li>
+                    <li class="gen-info">103代</li>
+                    <li class="person p-man" ><p class="p-name">张3</p></li>
+                    <li class="person p-man current" ><p class="p-name">张3</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻3</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻3</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻3</p></li>
+                    <li class="person p-man" ><p class="p-name">张3</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻3</p></li>
+                  </ul>
                 </div>
               </div>
+              <div class="tree-part-2">
+                <span class="border"></span>
+                <div class="tree-section">
+                  <ul class="tree-g4 clearfix">
+                    <li class="gen-info">104代</li>
+                    <li class="gen-info gen-naxt-info">105代</li>
+                    <li class="person p-man current" ><p class="p-name">张4</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻4</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻4</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻4</p></li>
+                  </ul>
+                  <ul class="tree-g5 clearfix">
+                    <li class="border"></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                  </ul>
+                </div>
+                <div class="tree-section">
+                  <ul class="tree-g4 clearfix">
+                    <li class="gen-info">104代</li>
+                    <li class="gen-info gen-naxt-info">105代</li>
+                    <li class="person p-man current" ><p class="p-name">张4</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻4</p></li>
+                  </ul>
+                  <ul class="tree-g5 clearfix">
+                    <li class="border"></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻5</p></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                  </ul>
+                </div>
+                <div class="tree-section">
+                  <ul class="tree-g4 clearfix">
+                    <li class="gen-info">104代</li>
+                    <li class="gen-info gen-naxt-info">105代</li>
+                    <li class="person p-man current" ><p class="p-name">张4</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻4</p></li>
+                  </ul>
+                  <ul class="tree-g5 clearfix">
+                    <li class="border"></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻5</p></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻5</p></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                  </ul>
+                </div>
+              </div>
+              
               <div class="tree-menu">
                 <div class="menu-title"><h3>节点操作</h3></div>
                 <ul>
@@ -163,38 +164,84 @@
     </div>
     <script type="text/javascript">
 
-      var genWidth = [];
-      $('.family-tree .container').width(5000);
-      $('.gen').each(function(i,gen){
-        genWidth.push($(gen).find('.persons').width())
-      })
-      genList = $('.gen');
-      for(var i = 0, l = genList.length-1; i<l;i++ ){
-        var cLeft = 0;
-        if (i===0||i===l) {
-          cLeft = genWidth[i]/2;
-        }else{
-          cLeft = $(genList[i]).find('.current').position().left+41;
-        };
-        var nextWidth = genWidth[i+1]/2;
-        if(cLeft<nextWidth){
-          for(var x=0;x<=i;x++){
-            var marginLeft = parseInt($($('.persons')[x]).css('margin-left'));
-            $($('.persons')[x]).css('margin-left',marginLeft+nextWidth-cLeft);
-          }
-        }else{
-          $(genList[i+1]).find('.persons').css('margin-left',cLeft-nextWidth)
+      var width_g5 = $('.tree-part-2').width();
+      var tree_left = 0;
+      $('.tree-part-1 ul').each(function(i,ul){
+        var $ul = $(ul);
+        var $p = $ul.find('.current');
+        var p_left = $p.position().left
+        var ul_left = width_g5/2 - p_left - $p.width()/2;
+        $ul.css('margin-left',ul_left);
+        if (p_left>width_g5/2) {
+          tree_left = Math.max(tree_left,p_left-width_g5/2); ;
         }
-      }
+        $('.family-tree').css('padding-left',tree_left+$p.width()/2);
+      });
 
-      var maxWidth = 0;
-      $('.persons').each(function(i,p){
-        var w = $(p).width() + parseInt($(p).css('margin-left'));
-        var genInfo = $(p).parent().find('.gen-info');
-        genInfo.css('left', w - $(p).width()/2);
-        maxWidth = Math.max(maxWidth,w);
+      $('.family-tree ul').each(function(i,ul){
+        var $ul = $(ul);
+        var width_border = $ul.find('li:not(.p-wife,.p-husband)').eq(-1).position().left;
+        $ul.find('.border').width(width_border);
+      });
+
+      (function(){ 
+        var $s = $('.tree-part-2 .tree-section');
+        var pw = $s.eq(0).find('.current').width()/4;
+        var a = $s.eq(0).find('.current').position().left;
+        var b = $s.eq(-1).find('.current').position().left;
+        var ww = $s.eq(-1).width();
+        var width_boder = width_g5 - a + b - ww - 2*pw;
+        $('.tree-part-2 > .border').css({
+          'margin-left' :a + pw,
+          'width' :width_boder,
+        })
+      }());
+
+      $('.gen-info').each(function(i,elem){
+        var $c = $(elem).closest('ul').find('.current');
+        console.log($c)
+        var l = $c.position().left;
+        var w = $c.width();
+        $(elem).css('left',l+w/4);
       })
-      $('.family-tree .container').width(maxWidth+30);
+
+
+      
+
+
+
+      // var genWidth = [];
+      // $('.family-tree .container').width(5000);
+      // $('.gen').each(function(i,gen){
+      //   genWidth.push($(gen).find('.persons').width())
+      // })
+      // genList = $('.gen');
+      // for(var i = 0, l = genList.length-1; i<l;i++ ){
+      //   var cLeft = 0;
+      //   if (i===0||i===l) {
+      //     cLeft = genWidth[i]/2;
+      //   }else{
+      //     cLeft = $(genList[i]).find('.current').position().left+41;
+      //   };
+      //   var nextWidth = genWidth[i+1]/2;
+      //   if(cLeft<nextWidth){
+      //     for(var x=0;x<=i;x++){
+      //       var marginLeft = parseInt($($('.persons')[x]).css('margin-left'));
+      //       $($('.persons')[x]).css('margin-left',marginLeft+nextWidth-cLeft);
+      //     }
+      //   }else{
+      //     $(genList[i+1]).find('.persons').css('margin-left',cLeft-nextWidth)
+      //   }
+      // }
+
+      // var maxWidth = 0;
+      // $('.persons').each(function(i,p){
+      //   var w = $(p).width() + parseInt($(p).css('margin-left'));
+      //   var genInfo = $(p).parent().find('.gen-info');
+      //   genInfo.css('left', w - $(p).width()/2);
+      //   maxWidth = Math.max(maxWidth,w);
+      // })
+      
 
       var _person;
       var selectMenu = function(t,p){
@@ -261,3 +308,83 @@
       });
     </script>
 @include('base.footer')
+
+
+<!--               <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>1代(天)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man current" data-uid="x" data-media-url='/image' data-info-url='/personal'>
+                    <p class="p-pic"></p>
+                    <p class="p-name current">张天可</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>2代(端)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man current" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端德</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端落</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端可</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>3代(端)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端落</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端可</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic "></p>
+                    <p class="p-name">张端雪</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                  <div class="person p-woman current" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端雨</p>
+                    <p class="p-sort">(行4)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端安</p>
+                    <p class="p-sort">(行5)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic">
+                      <img src="{{ asset('/img/tr1.jpg') }}">
+                    </p>
+                    <p class="p-name ">张端平</p>
+                    <p class="p-sort">(行6)</p>
+                  </div>
+                  <div class="person p-wife p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">李秀芳</p>
+                    <p class="p-sort">(配偶)</p>
+                  </div>
+                </div>
+              </div> -->
