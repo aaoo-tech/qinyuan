@@ -42,7 +42,7 @@ class TreeController extends Controller
             if($_result['data'][$i]['sex'] !=2 && $_result['data'][$i]['sex'] !=3){
                 $result[$i] = $_result['data'][$i];
                 $result[$i]['mate'] = [];
-                // $result[$i]['child'] = [];
+                $result[$i]['child'] = false;
                 $result[$i]['pidx'] = 0;
                 // $_tmp[$result[$i]['uid']] = [];
                 foreach ($_result['data'] as $value) {
@@ -51,6 +51,9 @@ class TreeController extends Controller
                     }
                     if($value['uid'] == $result[$i]['pid']&& $value['sex'] !=2 && $value['sex'] !=3){
                         $result[$i]['pidx'] = $value['idx'];
+                    }
+                    if($value['pid'] == $result[$i]['uid']&& $value['sex'] !=2 && $value['sex'] !=3){
+                        $result[$i]['child'] = true;
                     }
                 }
             }

@@ -33,10 +33,10 @@
                     <li class="border"></li>
                     <li class="gen-info">{{$k}}代</li>
                     @foreach ($datum as $val)
-                    <li class="person @if($val['sex'] == 0) p-woman @elseif($val['sex'] == 1) p-man @endif @if($current == $val['uid']) current @endif uid-{{$val['uid']}} pid-{{$val['pid']}}"><p class="p-name">{{$val['uid']}}{{$val['uname']}}</p></li>
+                    <li class="person @if($val['sex'] == 0) p-woman @elseif($val['sex'] == 1) p-man @endif @if($current == $val['uid']) current @endif @if($val['child'] === true) active @endif uid-{{$val['uid']}} pid-{{$val['pid']}}"><p class="p-name">{{$val['uid']}}{{$val['uname']}}</p></li>
                     @if(count($val['mate']) > 0)
                     @foreach ($val['mate'] as $value)
-                      <li class="person @if($val['sex'] == 2) p-wife @elseif($val['sex'] == 3) p-husband @endif" ><p class="p-name">{{$value['uname']}}</p></li>
+                      <li class="person @if($value['sex'] == 2) p-wife @elseif($value['sex'] == 3) p-husband @endif" ><p class="p-name">{{$value['uname']}}</p></li>
                     @endforeach
                     @endif
                     @endforeach
