@@ -30,62 +30,41 @@
         </div>
         <div class="main-body">
           <div class="album-list clearfix">
-
-            <div class="album">
-              <a class="album-name" href="/image/detail" title="夏子轩家的全家福">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
-              </a>
-              <span class="pic-sum">16</span>
-              <ul class="album-info">
-                <li>创建人：夏雪</li>
-                <li>创建时间：2016.11.05</li>
-              </ul>
-              <div class="btn-menu">
-                <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
-                <ul class="fr">
-                  <li><a class="btn-pop" data-pop="pop-cont-1" href="#" ><i class="iconfont icon-edit"></i>编辑</a></li>
-                  <li><a class="btn-pop" data-pop="pop-cont-2" href="#"><i class="iconfont icon-remove"></i>删除</a></li>
+          @if($data)
+            @foreach ($data as $datum)
+            @if($datum['dtype'] == 1)
+              <div class="album">
+                <a class="album-name" href="/image/detail?did={{$datum['fid']}}" title="{{$datum['fname']}}">
+                  <img src="{{$datum['picurl']}}">
+                  <span>{{$datum['fname']}}</span>
+                </a>
+                <span class="pic-sum">{{$datum['cnt']}}</span>
+                <ul class="album-info">
+                  <li>创建人：{{$datum['uname']}}</li>
+                  <li>创建时间：<?php echo date('Y-m-d', $datum['update_time']); ?></li>
                 </ul>
+                <div class="btn-menu">
+                  <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
+                  <ul class="fr">
+                    <li><a class="btn-pop" data-pop="pop-cont-1" href="#" ><i class="iconfont icon-edit"></i>编辑</a></li>
+                    <li><a class="btn-pop" data-pop="pop-cont-2" href="#"><i class="iconfont icon-remove"></i>删除</a></li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="album">
-              <a class="album-name" href="/image/detail" title="夏子轩家的全家福">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
-              </a>
-              <span class="pic-sum">16</span>
-              <ul class="album-info">
-                <li>创建人：夏雪</li>
-                <li>创建时间：2016.11.05</li>
-              </ul>
-              <div class="btn-menu">
-                <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
-                <ul class="fr">
-                  <li><a class="btn-pop" data-pop="pop-cont-1" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
-                  <li><a class="btn-pop" data-pop="pop-cont-2" href="#"><i class="iconfont icon-remove"></i>删除</a></li>
-                </ul>
+            @else
+              <div class="pic">
+                <label for="pic-1"></label>
+                <input type="checkbox" style="display:none" id="pic-1"/>
+                <a class="pic-name" target="_blank" href="{{$datum['picurl']}}" title="{{$datum['fname']}}">
+                  <img src="{{$datum['picurl']}}">
+                  <span>{{$datum['fname']}}</span>
+                </a>
               </div>
-            </div>
-            <div class="album">
-              <a class="album-name" href="/image/detail" title="夏子轩家的全家福">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩家的全家福</span>
-              </a>
-              <span class="pic-sum">16</span>
-              <ul class="album-info">
-                <li>创建人：夏雪</li>
-                <li>创建时间：2016.11.05</li>
-              </ul>
-              <div class="btn-menu">
-                <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
-                <ul class="fr">
-                  <li><a class="btn-pop" data-pop="pop-cont-1" href="#"><i class="iconfont icon-edit"></i>编辑</a></li>
-                  <li><a class="btn-pop" data-pop="pop-cont-2" href="#"><i class="iconfont icon-remove"></i>删除</a></li>
-                </ul>
-              </div>
-            </div>
-
+            @endif
+            @endforeach
+          @else
+          @endif
+          @include('base.pagination')
           </div>
         </div>
       </div>

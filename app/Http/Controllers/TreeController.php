@@ -94,11 +94,11 @@ class TreeController extends Controller
             $_data[$key] = $value;
         }
         if($_params['fid'] == -1){
-            $current = $_data[$generation[2]];
+            $current = $_data[$generation[2]][0]['uid'];
         }else{
             $current = $_params['fid'];
         }
-        // var_dump($_data);
+        // var_dump(current($_data));
         // for($i=count($generation)-1; $i>0; $i--){
         //     $d = $_generation_p[$generation[$i]];
         //     foreach ($_generation_p[$generation[$i]] as $key => $value) {
@@ -115,6 +115,7 @@ class TreeController extends Controller
         //         $_data[] = $val;
         //     }
         // }
+        // var_dump($current);
         return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current]);
     }
 

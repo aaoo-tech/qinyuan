@@ -23,50 +23,41 @@
         <div class="main-body">
           <div class="pic-list clearfix">
 
-            <div class="pic">
-              <label for="pic-1"></label>
-              <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" target="_blank" href="/img/pic.jpg" title="夏子轩广东南国鼎峰装饰江苏区总设计师">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩广东南国鼎峰装饰江苏区总设计师</span>
-              </a>
-            </div>
-
-            <div class="pic">
-              <label for="pic-1"></label>
-              <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" target="_blank" href="/img/pic.jpg" title="国际注册高级室内设计师">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>国际注册高级室内设计师</span>
-              </a>
-            </div>
-
-            <div class="pic">
-              <label for="pic-1"></label>
-              <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" target="_blank" href="/img/pic.jpg" title="广东南国鼎峰装饰江苏区总设计师资深收费设计师">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>广东南国鼎峰装饰江苏区总设计师资深收费设计师</span>
-              </a>
-            </div>
-
-            <div class="pic">
-              <label for="pic-1"></label>
-              <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" target="_blank" href="/img/pic.jpg" title="夏子轩">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩</span>
-              </a>
-            </div>
-
-            <div class="pic">
-              <label for="pic-1"></label>
-              <input type="checkbox" style="display:none" id="pic-1"/>
-              <a class="pic-name" target="_blank" href="/img/pic.jpg" title="夏子轩">
-                <img src="{{ asset('/img/pic.jpg') }}">
-                <span>夏子轩</span>
-              </a>
-            </div>
+          @if($data)
+            @foreach ($data as $datum)
+            @if($datum['ftype'] == 1)
+              <div class="album">
+                <a class="album-name" href="/image/detail?did={{$datum['fid']}}" title="{{$datum['desc']}}">
+                  <img src="{{$datum['fname']}}">
+                  <span>{{$datum['desc']}}</span>
+                </a>
+                <span class="pic-sum">{{$datum['cnt']}}</span>
+                <ul class="album-info">
+                  <li>创建人：{{$datum['uname']}}</li>
+                  <li>创建时间：<?php echo date('Y-m-d', $datum['update_time']); ?></li>
+                </ul>
+                <div class="btn-menu">
+                  <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
+                  <ul class="fr">
+                    <li><a class="btn-pop" data-pop="pop-cont-1" href="#" ><i class="iconfont icon-edit"></i>编辑</a></li>
+                    <li><a class="btn-pop" data-pop="pop-cont-2" href="#"><i class="iconfont icon-remove"></i>删除</a></li>
+                  </ul>
+                </div>
+              </div>
+            @else
+              <div class="pic">
+                <label for="pic-1"></label>
+                <input type="checkbox" style="display:none" id="pic-1"/>
+                <a class="pic-name" target="_blank" href="{{$datum['fname']}}" title="{{$datum['desc']}}">
+                  <img src="{{$datum['fname']}}">
+                  <span>{{$datum['desc']}}</span>
+                </a>
+              </div>
+            @endif
+            @endforeach
+          @else
+          @endif
+          @include('base.pagination')
 
           </div>
         </div>

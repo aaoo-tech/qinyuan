@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,12 +12,25 @@ class ImageController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'page' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            $_params['page'] = '1';
+        }
         $_result = curlPost(
-                    'http://120.25.218.156:12001/center/111/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => '771'])
+                    'http://120.25.218.156:12001/center/102/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('image.index', ['title' => '家族名片']);
+        $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
+        return view('image.index', ['title' => '家族名片', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
     public function createdir(Request $request) {
@@ -100,11 +115,24 @@ class ImageController extends Controller
 
     public function detail(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'page' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            $_params['page'] = '1';
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/104/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => '1', 'type' => '0', 'pageno' => '1', 'pagenum' => '10'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => $_params['did'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        return view('image.detail', ['title' => '相册名称', 'data' => $_result['data']]);
+        // var_dump($_result);
+        return view('image.detail', ['title' => '相册名称', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
     public function delfile(Request $request) {
