@@ -52,7 +52,7 @@
               <h3>手机验证</h3>
               <p>
                 <span>手机号：</span>
-                <span>139******34</span>
+                <span class="mobile">139******34</span>
               </p>
             </div>
             <div class="form-holder">
@@ -61,11 +61,11 @@
               </div>
               <form action="/forgot_two" type="post">
                 <div class="entry clearfix">
-                  <input class="fl" type="text" placeholder="请输入手机验证码" />
+                  <input class="fl" type="text" name="authcode" placeholder="请输入手机验证码" />
                   <div class="captcha">
                     <a class="get-captcha" href="/sendcode">发送验证码</a>
                     <span class="get-captcha" style="display:none" href="#">重新发送(<i data-second='10'>10</i>)</span>
-                    <span>验证码已发送</span>
+                    <!-- <span>验证码已发送</span> -->
                   </div>
                 </div>
                 <div class="btn-set">
@@ -79,12 +79,12 @@
               <form action="/forgot_three" type="post">
                 <div class="entry entry-pw clearfix">
                   <label class="fl">新密码</label>
-                  <input class="fl" maxlength="16" type="password" placeholder="请您输入新密码" />
+                  <input class="fl" maxlength="16" type="password" name="newpassword" placeholder="请您输入新密码" />
                   <span class="error-info">请您填写形式正确的密码(6-16位的数字、字母)</span>
                 </div>
                 <div class="entry entry-repw clearfix">
                   <label class="fl">确认新密码</label>
-                  <input class="fl" maxlength="16" type="password" placeholder="再次输入新密码" />
+                  <input class="fl" maxlength="16" type="password" name="repassword" placeholder="再次输入新密码" />
                   <span class="error-info ">两次密码不同</span>
                 </div>
                 <div class="btn-set">
@@ -157,6 +157,7 @@
                   if (response.success == true) {
                     $('#step-1').removeClass('active');
                     $('#step-2').addClass('active');
+                    $('#step-2 .mobile').text($('#step-1 form input[name="mobile"]').val());
                     $('.tag-list li span').removeClass('active');
                     $('.tag-list li span').eq(1).addClass('active');
                   } else {
@@ -169,10 +170,17 @@
           })
 
           $('#step-2 .btn-submit').on('click',function(){
-            $('#step-2').removeClass('active');
-            $('#step-3').addClass('active');
-            $('.tag-list li span').removeClass('active');
-            $('.tag-list li span').eq(2).addClass('active');
+            console.log('12');
+            var t_captcha = /\w{4}$/;
+            if (!t_captcha.test($('#step-2 form input[name="authcode"]').val())) {
+              $('#step-2 form input[name="authcode').addClass('error');
+              $('#step-2 .error-info').addClass('active');
+            }else{
+              $('#step-2').removeClass('active');
+              $('#step-3').addClass('active');
+              $('.tag-list li span').removeClass('active');
+              $('.tag-list li span').eq(2).addClass('active');
+            }
             return false;
           })
 
@@ -196,6 +204,20 @@
               s = s - 1;
               $i.text(s);
             },1000)
+            var $elem = $(this);
+            var $form = $(this).closest('form');
+            var url = $(this).attr('href');
+            // console.log($('#step-2 .mobile').text());
+            $.ajax({
+              url: url,
+              data: 'mobile='+$('#step-2 .mobile').text(),
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+            });
+            return false
           })
 
           $('#step-3 .btn-submit').on('click',function(){
@@ -206,13 +228,27 @@
               if (pw!==repw) {
                 $('.entry-repw input').addClass('error');
                 $('.entry-repw .error-info').addClass('active');
-              }else{
-                alert('修改密码成功！')
-              };
+              }
             }else{
               $('.entry-pw input').addClass('error');
               $('.entry-pw .error-info').addClass('active');
             };
+            var $elem = $(this);
+            var $form = $(this).closest('form');
+            var url = $form.attr('action');
+            // console.log($('#step-2 .mobile').text());
+            $.ajax({
+              url: url,
+              data: $form.serialize()+'&mobile='+$('#step-2 .mobile').text()+'&authcode='+$('#step-2 form input[name="authcode"]').val(),
+              beforeSend: function() { 
+                $('#loading').addClass('active');
+              }
+            }).done(function(response) {
+              $('#loading').removeClass('active');
+              if (response.success == true) {
+                window.location.href = "/admin";
+              }
+            });
             return false;
           })
 

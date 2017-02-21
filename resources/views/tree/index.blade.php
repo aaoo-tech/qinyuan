@@ -26,6 +26,26 @@
         <div class="main-body">
           <div class="family-tree">
             <div class="container">
+            @if($data)
+              @foreach ($data as $k => $datum)
+                <div class="tree-section clearfix">
+                  <ul class="tree-g{{$k}}">
+                    <li class="border"></li>
+                    <li class="gen-info">{{$k}}代</li>
+                    @foreach ($datum as $val)
+                    <li class="person @if($val['sex'] == 0) p-woman @elseif($val['sex'] == 1) p-man @endif @if($current == $val['uid']) current @endif" ><p class="p-name">{{$val['uname']}}</p></li>
+                    @if(count($val['mate']) > 0)
+                    @foreach ($val['mate'] as $value)
+                      <li class="person @if($val['sex'] == 2) p-wife @elseif($val['sex'] == 3) p-husband @endif" ><p class="p-name">{{$value['uname']}}</p></li>
+                    @endforeach
+                    @endif
+                    <!-- <li class="person p-man current" ><p class="p-name">张1</p></li> -->
+                    @endforeach
+                  </ul>
+                </div>
+              @endforeach
+            @else
+            @endif
               <div class="tree-part-1">
                 <div class="tree-section clearfix">
                   <ul class="tree-g1">
@@ -82,6 +102,8 @@
                     <li class="border"></li>
                     <li class="person p-man" ><p class="p-name">张5</p></li>
                   </ul>
+<<<<<<< HEAD
+=======
                 </div>
                 <div class="tree-section">
                   <ul class="tree-g4 clearfix">
@@ -97,6 +119,7 @@
                     <li class="person p-man" ><p class="p-name">张5</p></li>
                     <li class="person p-man" ><p class="p-name">张5</p></li>
                   </ul>
+>>>>>>> 0e151d86c9dbf69541405d87cc4844a5cfc58603
                 </div>
                 <div class="tree-section">
                   <ul class="tree-g4 clearfix">
@@ -110,6 +133,24 @@
                     <li class="person p-man" ><p class="p-name">张5</p></li>
                     <li class="person p-wife" ><p class="p-name">妻5</p></li>
                     <li class="person p-man" ><p class="p-name">张5</p></li>
+<<<<<<< HEAD
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                  </ul>
+                </div>
+                <div class="tree-section">
+                  <ul class="tree-g4 clearfix">
+                    <li class="gen-info">104代</li>
+                    <li class="gen-info gen-naxt-info">105代</li>
+                    <li class="person p-man current" ><p class="p-name">张4</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻4</p></li>
+                  </ul>
+                  <ul class="tree-g5 clearfix">
+                    <li class="border"></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+                    <li class="person p-wife" ><p class="p-name">妻5</p></li>
+                    <li class="person p-man" ><p class="p-name">张5</p></li>
+=======
+>>>>>>> 0e151d86c9dbf69541405d87cc4844a5cfc58603
                     <li class="person p-wife" ><p class="p-name">妻5</p></li>
                     <li class="person p-man" ><p class="p-name">张5</p></li>
                   </ul>

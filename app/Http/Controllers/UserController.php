@@ -37,7 +37,7 @@ class UserController extends Controller
         //         }
         //     }
         // }
-        echo count($_result['data']);
+        // echo count($_result['data']);
         return view('user.index', ['title' => '用户中心', 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10),
                      'data' => $_result['data']]);
     }

@@ -149,7 +149,7 @@ class AdminController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/user/109/',
-                    json_encode(['mobile' => $_params['mobile'], 'newpasswd' => $_params['newpassword'], 'authcode' => $_params['authcode']])
+                    json_encode(['mobile' => $_params['mobile'], 'newpasswd' => md5(md5($_params['newpassword']).'aiya'), 'authcode' => $_params['authcode']])
                 );
         if($_result['ok'] === true){
             return response()->json([
