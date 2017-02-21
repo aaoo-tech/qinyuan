@@ -26,6 +26,26 @@
         <div class="main-body">
           <div class="family-tree">
             <div class="container">
+            @if($data)
+              @foreach ($data as $k => $datum)
+                <div class="tree-section clearfix">
+                  <ul class="tree-g{{$k}}">
+                    <li class="border"></li>
+                    <li class="gen-info">{{$k}}代</li>
+                    @foreach ($datum as $val)
+                    <li class="person @if($val['sex'] == 0) p-woman @elseif($val['sex'] == 1) p-man @endif @if($current == $val['uid']) current @endif" ><p class="p-name">{{$val['uname']}}</p></li>
+                    @if(count($val['mate']) > 0)
+                    @foreach ($val['mate'] as $value)
+                      <li class="person @if($val['sex'] == 2) p-wife @elseif($val['sex'] == 3) p-husband @endif" ><p class="p-name">{{$value['uname']}}</p></li>
+                    @endforeach
+                    @endif
+                    <!-- <li class="person p-man current" ><p class="p-name">张1</p></li> -->
+                    @endforeach
+                  </ul>
+                </div>
+              @endforeach
+            @else
+            @endif
               <div class="tree-part-1">
                 <div class="tree-section clearfix">
                   <ul class="tree-g1">
