@@ -223,15 +223,17 @@
           $('#step-3 .btn-submit').on('click',function(){
             var pw = $('.entry-pw input').val();
             var repw = $('.entry-repw input').val();
-            var re = /^[0-9a-zA-Z_#]{6,16}$/
+            var re = /^[0-9a-zA-Z_#]{6,16}$/;
             if (re.test(pw)) {
               if (pw!==repw) {
                 $('.entry-repw input').addClass('error');
                 $('.entry-repw .error-info').addClass('active');
+                return false;
               }
             }else{
               $('.entry-pw input').addClass('error');
               $('.entry-pw .error-info').addClass('active');
+              return false;
             };
             var $elem = $(this);
             var $form = $(this).closest('form');
