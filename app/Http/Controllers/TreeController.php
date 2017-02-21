@@ -26,7 +26,7 @@ class TreeController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/tree/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid'], 'genetation' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => 17089, 'genetation' => '2'])
                 );
         $generation = [];
         foreach ($_result['data'] as $val) {
