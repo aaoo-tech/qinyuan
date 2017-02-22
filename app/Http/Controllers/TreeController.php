@@ -119,7 +119,7 @@ class TreeController extends Controller
         //     }
         // }
         // var_dump($current);
-        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current]);
+        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data' => $current]);
     }
 
     public function search(Request $request) {

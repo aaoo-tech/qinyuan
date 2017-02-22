@@ -250,7 +250,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 .gen .person { position: relative; float: left; width: 80px; padding: 0; border: 1px solid #ccc; margin-right: 40px; border-radius: 3px; }
 .gen .person.p-man { border-color: #799BB3; }
 .gen .person.p-woman { border-color: #F37983; }*/
-/*.gen .person.current { box-shadow: 0 1px 3px 1px #FFC107; }*/
+/*.gen .person.active { box-shadow: 0 1px 3px 1px #FFC107; }*/
 /*.gen .person.p-husband,
 .gen .person.p-wife { margin-left: -30px; }
 .gen .person:last-child { margin-right: 0; }
@@ -260,7 +260,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 .gen .person.p-husband:before { border-left: none; }
 .gen .person.p-wife:after,
 .gen .person.p-husband:after { position: absolute; top: 50%; right: 100%; width: 11px; border-top: 1px solid #ccc; content: ""; }
-.gen .person.current:after { position: absolute; top: 100%; left: 50%; height: 50px; border-left: 1px solid #ccc; content: ""; }
+.gen .person.active:after { position: absolute; top: 100%; left: 50%; height: 50px; border-left: 1px solid #ccc; content: ""; }
 .gen .person:last-child:before { width: 20px; }
 .gen .person .p-pic { width: 80px; height: 80px; line-height: 80px; font-size: 60px; }
 .gen .person .p-pic img { height: 100%; }
@@ -294,6 +294,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 
 
 .family-tree .person { position: relative; width: 80px; padding: 0;  margin: 50px 5px; border: 1px solid #ccc; text-align: center; }
+.family-tree .person.current { border: 1px solid #f00; }
 .family-tree .person:before { position: absolute; bottom: calc(100% + 2px); left: 50%; height: 50px; border-left: 1px solid #ccc; background-color: #fff; content: ""; }
 .family-tree .person.p-wife,
 .family-tree .person.p-husband { margin-left: 0px; }
@@ -309,7 +310,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 /*.family-tree .tree-part-2 .tree-section:before {  position: absolute; top: -2px; left: 0; width: 100%; content: ""; border-top: 1px solid #ccc; }*/
 /*.family-tree .tree-part-2 .tree-section:first-child:before { left: calc(50% - 49px); width: calc(50% + 50px); }*/
 /*.family-tree .tree-part-2 .tree-section:last-child:before { left:auto; right: calc(50% - 49px); width: calc(50% + 50px); }*/
-.family-tree .current:after { position: absolute; top: 100%; left: 50%; height: 50px; border-left: 1px solid #ccc; content: ""; }
+.family-tree .active:after { position: absolute; top: 100%; left: 50%; height: 50px; border-left: 1px solid #ccc; content: ""; }
 
 
 .family-tree .tree-menu { display: none; position: absolute; z-index: 2; width: 120px; overflow: hidden; border-radius: 3px; box-shadow: 0 0 5px 0 #ccc; }
@@ -360,12 +361,15 @@ input.error{ border-color: #E50012; color: #E50012; }
 .admin-set.show .add-form { display: block; height: 90px; }
 .admin-set .add-form .entry { margin: 16px 0 26px; }
 .admin-set .add-form input { margin: 0 20px; padding: 0 10px; line-height: 28px; }
+.admin-set .add-form .ipt-mobile { width: 195px; }
 .admin-set .add-form .btn-set { margin: 16px 0 26px; }
 .admin-set .add-form .btn-add { width: 70px; line-height: 30px; background-color: #009943; }
 .admin-list .list-title { margin-bottom: 20px; }
 .admin-list li { padding: 10px 0; line-height: 26px; border-bottom: 1px solid #E5E3E3; }
+.admin-list li .admin-id { display: inline-block; width: 30px; }
 .admin-list li .admin-id:after { content: "."; margin-right: 5px; }
-.admin-list li .admin-name { display: inline-block; width: 60px; }
+.admin-list li .admin-name { display: inline-block; width: 120px; }
+.admin-list li .admin-account { display: inline-block;  width: 120px; }
 .admin-list li a { display: none; width: 60px; margin-left: 20px; text-align: center; color: #fff; background-color: #E50011; }
 .admin-set.show .admin-list li a { display: inline-block; }
 

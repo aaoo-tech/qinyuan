@@ -23,17 +23,23 @@
             </div>
           </div>
         </div>
+        <script type="text/javascript">
+          var g = <?php echo json_encode($tree_data);?>;
+          console.log(g)
+        </script>
         <div class="main-body">
           <div class="family-tree">
             <div class="container">
             @if($data)
+              <div class="tree-part-1">
               @foreach ($data as $k => $datum)
                 <div class="tree-section clearfix">
                   <ul class="tree-g{{$k}}">
                     <li class="border"></li>
                     <li class="gen-info">{{$k}}代</li>
                     @foreach ($datum as $val)
-                    <li class="person @if($val['sex'] == 0) p-woman @elseif($val['sex'] == 1) p-man @endif @if($current == $val['uid']) current @endif @if($val['child'] === true) active @endif uid-{{$val['uid']}} pid-{{$val['pid']}}"><p class="p-name">{{$val['uid']}}{{$val['uname']}}</p></li>
+                    <li class="person @if($val['sex'] == 0) p-woman @elseif($val['sex'] == 1) p-man @endif @if($current == $val['uid']) current @endif @if($val['child'] === true) active @endif uid-{{$val['uid']}} pid-{{$val['pid']}}">
+                    <p class="p-name">{{$val['uid']}}{{$val['uname']}}</p></li>
                     @if(count($val['mate']) > 0)
                     @foreach ($val['mate'] as $value)
                       <li class="person @if($value['sex'] == 2) p-wife @elseif($value['sex'] == 3) p-husband @endif" ><p class="p-name">{{$value['uname']}}</p></li>
@@ -43,9 +49,10 @@
                   </ul>
                 </div>
               @endforeach
+              </div>
             @else
             @endif
-              <div class="tree-part-1">
+              <!-- <div class="tree-part-1">
                 <div class="tree-section clearfix">
                   <ul class="tree-g1">
                     <li class="border"></li>
@@ -56,7 +63,7 @@
                     <li class="person p-wife" ><p class="p-name">妻1</p></li>
                     <li class="person p-wife" ><p class="p-name">妻1</p></li>
                     <li class="person p-man" ><p class="p-name">张1</p></li>
-                    <li class="person p-man current" ><p class="p-name">张1</p></li>
+                    <li class="person p-man active" ><p class="p-name">张1</p></li>
                   </ul>
                 </div>
                 <div class="tree-section clearfix">
@@ -67,7 +74,7 @@
                     <li class="person p-man" ><p class="p-name">张2</p></li>
                     <li class="person p-wife" ><p class="p-name">妻2</p></li>
                     <li class="person p-wife" ><p class="p-name">妻2</p></li>
-                    <li class="person p-man current" ><p class="p-name">张2</p></li>
+                    <li class="person p-man active" ><p class="p-name">张2</p></li>
                     <li class="person p-wife" ><p class="p-name">妻2</p></li>
                     <li class="person p-man" ><p class="p-name">张2</p></li>
                   </ul>
@@ -77,7 +84,7 @@
                     <li class="border"></li>
                     <li class="gen-info">103代</li>
                     <li class="person p-man" ><p class="p-name">张3</p></li>
-                    <li class="person p-man current" ><p class="p-name">张3</p></li>
+                    <li class="person p-man active" ><p class="p-name">张3</p></li>
                     <li class="person p-wife" ><p class="p-name">妻3</p></li>
                     <li class="person p-wife" ><p class="p-name">妻3</p></li>
                     <li class="person p-wife" ><p class="p-name">妻3</p></li>
@@ -92,7 +99,7 @@
                   <ul class="tree-g4 clearfix">
                     <li class="gen-info">104代</li>
                     <li class="gen-info gen-naxt-info">105代</li>
-                    <li class="person p-man current" ><p class="p-name">张4</p></li>
+                    <li class="person p-man active" ><p class="p-name">张4</p></li>
                     <li class="person p-wife" ><p class="p-name">妻4</p></li>
                     <li class="person p-wife" ><p class="p-name">妻4</p></li>
                     <li class="person p-wife" ><p class="p-name">妻4</p></li>
@@ -106,22 +113,7 @@
                   <ul class="tree-g4 clearfix">
                     <li class="gen-info">104代</li>
                     <li class="gen-info gen-naxt-info">105代</li>
-                    <li class="person p-man current" ><p class="p-name">张4</p></li>
-                    <li class="person p-wife" ><p class="p-name">妻4</p></li>
-                  </ul>
-                  <ul class="tree-g5 clearfix">
-                    <li class="border"></li>
-                    <li class="person p-man" ><p class="p-name">张5</p></li>
-                    <li class="person p-wife" ><p class="p-name">妻5</p></li>
-                    <li class="person p-man" ><p class="p-name">张5</p></li>
-                    <li class="person p-man" ><p class="p-name">张5</p></li>
-                  </ul>
-                </div>
-                <div class="tree-section">
-                  <ul class="tree-g4 clearfix">
-                    <li class="gen-info">104代</li>
-                    <li class="gen-info gen-naxt-info">105代</li>
-                    <li class="person p-man current" ><p class="p-name">张4</p></li>
+                    <li class="person p-man active" ><p class="p-name">张4</p></li>
                     <li class="person p-wife" ><p class="p-name">妻4</p></li>
                   </ul>
                   <ul class="tree-g5 clearfix">
@@ -133,7 +125,7 @@
                     <li class="person p-man" ><p class="p-name">张5</p></li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
               
               <div class="tree-menu">
                 <div class="menu-title"><h3>节点操作</h3></div>
@@ -187,7 +179,7 @@
       var tree_left = 0;
       $('.tree-part-1 ul').each(function(i,ul){
         var $ul = $(ul);
-        var $p = $ul.find('.current');
+        var $p = $ul.find('.active');
         var p_left = $p.position().left
         var ul_left = width_g5/2 - p_left - $p.width()/2;
         $ul.css('margin-left',ul_left);
@@ -205,9 +197,9 @@
 
       (function(){ 
         var $s = $('.tree-part-2 .tree-section');
-        var pw = $s.eq(0).find('.current').width()/4;
-        var a = $s.eq(0).find('.current').position().left;
-        var b = $s.eq(-1).find('.current').position().left;
+        var pw = $s.eq(0).find('.active').width()/4;
+        var a = $s.eq(0).find('.active').position().left;
+        var b = $s.eq(-1).find('.active').position().left;
         var ww = $s.eq(-1).width();
         var width_boder = width_g5 - a + b - ww - 2*pw;
         $('.tree-part-2 > .border').css({
@@ -217,7 +209,7 @@
       }());
 
       $('.gen-info').each(function(i,elem){
-        var $c = $(elem).closest('ul').find('.current');
+        var $c = $(elem).closest('ul').find('.active');
         console.log($c)
         var l = $c.position().left;
         var w = $c.width();
@@ -240,7 +232,7 @@
       //   if (i===0||i===l) {
       //     cLeft = genWidth[i]/2;
       //   }else{
-      //     cLeft = $(genList[i]).find('.current').position().left+41;
+      //     cLeft = $(genList[i]).find('.active').position().left+41;
       //   };
       //   var nextWidth = genWidth[i+1]/2;
       //   if(cLeft<nextWidth){
@@ -327,3 +319,83 @@
       });
     </script>
 @include('base.footer')
+
+
+<!--               <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>1代(天)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man active" data-uid="x" data-media-url='/image' data-info-url='/personal'>
+                    <p class="p-pic"></p>
+                    <p class="p-name active">张天可</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>2代(端)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man active" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端德</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端落</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端可</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="gen clearfix">
+                <div class="gen-info">
+                  <span>3代(端)</span>
+                </div>
+                <div class="persons fl">
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端落</p>
+                    <p class="p-sort">(行1)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端可</p>
+                    <p class="p-sort">(行2)</p>
+                  </div>
+                  <div class="person p-woman" data-uid="x">
+                    <p class="p-pic "></p>
+                    <p class="p-name">张端雪</p>
+                    <p class="p-sort">(行3)</p>
+                  </div>
+                  <div class="person p-woman active" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端雨</p>
+                    <p class="p-sort">(行4)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">张端安</p>
+                    <p class="p-sort">(行5)</p>
+                  </div>
+                  <div class="person p-man" data-uid="x">
+                    <p class="p-pic">
+                      <img src="{{ asset('/img/tr1.jpg') }}">
+                    </p>
+                    <p class="p-name ">张端平</p>
+                    <p class="p-sort">(行6)</p>
+                  </div>
+                  <div class="person p-wife p-woman" data-uid="x">
+                    <p class="p-pic"></p>
+                    <p class="p-name">李秀芳</p>
+                    <p class="p-sort">(配偶)</p>
+                  </div>
+                </div>
+              </div> -->
