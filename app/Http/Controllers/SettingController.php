@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Validator;
 use App\Http\Requests;
 
 class SettingController extends Controller
@@ -23,10 +23,12 @@ class SettingController extends Controller
             $_params['page'] = '1';
         }
         $_result = curlPost(
-                    'http://120.25.218.156:12001/info/109/',
+                    'http://120.25.218.156:12001/user/103/',
                     json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        return view('setting.index', ['title' => '设置', 'data' => $_result['data']], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10));
+        // var_dump($_result);
+        return view('setting.index', ['title' => '设置', 'data' => $_result['data'], 'total' => $_result['totalpage'], 
+                    'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
     public function add(Request $request) {
@@ -111,7 +113,6 @@ class SettingController extends Controller
 
     public function updatepassword(Request $request) {
         $_params = $request->all();
-        // var_dump($_params);
         $_result = curlPost(
                     'http://120.25.218.156:12001/user/106/',
                     json_encode(['token' => session('token'), 'uid' => $_params['id'], 'newpasswd' => $_params['newpasswd'], 'authcode' => $_params['authcode']])

@@ -26,7 +26,7 @@ class TreeController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/tree/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => 17089, 'genetation' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => 17059, 'genetation' => '2'])
                 );
         $generation = [];
         foreach ($_result['data'] as $val) {
@@ -42,7 +42,7 @@ class TreeController extends Controller
             if($_result['data'][$i]['sex'] !=2 && $_result['data'][$i]['sex'] !=3){
                 $result[$i] = $_result['data'][$i];
                 $result[$i]['mate'] = [];
-                // $result[$i]['child'] = [];
+                $result[$i]['child'] = false;
                 $result[$i]['pidx'] = 0;
                 // $_tmp[$result[$i]['uid']] = [];
                 foreach ($_result['data'] as $value) {
@@ -51,6 +51,9 @@ class TreeController extends Controller
                     }
                     if($value['uid'] == $result[$i]['pid']&& $value['sex'] !=2 && $value['sex'] !=3){
                         $result[$i]['pidx'] = $value['idx'];
+                    }
+                    if($value['pid'] == $result[$i]['uid']&& $value['sex'] !=2 && $value['sex'] !=3){
+                        $result[$i]['child'] = true;
                     }
                 }
             }
@@ -116,7 +119,7 @@ class TreeController extends Controller
         //     }
         // }
         // var_dump($current);
-        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current]);
+        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data' => $current]);
     }
 
     public function search(Request $request) {

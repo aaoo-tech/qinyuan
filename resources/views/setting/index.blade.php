@@ -59,6 +59,7 @@
               </ul>
             </div>
           </div>
+          @include('base.pagination')
         </div>
       </div>
     </div>
