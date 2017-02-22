@@ -26,7 +26,7 @@ class TreeController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/tree/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => 17089, 'genetation' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => 17059, 'genetation' => '2'])
                 );
         $generation = [];
         foreach ($_result['data'] as $val) {
@@ -101,7 +101,7 @@ class TreeController extends Controller
         }else{
             $current = $_params['fid'];
         }
-        // var_dump(current($_data));
+        // var_dump($_data);
         // for($i=count($generation)-1; $i>0; $i--){
         //     $d = $_generation_p[$generation[$i]];
         //     foreach ($_generation_p[$generation[$i]] as $key => $value) {
@@ -123,6 +123,33 @@ class TreeController extends Controller
     }
 
     public function search(Request $request) {
-
+        $_params = $request->all();
+        $rules = [
+            'keyword' => [
+                'required',
+            ],
+            'page' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            if(isset($validator->failed()['keyword'])){
+                $_params['keyword'] = ' ';
+            }
+            if(isset($validator->failed()['page'])){
+                $_params['page'] = '1';
+            }
+        }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/tree/101/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'sname' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
+                );
+        var_dump($_result);
+        $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
+        return view('tree.search', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 }

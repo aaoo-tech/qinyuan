@@ -170,16 +170,34 @@
           })
 
           $('#step-2 .btn-submit').on('click',function(){
-            console.log('12');
-            var t_captcha = /\w{4}$/;
+            var t_captcha = /^\d{4}$/;
             if (!t_captcha.test($('#step-2 form input[name="authcode"]').val())) {
               $('#step-2 form input[name="authcode').addClass('error');
               $('#step-2 .error-info').addClass('active');
+              return false;
             }else{
-              $('#step-2').removeClass('active');
-              $('#step-3').addClass('active');
-              $('.tag-list li span').removeClass('active');
-              $('.tag-list li span').eq(2).addClass('active');
+              var $elem = $(this);
+              var $form = $(this).closest('form');
+              var url = $form.attr('action');
+              // console.log($('#step-2 .mobile').text());
+              $.ajax({
+                url: url,
+                data: $form.serialize()+'&mobile='+$('#step-2 .mobile').text(),
+                beforeSend: function() { 
+                  $('#loading').addClass('active');
+                }
+              }).done(function(response) {
+                $('#loading').removeClass('active');
+                if (response.success == true) {
+                  $('#step-2').removeClass('active');
+                  $('#step-3').addClass('active');
+                  $('.tag-list li span').removeClass('active');
+                  $('.tag-list li span').eq(2).addClass('active');
+                }else{
+                  $('#step-2 form input[name="authcode').addClass('error');
+                  $('#step-2 .error-info').addClass('active');
+                }
+              });
             }
             return false;
           })

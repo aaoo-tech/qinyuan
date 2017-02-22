@@ -12,7 +12,7 @@
               <span class="album-sum">7</span>个相册
             </div>
             <div class="btn-set fr">
-              <a class="btn-add btn-pop" data-pop="pop-cont-3"  href="#">创建相册</a>
+              <a class="btn-add btn-pop" data-pop="pop-cont-3"  href="/image/adddir">创建相册</a>
             </div>
             <div class="form-holder form-search fr">
               <form action="#" method="POST">
@@ -47,7 +47,7 @@
                   <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
                   <ul class="fr">
                     <li><a class="btn-pop" data-pop="pop-cont-1" href="#" ><i class="iconfont icon-edit"></i>编辑</a></li>
-                    <li><a class="btn-pop" data-pop="pop-cont-2" href="#"><i class="iconfont icon-remove"></i>删除</a></li>
+                    <li><a class="btn-pop" data-pop="pop-cont-2" href="/image/deldir?did={{$datum['fid']}}"><i class="iconfont icon-remove"></i>删除</a></li>
                   </ul>
                 </div>
               </div>

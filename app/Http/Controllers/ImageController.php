@@ -33,6 +33,10 @@ class ImageController extends Controller
         return view('image.index', ['title' => '家族名片', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
+    public function adddir(Request $request) {
+        return view('image.adddir', ['title' => ' 增加']);
+    }
+
     public function createdir(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
@@ -57,7 +61,7 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/101/',
-                    json_encode(['token' => session('token'), 'id' => $_params['id'], 'did' => $_params['did']])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => $_params['did']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
