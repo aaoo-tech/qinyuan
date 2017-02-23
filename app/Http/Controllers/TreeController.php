@@ -12,7 +12,7 @@ class TreeController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
-        $_params['fid'] = 17059;
+        // $_params['fid'] = 17059;
         $rules = [
             'fid' => [
                 'required',
@@ -142,6 +142,7 @@ class TreeController extends Controller
             unset($pidx);
             $_data[$key] = $value;
         }
+        // var_dump($_data);
 
         if($_params['fid'] == -1){
             $current = $_data[$generation[2]][0]['uid'];
@@ -162,15 +163,17 @@ class TreeController extends Controller
             $ancestor = [];
             $tree_data_1 = array_slice($_data, 0, array_search($_current_generation, $generation)+1, true);
         }
-        $_tree_data_2 = array_slice($_data, array_search($_current_generation+1, $generation));
+        $_tree_data_2 = array_slice($_data, array_search($_current_generation, $generation)+1);
         $tree_data_2 = [];
-        for($i=0; $i<count($_tree_data_2)-1; $i++){
+        for($i=0; $i<count($_tree_data_2); $i++){
             foreach ($_tree_data_2[$i] as $key => $value) {
                 $_tmp[0][0] = $value;
                 $_tmp[1] = [];
-                foreach ($_tree_data_2[$i+1] as $k => $val) {
-                    if($value['uid'] == $val['pid']){
-                        array_push($_tmp[1], $val);
+                if($i+1 < count($_tree_data_2)){
+                    foreach ($_tree_data_2[$i+1] as $k => $val) {
+                        if($value['uid'] == $val['pid']){
+                            array_push($_tmp[1], $val);
+                        }
                     }
                 }
                 array_push($tree_data_2, $_tmp);
