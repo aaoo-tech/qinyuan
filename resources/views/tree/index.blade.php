@@ -52,13 +52,25 @@
                       <li class="border"></li>
                       <li class="gen-info">{{$g}}代</li>
                       @foreach ($list as $p)
-                      <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}"><p class="p-name">{{$p['uid']}}{{$p['uname']}}</p></li>
+                      <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif">
+                        <p class="p-pic">
+                          <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                        </p>
+                        <p class="p-name">{{$p['uname']}}</p>
+                        <p class="p-sort">行{{$p['idx']}}</p>
+                      </li>
                       @if(count($p['mate']) > 0)
                         @foreach ($p['mate'] as $m)
-                          <li data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" ><p class="p-name">{{$m['uname']}}</p></li>
+                          <li data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" >
+                            <p class="p-pic">
+                              <img src="@if(!!$m['avatar'])$m['avatar'] @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                            </p>
+                            <p class="p-name">{{$m['uname']}}</p>
+                            <p class="p-sort">配偶</p>
+                          </li>
                         @endforeach
                       @endif
-                      @if($p['child'] === true)
+                      @if($p['child'] === true && $current == $p['uid'])
                         <li class="gen-info gen-naxt-info">{{$p['generation']+1}}代</li>
                       @endif
                       @endforeach
@@ -67,41 +79,65 @@
                   @endforeach
                 @endif
               </div>
+              @if($tree_data_2)
               <div class="tree-part-2">
-                @if($tree_data_2)
-                  <span class="border"></span>
-                  @foreach ($tree_data_2 as $list)
-                  <div class="tree-section clearfix">
-                    <ul class="tree-g4 clearfix">
-                      @foreach ($list[0] as $p)
-                      <li data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}}"><p class="p-name">{{$p['uid']}}{{$p['uname']}}</p></li>
-                      @if(count($p['mate']) > 0)
-                        @foreach ($p['mate'] as $m)
-                        <li  data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif"><p class="p-name">{{$m['uname']}}</p></li>
-                        @endforeach
-                      @endif
-                      @if($p['child'] === true)
-                        <li class="gen-info gen-naxt-info">{{$p['generation']+1}}代</li>
-                      @endif
+                <span class="border"></span>
+                @foreach ($tree_data_2 as $list)
+                <div class="tree-section clearfix">
+                  <ul class="tree-g4 clearfix">
+                    @foreach ($list[0] as $p)
+                    <li class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif" data-uid="{{$p['uid']}}">
+                      <p class="p-pic">
+                        <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                      </p>
+                      <p class="p-name">{{$p['uname']}}</p>
+                      <p class="p-sort">行{{$p['idx']}}</p>
+                    </li>
+                    @if(count($p['mate']) > 0)
+                      @foreach ($p['mate'] as $m)
+                      <li data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
+                        <p class="p-pic">
+                          <img src="@if(!!$m['avatar'])$m['avatar'] @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}} @endif">
+                        </p>
+                        <p class="p-name">{{$m['uname']}}</p>
+                        <p class="p-sort">配偶</p>
+                      </li>
                       @endforeach
-                    </ul>
-                    @if($list[1])
-                    <ul class="tree-g5 clearfix">
-                      <li class="border"></li>
-                      @foreach ($list[1] as $p)
-                      <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}"><p class="p-name">{{$p['uid']}}{{$p['uname']}}</p></li>
-                      @if(count($p['mate']) > 0)
-                        @foreach ($p['mate'] as $m)
-                        <li  data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif"><p class="p-name">{{$m['uname']}}</p></li>
-                        @endforeach
-                      @endif
-                      @endforeach
-                    </ul>
                     @endif
-                  </div>
-                  @endforeach
-                @endif
+                    @if($p['child'] === true)
+                      <li class="gen-info gen-naxt-info">{{$p['generation']+1}}代</li>
+                    @endif
+                    @endforeach
+                  </ul>
+                  @if($list[1])
+                  <ul class="tree-g5 clearfix">
+                    <li class="border"></li>
+                    @foreach ($list[1] as $p)
+                    <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}">
+                      <p class="p-pic">
+                        <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                      </p>
+                      <p class="p-name">{{$p['uname']}}</p>
+                      <p class="p-sort">行{{$p['idx']}}</p>
+                    </li>
+                    @if(count($p['mate']) > 0)
+                      @foreach ($p['mate'] as $m)
+                      <li  data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
+                        <p class="p-pic">
+                          <img src="@if(!!$m['avatar'])$m['avatar'] @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else{{asset('/img/p-man.png')}} @endif">
+                        </p>
+                        <p class="p-name">{{$m['uname']}}</p>
+                        <p class="p-sort">配偶</p>
+                      </li>
+                      @endforeach
+                    @endif
+                    @endforeach
+                  </ul>
+                  @endif
+                </div>
+                @endforeach
               </div>
+              @endif
               <div class="tree-menu">
                 <div class="menu-title"><h3>节点操作</h3></div>
                 <ul>
@@ -150,31 +186,45 @@
     </div>
     <script type="text/javascript">
 
-      var width_g5 = $('.tree-part-2').width();
+      var width_p2 = $('.tree-part-2').width();
+
+
+
       var tree_left = 0;
+      var current_left = 0;
+      // 前3代位移对齐
       $('.tree-part-1 ul').each(function(i,ul){
         var $ul = $(ul);
-
         $p=$ul.find('.active, .current');
         var p_left = $p.position().left
-        var ul_left = width_g5/2 - p_left - $p.width()/2;
-
+        var ul_left = width_p2/2 - p_left - $p.width()/2;
         $ul.css('margin-left',ul_left);
-
-        if (p_left>width_g5/2) {
-          tree_left = Math.max(tree_left,p_left-width_g5/2); ;
+        if (p_left>width_p2/2) {
+          tree_left = Math.max(tree_left,p_left-width_p2/2); ;
         }
         $('.family-tree').css('padding-left',tree_left+$p.width()/2);
-
       });
+      // 第4代，仅有一人时位移对齐
+      if($('.tree-part-2 .tree-section').length === 1){
+        $('.tree-g4').addClass('p1');
+        (function(){ 
+          var $s = $('.tree-part-2 .tree-section');
+          var c_left = $('.tree-part-1 .current').closest('ul').css('margin-left');
+          var a_left = $s.find('.active').position().left;
+          var p_margin = $('.tree-part-1 .current').css('margin-left');
+          var m = parseInt(c_left) - a_left - parseInt(p_margin);
+          $s.css('margin-left',m);
+        }());
+      };
 
+
+      // 代数居中
       $('.tree-part-1 .gen-info').each(function(i,elem){
         var $c = $(elem).closest('ul').find('.active, .current');
         var l = $c.position().left;
         var w = $c.width();
         $(elem).css('left',l+w/4);
       });
-
       $('.tree-part-2 .gen-info').each(function(i,elem){
         if (i>=0) {
           var $c = $(elem).closest('ul').find('.person:not(.p-wife,.p-husband)');
@@ -184,20 +234,23 @@
         }
       });
 
+      // 画横线
       $('.family-tree ul').each(function(i,ul){
         var $ul = $(ul);
         var width_border = $ul.find('li:not(.p-wife,.p-husband)').eq(-1).position().left;
         $ul.find('.border').width(width_border);
       });
-
       (function(){ 
         var $s = $('.tree-part-2 .tree-section');
         if ($s.length>0){
-          var pw = $s.find('.person').width()/2;
-          var left_1 = $s.eq(0).find('.person').position().left + pw + 28;
-          var left_2 = $s.eq(-1).find('.person').position().left + pw + 28;
-          var right = $s.eq(-1).width() - left_2 + 40;
-          var width_boder = width_g5 - left_1 - right;
+          var $p = $s.find('.person');
+          var w = $p.width();
+          var p = parseInt($s.css('padding-left'));
+          var m = parseInt($p.css('margin-left'));
+          var left_1 = $s.eq(0).find('.person').position().left + w/2 + p + m;
+          var left_2 = $s.eq(-1).find('.person').position().left + w/2 + p + m;
+          var right = $s.eq(-1).width() + 2*p - left_2;
+          var width_boder = width_p2 - left_1 - right;
           $('.tree-part-2 > .border').css({
             'left' : left_1,
             'width' : width_boder,
@@ -306,11 +359,9 @@
         
         var $elem = $(this);
         var now = (new Date()).getTime();
-        console.log(lastTouchEnd);
         if (now - lastTouchEnd <= 300) {
           var url = '/tree?fid='+$elem.data('uid');
           window.location.replace(url);
-          console.log(url);
         }
         lastTouchEnd = now;
       });
