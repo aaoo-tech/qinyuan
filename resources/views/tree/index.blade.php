@@ -24,33 +24,16 @@
           </div>
         </div>
         <script type="text/javascript">
+          var back_data = <?php echo json_encode($back_data) ?>;
           var tree_data_1 = <?php echo json_encode($tree_data_1) ?>;
           var tree_data_2 = <?php echo json_encode($tree_data_2) ?>;
           console.log('tree_data_1',tree_data_1);
           console.log('tree_data_2',tree_data_2);
+          console.log('back_data',back_data);
         </script>
         <div class="main-body">
           <div class="family-tree">
-            <div class="container">
-<!--             @if($data)
-              @foreach ($data as $k => $datum)
-                <div class="tree-section clearfix">
-                  <ul class="tree-g{{$k}}">
-                    <li class="border"></li>
-                    <li class="gen-info">{{$k}}代</li>
-                    @foreach ($datum as $val)
-                    <li class="person @if($val['sex'] == 0) p-woman @elseif($val['sex'] == 1) p-man @endif @if($current == $val['uid']) current @endif @if($val['child'] === true) active @endif uid-{{$val['uid']}} pid-{{$val['pid']}}"><p class="p-name">{{$val['uid']}}{{$val['uname']}}</p></li>
-                    @if(count($val['mate']) > 0)
-                    @foreach ($val['mate'] as $value)
-                      <li class="person @if($value['sex'] == 2) p-wife @elseif($value['sex'] == 3) p-husband @endif" ><p class="p-name">{{$value['uname']}}</p></li>
-                    @endforeach
-                    @endif
-                    @endforeach
-                  </ul>
-                </div>
-              @endforeach
-            @else
-            @endif -->
+            <div class="container clearfix">
               @if($ancestor)
               <div class="tree-ancestor">
                 @if($ancestor)
@@ -69,7 +52,7 @@
                       <li class="border"></li>
                       <li class="gen-info">{{$g}}代</li>
                       @foreach ($list as $p)
-                      <li class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}"><p class="p-name">{{$p['uid']}}{{$p['uname']}}</p></li>
+                      <li class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}"><p class="p-name">{{$p['uid']}}{{$p['uname']}}</p></li>
                       @if(count($p['mate']) > 0)
                       @foreach ($p['mate'] as $m)
                         <li class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" ><p class="p-name">{{$m['uname']}}</p></li>
@@ -213,6 +196,8 @@
         })
       }());
 
+
+
       // var genWidth = [];
       // $('.family-tree .container').width(5000);
       // $('.gen').each(function(i,gen){
@@ -305,6 +290,10 @@
         e.preventDefault();
         e.stopPropagation();
       }
+
+      $('.person').on('click',function(){
+        
+      })
 
       $('.family-tree .container').on('click',function (){
         $('.family-tree .tree-menu').hide();
