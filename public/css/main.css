@@ -289,7 +289,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 
 .family-tree .tree-g5 li { display: inline-block; }
 
-.family-tree .person { position: relative; width: 80px; padding: 0;  margin: 50px 5px; border: 1px solid #ccc; text-align: center; }
+.family-tree .person { position: relative; width: 80px; padding: 40px 0;  margin: 50px 5px; border: 1px solid #ccc; text-align: center; }
 .family-tree .person.current { border: 1px solid #f00; }
 .family-tree .person:before { position: absolute; bottom: calc(100% + 2px); left: 50%; height: 50px; border-left: 1px solid #ccc; background-color: #fff; content: ""; }
 .family-tree .person.p-wife,
