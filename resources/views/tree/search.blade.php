@@ -26,6 +26,43 @@
         <div class="main-body">
           <div class="family-tree">
             <div class="container">
+              <table>
+                <col width="50px"></col>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col></col>
+                <col width="175px"></col>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>排序</th>
+                    <th>姓名</th>
+                    <th>第几代</th>
+                    <th>父/母</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @if($data)
+                @foreach ($data as $datum)
+                  <tr>
+                    <td><img src="{{$datum['avatar']}}"></td>
+                    <td>{{$datum['uid']}}</td>
+                    <td><a href="/tree?fid={{$datum['uid']}}">{{$datum['uname']}}</a></td>
+                    <td>{{$datum['generation']}}</td>
+                    <td>{{$datum['father']}}</td>
+                  </tr>
+                @endforeach
+                @else
+                  <tr>
+                    <td colspan="5">空</td>
+                  </tr>
+                @endif
+                </tbody>
+              </table>
+              @include('base.pagination')
             </div>
           </div>
         </div>

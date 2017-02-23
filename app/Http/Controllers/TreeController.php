@@ -12,6 +12,7 @@ class TreeController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
+        $_params['fid'] = 17059;
         $rules = [
             'fid' => [
                 'required',
@@ -26,7 +27,7 @@ class TreeController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/tree/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => 17059, 'genetation' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid'], 'genetation' => '2'])
                 );
         $generation = [];
         foreach ($_result['data'] as $val) {
@@ -34,9 +35,9 @@ class TreeController extends Controller
                 $generation[] = $val['generation'];
             }
         }
-        // var_dump($_result);
-        // $_result['data'][5]['pid'] = 16091;
+
         sort($generation);
+
         $result = [];
         for($i=0; $i<count($_result['data']); $i++){
             if($_result['data'][$i]['sex'] !=2 && $_result['data'][$i]['sex'] !=3){
@@ -58,6 +59,7 @@ class TreeController extends Controller
                 }
             }
         }
+
         foreach ($result as $value) {
             usort($value['mate'], function($a, $b) {
                 if ($a['idx'] == $b['idx'])
@@ -65,6 +67,59 @@ class TreeController extends Controller
                 return ($a['idx'] > $b['idx']) ? 1 : -1;
             });
         }
+
+        // // 取祖先代数
+        // $ancestor_g = array_shift($generation);
+        // foreach ($result as $value) {
+        //     // 取祖先
+        //     if($ancestor_g == $value['generation']){
+        //         $ancestor = $value;
+        //     }
+        //     //取当前代数
+        //     if($value['uid'] == 17059){
+        //         $generation_a = $value['generation'];
+        //     }
+        // }
+        // // 父级（包括自己）
+        // $generation_p = [];
+        // // 子级（只有二代）
+        // $generation_c = [];
+        // foreach ($generation as $val) {
+        //     if($val <= $generation_a){
+        //         $generation_p[$val] = [];
+        //         foreach ($result as $value) {
+        //             if($val == $value['generation']){
+        //                 array_push($generation_p[$val], $value);
+        //             }
+        //         }
+        //     }else{
+        //         $i = $val - $generation_a;
+        //         $generation_c[$i] = [];
+        //         foreach ($result as $value) {
+        //             if($val == $value['generation']){
+        //                 array_push($generation_c[$i], $value);
+        //             }
+        //         }
+        //     }
+        // }
+        // // tree前部分所需数据
+        // $tree_data_1= $generation_p;
+        // // tree后部分所需数据
+        // $tree_data_2 = [];
+        // foreach($generation_c[1] as $p_4) {
+        //     $t=[];
+        //     $g_4=[$p_4];
+        //     $g_5=[];
+        //     foreach($generation_c[2] as $p_5) {
+        //         if($p_4['uid'] == $p_5['pid']){
+        //             array_push($g_5, $p_5);
+        //         }
+        //     }
+        //     $t[0]=$g_4;
+        //     $t[1]=$g_5;
+        //     array_push($tree_data_2,$t);
+        // }
+
         $_generation_p = [];
         foreach ($generation as $val) {
             $_generation_p[$val] = [];
@@ -74,16 +129,7 @@ class TreeController extends Controller
                 }
             }
         }
-        // $_generation_p['165'][1]['pid'] = 16091;
-        // var_dump($_generation_p);
-        // foreach ($_generation_p as $value) {
-        //     usort($value, function($a, $b) {
-        //         if ($a['idx'] == $b['idx'])
-        //             return 0;
-        //         return ($a['idx'] > $b['idx']) ? 1 : -1;
-        //     });
-        // }
-        // var_dump($_generation_p);
+
         foreach ($_generation_p as $key => $value) {
             foreach ($value as $k => $val) {
                 $pid[$k] = $val['pid'];
@@ -96,11 +142,46 @@ class TreeController extends Controller
             unset($pidx);
             $_data[$key] = $value;
         }
+
         if($_params['fid'] == -1){
             $current = $_data[$generation[2]][0]['uid'];
         }else{
             $current = $_params['fid'];
         }
+        $_current_generation = '';
+        foreach ($_result['data'] as $value) {
+            if($value['uid'] == $current){
+                $_current_generation = $value['generation'];
+            }
+        }
+        // var_dump(array_search($_current_generation, $generation));
+        if($_data[$generation[0]][0]['pid'] == -1){
+            $ancestor = $_data[$generation[0]];
+            $tree_data_1 = array_slice($_data, 1, array_search($_current_generation, $generation), true);
+        }else{
+            $ancestor = [];
+            $tree_data_1 = array_slice($_data, 0, array_search($_current_generation, $generation)+1, true);
+        }
+        $_tree_data_2 = array_slice($_data, array_search($_current_generation+1, $generation));
+        $tree_data_2 = [];
+        for($i=0; $i<count($_tree_data_2)-1; $i++){
+            foreach ($_tree_data_2[$i] as $key => $value) {
+                $_tmp[0][0] = $value;
+                $_tmp[1] = [];
+                foreach ($_tree_data_2[$i+1] as $k => $val) {
+                    if($value['uid'] == $val['pid']){
+                        array_push($_tmp[1], $val);
+                    }
+                }
+                array_push($tree_data_2, $_tmp);
+                unset($_tmp);
+            }
+        }
+        // var_dump($_data);
+        // foreach ($tree_data_2 as $key => $value) {
+        //     var_dump($value[1]);
+        // }
+        // var_dump($tree_data_2);
         // var_dump($_data);
         // for($i=count($generation)-1; $i>0; $i--){
         //     $d = $_generation_p[$generation[$i]];
@@ -119,7 +200,9 @@ class TreeController extends Controller
         //     }
         // }
         // var_dump($current);
-        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data' => $current]);
+        // return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data' => $current]);
+
+        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data_1' => $tree_data_1, 'tree_data_2' => $tree_data_2, 'ancestor' => $ancestor]);
     }
 
     public function search(Request $request) {
