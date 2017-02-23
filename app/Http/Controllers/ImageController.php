@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Helpers\AliyunOss;
+
 class ImageController extends Controller
 {
     public function index(Request $request) {
@@ -41,7 +43,7 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '0', 'dirname' => 'test12346', 'type' => '1', 'jurisdiction' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => $_params['jurisdiction']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -77,12 +79,23 @@ class ImageController extends Controller
             ]);
     }
 
+    public function editdir(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/center/111/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => $_params['did']])
+                );
+        // var_dump($_result);
+        return view('image.editdir', ['title' => '编辑', 'data' => $_result['data'][0]]);
+    }
+
     public function udpatedir(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/102/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '771', 'ftype' => '1', 'fname' => '233dd', 'jurisdiction' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['did'], 'ftype' => '1', 'fname' => $_params['fname']])
                 );
+        // var_dump($_result);
         if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,
@@ -97,11 +110,26 @@ class ImageController extends Controller
             ]);
     }
 
+    public function upload(Request $request) {
+        return view('image.upload', ['title' => '编辑']);
+    }
+
     public function uploadfile(Request $request) {
         $_params = $request->all();
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $file = $request->file('file');
+            $mimeType = $file->getMimeType();
+            $entension = $file->getClientOriginalExtension();
+            $_result = $request->file('file')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+            $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+        }
+        // return response()->json([
+        //         'error' => false,
+        //         'path' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url'])
+        //     ]);
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/103/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => '1', 'did' => '1', 'url' => 'http', 'desc' => '123', 'jurisdiction' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'did' => '566', 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -143,7 +171,7 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/105/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid']])
                 );
         if($_result['ok'] === true) {
             return response()->json([

@@ -91,7 +91,7 @@ class TreeController extends Controller
             $_data[$key] = $value;
         }
         // var_dump($_data);
-
+        $current = '';
         if($_params['fid'] == -1){
             // $current = $_data[$generation[2]][0]['uid'];
             foreach ($_data[$generation[2]] as $value) {
@@ -123,19 +123,21 @@ class TreeController extends Controller
         }else{
             $_count = 2;
         }
-        for($i=0; $i<$_count-1; $i++){
-            foreach ($_tree_data_2[$i] as $key => $value) {
-                $_tmp[0][0] = $value;
-                $_tmp[1] = [];
-                if($i+1 < count($_tree_data_2)){
-                    foreach ($_tree_data_2[$i+1] as $k => $val) {
-                        if($value['uid'] == $val['pid']){
-                            array_push($_tmp[1], $val);
+        if(count($_tree_data_2) > 0){
+            for($i=0; $i<$_count-1; $i++){
+                foreach ($_tree_data_2[$i] as $key => $value) {
+                    $_tmp[0][0] = $value;
+                    $_tmp[1] = [];
+                    if($i+1 < count($_tree_data_2)){
+                        foreach ($_tree_data_2[$i+1] as $k => $val) {
+                            if($value['uid'] == $val['pid']){
+                                array_push($_tmp[1], $val);
+                            }
                         }
                     }
+                    array_push($tree_data_2, $_tmp);
+                    unset($_tmp);
                 }
-                array_push($tree_data_2, $_tmp);
-                unset($_tmp);
             }
         }
         // var_dump($_data);
