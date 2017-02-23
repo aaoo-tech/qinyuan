@@ -68,58 +68,6 @@ class TreeController extends Controller
             });
         }
 
-        // // 取祖先代数
-        // $ancestor_g = array_shift($generation);
-        // foreach ($result as $value) {
-        //     // 取祖先
-        //     if($ancestor_g == $value['generation']){
-        //         $ancestor = $value;
-        //     }
-        //     //取当前代数
-        //     if($value['uid'] == 17059){
-        //         $generation_a = $value['generation'];
-        //     }
-        // }
-        // // 父级（包括自己）
-        // $generation_p = [];
-        // // 子级（只有二代）
-        // $generation_c = [];
-        // foreach ($generation as $val) {
-        //     if($val <= $generation_a){
-        //         $generation_p[$val] = [];
-        //         foreach ($result as $value) {
-        //             if($val == $value['generation']){
-        //                 array_push($generation_p[$val], $value);
-        //             }
-        //         }
-        //     }else{
-        //         $i = $val - $generation_a;
-        //         $generation_c[$i] = [];
-        //         foreach ($result as $value) {
-        //             if($val == $value['generation']){
-        //                 array_push($generation_c[$i], $value);
-        //             }
-        //         }
-        //     }
-        // }
-        // // tree前部分所需数据
-        // $tree_data_1= $generation_p;
-        // // tree后部分所需数据
-        // $tree_data_2 = [];
-        // foreach($generation_c[1] as $p_4) {
-        //     $t=[];
-        //     $g_4=[$p_4];
-        //     $g_5=[];
-        //     foreach($generation_c[2] as $p_5) {
-        //         if($p_4['uid'] == $p_5['pid']){
-        //             array_push($g_5, $p_5);
-        //         }
-        //     }
-        //     $t[0]=$g_4;
-        //     $t[1]=$g_5;
-        //     array_push($tree_data_2,$t);
-        // }
-
         $_generation_p = [];
         foreach ($generation as $val) {
             $_generation_p[$val] = [];
@@ -145,7 +93,12 @@ class TreeController extends Controller
         // var_dump($_data);
 
         if($_params['fid'] == -1){
-            $current = $_data[$generation[2]][0]['uid'];
+            // $current = $_data[$generation[2]][0]['uid'];
+            foreach ($_data[$generation[2]] as $value) {
+                if($value['child'] === true){
+                    $current = $value['uid'];
+                }
+            }
         }else{
             $current = $_params['fid'];
         }
@@ -165,7 +118,12 @@ class TreeController extends Controller
         }
         $_tree_data_2 = array_slice($_data, array_search($_current_generation, $generation)+1);
         $tree_data_2 = [];
-        for($i=0; $i<count($_tree_data_2); $i++){
+        if(count($_tree_data_2) > 1){
+            $_count = count($_tree_data_2);
+        }else{
+            $_count = 2;
+        }
+        for($i=0; $i<$_count-1; $i++){
             foreach ($_tree_data_2[$i] as $key => $value) {
                 $_tmp[0][0] = $value;
                 $_tmp[1] = [];
