@@ -9,7 +9,7 @@
           </div>
           <div class="operation fr">
             <div class="form-holder form-search fr">
-              <form action="#" method="POST">
+              <form action="/tree/search" method="POST">
                 {{csrf_field()}}
                 <div class="fl">
                   <a class="btn-search" href="#" >
@@ -17,7 +17,7 @@
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入姓名"/>
+                  <input type="text" name="keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入姓名"/>
                 </div>
               </form>
             </div>

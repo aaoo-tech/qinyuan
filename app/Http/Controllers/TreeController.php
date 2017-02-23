@@ -227,11 +227,12 @@ class TreeController extends Controller
                 $_params['page'] = '1';
             }
         }
+        // var_dump($_params['keyword']);
         $_result = curlPost(
                     'http://120.25.218.156:12001/tree/101/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'sname' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        var_dump($_result);
+        // var_dump($_result);
         $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
         return view('tree.search', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
