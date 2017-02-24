@@ -27,22 +27,28 @@
           var back_data = <?php echo json_encode($back_data) ?>;
           var tree_data_1 = <?php echo json_encode($tree_data_1) ?>;
           var tree_data_2 = <?php echo json_encode($tree_data_2) ?>;
-          console.log('tree_data_1',tree_data_1);
-          console.log('tree_data_2',tree_data_2);
-          console.log('back_data',back_data);
+          // console.log('tree_data_1',tree_data_1);
+          // console.log('tree_data_2',tree_data_2);
+          // console.log('back_data',back_data);
+          var a = <?php echo json_encode($ancestor) ?>;
+          console.log('ancestor',a);
         </script>
         <div class="main-body">
           <div class="family-tree">
             <div class="container clearfix">
               @if($ancestor)
-              <div class="tree-ancestor">
-                @if($ancestor)
-                @foreach ($ancestor as $k => $val)
-                  <p>{{$val['generation']}}代</p>
-                  <p>{{$val['uname']}}</p>
+              <ul class="tree-ancestor">
+                @foreach ($ancestor as $a)
+                  <li class="gen-info">{{$a['generation']}}代</li>
+                  <li data-uid="{{$a['uid']}}" class="person @if($a['sex'] == 0) p-woman @elseif($a['sex'] == 1)p-man @endif">
+                    <p class="p-pic">
+                      <img src="@if(!!$a['avatar']){{$a['avatar']}} @elseif($a['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                    </p>
+                    <p class="p-name">{{$a['uname']}}</p>
+                    <p class="p-sort">行{{$a['idx']}}</p>
+                  </li>
                 @endforeach
-                @endif
-              </div>
+              </ul>
               @endif
               <div class="tree-part-1">
                 @if($tree_data_1)
@@ -52,9 +58,9 @@
                       <li class="border"></li>
                       <li class="gen-info">{{$g}}代</li>
                       @foreach ($list as $p)
-                      <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif">
+                      <li data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif">
                         <p class="p-pic">
-                          <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                          <img src="@if(!!$p['avatar']){{$p['avatar']}} @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
                         <p class="p-name">{{$p['uname']}}</p>
                         <p class="p-sort">行{{$p['idx']}}</p>
@@ -63,7 +69,7 @@
                         @foreach ($p['mate'] as $m)
                           <li data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" >
                             <p class="p-pic">
-                              <img src="@if(!!$m['avatar'])$m['avatar'] @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                              <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                             </p>
                             <p class="p-name">{{$m['uname']}}</p>
                             <p class="p-sort">配偶</p>
@@ -88,7 +94,7 @@
                     @foreach ($list[0] as $p)
                     <li class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif" data-uid="{{$p['uid']}}">
                       <p class="p-pic">
-                        <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                        <img src="@if(!!$p['avatar']){{$p['avatar']}} @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                       </p>
                       <p class="p-name">{{$p['uname']}}</p>
                       <p class="p-sort">行{{$p['idx']}}</p>
@@ -97,7 +103,7 @@
                       @foreach ($p['mate'] as $m)
                       <li data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
                         <p class="p-pic">
-                          <img src="@if(!!$m['avatar'])$m['avatar'] @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}} @endif">
+                          <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
                         <p class="p-name">{{$m['uname']}}</p>
                         <p class="p-sort">配偶</p>
@@ -115,7 +121,7 @@
                     @foreach ($list[1] as $p)
                     <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}">
                       <p class="p-pic">
-                        <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
+                        <img src="@if(!!$p['avatar']){{$p['avatar']}} @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                       </p>
                       <p class="p-name">{{$p['uname']}}</p>
                       <p class="p-sort">行{{$p['idx']}}</p>
@@ -124,7 +130,7 @@
                       @foreach ($p['mate'] as $m)
                       <li  data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
                         <p class="p-pic">
-                          <img src="@if(!!$m['avatar'])$m['avatar'] @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else{{asset('/img/p-man.png')}} @endif">
+                          <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
                         <p class="p-name">{{$m['uname']}}</p>
                         <p class="p-sort">配偶</p>
@@ -188,15 +194,21 @@
 
       var width_p2 = $('.tree-part-2').width();
 
-
-
       var tree_left = 0;
       var current_left = 0;
+      // 祖先居中
+      (function(){ 
+        var $a = $('.tree-ancestor');
+        var $p = $a.find('.person');
+        var m = width_p2/2 - $p.width()/2 - parseInt($p.css('margin-left'));
+        $a.css('margin-left',m);
+      }());
+      
       // 前3代位移对齐
       $('.tree-part-1 ul').each(function(i,ul){
         var $ul = $(ul);
         $p=$ul.find('.active, .current');
-        var p_left = $p.position().left
+        var p_left = $p.position().left + parseInt($p.css('margin-left'));
         var ul_left = width_p2/2 - p_left - $p.width()/2;
         $ul.css('margin-left',ul_left);
         if (p_left>width_p2/2) {
@@ -206,19 +218,24 @@
       });
       // 第4代，仅有一人时位移对齐
       if($('.tree-part-2 .tree-section').length === 1){
-        $('.tree-g4').addClass('p1');
+        $('.tree-g4').addClass('t-left');
         (function(){ 
           var $s = $('.tree-part-2 .tree-section');
-          var c_left = $('.tree-part-1 .current').closest('ul').css('margin-left');
-          var a_left = $s.find('.active').position().left;
-          var p_margin = $('.tree-part-1 .current').css('margin-left');
-          var m = parseInt(c_left) - a_left - parseInt(p_margin);
+          var s_width = $s.width();
+          var p_width = $s.find('.active').width();
+          var p_margin = $s.find('.active').css('margin-left');
+          var m = s_width/2 - p_width/2 - parseInt(p_margin);
           $s.css('margin-left',m);
         }());
       };
+      // 第5代，仅有一人时位移对齐
+      $('.tree-g5').each(function(i,ul){
+        if($(ul).find('.p-man,.p-woman').length === 1){
+          $(ul).closest('.tree-section').find('.tree-g4').addClass('t-left');
+        }
+      });
 
-
-      // 代数居中
+      // 辈分代数居中
       $('.tree-part-1 .gen-info').each(function(i,elem){
         var $c = $(elem).closest('ul').find('.active, .current');
         var l = $c.position().left;
@@ -257,6 +274,11 @@
           })
         }
       }());
+
+      // 画完显示
+      $('.family-tree .container').addClass('active')
+
+      console.log($(window).height());
 
 
 
