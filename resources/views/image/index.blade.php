@@ -17,12 +17,12 @@
             <div class="form-holder form-search fr">
               <form action="#" method="POST">
                 <div class="fl">
-                  <a class="btn-search" href="#" >
+                  <a class="btn-search" href="/image/search" >
                     <i class="iconfont icon-search"></i>
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入相册名"/>
+                  <input type="text" name="keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入相册名"/>
                 </div>
               </form>
             </div>

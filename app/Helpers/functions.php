@@ -90,7 +90,7 @@ if(!function_exists('navdata')) {
             "famous" => ["index" => "名人榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
             "champion" => ["index" => "状元榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
             "tree" => ["index" => "家族树", "search" => "搜索"],
-            "image" => ["index" => "影像中心", "upload" => "上传影像", "detail" => "相册详情", "adddir" => "创建相册", "editdir" => "编辑相册"],
+            "image" => ["index" => "影像中心", "upload" => "上传影像", "detail" => "相册详情", "adddir" => "创建相册", "editdir" => "编辑相册", "search" => "搜索"],
             "merit" => ["index" => "功德榜", "recycle" => "回收站", "edit" => "编辑", "search" => "搜索", "add" => "增加"],
             "user" => ["index" => "用户", "lock" => "锁定", "search" => "搜索"],
             "setting" => ["index" => "设置"]

@@ -50,7 +50,7 @@
                 <input type="checkbox" style="display:none" id="pic-1"/>
                 <a class="pic-name" target="_blank" href="{{$datum['fname']}}" title="{{$datum['desc']}}">
                   <img src="{{$datum['fname']}}">
-                  <span>{{$datum['desc']}}</span>
+                  <span>{{$datum['desc']}} {{$datum['fid']}}</span>
                 </a>
               </div>
             @endif

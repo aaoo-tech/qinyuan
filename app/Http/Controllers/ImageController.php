@@ -35,6 +35,37 @@ class ImageController extends Controller
         return view('image.index', ['title' => '家族名片', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
+    public function search(Request $request) {
+        $_params = $request->all();
+        $rules = [
+            'keyword' => [
+                'required',
+            ],
+            'page' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            if(isset($validator->failed()['keyword'])){
+                $_params['keyword'] = '';
+            }
+            if(isset($validator->failed()['page'])){
+                $_params['page'] = '1';
+            }
+        }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/143/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'did' => 0, 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
+                );
+        // var_dump($_result);
+        $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
+        return view('image.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
+    }
+
     public function adddir(Request $request) {
         return view('image.adddir', ['title' => ' 增加']);
     }
@@ -161,6 +192,35 @@ class ImageController extends Controller
                 );
         // var_dump($_result);
         return view('image.detail', ['title' => '相册名称', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
+    }
+
+    public function editfile(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/144/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid']])
+                );
+        return view('image.editfile', ['title' => '编辑', 'data' => $_result['data'][0]]);
+    }
+
+    public function updatefile(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/145/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => 1213, 'desc' => 'sdadda'])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '失败',
+                'data' => array(),
+            ]);
     }
 
     public function delfile(Request $request) {

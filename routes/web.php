@@ -153,6 +153,8 @@ Route::group(['prefix' => 'image', 'middleware' => 'checklogin'], function() {
     Route::any('adddir', 'ImageController@adddir');
     Route::any('editdir', 'ImageController@editdir');
     Route::any('udpatedir', 'ImageController@udpatedir');
+    Route::any('search', 'ImageController@search');
+    Route::any('updatefile', 'ImageController@updatefile');
     // Route::get('get', 'ImageController@get');
     // Route::gets('gets', 'ImageController@gets');
 });
