@@ -12,7 +12,6 @@ class TreeController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
-        // $_params['fid'] = 17059;
         $rules = [
             'fid' => [
                 'required',
@@ -35,6 +34,7 @@ class TreeController extends Controller
                 $generation[] = $val['generation'];
             }
         }
+        $back_data = $_result['data'];
 
         sort($generation);
 
@@ -165,7 +165,7 @@ class TreeController extends Controller
         // var_dump($current);
         // return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data' => $current]);
 
-        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data_1' => $tree_data_1, 'tree_data_2' => $tree_data_2, 'ancestor' => $ancestor]);
+        return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data_1' => $tree_data_1, 'tree_data_2' => $tree_data_2, 'ancestor' => $ancestor, 'back_data' => $back_data]);
     }
 
     public function search(Request $request) {
