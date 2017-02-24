@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Helpers\AliyunOss;
+
 class ImageController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
         $rules = [
+            'uid' => [
+                'required',
+            ],
             'page' => [
                 'required',
             ]
@@ -22,15 +27,57 @@ class ImageController extends Controller
         ];
         $validator = Validator::make($_params, $rules, $messages);
         if ($validator->fails()) {
-            $_params['page'] = '1';
+            if(isset($validator->failed()['uid'])){
+                $_params['uid'] = session('uid');
+            }
+            if(isset($validator->failed()['page'])){
+                $_params['page'] = '1';
+            }
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/center/102/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
         $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
         return view('image.index', ['title' => '家族名片', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
+    }
+
+    public function search(Request $request) {
+        $_params = $request->all();
+        $rules = [
+            'keyword' => [
+                'required',
+            ],
+            'page' => [
+                'required',
+            ],
+            'uid' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            if(isset($validator->failed()['keyword'])){
+                $_params['keyword'] = '';
+            }
+            if(isset($validator->failed()['page'])){
+                $_params['page'] = '1';
+            }
+            if(isset($validator->failed()['uid'])){
+                $_params['uid'] = session('uid');
+            }
+        }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/143/',
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'zid' => session('zid'), 'did' => 0, 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
+                );
+        // var_dump($_result);
+        $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
+        return view('image.index', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
 
     public function adddir(Request $request) {
@@ -41,7 +88,7 @@ class ImageController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '0', 'dirname' => 'test12346', 'type' => '1', 'jurisdiction' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => $_params['jurisdiction']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -77,12 +124,23 @@ class ImageController extends Controller
             ]);
     }
 
+    public function editdir(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/center/111/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => $_params['did']])
+                );
+        // var_dump($_result);
+        return view('image.editdir', ['title' => '编辑', 'data' => $_result['data'][0]]);
+    }
+
     public function udpatedir(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/102/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '771', 'ftype' => '1', 'fname' => '233dd', 'jurisdiction' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['did'], 'ftype' => '1', 'fname' => $_params['fname']])
                 );
+        // var_dump($_result);
         if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,
@@ -97,11 +155,22 @@ class ImageController extends Controller
             ]);
     }
 
+    public function upload(Request $request) {
+        return view('image.upload', ['title' => '编辑']);
+    }
+
     public function uploadfile(Request $request) {
         $_params = $request->all();
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $file = $request->file('file');
+            $mimeType = $file->getMimeType();
+            $entension = $file->getClientOriginalExtension();
+            $_result = $request->file('file')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
+            $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/103/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => '1', 'did' => '1', 'url' => 'http', 'desc' => '123', 'jurisdiction' => '1'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'did' => $_params['did'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -139,24 +208,57 @@ class ImageController extends Controller
         return view('image.detail', ['title' => '相册名称', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
-    public function delfile(Request $request) {
+    public function editfile(Request $request) {
         $_params = $request->all();
         $_result = curlPost(
-                    'http://120.25.218.156:12001/dir/105/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => '1'])
+                    'http://120.25.218.156:12001/info/144/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid']])
                 );
-        if($_result['ok'] === true) {
+        return view('image.editfile', ['title' => '编辑', 'data' => $_result['data'][0]]);
+    }
+
+    public function updatefile(Request $request) {
+        $_params = $request->all();
+        foreach ($_params['files'] as $val) {
+            $_result = curlPost(
+                        'http://120.25.218.156:12001/info/145/',
+                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => $_params['did'], 'desc' => $val['desc']])
+                    );
+        }
+        // if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,
                     'message' => '',
                     'data' => $_result,
                 ]);
+        // }
+        // return response()->json([
+        //         'success' => false,
+        //         'message' => '失败',
+        //         'data' => array(),
+        //     ]);
+    }
+
+    public function delfile(Request $request) {
+        $_params = $request->all();
+        foreach ($_params['fids'] as $val) {
+            $_result = curlPost(
+                        'http://120.25.218.156:12001/dir/105/',
+                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $val])
+                    );
         }
-        return response()->json([
-                'success' => false,
-                'message' => '删除失败',
-                'data' => array(),
-            ]);
+        // if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        // }
+        // return response()->json([
+        //         'success' => false,
+        //         'message' => '删除失败',
+        //         'data' => array(),
+        //     ]);
     }
 
     public function video(Request $request) {

@@ -147,12 +147,12 @@
               <div class="tree-menu">
                 <div class="menu-title"><h3>节点操作</h3></div>
                 <ul>
-                  <li><a href="#" data-type="user_info">个人资料</a></li>
-                  <li><a href="#" data-type="user_media">个人影像资料</a></li>
-                  <li><a href="#" data-type="add_mate">添加配偶</a></li>
-                  <li><a href="#" data-type="add_bra">添加兄妹</a></li>
-                  <li><a href="#" data-type="add_child">添加子女</a></li>
-                  <li><a href="#" data-type="remove_node">删除节点</a></li>
+                  <li><a href="/personal/fid=" data-type="user_info">个人资料</a></li>
+                  <li><a href="/image?uid=" data-type="user_media">个人影像资料</a></li>
+                  <li><a href="/tree/add?sex=&pid=&generation=" data-type="add_mate">添加配偶</a></li>
+                  <li><a href="/tree/add?pid=&generation=" data-type="add_bra">添加兄妹</a></li>
+                  <li><a href="/tree/add?pid=&generation=" data-type="add_child">添加子女</a></li>
+                  <li><a href="/tree/del" data-type="remove_node">删除节点</a></li>
                 </ul>
               </div>
             </div>

@@ -17,12 +17,12 @@
             <div class="form-holder form-search fr">
               <form action="#" method="POST">
                 <div class="fl">
-                  <a class="btn-search" href="#" >
+                  <a class="btn-search" href="/image/search" >
                     <i class="iconfont icon-search"></i>
                   </a>
                 </div>
                 <div class="input-search fr">
-                  <input type="text" name="keyword" value="@if (isset($keyword)) {{$keyword}} @endif" placeholder="输入相册名"/>
+                  <input type="text" name="keyword" value="@if(isset($keyword)){{$keyword}}@endif" placeholder="输入相册名"/>
                 </div>
               </form>
             </div>
@@ -46,7 +46,7 @@
                 <div class="btn-menu">
                   <a class="btn-toggle" href=""><i class="iconfont icon-down"></i></a>
                   <ul class="fr">
-                    <li><a class="btn-pop" data-pop="pop-cont-1" href="#" ><i class="iconfont icon-edit"></i>编辑</a></li>
+                    <li><a class="btn-pop" data-pop="pop-cont-1" href="/image/editdir?did={{$datum['fid']}}" ><i class="iconfont icon-edit"></i>编辑</a></li>
                     <li><a class="btn-pop" data-pop="pop-cont-2" href="/image/deldir?did={{$datum['fid']}}"><i class="iconfont icon-remove"></i>删除</a></li>
                   </ul>
                 </div>

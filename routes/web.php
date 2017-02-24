@@ -136,6 +136,8 @@ Route::group(['prefix' => 'merit', 'middleware' => 'checklogin'], function() {
 Route::group(['prefix' => 'tree', 'middleware' => 'checklogin'], function() {
     Route::get('', 'TreeController@index');
     Route::any('search', 'TreeController@search');
+    Route::any('add', 'TreeController@add');
+    Route::any('create', 'TreeController@create');
     // Route::get('get', 'TreeController@get');
     // Route::gets('gets', 'TreeController@gets');
 });
@@ -145,11 +147,16 @@ Route::group(['prefix' => 'image', 'middleware' => 'checklogin'], function() {
     Route::any('detail', 'ImageController@detail');
     Route::any('createdir', 'ImageController@createdir');
     Route::any('udpatedir', 'ImageController@udpatedir');
+    Route::any('upload', 'ImageController@upload');
     Route::any('uploadfile', 'ImageController@uploadfile');
     Route::any('delfile', 'ImageController@delfile');
     Route::any('video', 'ImageController@video');
     Route::any('deldir', 'ImageController@deldir');
     Route::any('adddir', 'ImageController@adddir');
+    Route::any('editdir', 'ImageController@editdir');
+    Route::any('udpatedir', 'ImageController@udpatedir');
+    Route::any('search', 'ImageController@search');
+    Route::any('updatefile', 'ImageController@updatefile');
     // Route::get('get', 'ImageController@get');
     // Route::gets('gets', 'ImageController@gets');
 });

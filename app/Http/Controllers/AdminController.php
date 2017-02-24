@@ -28,10 +28,20 @@ class AdminController extends Controller
         return view('admin.dashboard', ['title' => '仪表盘']);
     }
 
-    public function personal() {
+    public function personal(Request $request) {
+        $_params = $request->all();
+        $rules = [
+            'fid' => [
+                'required',
+            ],
+        ];
+        $validator = Validator::make($_params, $rules);
+        if ($validator->fails()) {
+            $_params['fid'] = session('uid');
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/123/',
-                    json_encode(['token' => session('token'), 'fid' => session('uid')])
+                    json_encode(['token' => session('token'), 'fid' => $_params['fid']])
                 );
         // var_dump($_result);
         return view('admin.personal', ['title' => '个人资料', 'data' => isset($_result['data'][0])?$_result['data'][0]:$_result['data']]);
