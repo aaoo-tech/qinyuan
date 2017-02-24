@@ -141,12 +141,12 @@
               <div class="tree-menu">
                 <div class="menu-title"><h3>节点操作</h3></div>
                 <ul>
-                  <li><a href="/personal/fid=" data-type="user_info">个人资料</a></li>
-                  <li><a href="/image?uid=" data-type="user_media">个人影像资料</a></li>
-                  <li><a href="/tree/add?sex=&pid=&generation=" data-type="add_mate">添加配偶</a></li>
-                  <li><a href="/tree/add?pid=&generation=" data-type="add_bra">添加兄妹</a></li>
-                  <li><a href="/tree/add?pid=&generation=" data-type="add_child">添加子女</a></li>
-                  <li><a href="/tree/del" data-type="remove_node">删除节点</a></li>
+                  <li><a href="#" data-type="user_info">个人资料</a></li>
+                  <li><a href="#" data-type="user_media">个人影像资料</a></li>
+                  <li><a href="#" data-type="add_mate">添加配偶</a></li>
+                  <li><a href="#" data-type="add_bra">添加兄妹</a></li>
+                  <li><a href="#" data-type="add_child">添加子女</a></li>
+                  <li><a href="#" data-type="remove_node">删除节点</a></li>
                 </ul>
               </div>
             </div>
@@ -163,12 +163,12 @@
           </div>
           <div class="box-haader"><h2>删除父节点</h2></div>
           <div class="form-holder">
-            <form action="/info/121/">
+            <form action="/tree/del">
               {{csrf_field()}}
               <input type="hidden" id="ipt-uid" name="uid" value="" />
               <div class="entry">
                 <span class="label">输入登录密码</span>
-                <input type="password" name="" value="" />
+                <input type="password" name="upasswd" value="" />
                 <p class="fl red-tip">删除该节点，节点下面的树将会一起删除</p>
               </div>
             </form>
@@ -322,13 +322,34 @@
             window.location.href = url
             break;
           case 'remove_node':
-            var uid = $(p).data(uid);
-            $('ipt-uid').val(uid);
+            var uid = $(p).data('uid');
+            $('#ipt-uid').val(uid);
             $('.pop-out').addClass('active');
+            $('.pop-out-confirm').show();
             break;
         }
         $('.family-tree .tree-menu').hide();
       };
+
+      $('.pop-out .pop-out-confirm .btn-submit').on('click', function(){
+        // var $elem = $(this);
+        var $form = $('.pop-out .pop-out-confirm form');
+        var url = $form.attr('action');
+        $.ajax({
+          url: url,
+          data: $form.serialize(),
+          beforeSend: function() {
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          // if (response.success == true) {
+            location.reload() 
+          // } else {
+          // }
+        });
+        return false
+      });
 
       $('.family-tree .tree-menu a').on('click',function(){
         var type = $(this).data('type');
