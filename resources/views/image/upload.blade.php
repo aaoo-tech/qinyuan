@@ -10,29 +10,10 @@
         </div>
         <div class="main-body">
           <div class="form-holder table-form">
-<!--             <form action="/image/uploadfile" class="dropzone" method="post">
+            <form action="/image/uploadfile" class="dropzone">
               {{csrf_field()}}
-                <div class="dz-message">
-
-                </div>
-
-                <div class="fallback">
-                    <input name="file" type="file" multiple />
-                </div>
-
-                <div class="dropzone-previews" id="dropzonePreview"></div>
-
-                <h4 style="text-align: center;color:#428bca;">Drop images in this area  <span class="glyphicon glyphicon-hand-down"></span></h4>
-              <input name="did" value="" type="hidden" />
-              <div class="btn-set">
-                <a class="btn btn-submit" href="#">保存</a>
-              </div>
-            </form> -->
-<!-- <button id="submit-all">Submit all files</button> -->
-<form action="/image/uploadfile" class="dropzone">
-  {{csrf_field()}}
-  <input name="did" value="{{$_GET['did']}}" type="hidden" />
-</form>
+              <input name="did" value="{{$_GET['did']}}" type="hidden" />
+            </form>
           </div>
         </div>
       </div>
@@ -61,6 +42,9 @@
 
           //   }
           // };
+          $('.dropzone').dropzone({
+              dictDefaultMessage: '点击选择文件或拖拽文件到该区域上传'
+          });
         });
       })(jQuery)
     </script>
