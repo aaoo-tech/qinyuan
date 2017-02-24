@@ -277,8 +277,8 @@
 
       // 画完显示
       $('.family-tree .container').addClass('active')
-
-      console.log($(window).height());
+      $('.family-tree').height($(window).height()-150);
+      // console.log();
 
 
 
