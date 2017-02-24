@@ -136,6 +136,8 @@ Route::group(['prefix' => 'merit', 'middleware' => 'checklogin'], function() {
 Route::group(['prefix' => 'tree', 'middleware' => 'checklogin'], function() {
     Route::get('', 'TreeController@index');
     Route::any('search', 'TreeController@search');
+    Route::any('add', 'TreeController@add');
+    Route::any('create', 'TreeController@create');
     // Route::get('get', 'TreeController@get');
     // Route::gets('gets', 'TreeController@gets');
 });

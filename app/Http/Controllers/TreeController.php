@@ -199,4 +199,48 @@ class TreeController extends Controller
         $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
         return view('tree.search', ['title' => ' 史料', 'total' => $_result['totalpage'], 'keyword' => $_params['keyword'], 'totalpage' => ceil($_result['totalpage']/10), 'data' => $_result['data']]);
     }
+
+    public function add() {
+        return view('tree.add', ['title' => '添加']);
+    }
+
+    public function create(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/120/',
+                    json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '添加管理员用户失败',
+                'data' => array(),
+            ]);
+    }
+
+    public function del(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/121/',
+                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'mobile' => $_params['mobile']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '添加管理员用户失败',
+                'data' => array(),
+            ]);
+    }
 }

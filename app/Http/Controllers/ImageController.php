@@ -15,6 +15,9 @@ class ImageController extends Controller
     public function index(Request $request) {
         $_params = $request->all();
         $rules = [
+            'uid' => [
+                'required',
+            ],
             'page' => [
                 'required',
             ]
@@ -24,11 +27,16 @@ class ImageController extends Controller
         ];
         $validator = Validator::make($_params, $rules, $messages);
         if ($validator->fails()) {
-            $_params['page'] = '1';
+            if(isset($validator->failed()['uid'])){
+                $_params['uid'] = session('uid');
+            }
+            if(isset($validator->failed()['page'])){
+                $_params['page'] = '1';
+            }
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/center/102/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
         $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
@@ -43,6 +51,9 @@ class ImageController extends Controller
             ],
             'page' => [
                 'required',
+            ],
+            'uid' => [
+                'required',
             ]
         ];
         $messages = [
@@ -56,10 +67,13 @@ class ImageController extends Controller
             if(isset($validator->failed()['page'])){
                 $_params['page'] = '1';
             }
+            if(isset($validator->failed()['uid'])){
+                $_params['uid'] = session('uid');
+            }
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/143/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'did' => 0, 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'zid' => session('zid'), 'did' => 0, 'keyword' => $_params['keyword'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
         $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
