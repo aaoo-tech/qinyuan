@@ -219,42 +219,46 @@ class ImageController extends Controller
 
     public function updatefile(Request $request) {
         $_params = $request->all();
-        $_result = curlPost(
-                    'http://120.25.218.156:12001/info/145/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => 1213, 'desc' => 'sdadda'])
-                );
-        if($_result['ok'] === true) {
+        foreach ($_params['files'] as $val) {
+            $_result = curlPost(
+                        'http://120.25.218.156:12001/info/145/',
+                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => $_params['did'], 'desc' => $val['desc']])
+                    );
+        }
+        // if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,
                     'message' => '',
                     'data' => $_result,
                 ]);
-        }
-        return response()->json([
-                'success' => false,
-                'message' => '失败',
-                'data' => array(),
-            ]);
+        // }
+        // return response()->json([
+        //         'success' => false,
+        //         'message' => '失败',
+        //         'data' => array(),
+        //     ]);
     }
 
     public function delfile(Request $request) {
         $_params = $request->all();
-        $_result = curlPost(
-                    'http://120.25.218.156:12001/dir/105/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid']])
-                );
-        if($_result['ok'] === true) {
+        foreach ($_params['fids'] as $val) {
+            $_result = curlPost(
+                        'http://120.25.218.156:12001/dir/105/',
+                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $val])
+                    );
+        }
+        // if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,
                     'message' => '',
                     'data' => $_result,
                 ]);
-        }
-        return response()->json([
-                'success' => false,
-                'message' => '删除失败',
-                'data' => array(),
-            ]);
+        // }
+        // return response()->json([
+        //         'success' => false,
+        //         'message' => '删除失败',
+        //         'data' => array(),
+        //     ]);
     }
 
     public function video(Request $request) {
