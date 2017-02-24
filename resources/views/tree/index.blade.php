@@ -52,7 +52,7 @@
                       <li class="border"></li>
                       <li class="gen-info">{{$g}}代</li>
                       @foreach ($list as $p)
-                      <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif">
+                      <li  data-uid="{{$p['uid']}}" data-generation="{{$p['generation']}}" data-pid="{{$p['pid']}}" data-sex="{{$p['sex']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif">
                         <p class="p-pic">
                           <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
@@ -86,7 +86,7 @@
                 <div class="tree-section clearfix">
                   <ul class="tree-g4 clearfix">
                     @foreach ($list[0] as $p)
-                    <li class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif" data-uid="{{$p['uid']}}">
+                    <li class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif" data-uid="{{$p['uid']}}" data-pid="{{$p['pid']}}" data-sex="{{$p['sex']}}" data-generation="{{$p['generation']}}">
                       <p class="p-pic">
                         <img src="@if(!!$p['avatar'])$p['avatar'] @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                       </p>
@@ -297,21 +297,29 @@
       var selectMenu = function(t,p){
         switch(t){
           case 'user_info':
-            var url = $(p).data('info-url')
+            var url = '/personal?fid=' + $(p).data('uid')
             window.location.href = url
             break;
           case 'user_media':
-            var url = $(p).data('media-url')
+            var url = '/image?uid=' + $(p).data('uid')
             window.location.href = url
             break;
           case 'add_mate':
-            alert('添加配偶')
+            if($(p).data('sex') == 0){
+              var sex = 3;
+            }else if($(p).data('sex') == 1){
+              var sex = 2;
+            }
+            var url = '/tree/add?sex='+ sex +'&pid='+ $(p).data('uid') +'&generation='+ $(p).data('generation')
+            window.location.href = url
             break;
           case 'add_bra':
-            alert('添加兄弟')
+            var url = '/tree/add?pid='+ $(p).data('pid') +'&generation='+ $(p).data('generation')
+            window.location.href = url
             break;
           case 'add_child':
-            alert('添加子女')
+            var url = '/tree/add?pid='+ $(p).data('uid') +'&generation='+ ($(p).data('generation')+1)
+            window.location.href = url
             break;
           case 'remove_node':
             var uid = $(p).data(uid);

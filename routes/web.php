@@ -138,6 +138,7 @@ Route::group(['prefix' => 'tree', 'middleware' => 'checklogin'], function() {
     Route::any('search', 'TreeController@search');
     Route::any('add', 'TreeController@add');
     Route::any('create', 'TreeController@create');
+    Route::any('del', 'TreeController@del');
     // Route::get('get', 'TreeController@get');
     // Route::gets('gets', 'TreeController@gets');
 });
