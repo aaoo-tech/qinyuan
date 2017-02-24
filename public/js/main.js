@@ -362,8 +362,123 @@
       return false
     })
 
-    // logout
+    // 影像中心，菜单显隐
+    $('.album-list').on('mouseover','.album',function(){
+      $(this).addClass('active');
+    });
+    $('.album-list').on('mouseleave','.album',function(){
+      $(this).removeClass('active');
+      $(this).closest('.album').find('.btn-menu').removeClass('active')
+    });
+    $('.album-list').on('click','.btn-toggle',function(){
+      $(this).closest('.album').find('.btn-menu').toggleClass('active')
+      return false;
+    });
+    // 影像中心，删除提示
+    $('.album .btn-remove').on('click',function(){
+      var $album = $(this).closest('.album');
+      var url = $(this).attr('href');
+      var massage = '你确定要删除相册《' + $album.find('.album-title').text() +'》吗？';
+      _alert(massage,function(){
+        $.ajax({
+          url: url
+        }).done(function() {
+          window.location.reload();
+        })
+      });
+      return false;
+    });
+    // 影像中心，编辑框
+    $('.album .btn-edit').on('click',function(){
+      var $album = $(this).closest('.album');
+      var did = $(this).data('did');
+      var title = $album.find('.album-title').text();
+      $('#ipt-album-id').val(did);
+      $('#ipt-title').val(title);
+      $('.pop-out').addClass('active');
+      $('.pop-out .album-edit').addClass('active');
+      return false;
+    });
+    $('.album-edit .btn-submit').on('click',function(){
+      var $form = $(this).closest('.album-edit').find('form');
+      var url = $form.attr('action');
+      $.ajax({
+        url: url,
+        data: $form.serialize(),
+        beforeSend: function() {
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
 
+        }
+      });
+      return false
+    })
+
+    // 影像中心，批量管理
+    $('.image-detail .btn-show').on('click',function(){
+      $('body').addClass('image-edit');
+      $('.batch-show').show();
+      $('.batch-hidden').hide();
+      return false
+    })
+    $('.image-detail .btn-hidden').on('click',function(){
+      $('body').removeClass('image-edit');
+      $('.batch-show').hide();
+      $('.batch-hidden').show();
+      return false
+    });
+    $('.image-detail .btn-edit').on('click',function(){
+      $('.pop-out').addClass('active');
+      $('.pop-out .pic-edit').addClass('active');
+      return false;
+    });
+    $('.image-detail .btn-upload').on('click',function(){
+      $('.pop-out').addClass('active');
+      $('.pop-out .pic-add').addClass('active');
+      return false;
+    });
+
+    $('.image-detail .btn-remove').on('click',function(){
+      var url = '/image/delfile?'
+      var idList = [];
+      $('.image-detail .album-list input[type="checkbox"]').each(function(i,elem){
+        if(elem.checked){
+          idList.push($(this).closest('.pic').data('id'));
+        }
+      });
+      idList.forEach(function(id){
+        url += 'fids[]='+id + '&'
+      });
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      });
+      return false;
+    });
+
+    $('.image-detail .album-list .pic-checkbox').on('click',function(){
+      setTimeout(function(){
+        $('.batch-info .num').text($('.image-detail .pic input:checked').length);
+      },100)
+    });
+
+
+
+    // logout
     function _alert(massage,doFunc){
       var $container = $('#pop-out-alert');
       $container.addClass('active');
