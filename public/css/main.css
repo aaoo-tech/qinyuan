@@ -301,7 +301,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 .family-tree .person.p-husband:before { border-left: none; }
 .family-tree .person.p-wife:after,
 .family-tree .person.p-husband:after { position: absolute; top: 50%; right: 100%; width: 10px; border-top: 2px solid #bbb; content: ""; }
-.family-tree .active:after { position: absolute; top: 100%; left: 50%; height: 50px; border-left: 2px solid #bbb; content: ""; }
+.family-tree .person.active:after { position: absolute; top: 100%; left: 50%; height: 50px; border-left: 2px solid #bbb; content: ""; }
 
 .family-tree .p-pic { width: 80px; height: 80px; line-height: 80px; font-size: 60px; }
 .family-tree .p-pic img { width: 100%; height: 100%; }
