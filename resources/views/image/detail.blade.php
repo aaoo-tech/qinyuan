@@ -8,7 +8,7 @@
             <?php breadcrumb(); ?>
           </div>
           <div class="btn-set fl">
-            <a class="btn btn-upload btn-pop"  data-pop="pop-cont-1" href="#">上传图片</a>
+            <a class="btn btn-upload btn-pop"  data-pop="pop-cont-1" href="/image/upload?did={{$_GET['did']}}">上传图片</a>
           </div>
           <div class="operation fr">
             <div class="info fl">

@@ -23,7 +23,7 @@
                 <input id="ipt-title" name="dirname" type="text" value="" />
               </div>
               <div class="entry">
-                <span class="label">类别：</span>
+                <span class="label">类型：</span>
                 <select name="type">
                   <option value="1">家族</option>
                   <option value="2">个人</option>

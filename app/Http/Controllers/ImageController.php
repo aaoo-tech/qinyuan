@@ -123,13 +123,9 @@ class ImageController extends Controller
             $_result = $request->file('file')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
             $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
         }
-        // return response()->json([
-        //         'error' => false,
-        //         'path' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url'])
-        //     ]);
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/103/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'did' => '566', 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'did' => $_params['did'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
                 );
         if($_result['ok'] === true) {
             return response()->json([
