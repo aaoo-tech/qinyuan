@@ -28,6 +28,17 @@ class TreeController extends Controller
                     'http://120.25.218.156:12001/tree/100/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid'], 'genetation' => '2'])
                 );
+        // $_t['pid'] = 16080;
+        // $_t['uid'] = 16082;
+        // $_t['generation'] = 165;
+        // $_t['idx'] = 3;
+        // $_t['sex'] = 1;
+        // $_t['uname'] = '友全';
+        // $_t['pidx'] = '1';
+        // $_t['child'] = true;
+        // $_t['mate'] = array();
+        // $_t['avatar'] = '';
+        // array_push($_result['data'], $_t);
         $generation = [];
         foreach ($_result['data'] as $val) {
             if(!in_array($val['generation'], $generation)){
@@ -210,6 +221,7 @@ class TreeController extends Controller
                     'http://120.25.218.156:12001/info/120/',
                     json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
                 );
+        // var_dump($_result);
         if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,
@@ -219,7 +231,7 @@ class TreeController extends Controller
         }
         return response()->json([
                 'success' => false,
-                'message' => '添加管理员用户失败',
+                'message' => '失败',
                 'data' => array(),
             ]);
     }
@@ -228,7 +240,7 @@ class TreeController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/121/',
-                    json_encode(['token' => session('token'), 'uname' => $_params['uname'], 'mobile' => $_params['mobile']])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'upasswd' => md5(md5($_params['upasswd']).'aiya')])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -239,8 +251,28 @@ class TreeController extends Controller
         }
         return response()->json([
                 'success' => false,
-                'message' => '添加管理员用户失败',
-                'data' => array(),
+                'message' => '失败',
+                'data' => $_result,
+            ]);
+    }
+
+    public function update(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/122/',
+                    json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '失败',
+                'data' => $_result,
             ]);
     }
 }

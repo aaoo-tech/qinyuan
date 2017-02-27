@@ -58,7 +58,7 @@
                       <li class="border"></li>
                       <li class="gen-info">{{$g}}代</li>
                       @foreach ($list as $p)
-                      <li data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif">
+                      <li  data-uid="{{$p['uid']}}" data-generation="{{$p['generation']}}" data-pid="{{$p['pid']}}" data-sex="{{$p['sex']}}" class="person @if($p['sex'] == 0)p-woman @elseif($p['sex'] == 1)p-man @endif @if($current == $p['uid'])current @endif @if($p['child'] === true) active @endif">
                         <p class="p-pic">
                           <img src="@if(!!$p['avatar']){{$p['avatar']}} @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
@@ -92,7 +92,7 @@
                 <div class="tree-section clearfix">
                   <ul class="tree-g4 clearfix">
                     @foreach ($list[0] as $p)
-                    <li class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif" data-uid="{{$p['uid']}}">
+                    <li class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif" data-uid="{{$p['uid']}}" data-pid="{{$p['pid']}}" data-sex="{{$p['sex']}}" data-generation="{{$p['generation']}}">
                       <p class="p-pic">
                         <img src="@if(!!$p['avatar']){{$p['avatar']}} @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                       </p>
@@ -169,12 +169,12 @@
           </div>
           <div class="box-haader"><h2>删除父节点</h2></div>
           <div class="form-holder">
-            <form action="/info/121/">
+            <form action="/tree/del">
               {{csrf_field()}}
               <input type="hidden" id="ipt-uid" name="uid" value="" />
               <div class="entry">
                 <span class="label">输入登录密码</span>
-                <input type="password" name="" value="" />
+                <input type="password" name="upasswd" value="" />
                 <p class="fl red-tip">删除该节点，节点下面的树将会一起删除</p>
               </div>
             </form>
@@ -320,30 +320,59 @@
       var selectMenu = function(t,p){
         switch(t){
           case 'user_info':
-            var url = $(p).data('info-url')
+            var url = '/personal?fid=' + $(p).data('uid')
             window.location.href = url
             break;
           case 'user_media':
-            var url = $(p).data('media-url')
+            var url = '/image?uid=' + $(p).data('uid')
             window.location.href = url
             break;
           case 'add_mate':
-            alert('添加配偶')
+            if($(p).data('sex') == 0){
+              var sex = 3;
+            }else if($(p).data('sex') == 1){
+              var sex = 2;
+            }
+            var url = '/tree/add?sex='+ sex +'&pid='+ $(p).data('uid') +'&generation='+ $(p).data('generation')
+            window.location.href = url
             break;
           case 'add_bra':
-            alert('添加兄弟')
+            var url = '/tree/add?pid='+ $(p).data('pid') +'&generation='+ $(p).data('generation')
+            window.location.href = url
             break;
           case 'add_child':
-            alert('添加子女')
+            var url = '/tree/add?pid='+ $(p).data('uid') +'&generation='+ ($(p).data('generation')+1)
+            window.location.href = url
             break;
           case 'remove_node':
-            var uid = $(p).data(uid);
-            $('ipt-uid').val(uid);
+            var uid = $(p).data('uid');
+            $('#ipt-uid').val(uid);
             $('.pop-out').addClass('active');
+            $('.pop-out-confirm').show();
             break;
         }
         $('.family-tree .tree-menu').hide();
       };
+
+      $('.pop-out .pop-out-confirm .btn-submit').on('click', function(){
+        // var $elem = $(this);
+        var $form = $('.pop-out .pop-out-confirm form');
+        var url = $form.attr('action');
+        $.ajax({
+          url: url,
+          data: $form.serialize(),
+          beforeSend: function() {
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          // if (response.success == true) {
+            location.reload() 
+          // } else {
+          // }
+        });
+        return false
+      });
 
       $('.family-tree .tree-menu a').on('click',function(){
         var type = $(this).data('type');

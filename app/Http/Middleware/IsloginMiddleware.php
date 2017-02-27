@@ -18,8 +18,8 @@ class IsLoginMiddleware
     public function handle($request, Closure $next)
     {
         $_result = curlPost(
-                    'http://120.25.218.156:12001/center/101/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => '1', 'pagenum' => '10'])
+                    'http://120.25.218.156:12001/user/108/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid')])
                 );
         if($_result['ok'] === true){
                 return $next($request);

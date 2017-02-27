@@ -15,7 +15,7 @@
               <a class="btn-add btn-pop" data-pop="pop-cont-3" href="/image/adddir">创建相册</a>
             </div>
             <div class="form-holder form-search fr">
-              <form action="#" method="POST">
+              <form action="/image/search" method="POST">
                 <div class="fl">
                   <a class="btn-search" href="/image/search" >
                     <i class="iconfont icon-search"></i>

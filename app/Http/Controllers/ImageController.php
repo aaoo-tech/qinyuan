@@ -170,7 +170,7 @@ class ImageController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/103/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'did' => $_params['did'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'did' => $_params['did'], 'desc' => $_params['desc'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -219,10 +219,10 @@ class ImageController extends Controller
 
     public function updatefile(Request $request) {
         $_params = $request->all();
-        foreach ($_params['files'] as $val) {
+        foreach ($_params['fids'] as $val) {
             $_result = curlPost(
                         'http://120.25.218.156:12001/info/145/',
-                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => $_params['did'], 'desc' => $val['desc']])
+                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => $val, 'desc' => $_params['desc']])
                     );
         }
         // if($_result['ok'] === true) {
