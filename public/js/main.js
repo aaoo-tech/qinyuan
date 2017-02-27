@@ -104,23 +104,33 @@
       $(this).removeClass('error')
     })
 
+    $('.add-form #ipt-name').on('focus',function(){
+      $(this).removeClass('err');
+    })
+
     $('.add-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
       var url = $form.attr('action');
-      $.ajax({
-        url: url,
-        data: $form.serialize(),
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
-        }
-      });
+      var name = $('#ipt-name').val();
+      var re_name = /[\u4E00-\u9FA5]{2,4}/;
+      if (!re_name.test(name)) {
+        $('#ipt-name').addClass('err');
+      }else{
+        $.ajax({
+          url: url,
+          data: $form.serialize(),
+          beforeSend: function() { 
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          if (response.success == true) {
+            window.location.reload();
+          } else {
+          }
+        });
+      }
       return false
     })
 

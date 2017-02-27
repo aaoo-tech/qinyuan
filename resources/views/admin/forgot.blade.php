@@ -161,7 +161,7 @@
                     $('.tag-list li span').removeClass('active');
                     $('.tag-list li span').eq(1).addClass('active');
                   } else {
-                    console.log(response);
+                    document.getElementById("captcha").src=document.getElementById("captcha").src+"?"+Math.random()
                   }
                 });
               };
