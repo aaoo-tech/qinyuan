@@ -67,7 +67,7 @@
                 <a class="btn btn-submit" href="#">保存</a>
               </div>
               <div class="btn-set fl">
-                <a class="btn btn-submit" href="#">取消</a>
+                <a class="btn btn-cancel" href="#">取消</a>
               </div>
               
             </form>

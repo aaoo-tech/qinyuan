@@ -445,7 +445,8 @@
     
     // 批量改名
     $('.image-detail .btn-edit').on('click',function(){
-      var url = '/image/?';
+      var $form = $('.image-detail .pic-edit form');
+      var url = $form.attr('action');
       var idList = [];
       $('.image-detail .album-list input[type="checkbox"]').each(function(i,elem){
         if(elem.checked){
@@ -458,6 +459,7 @@
       });
       $.ajax({
         url: url, 
+        data: url + $form.serialize(),
         beforeSend: function() { 
           $('#loading').addClass('active');
         }

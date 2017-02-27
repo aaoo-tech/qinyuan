@@ -101,7 +101,7 @@
           </div>
           <div class="box-haader"><h2>编辑所选相片名称</h2></div>
           <div class="form-holder">
-            <form action="/image/uploadfile" method="post">
+            <form action="/image/updatefile" method="post">
               {{csrf_field()}}
               <input type="hidden" id="ipt-album-id" name="did" />
               <div class="entry">
