@@ -23,7 +23,7 @@
                 </div>
                 <div class="entry fl">
                   <label>用户名</label>
-                  <input id="ipt-name" type="text" maxlength="4" name="uname" placeholder="输入姓名"/>
+                  <input id="ipt-name" type="text" maxlength="4" name="uname" placeholder="输入姓名(必须是中文)"/>
                 </div>
                 <div class="btn-set fl">
                   <a class="btn-add btn-submit btn" href="#">添加</a>

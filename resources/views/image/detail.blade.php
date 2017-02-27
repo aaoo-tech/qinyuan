@@ -54,8 +54,9 @@
               <div class="pic" data-id="{{$datum['fid']}}">
                 <input type="checkbox" style="display:none" id="pic-{{$datum['fid']}}"/>
                 <label class="pic-checkbox" for="pic-{{$datum['fid']}}"></label>
-                <a class="pic-link" target="_blank" href="{{$datum['fname']}}" title="{{$datum['desc']}}">
-                  <span class="pic-bg" style="background-image: url(@if($datum['fname']){{$datum['fname']}}@else{{asset('/img/album-bg.png')}}@endif)"></span>
+                <a class="pic-link fancybox" data-fancybox-group="gallery" href="{{$datum['fname']}}" title="{{$datum['desc']}}">
+                  <span class="pic-bg" style="background-image: url({{$datum['fname']}})"></span>
+                  <img src="{{$datum['fname']}}" style="display: none")>
                   <span class="pic-title">{{$datum['desc']}} {{$datum['fid']}}</span>
                 </a>
               </div>
@@ -101,9 +102,13 @@
           </div>
           <div class="box-haader"><h2>编辑所选相片名称</h2></div>
           <div class="form-holder">
+<<<<<<< HEAD
+            <form action="/image/uploadfile" method="post">
+=======
             <form action="/image/updatefile" method="post">
+>>>>>>> 190bfd7e9ead868dc306aea2d5f8f3349f389d93
               {{csrf_field()}}
-              <input type="hidden" id="ipt-album-id" name="did" />
+              <input type="hidden" id="ipt-pic-id" name="did" />
               <div class="entry">
                 <span class="label">相片名称</span>
                 <input type="hidden" name="fids" />
@@ -123,9 +128,15 @@
         </div>
       </div>
     </div>
+    <link rel="stylesheet" type="text/css" href="{{ asset('/js/fancyBox/source/helpers/jquery.fancybox-buttons.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/js/fancyBox/source/jquery.fancybox.css') }}" />
+    <script type="text/javascript" src="{{ asset('/js/fancyBox/lib/jquery.mousewheel.pack.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/fancyBox/source/jquery.fancybox.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/fancyBox/source/helpers/jquery.fancybox-buttons.js') }}"></script>
     <script type="text/javascript">
       (function($) {
         $(function() {
+          $('.fancybox').fancybox();
           Dropzone.options.myDropzone = {
 
             // Prevents Dropzone from uploading dropped files immediately

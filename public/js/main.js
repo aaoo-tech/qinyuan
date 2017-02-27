@@ -104,28 +104,37 @@
       $(this).removeClass('error')
     })
 
+    $('.add-form #ipt-name').on('focus',function(){
+      $(this).removeClass('err');
+    })
+
     $('.add-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
       var url = $form.attr('action');
-      $.ajax({
-        url: url,
-        data: $form.serialize(),
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
-        }
-      });
+      var name = $('#ipt-name').val();
+      var re_name = /[\u4E00-\u9FA5]{2,4}/;
+      if (!re_name.test(name)) {
+        $('#ipt-name').addClass('err');
+      }else{
+        $.ajax({
+          url: url,
+          data: $form.serialize(),
+          beforeSend: function() { 
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          if (response.success == true) {
+            window.location.reload();
+          } else {
+          }
+        });
+      }
       return false
     })
 
     // famous|champion|merit edit
-
     $('.table-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
@@ -145,7 +154,6 @@
       });
       return false
     })
-
 
     $('td .link-lock').on('click',function(){
       var $elem = $(this);
@@ -445,8 +453,7 @@
     
     // 批量改名
     $('.image-detail .btn-edit').on('click',function(){
-      var $form = $('.image-detail .pic-edit form');
-      var url = $form.attr('action');
+      var ids = '';
       var idList = [];
       $('.image-detail .album-list input[type="checkbox"]').each(function(i,elem){
         if(elem.checked){
@@ -455,24 +462,27 @@
       });
 
       idList.forEach(function(id){
-        url += 'fids[]='+ id + '&'
+        ids += 'fids[]='+ id + '&'
       });
-      $.ajax({
-        url: url, 
-        data: url + $form.serialize(),
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
-
-        }
-      });
+      
+      $('.pic-edit #ipt-pic-id').val(ids);
       return false;
     });
+    $('.pop-out .pic-edit .btn-submit').on('click',function(){
+      var $form = $('.pop-out .pic-edit form');
+        var url = $form.attr('action');
+        $.ajax({
+          url: url,
+          data: $form.serialize(),
+          beforeSend: function() {
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+            location.reload()
+        });
+        return false
+    })
 
     // 批量删除
     $('.image-detail .btn-remove').on('click',function(){

@@ -250,17 +250,16 @@ input.error{ border-color: #E50012; color: #E50012; }
 .personal-info dd:empty:after { content: "*"; }
 .personal-info input { height: 24px; padding-left: 5px; }
 
-.personal-info textarea { height: 150px; width: 360px; margin-top: 5px; padding: 5px; border-color: #ccc; }
-.personal-info .alive { margin-left: 10px; }
+.personal-info textarea { height: 150px; width: 360px; margin-top: 5px; padding: 5px; border-color: #ccc; vertical-align: text-top; }
+/*.personal-info .alive { margin-left: 10px; }
 .personal-info .alive + input {height: 34px;width: 34px;vertical-align: middle;margin-left: 5px;}
-.personal-info .addr { width: 360px; }
+.personal-info .addr { width: 360px; }*/
 body.personal-edit .operation { display: none; }
-.personal-info .btn-set .btn {padding: 5px 25px;margin: 20px 20px 0 0;}
-.personal-info .btn-set .btn-cancel {background: #aaa;}
+/*.personal-info .btn-set .btn {padding: 5px 25px;margin: 20px 20px 0 0;}*/
+.personal-info .btn-set .btn-cancel {width: 100px; height: 36px; line-height: 36px; color: #fff; background: #aaa; }
 
-
-.family-tree { overflow: auto; -webkit-user-select:none; }
-.family-tree .container { position: relative; width: 5000px; opacity: 1; transition: opacity .2s; }
+.family-tree { overflow: auto; -webkit-user-select: none; }
+.family-tree .container { position: relative; width: 5000px; opacity: 0; transition: opacity .2s; }
 .family-tree .container.active { opacity: 1; }
 .family-tree ul { position: relative; font-size: 0; }
 .family-tree ul li { font-size: 14px; }
@@ -282,7 +281,7 @@ body.personal-edit .operation { display: none; }
 
 .family-tree .tree-ancestor .person { margin-bottom: 50px; }
 .family-tree .tree-ancestor .person:after { position: absolute; top: 100%; left: calc(50% - 25px); height: 50px; width: 50px; font-size: 30px; line-height: 50px; color: #999; font-family: "iconfont" !important; content: "\e60e"; }
-.family-tree .person {position: relative;width: 80px;padding: 0;margin: 30px 10px 40px;border: 1px solid #ccc;border-radius: 5px;text-align: center;}
+.family-tree .person {position: relative;width: 80px;padding: 0;margin: 30px 10px 40px;border: 1px solid #ccc;border-radius: 5px;text-align: center;cursor: pointer;}
 .family-tree .person:before {position: absolute;bottom: calc(100% + 1px);left: 50%;height: 30px;border-left: 2px solid #bbb;background-color: #fff;content: "";}
 .family-tree .person.p-man,
 .family-tree .person.p-husband { border-color: #799BB3; }
@@ -318,7 +317,7 @@ body.personal-edit .operation { display: none; }
 .table-form .entry { margin-bottom: 20px; line-height: 40px; }
 .table-form .label { display: inline-block; width: 80px;  font-weight: bold; }
 .table-form .entry input { height: 36px; padding: 5px 10px; font-size: 14px; }
-.table-form .btn-set { margin: 30px 0 0 85px; }
+.table-form .btn-set { margin: 20px 0 0 85px; }
 .table-form .btn-set .btn-submit { width: 100px; height: 36px; line-height: 36px; color: #fff; background-color: #135189; }
 
 .album-list { margin-right: -50px; }
@@ -362,6 +361,7 @@ body.personal-edit .operation { display: none; }
 .admin-set.show .add-form { display: block; height: 90px; }
 .admin-set .add-form .entry { margin: 16px 0 26px; }
 .admin-set .add-form input { margin: 0 20px; padding: 0 10px; line-height: 28px; }
+.admin-set .add-form input.err { border-color: #f00; color: #f00; }
 .admin-set .add-form .ipt-mobile { width: 195px; }
 .admin-set .add-form .btn-set { margin: 16px 0 26px; }
 .admin-set .add-form .btn-add { width: 70px; line-height: 30px; background-color: #009943; }
