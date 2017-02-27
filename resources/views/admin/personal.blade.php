@@ -91,7 +91,7 @@
             <form action="/tree/update" method="post">
               {{csrf_field()}}
               <input name="uid" value="{{$data['uid']}}" type="hidden">
-              <input name="pid" value="16080" type="hidden">
+              <input name="pid" value="" type="hidden">
               <input name="generation" value="{{$data['generation']}}" type="hidden">
 <!--               @if(!empty($_GET['pid']) && !empty($_GET['generation']))
               <input name="pid" value="{{$_GET['pid']}}" type="hidden">
