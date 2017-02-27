@@ -37,7 +37,7 @@
           <div class="common-table">
             <table>
               <col width="50px"></col>
-              <col></col>
+              <col width="80px"></col>
               <col></col>
               <col></col>
               <col></col>

@@ -33,7 +33,7 @@
           <div class="common-table">
             <table>
               <col width="50px"></col>
-              <col></col>
+              <col width="80px"></col>
               <col></col>
               <col></col>
               <col></col>
@@ -87,7 +87,7 @@
               {{csrf_field()}}
               <div class="entry">
                 <span class="label">姓&nbsp;&nbsp;名</span>
-                <input type="text" name="uname" placeholder="姓名"/>
+                <input type="text" name="uname" placeholder="姓名" id="ipt-name"/>
               </div>
               <div class="entry">
                 <span class="label">代&nbsp;&nbsp;数</span>

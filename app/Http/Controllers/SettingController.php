@@ -3,19 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Validator;
 use App\Http\Requests;
 
 class SettingController extends Controller
 {
     public function index(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'page' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            $_params['page'] = '1';
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/user/103/',
-                    json_encode(['token' => session('token'), 'pageno' => '1', 'pagenum' => '10'])
+                    json_encode(['token' => session('token'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         // var_dump($_result);
-        return view('setting.index', ['title' => '设置', 'data' => $_result['data']]);
+        return view('setting.index', ['title' => '设置', 'data' => $_result['data'], 'total' => $_result['totalpage'], 
+                    'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
     public function add(Request $request) {

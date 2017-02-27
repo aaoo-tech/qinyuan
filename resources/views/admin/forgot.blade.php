@@ -161,7 +161,7 @@
                     $('.tag-list li span').removeClass('active');
                     $('.tag-list li span').eq(1).addClass('active');
                   } else {
-                    console.log(response);
+                    document.getElementById("captcha").src=document.getElementById("captcha").src+"?"+Math.random()
                   }
                 });
               };
@@ -170,16 +170,34 @@
           })
 
           $('#step-2 .btn-submit').on('click',function(){
-            console.log('12');
-            var t_captcha = /\w{4}$/;
+            var t_captcha = /^\d{4}$/;
             if (!t_captcha.test($('#step-2 form input[name="authcode"]').val())) {
               $('#step-2 form input[name="authcode').addClass('error');
               $('#step-2 .error-info').addClass('active');
+              return false;
             }else{
-              $('#step-2').removeClass('active');
-              $('#step-3').addClass('active');
-              $('.tag-list li span').removeClass('active');
-              $('.tag-list li span').eq(2).addClass('active');
+              var $elem = $(this);
+              var $form = $(this).closest('form');
+              var url = $form.attr('action');
+              // console.log($('#step-2 .mobile').text());
+              $.ajax({
+                url: url,
+                data: $form.serialize()+'&mobile='+$('#step-2 .mobile').text(),
+                beforeSend: function() { 
+                  $('#loading').addClass('active');
+                }
+              }).done(function(response) {
+                $('#loading').removeClass('active');
+                if (response.success == true) {
+                  $('#step-2').removeClass('active');
+                  $('#step-3').addClass('active');
+                  $('.tag-list li span').removeClass('active');
+                  $('.tag-list li span').eq(2).addClass('active');
+                }else{
+                  $('#step-2 form input[name="authcode').addClass('error');
+                  $('#step-2 .error-info').addClass('active');
+                }
+              });
             }
             return false;
           })
@@ -223,15 +241,17 @@
           $('#step-3 .btn-submit').on('click',function(){
             var pw = $('.entry-pw input').val();
             var repw = $('.entry-repw input').val();
-            var re = /^[0-9a-zA-Z_#]{6,16}$/
+            var re = /^[0-9a-zA-Z_#]{6,16}$/;
             if (re.test(pw)) {
               if (pw!==repw) {
                 $('.entry-repw input').addClass('error');
                 $('.entry-repw .error-info').addClass('active');
+                return false;
               }
             }else{
               $('.entry-pw input').addClass('error');
               $('.entry-pw .error-info').addClass('active');
+              return false;
             };
             var $elem = $(this);
             var $form = $(this).closest('form');

@@ -19,11 +19,11 @@
                 {{csrf_field()}}
                 <div class="entry fl">
                   <label>手机号</label>
-                  <input type="text" maxlength="11" name="mobile" placeholder="输入待添加管理员手机号" />
+                  <input class="ipt-mobile" type="text" maxlength="11" name="mobile" placeholder="输入待添加管理员手机号" />
                 </div>
                 <div class="entry fl">
                   <label>用户名</label>
-                  <input type="text" maxlength="11" name="uname" placeholder="输入姓名" />
+                  <input id="ipt-name" type="text" maxlength="4" name="uname" placeholder="输入姓名(必须是中文)"/>
                 </div>
                 <div class="btn-set fl">
                   <a class="btn-add btn-submit btn" href="#">添加</a>
@@ -59,6 +59,7 @@
               </ul>
             </div>
           </div>
+          @include('base.pagination')
         </div>
       </div>
     </div>

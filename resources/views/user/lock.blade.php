@@ -16,12 +16,11 @@
         <div class="main-body users">
           <div class="common-table">
             <table>
-              <col width="50px"></col>
+              <col width="100px"></col>
+              <col width="160px"></col>
+              <col width="240px"></col>
               <col></col>
-              <col></col>
-              <col></col>
-              <col></col>
-              <col width="175px"></col>
+              <col width="150px"></col>
               <thead>
                 <tr>
                   <th>排序</th>

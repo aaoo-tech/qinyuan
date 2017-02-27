@@ -28,10 +28,20 @@ class AdminController extends Controller
         return view('admin.dashboard', ['title' => '仪表盘']);
     }
 
-    public function personal() {
+    public function personal(Request $request) {
+        $_params = $request->all();
+        $rules = [
+            'fid' => [
+                'required',
+            ],
+        ];
+        $validator = Validator::make($_params, $rules);
+        if ($validator->fails()) {
+            $_params['fid'] = session('uid');
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/123/',
-                    json_encode(['token' => session('token'), 'fid' => session('uid')])
+                    json_encode(['token' => session('token'), 'fid' => $_params['fid']])
                 );
         // var_dump($_result);
         return view('admin.personal', ['title' => '个人资料', 'data' => isset($_result['data'][0])?$_result['data'][0]:$_result['data']]);
@@ -87,7 +97,39 @@ class AdminController extends Controller
 
     public function forgot_two(Request $request) {
         $_params = $request->all();
-        return view('admin.forgot', ['title' => '通知']);
+        $rules = [
+            'mobile' => [
+                'required',
+                'regex:/^1[3|4|5|7|8]\d{9}$/',
+            ],
+            'authcode' => [
+                'required',
+            ],
+        ];
+        $messages = [
+            'required' => '此项必须填写',
+            'regex' => '请正确填写该项',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            return false;
+        }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/user/110/',
+                    json_encode(['mobile' => $_params['mobile'], 'authcode' => $_params['authcode']])
+                );
+        if($_result['ok'] === true){
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => array(),
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '',
+                'data' => $_result,
+            ]);
     }
 
     public function sendcode(Request $request) {
@@ -115,6 +157,43 @@ class AdminController extends Controller
                     'success' => true,
                     'message' => '',
                     'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '',
+                'data' => $_result,
+            ]);
+    }
+
+    public function verify_code(Request $request) {
+        // var_dump(Cache::get('code_13547852147'));
+        $rules = [
+            'mobile' => [
+                'required',
+                'regex:/^1[3|4|5|7|8]\d{9}$/',
+            ],
+            'authcode' => [
+                'required',
+            ],
+        ];
+        $messages = [
+            'required' => '此项必须填写',
+            'regex' => '请正确填写该项',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            return false;
+        }
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/user/110/',
+                    json_encode(['mobile' => $_params['mobile'], 'authcode' => $_params['authcode']])
+                );
+        if($_result['ok'] === true){
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => array(),
                 ]);
         }
         return response()->json([

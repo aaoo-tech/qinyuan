@@ -5,7 +5,20 @@
         @include('base.top-nav')
         <div class="sub-menu clearfix">
           <div class="breadcrumb fl">
+            @if(!empty($_GET['fid']))
+            <i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href="/tree?fid={{$_GET['fid']}}">家族树</a>
+            @endif
             <span>个人资料</span>
+          </div>
+          <div class="operation fr">
+            @if(!empty($_GET['fid']))
+            <div class="btn-set fl">
+              <a class="btn-recycling" href="/image?fid={{$_GET['fid']}}"><i class="iconfont icon-img"></i>影像资料</a>
+            </div>
+            @endif
+            <div class="btn-set fr">
+              <a class="btn-edit" href="#">编辑</a>
+            </div>
           </div>
         </div>
         <div class="main-body">
@@ -15,9 +28,9 @@
             {{$data['birther']}}
             {{$data['generation']}}
             {{$data['seniority']}} -->
-          <div class="personal-info">
+          <div class="personal-info info-show">
             <div class="p-avatar">
-              <img src="{{$data['avatar']}}">
+              <img src="@if(!!$data['avatar']){{$data['avatar']}} @else {{asset('/img/p-man.png')}}@endif" >
             </div>
             <dl>
               <dt>姓名：</dt>
@@ -55,12 +68,11 @@
               <dt>居住地址：</dt>
               <dd>{{$data['addr']}}</dd>
               <dt>个人介绍：</dt>
-              <dd></dd>
+              <dd>{{$data['describe']}}</dd>
             </dl>
           </div>
           @else
-          
-          <div class="personal-info">
+          <div class="personal-info info-show">
             <div class="p-avatar">
             </div>
             <dl>
@@ -73,11 +85,99 @@
               <dt>家中排行：</dt><dd>行11</dd>
               <dt>手机号：</dt><dd>13933331234</dd>
               <dt>居住地址：</dt><dd>xxxxxxxxx</dd>
-              <dt>个人介绍：</dt><dd>1.无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青 菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...</dd>
+              <dt>个人介绍：</dt><dd></dd>
             </dl>
           </div>
           @endif
+          <div class="personal-info table-form info-edit clearfix" style="display: none">
+            <form action="/tree/update" method="post">
+              {{csrf_field()}}
+              <input name="uid" value="{{$data['uid']}}" type="hidden">
+              <input name="pid" value="{{$data['pid']}}" type="hidden">
+              <input name="generation" value="{{$data['generation']}}" type="hidden">
+<!--               @if(!empty($_GET['pid']) && !empty($_GET['generation']))
+              <input name="pid" value="{{$_GET['pid']}}" type="hidden">
+              <input name="generation" value="{{$_GET['generation']}}" type="hidden">
+              @endif -->
+              <div class="p-avatar">
+                <img class="fl" src="@if(!!$data['avatar']){{$data['avatar']}} @else {{asset('/img/p-man.png')}}@endif" >
+<!--                 <label class="btn btn-choose" for="ipt-bg">重新选择</label>
+                <input id="ipt-bg" type="file" name="picurl" style="display:none" accept="image/gif,image/jpeg,image/jpg,image/png"/> -->
+              </div>
+              <div class="entry">
+                <span class="label">姓名：</span>
+                <input id="ipt-title" name="uname" type="text" value="{{$data['uname']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">性别：</span>
+                  @if($data['sex'] > 1)
+                    <select name="sex">
+                      <option value="2" @if($data['sex']==2) selected @endif>妻子</option>
+                      <option value="3" @if($data['sex']==3) selected @endif>丈夫</option>
+                    </select>
+                  @else
+                    <select name="sex">
+                      <option value="1" @if($data['sex']==1) selected @endif>男</option>
+                      <option value="0" @if($data['sex']==0) selected @endif>女</option>
+                    </select>
+                  @endif
+              </div>
+              <div class="entry">
+                <span class="label">父亲姓名：</span>
+                <input id="ipt-title" name="father" type="text" value="{{$data['father']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">母亲姓名：</span>
+                <input id="ipt-title" name="monther" type="text" value="{{$data['monther']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">兄弟排行：</span>
+                <input id="ipt-title" name="idx" type="text" value="{{$data['idx']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">出生日期：</span>
+                <input id="ipt-title" name="birthday" type="text" value="{{$data['birthday']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">去世日期：</span>
+                <input id="ipt-title" name="death" type="text" value="{{$data['death']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">居住地址：</span>
+                <input id="ipt-title" name="addr" type="text" value="{{$data['addr']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">手机号码：</span>
+                <input id="ipt-title" name="mobile" type="text" value="{{$data['mobile']}}" />
+              </div>
+              <div class="entry">
+                <span class="label">个人介绍：</span>
+                <textarea name="content" rows="10" cols="50">{{$data['describe']}}</textarea>
+              </div>
+              <div class="btn-set fl">
+                <a class="btn btn-submit" href="#">保存</a>
+              </div>
+              <div class="btn-set fl">
+                <a class="btn btn-cancel" href="#">取消</a>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $('.operation .btn-edit').on('click',function(){
+        $('.admin-personal').addClass('personal-edit');
+        $('.info-show').hide();
+        $('.info-edit').show();
+        return false
+      })
+      $('.info-edit .btn-cancel').on('click',function(){
+        $('.admin-personal').removeClass('personal-edit');
+        $('.info-show').show();
+        $('.info-edit').hide();
+        return false
+      })
+
+    </script>
 @include('base.footer')

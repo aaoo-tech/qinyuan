@@ -38,6 +38,7 @@ Route::any('admin', 'AdminController@index');
 Route::any('forgot', 'AdminController@forgot');
 Route::any('forgot_one', 'AdminController@forgot_one');
 Route::any('forgot_two', 'AdminController@forgot_two');
+Route::any('verify_code', 'AdminController@verify_code');
 Route::any('forgot_three', 'AdminController@forgot_three');
 Route::any('sendcode', 'AdminController@sendcode');
 Route::any('login', 'AdminController@login');
@@ -134,19 +135,30 @@ Route::group(['prefix' => 'merit', 'middleware' => 'checklogin'], function() {
 
 Route::group(['prefix' => 'tree', 'middleware' => 'checklogin'], function() {
     Route::get('', 'TreeController@index');
+    Route::any('search', 'TreeController@search');
+    Route::any('add', 'TreeController@add');
+    Route::any('create', 'TreeController@create');
+    Route::any('del', 'TreeController@del');
+    Route::any('update', 'TreeController@update');
     // Route::get('get', 'TreeController@get');
     // Route::gets('gets', 'TreeController@gets');
 });
 
 Route::group(['prefix' => 'image', 'middleware' => 'checklogin'], function() {
-    Route::get('', 'ImageController@index');
-    Route::get('detail', 'ImageController@detail');
-    Route::get('createdir', 'ImageController@createdir');
-    Route::get('udpatedir', 'ImageController@udpatedir');
-    Route::get('uploadfile', 'ImageController@uploadfile');
-    Route::get('delfile', 'ImageController@delfile');
-    Route::get('video', 'ImageController@video');
-    Route::get('deldir', 'ImageController@deldir');
+    Route::any('', 'ImageController@index');
+    Route::any('detail', 'ImageController@detail');
+    Route::any('createdir', 'ImageController@createdir');
+    Route::any('udpatedir', 'ImageController@udpatedir');
+    Route::any('upload', 'ImageController@upload');
+    Route::any('uploadfile', 'ImageController@uploadfile');
+    Route::any('delfile', 'ImageController@delfile');
+    Route::any('video', 'ImageController@video');
+    Route::any('deldir', 'ImageController@deldir');
+    Route::any('adddir', 'ImageController@adddir');
+    Route::any('editdir', 'ImageController@editdir');
+    Route::any('udpatedir', 'ImageController@udpatedir');
+    Route::any('search', 'ImageController@search');
+    Route::any('updatefile', 'ImageController@updatefile');
     // Route::get('get', 'ImageController@get');
     // Route::gets('gets', 'ImageController@gets');
 });
