@@ -444,7 +444,7 @@
     });
     
     // 批量改名
-    ('.image-detail .btn-edit').on('click',function(){
+    $('.image-detail .btn-edit').on('click',function(){
       var url = '/image/?';
       var idList = [];
       $('.image-detail .album-list input[type="checkbox"]').each(function(i,elem){
@@ -469,9 +469,9 @@
 
         }
       });
-
       return false;
     });
+
     // 批量删除
     $('.image-detail .btn-remove').on('click',function(){
       var url = '/image/delfile?';
