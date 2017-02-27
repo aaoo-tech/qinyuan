@@ -250,14 +250,13 @@ input.error{ border-color: #E50012; color: #E50012; }
 .personal-info dd:empty:after { content: "*"; }
 .personal-info input { height: 24px; padding-left: 5px; }
 
-.personal-info textarea { height: 150px; width: 360px; margin-top: 5px; padding: 5px; border-color: #ccc; }
-.personal-info .alive { margin-left: 10px; }
+.personal-info textarea { height: 150px; width: 360px; margin-top: 5px; padding: 5px; border-color: #ccc; vertical-align: text-top; }
+/*.personal-info .alive { margin-left: 10px; }
 .personal-info .alive + input {height: 34px;width: 34px;vertical-align: middle;margin-left: 5px;}
-.personal-info .addr { width: 360px; }
+.personal-info .addr { width: 360px; }*/
 body.personal-edit .operation { display: none; }
-.personal-info .btn-set .btn {padding: 5px 25px;margin: 20px 20px 0 0;}
-.personal-info .btn-set .btn-cancel {background: #aaa;}
-
+/*.personal-info .btn-set .btn {padding: 5px 25px;margin: 20px 20px 0 0;}*/
+.personal-info .btn-set .btn-cancel {width: 100px; height: 36px; line-height: 36px; color: #fff; background: #aaa; }
 
 .family-tree { overflow: auto; -webkit-user-select: none; }
 .family-tree .container { position: relative; width: 5000px; opacity: 0; transition: opacity .2s; }
@@ -318,7 +317,7 @@ body.personal-edit .operation { display: none; }
 .table-form .entry { margin-bottom: 20px; line-height: 40px; }
 .table-form .label { display: inline-block; width: 80px;  font-weight: bold; }
 .table-form .entry input { height: 36px; padding: 5px 10px; font-size: 14px; }
-.table-form .btn-set { margin: 30px 0 0 85px; }
+.table-form .btn-set { margin: 20px 0 0 85px; }
 .table-form .btn-set .btn-submit { width: 100px; height: 36px; line-height: 36px; color: #fff; background-color: #135189; }
 
 .album-list { margin-right: -50px; }

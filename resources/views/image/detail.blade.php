@@ -102,7 +102,11 @@
           </div>
           <div class="box-haader"><h2>编辑所选相片名称</h2></div>
           <div class="form-holder">
+<<<<<<< HEAD
             <form action="/image/uploadfile" method="post">
+=======
+            <form action="/image/updatefile" method="post">
+>>>>>>> 190bfd7e9ead868dc306aea2d5f8f3349f389d93
               {{csrf_field()}}
               <input type="hidden" id="ipt-pic-id" name="did" />
               <div class="entry">

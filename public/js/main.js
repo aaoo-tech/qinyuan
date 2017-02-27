@@ -135,7 +135,6 @@
     })
 
     // famous|champion|merit edit
-
     $('.table-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
@@ -155,7 +154,6 @@
       });
       return false
     })
-
 
     $('td .link-lock').on('click',function(){
       var $elem = $(this);
