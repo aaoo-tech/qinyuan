@@ -13,6 +13,7 @@
             <form action="/image/uploadfile" class="dropzone">
               {{csrf_field()}}
               <input name="did" value="{{$_GET['did']}}" type="hidden" />
+              <input type="text" name="desc" value="" />
             </form>
           </div>
         </div>

@@ -255,4 +255,24 @@ class TreeController extends Controller
                 'data' => $_result,
             ]);
     }
+
+    public function update(Request $request) {
+        $_params = $request->all();
+        $_result = curlPost(
+                    'http://120.25.218.156:12001/info/122/',
+                    json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
+                );
+        if($_result['ok'] === true) {
+            return response()->json([
+                    'success' => true,
+                    'message' => '',
+                    'data' => $_result,
+                ]);
+        }
+        return response()->json([
+                'success' => false,
+                'message' => '失败',
+                'data' => $_result,
+            ]);
+    }
 }

@@ -79,6 +79,7 @@
             <form action="/image/uploadfile" class="dropzone">
               {{csrf_field()}}
               <input name="did" value="{{$_GET['did']}}" type="hidden" />
+              <input type="text" name="desc" maxlength="20" value="" />
               <div class="form-foot" style="display: none">
                 <div class="entry-name fl">
                   <span class="label">统一添加照片描述</span>
