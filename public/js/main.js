@@ -455,7 +455,7 @@
     
     // 批量改名
     $('.image-detail .btn-edit').on('click',function(){
-      var url = '/image/?';
+      var ids = '';
       var idList = [];
       $('.image-detail .album-list input[type="checkbox"]').each(function(i,elem){
         if(elem.checked){
@@ -464,23 +464,27 @@
       });
 
       idList.forEach(function(id){
-        url += 'fids[]='+ id + '&'
+        ids += 'fids[]='+ id + '&'
       });
-      $.ajax({
-        url: url, 
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
-
-        }
-      });
+      
+      $('.pic-edit #ipt-pic-id').val(ids);
       return false;
     });
+    $('.pop-out .pic-edit .btn-submit').on('click',function(){
+      var $form = $('.pop-out .pic-edit form');
+        var url = $form.attr('action');
+        $.ajax({
+          url: url,
+          data: $form.serialize(),
+          beforeSend: function() {
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+            location.reload()
+        });
+        return false
+    })
 
     // 批量删除
     $('.image-detail .btn-remove').on('click',function(){

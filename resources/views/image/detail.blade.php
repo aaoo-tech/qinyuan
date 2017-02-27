@@ -104,7 +104,7 @@
           <div class="form-holder">
             <form action="/image/uploadfile" method="post">
               {{csrf_field()}}
-              <input type="hidden" id="ipt-album-id" name="did" />
+              <input type="hidden" id="ipt-pic-id" name="did" />
               <div class="entry">
                 <span class="label">相片名称</span>
                 <input type="hidden" name="fids" />
