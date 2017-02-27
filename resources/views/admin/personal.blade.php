@@ -11,9 +11,11 @@
             <span>个人资料</span>
           </div>
           <div class="operation fr">
+            @if(!empty($_GET['fid']))
             <div class="btn-set fl">
-              <a class="btn-recycling" href="/image?fid="><i class="iconfont icon-img"></i>影像资料</a>
+              <a class="btn-recycling" href="/image?fid={{$_GET['fid']}}"><i class="iconfont icon-img"></i>影像资料</a>
             </div>
+            @endif
             <div class="btn-set fr">
               <a class="btn-edit" href="#">编辑</a>
             </div>
@@ -91,7 +93,7 @@
             <form action="/tree/update" method="post">
               {{csrf_field()}}
               <input name="uid" value="{{$data['uid']}}" type="hidden">
-              <input name="pid" value="" type="hidden">
+              <input name="pid" value="{{$data['pid']}}" type="hidden">
               <input name="generation" value="{{$data['generation']}}" type="hidden">
 <!--               @if(!empty($_GET['pid']) && !empty($_GET['generation']))
               <input name="pid" value="{{$_GET['pid']}}" type="hidden">
