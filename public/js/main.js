@@ -444,28 +444,30 @@
     });
 
     $('.image-detail .btn-remove').on('click',function(){
-      var url = '/image/delfile?'
+      var url = '/image/delfile?';
       var idList = [];
       $('.image-detail .album-list input[type="checkbox"]').each(function(i,elem){
         if(elem.checked){
           idList.push($(this).closest('.pic').data('id'));
         }
       });
-      idList.forEach(function(id){
-        url += 'fids[]='+id + '&'
-      });
-      $.ajax({
-        url: url, 
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
+      _alert('你确定要删除这些相片吗？',function(){
+        idList.forEach(function(id){
+          url += 'fids[]='+ id + '&'
+        });
+        $.ajax({
+          url: url, 
+          beforeSend: function() { 
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          if (response.success == true) {
+            window.location.reload();
+          } else {
 
-        }
+          }
+        });
       });
       return false;
     });

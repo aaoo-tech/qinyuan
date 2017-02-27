@@ -436,12 +436,13 @@ f
 
 .pop-out .pic-add { width: 900px; height: 600px; }
 .pop-out .pic-add .form-holder { padding: 20px; height: 510px; }
+.pop-out .pic-add form { height: 430px; }
 .pop-out .pic-add .btn-choose { display: inline-block; height: 80px; width: 80px; font-size: 40px; line-height: 80px; text-align: center; border: 1px solid #ccc; }
 .pop-out .pic-add .form-holder .entry-pic { height: 400px; }
 .pop-out .pic-add .form-holder .entry-name { margin: 20px 20px 20px 100px; line-height: 40px; text-align: center; }
 .pop-out .pic-add .form-holder .entry-name input { width: 300px; height: 38px; margin: 0 20px; }
 .pop-out .pic-add .form-holder .btn-submit { margin: 20px 80px 20px 0px; padding: 6px 30px; }
-
+.pop-out .pic-add .form-foot { position: absolute;width: 100%;bottom: 10px;left: 0; }
 
 .pop-out .pop-out-confirm { display: none; position: absolute; top: 0; right: 0; bottom: 0; left: 0; margin: auto; background-color: #fff; box-shadow: 0 0 6px 1px rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; }
 .pop-out .pop-out-confirm.active { display: block; }

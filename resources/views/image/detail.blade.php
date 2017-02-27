@@ -79,14 +79,14 @@
             <form action="/image/uploadfile" class="dropzone">
               {{csrf_field()}}
               <input name="did" value="{{$_GET['did']}}" type="hidden" />
-              <div class="form-foot" style="display: none">
+              <div class="form-foot">
                 <div class="entry-name fl">
                   <span class="label">统一添加照片描述</span>
-                  <input type="text" name="" maxlength="20" value="" />
+                  <input type="text" name="desc" maxlength="20" value="" />
                   <span class="tip">(描述最多20个字)</span>
                 </div>
                 <div class="btn-set fr">
-                  <a class="btn btn-submit" href="#">保存</a>
+                  <a class="btn btn-submit" href="#" id="ipt-upload">保存</a>
                 </div>
               </div>
             </form>
@@ -101,19 +101,20 @@
           </div>
           <div class="box-haader"><h2>编辑所选相片名称</h2></div>
           <div class="form-holder">
-            <form action="/image/udpatedir" method="post">
+            <form action="/image/" method="post">
               {{csrf_field()}}
               <input type="hidden" id="ipt-album-id" name="did" />
               <div class="entry">
                 <span class="label">相片名称</span>
-                <input id="ipt-title" type="text" name="fname"/>
+                <input type="hidden" name="fid" />
+                <input id="ipt-title" type="text" name="desc"/>
                 <span class="tip">(相片名称最多8个字)</span>
               </div>
             </form>
           </div>
           <div class="box-footer clearfix">
             <div class="btn-set fr">
-              <a class="btn btn-cancel"href="#">取消</a>
+              <a class="btn btn-cancel" href="#">取消</a>
             </div>
             <div class="btn-set fr">
               <a class="btn btn-submit" href="#">确定</a>
@@ -125,30 +126,30 @@
     <script type="text/javascript">
       (function($) {
         $(function() {
-          // Dropzone.options.myDropzone = {
+          Dropzone.options.myDropzone = {
 
-          //   // Prevents Dropzone from uploading dropped files immediately
-          //   autoProcessQueue: false,
+            // Prevents Dropzone from uploading dropped files immediately
+            autoProcessQueue: false,
 
-          //   init: function() {
-          //     var submitButton = document.querySelector("#submit-all")
-          //         myDropzone = this; // closure
+            init: function() {
+              var submitButton = document.querySelector("#ipt-upload")
+                  myDropzone = this; // closure
 
-          //     submitButton.addEventListener("click", function() {
-          //       myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-          //     });
+              submitButton.addEventListener("click", function() {
+                myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+              });
 
-          //     // You might want to show the submit button only when 
-          //     // files are dropped here:
-          //     this.on("addedfile", function() {
-          //       // Show submit button here and/or inform user to click it.
-          //     });
+              // You might want to show the submit button only when 
+              // files are dropped here:
+              this.on("addedfile", function() {
+                // Show submit button here and/or inform user to click it.
+              });
 
-          //   }
-          // };
-          $('.dropzone').dropzone({
-              dictDefaultMessage: '点击选择文件或拖拽文件到该区域上传'
-          });
+            }
+          };
+          // $('.dropzone').dropzone({
+          //     dictDefaultMessage: '点击选择文件或拖拽文件到该区域上传'
+          // });
         });
       })(jQuery)
     </script>
