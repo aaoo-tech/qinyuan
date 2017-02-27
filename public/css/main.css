@@ -243,28 +243,22 @@ input.error{ border-color: #E50012; color: #E50012; }
 .common-table.message-table td a { color: #E52939; }
 .common-table.message-table .table-foot .btn { width: 120px; background-color: #2BA93F; }
 
-/*.family-tree { overflow: auto; }*/
-/*.family-tree .container { position: relative; height: 750px; margin-left: 50px; overflow-y: auto; }*/
-/*.family-tree { position: relative; padding: 50px 0; text-align: center; }
-.family-tree .family-tree-info { position: absolute; z-index: 2; top: -12px; left: 50%; width: 70px; height: 25px; padding: 5px; margin-left: -40px; font-size: 18px; background-color: #fff; }
-.family-tree .person { position: relative; float: left; width: 80px; padding: 0; border: 1px solid #ccc; margin-right: 40px; border-radius: 3px; }
-*/
-/*.family-tree .person.active { box-shadow: 0 1px 3px 1px #FFC107; }*/
-/*.family-tree .person.p-husband,
-.family-tree .person.p-wife { margin-left: -30px; }
-.family-tree .person:last-child { margin-right: 0; }
-.family-tree .person:before { position: absolute; bottom: 100%; left: 50%; width: 131px; height: 50px; border-left: 1px solid #ccc; border-top: 1px solid #ccc; content: ""; }
-.family-tree .person:last-child:before { border-top: 1px solid #fff; }
-.family-tree .person.p-wife:before,
-.family-tree .person.p-husband:before { border-left: none; }
-.family-tree .person.p-wife:after,
-.family-tree .person.p-husband:after { position: absolute; top: 50%; right: 100%; width: 11px; border-top: 1px solid #ccc; content: ""; }
-.family-tree .person.active:after { position: absolute; top: 100%; left: 50%; height: 50px; border-left: 1px solid #ccc; content: ""; }
-.family-tree .person:last-child:before { width: 20px; }
+.personal-info .p-avatar {width: 100px;height: 100px;margin-bottom: 20px;background-color: #eee;border-bottom: 1px solid #ccc;border-radius: 50%;}
+.personal-info dl {line-height: 34px;}
+.personal-info dt {float: left;font-size: 14px;font-weight: bolder;}
+.personal-info dd {margin-left: 100px;color: #666;}
+.personal-info dd:empty:after { content: "*"; }
+.personal-info input { height: 24px; padding-left: 5px; }
 
-f
+.personal-info textarea { height: 150px; width: 360px; margin-top: 5px; padding: 5px; border-color: #ccc; }
+.personal-info .alive { margin-left: 10px; }
+.personal-info .alive + input {height: 34px;width: 34px;vertical-align: middle;margin-left: 5px;}
+.personal-info .addr { width: 360px; }
+body.personal-edit .operation { display: none; }
+.personal-info .btn-set .btn {padding: 5px 25px;margin: 20px 20px 0 0;}
+.personal-info .btn-set .btn-cancel {background: #aaa;}
 
-*/
+
 .family-tree { overflow: auto; -webkit-user-select:none; }
 .family-tree .container { position: relative; width: 5000px; opacity: 1; transition: opacity .2s; }
 .family-tree .container.active { opacity: 1; }
@@ -314,12 +308,12 @@ f
 .family-tree .tree-menu li { border-bottom: 1px solid #ccc; }
 .family-tree .tree-menu li a { padding-left: 10px; line-height: 36px; background-color: #fff; }
 .family-tree .tree-menu li a:hover { background-color: #eee }
+.family-tree .tree-menu.abridge .ab-li { display: none; }
 
-.personal-info .p-avatar { width: 150px; height: 150px; margin-bottom: 20px; background-color: #eee; border-bottom: 1px solid #ccc; border-radius: 50%; }
-.personal-info dl { line-height: 24px; }
-.personal-info dt { float: left;  font-weight: bold; }
-.personal-info dd { margin-left: 100px; }
-.personal-info dd:empty:after { content: "*"; }
+.info-node {width: 550px;height: 600px;box-shadow: 0 0 6px 1px rgba(0,0,0,0.4);border-radius: 4px;overflow: hidden;}
+.info-node .box-haader .btn-edit {position: absolute;top: 12px;left: 120px;background: none;color: #123;font-size: 18px;color: #df0000;}
+.info-node .personal-info { padding: 20px; }
+.info-node .personal-info .p-avatar {width: 100px;height: 100px;}
 
 .table-form .entry { margin-bottom: 20px; line-height: 40px; }
 .table-form .label { display: inline-block; width: 80px;  font-weight: bold; }

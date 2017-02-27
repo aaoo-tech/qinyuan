@@ -442,7 +442,37 @@
       $('.pop-out .pic-add').addClass('active');
       return false;
     });
+    
+    // 批量改名
+    ('.image-detail .btn-edit').on('click',function(){
+      var url = '/image/?';
+      var idList = [];
+      $('.image-detail .album-list input[type="checkbox"]').each(function(i,elem){
+        if(elem.checked){
+          idList.push($(this).closest('.pic').data('id'));
+        }
+      });
 
+      idList.forEach(function(id){
+        url += 'fids[]='+ id + '&'
+      });
+      $.ajax({
+        url: url, 
+        beforeSend: function() { 
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+
+        }
+      });
+
+      return false;
+    });
+    // 批量删除
     $('.image-detail .btn-remove').on('click',function(){
       var url = '/image/delfile?';
       var idList = [];
