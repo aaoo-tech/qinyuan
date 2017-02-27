@@ -76,7 +76,7 @@
           </div>
           <div class="box-haader"><h2>上传相片</h2></div>
           <div class="form-holder">
-            <form action="/image/uploadfile" class="dropzone">
+            <form action="/image/uploadfile" class="dropzone" id="my-dropzone">
               {{csrf_field()}}
               <input name="did" value="{{$_GET['did']}}" type="hidden" />
               <div class="form-foot">
@@ -101,12 +101,12 @@
           </div>
           <div class="box-haader"><h2>编辑所选相片名称</h2></div>
           <div class="form-holder">
-            <form action="/image/" method="post">
+            <form action="/image/uploadfile" method="post">
               {{csrf_field()}}
               <input type="hidden" id="ipt-album-id" name="did" />
               <div class="entry">
                 <span class="label">相片名称</span>
-                <input type="hidden" name="fid" />
+                <input type="hidden" name="fids" />
                 <input id="ipt-title" type="text" name="desc"/>
                 <span class="tip">(相片名称最多8个字)</span>
               </div>
@@ -130,6 +130,9 @@
 
             // Prevents Dropzone from uploading dropped files immediately
             autoProcessQueue: false,
+            dictDefaultMessage: '点击选择文件或拖拽文件到该区域上传',
+            maxFiles: 10,
+            parallelUploads: 10,
 
             init: function() {
               var submitButton = document.querySelector("#ipt-upload")
