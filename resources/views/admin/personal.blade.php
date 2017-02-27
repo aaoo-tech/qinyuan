@@ -10,6 +10,14 @@
             @endif
             <span>个人资料</span>
           </div>
+          <div class="operation fr">
+            <div class="btn-set fl">
+              <a class="btn-recycling" href="/image?fid="><i class="iconfont icon-img"></i>影像资料</a>
+            </div>
+            <div class="btn-set fr">
+              <a class="btn-edit" href="#">编辑</a>
+            </div>
+          </div>
         </div>
         <div class="main-body">
           @if($data)
@@ -18,9 +26,9 @@
             {{$data['birther']}}
             {{$data['generation']}}
             {{$data['seniority']}} -->
-          <div class="personal-info">
+          <div class="personal-info info-show">
             <div class="p-avatar">
-              <img src="{{$data['avatar']}}">
+              <img src="@if(!!$data['avatar']){{$data['avatar']}} @else {{asset('/img/p-man.png')}}@endif" >
             </div>
             <dl>
               <dt>姓名：</dt>
@@ -62,8 +70,7 @@
             </dl>
           </div>
           @else
-          
-          <div class="personal-info">
+          <div class="personal-info info-show">
             <div class="p-avatar">
             </div>
             <dl>
@@ -76,11 +83,72 @@
               <dt>家中排行：</dt><dd>行11</dd>
               <dt>手机号：</dt><dd>13933331234</dd>
               <dt>居住地址：</dt><dd>xxxxxxxxx</dd>
-              <dt>个人介绍：</dt><dd>1.无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青 菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...无论对方说什么，你都回答：你牙齿里有根青菜！如果对方说：胡说，我今天没吃青菜！你就惊讶地说：原来是昨天的！以此类推 2.还是刚才的话题。如果别人这样说你，可以说：你...</dd>
+              <dt>个人介绍：</dt><dd></dd>
             </dl>
           </div>
           @endif
+          <div class="personal-info info-edit" style="display: none">
+            <form action="/tree/create" method="post">
+              {{csrf_field()}}
+<!--               @if(!empty($_GET['pid']) && !empty($_GET['generation']))
+              <input name="pid" value="{{$_GET['pid']}}" type="hidden">
+              <input name="generation" value="{{$_GET['generation']}}" type="hidden">
+              @endif -->
+              <div class="p-avatar">
+                <img class="fl" src="@if(!!$data['avatar']){{$data['avatar']}} @else {{asset('/img/p-man.png')}}@endif" >
+                <label class="btn btn-choose" for="ipt-bg">重新选择</label>
+                <input id="ipt-bg" type="file" name="picurl" style="display:none" accept="image/gif,image/jpeg,image/jpg,image/png"/>
+              </div>
+              <dl>
+                <dt>姓名：</dt>
+                <dd><input type="text" name="uname" value="{{$data['uname']}}"></dd>
+                <dt>姓别：</dt>
+                <dd>
+                  <select name="sex">
+                    <option value="1" @if($data['sex']==1) selected @endif>男</option>
+                    <option value="0" @if($data['sex']==0) selected @endif>女</option>
+                    <option value="2" @if($data['sex']==2) selected @endif>妻子</option>
+                    <option value="3" @if($data['sex']==3) selected @endif>丈夫</option>
+                  </select>
+                </dd>
+                <dt>出生日期：</dt>
+                <dd><input type="text" name="birthday" value="{{$data['birthday']}}"></dd>
+                <dt>去世日期：</dt>
+                <dd>
+                  <input type="text" name="death" value="{{$data['death']}}">
+                  <span class="alive">未亡</span>
+                  <input id="ipt-isalive" @if($data['isalive']==1) checked @endif type="checkbox" name="isalive" />
+                </dd>
+                <dt>父亲姓名：</dt>
+                <dd><input type="text" name="father" value="{{$data['father']}}"></dd>
+                <dt>母亲姓名：</dt>
+                <dd><input type="text" name="monther" value="{{$data['monther']}}"></dd>
+                <dt>家中排行：</dt>
+                <dd><input type="text" name="idx" value="行{{$data['idx']}}"></dd>
+                <dt>手机号： </dt>
+                <dd><input type="text" name="mobile" value="{{$data['mobile']}}"></dd>
+                <dt>居住地址：</dt>
+                <dd><input type="text" name="addr" class="addr" value="{{$data['addr']}}"></dd>
+                <dt>个人介绍：</dt>
+                <dd><textarea name="content" value="{{$data['idx']}}"></textarea></dd>
+              </dl>
+              <div class="btn-set fl">
+                <a class="btn btn-submit" href="#">保存</a>
+              </div>
+              <div class="btn-set fl">
+                <a class="btn btn-cancel" href="#">取消</a>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $('.operation .btn-edit').on('click',function(){
+        $('body').addClass('personal-edit');
+        $('.info-show').hide();
+        $('.info-edit').show();
+      })
+
+    </script>
 @include('base.footer')

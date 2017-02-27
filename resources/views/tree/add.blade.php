@@ -63,9 +63,13 @@
                 <span class="label">个人介绍：</span>
                 <textarea name="content" rows="10" cols="50"></textarea>
               </div>
-              <div class="btn-set">
+              <div class="btn-set fl">
                 <a class="btn btn-submit" href="#">保存</a>
               </div>
+              <div class="btn-set fl">
+                <a class="btn btn-submit" href="#">取消</a>
+              </div>
+              
             </form>
           </div>
         </div>
