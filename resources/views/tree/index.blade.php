@@ -67,7 +67,7 @@
                       </li>
                       @if(count($p['mate']) > 0)
                         @foreach ($p['mate'] as $m)
-                          <li data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" >
+                          <li data-uid="{{$m['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" >
                             <p class="p-pic">
                               <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                             </p>
@@ -101,7 +101,7 @@
                     </li>
                     @if(count($p['mate']) > 0)
                       @foreach ($p['mate'] as $m)
-                      <li data-uid="{{$p['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
+                      <li data-uid="{{$m['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
                         <p class="p-pic">
                           <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
