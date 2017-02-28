@@ -256,7 +256,7 @@ input.error{ border-color: #E50012; color: #E50012; }
 .personal-info .addr { width: 360px; }*/
 body.personal-edit .operation { display: none; }
 /*.personal-info .btn-set .btn {padding: 5px 25px;margin: 20px 20px 0 0;}*/
-.personal-info .btn-set .btn-cancel {width: 100px; height: 36px; line-height: 36px; color: #fff; background: #aaa; }
+.btn-set .btn-cancel {width: 100px; height: 36px; line-height: 36px; color: #fff; background: #aaa; }
 
 .family-tree { overflow: auto; -webkit-user-select: none; }
 .family-tree .container { position: relative; width: 5000px; opacity: 0; transition: opacity .2s; }
