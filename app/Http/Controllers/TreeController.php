@@ -107,9 +107,11 @@ class TreeController extends Controller
         $current = '';
         if($_params['fid'] == -1){
             // $current = $_data[$generation[2]][0]['uid'];
-            foreach ($_data[$generation[2]] as $value) {
-                if($value['child'] === true){
-                    $current = $value['uid'];
+            if(count($generation) > 2){
+                foreach ($_data[$generation[2]] as $value) {
+                    if($value['child'] === true){
+                        $current = $value['uid'];
+                    }
                 }
             }
         }else{
