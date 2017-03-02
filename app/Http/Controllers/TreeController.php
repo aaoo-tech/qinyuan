@@ -41,7 +41,7 @@ class TreeController extends Controller
         // array_push($_result['data'], $_t);
         $generation = [];
         foreach ($_result['data'] as $val) {
-            if(!in_array($val['generation'], $generation)){
+            if(!in_array($val['generation'], $generation) && $val['sex'] !=2 && $val['sex'] !=3){
                 $generation[] = $val['generation'];
             }
         }
@@ -58,13 +58,15 @@ class TreeController extends Controller
                 $result[$i]['pidx'] = 0;
                 // $_tmp[$result[$i]['uid']] = [];
                 foreach ($_result['data'] as $value) {
-                    if($value['pid'] == $_result['data'][$i]['uid'] && $value['sex'] ==2 || $value['sex'] ==3){
-                        array_push($result[$i]['mate'], $value);
+                    if($value['pid'] == $_result['data'][$i]['uid']){
+                        if($value['sex'] ==2 || $value['sex'] ==3){
+                            array_push($result[$i]['mate'], $value);
+                        }
                     }
-                    if($value['uid'] == $result[$i]['pid']&& $value['sex'] !=2 && $value['sex'] !=3){
+                    if($value['uid'] == $result[$i]['pid'] && $value['sex'] !=2 && $value['sex'] !=3){
                         $result[$i]['pidx'] = $value['idx'];
                     }
-                    if($value['pid'] == $result[$i]['uid']&& $value['sex'] !=2 && $value['sex'] !=3){
+                    if($value['pid'] == $result[$i]['uid'] && $value['sex'] !=2 && $value['sex'] !=3){
                         $result[$i]['child'] = true;
                     }
                 }
