@@ -40,7 +40,7 @@
               <ul class="tree-ancestor">
                 @foreach ($ancestor as $a)
                   <li class="gen-info">{{$a['generation']}}代</li>
-                  <li data-uid="{{$a['uid']}}" class="person @if($a['sex'] == 0) p-woman @elseif($a['sex'] == 1)p-man @endif">
+                  <li data-uid="{{$a['uid']}}" data-generation="{{$a['generation']}}" data-pid="{{$a['pid']}}" data-sex="{{$a['sex']}}" class="person @if($a['sex'] == 0) p-woman @elseif($a['sex'] == 1)p-man @endif">
                     <p class="p-pic">
                       <img src="@if(!!$a['avatar']){{$a['avatar']}} @elseif($a['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                     </p>
@@ -119,7 +119,7 @@
                   <ul class="tree-g5 clearfix">
                     <li class="border"></li>
                     @foreach ($list[1] as $p)
-                    <li  data-uid="{{$p['uid']}}" class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}">
+                    <li  data-uid="{{$p['uid']}}" data-pid="{{$p['pid']}}" data-sex="{{$p['sex']}}" data-generation="{{$p['generation']}}" class="person @if($p['sex'] == 0) p-woman @elseif($p['sex'] == 1) p-man @endif @if($current == $p['uid']) current @endif @if($p['child'] === true) active @endif uid-{{$p['uid']}} pid-{{$p['pid']}}">
                       <p class="p-pic">
                         <img src="@if(!!$p['avatar']){{$p['avatar']}} @elseif($p['sex'] == 0) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                       </p>
