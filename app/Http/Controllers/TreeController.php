@@ -41,7 +41,7 @@ class TreeController extends Controller
         // array_push($_result['data'], $_t);
         $generation = [];
         foreach ($_result['data'] as $val) {
-            if(!in_array($val['generation'], $generation)){
+            if(!in_array($val['generation'], $generation) && $val['sex'] !=2 && $val['sex'] !=3){
                 $generation[] = $val['generation'];
             }
         }
@@ -58,13 +58,15 @@ class TreeController extends Controller
                 $result[$i]['pidx'] = 0;
                 // $_tmp[$result[$i]['uid']] = [];
                 foreach ($_result['data'] as $value) {
-                    if($value['pid'] == $_result['data'][$i]['uid'] && $value['sex'] ==2 || $value['sex'] ==3){
-                        array_push($result[$i]['mate'], $value);
+                    if($value['pid'] == $_result['data'][$i]['uid']){
+                        if($value['sex'] ==2 || $value['sex'] ==3){
+                            array_push($result[$i]['mate'], $value);
+                        }
                     }
-                    if($value['uid'] == $result[$i]['pid']&& $value['sex'] !=2 && $value['sex'] !=3){
+                    if($value['uid'] == $result[$i]['pid'] && $value['sex'] !=2 && $value['sex'] !=3){
                         $result[$i]['pidx'] = $value['idx'];
                     }
-                    if($value['pid'] == $result[$i]['uid']&& $value['sex'] !=2 && $value['sex'] !=3){
+                    if($value['pid'] == $result[$i]['uid'] && $value['sex'] !=2 && $value['sex'] !=3){
                         $result[$i]['child'] = true;
                     }
                 }
@@ -105,9 +107,11 @@ class TreeController extends Controller
         $current = '';
         if($_params['fid'] == -1){
             // $current = $_data[$generation[2]][0]['uid'];
-            foreach ($_data[$generation[2]] as $value) {
-                if($value['child'] === true){
-                    $current = $value['uid'];
+            if(count($generation) > 2){
+                foreach ($_data[$generation[2]] as $value) {
+                    if($value['child'] === true){
+                        $current = $value['uid'];
+                    }
                 }
             }
         }else{
@@ -260,7 +264,7 @@ class TreeController extends Controller
         $_params = $request->all();
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/122/',
-                    json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
                 );
         if($_result['ok'] === true) {
             return response()->json([

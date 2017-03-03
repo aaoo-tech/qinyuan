@@ -473,7 +473,7 @@
         var url = $form.attr('action');
         $.ajax({
           url: url,
-          data: $form.serialize(),
+          data: $('.pic-edit #ipt-pic-id').val() + $form.serialize(),
           beforeSend: function() {
             $('#loading').addClass('active');
           }

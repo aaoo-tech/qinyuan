@@ -57,7 +57,7 @@
                 <a class="pic-link fancybox" data-fancybox-group="gallery" href="{{$datum['fname']}}" title="{{$datum['desc']}}">
                   <span class="pic-bg" style="background-image: url({{$datum['fname']}})"></span>
                   <img src="{{$datum['fname']}}" style="display: none")>
-                  <span class="pic-title">{{$datum['desc']}} {{$datum['fid']}}</span>
+                  <span class="pic-title">{{$datum['desc']}}</span>
                 </a>
               </div>
             @endif
@@ -95,6 +95,7 @@
         </div>
 
         <div class="pop-out-confirm pic-edit">
+          <input type="hidden" id="ipt-pic-id" name="did" />
           <div class="pop-close">
             <a href="#" title="关闭">
               <i class="iconfont icon-close"></i>
@@ -102,16 +103,10 @@
           </div>
           <div class="box-haader"><h2>编辑所选相片名称</h2></div>
           <div class="form-holder">
-<<<<<<< HEAD
-            <form action="/image/uploadfile" method="post">
-=======
             <form action="/image/updatefile" method="post">
->>>>>>> 190bfd7e9ead868dc306aea2d5f8f3349f389d93
               {{csrf_field()}}
-              <input type="hidden" id="ipt-pic-id" name="did" />
               <div class="entry">
                 <span class="label">相片名称</span>
-                <input type="hidden" name="fids" />
                 <input id="ipt-title" type="text" name="desc"/>
                 <span class="tip">(相片名称最多8个字)</span>
               </div>
