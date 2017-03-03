@@ -222,97 +222,105 @@
     </div>
     <script type="text/javascript">
 
-      var width_p2 = $('.tree-part-2').width();
-
-      var tree_left = 0;
-      var current_left = 0;
-      // 祖先居中
-      (function(){ 
-        var $a = $('.tree-ancestor');
-        var $p = $a.find('.person');
-        var m = width_p2/2 - $p.width()/2 - parseInt($p.css('margin-left'));
-        $a.css('margin-left',m);
-      }());
-      
-      // 前3代位移对齐
-      $('.tree-part-1 ul').each(function(i,ul){
-        var $ul = $(ul);
-        $p=$ul.find('.active, .current');
-        var p_left = $p.position().left + parseInt($p.css('margin-left'));
-        var ul_left = width_p2/2 - p_left - $p.width()/2;
-        $ul.css('margin-left',ul_left);
-        if (p_left>width_p2/2) {
-          tree_left = Math.max(tree_left,p_left-width_p2/2); ;
-        }
-        $('.family-tree').css('padding-left',tree_left+$p.width()/2);
-      });
-      // 第4代，仅有一人时位移对齐
-      if($('.tree-part-2 .tree-section').length === 1){
-        $('.tree-g4').addClass('t-left');
+      var renderTree = function(){
+        var width_p2 = $('.tree-part-2').width();
+        var tree_left = 0;
+        var current_left = 0;
+        // 祖先居中
         (function(){ 
-          var $s = $('.tree-part-2 .tree-section');
-          var s_width = $s.width();
-          var p_width = $s.find('.active').width();
-          var p_margin = $s.find('.active').css('margin-left');
-          var m = s_width/2 - p_width/2 - parseInt(p_margin);
-          $s.css('margin-left',m);
+          var $a = $('.tree-ancestor');
+          var $p = $a.find('.person');
+          var m = width_p2/2 - $p.width()/2 - parseInt($p.css('margin-left'));
+          $a.css('margin-left',m);
         }());
-      };
-      // 第5代，仅有一人时位移对齐
-      $('.tree-g5').each(function(i,ul){
-        if($(ul).find('.p-man,.p-woman').length === 1){
-          $(ul).closest('.tree-section').find('.tree-g4').addClass('t-left');
-        }
-      });
+        
+        // 前3代位移对齐
+        $('.tree-part-1 ul').each(function(i,ul){
+          var $ul = $(ul);
+          $p=$ul.find('.active, .current');
+          var p_left = $p.position().left + parseInt($p.css('margin-left'));
+          var ul_left = width_p2/2 - p_left - $p.width()/2;
+          $ul.css('margin-left',ul_left);
+          if (p_left>width_p2/2) {
+            tree_left = Math.max(tree_left,p_left-width_p2/2); ;
+          }
+          $('.family-tree').css('padding-left',tree_left+$p.width()/2);
+        });
+        // 第4代，仅有一人时位移对齐
+        if($('.tree-part-2 .tree-section').length === 1){
+          $('.tree-g4').addClass('t-left');
+          (function(){ 
+            var $s = $('.tree-part-2 .tree-section');
+            var s_width = $s.width();
+            var p_width = $s.find('.active').width();
+            var p_margin = $s.find('.active').css('margin-left');
+            var m = s_width/2 - p_width/2 - parseInt(p_margin);
+            $s.css('margin-left',m);
+          }());
+        };
+        // 第5代，仅有一人时位移对齐
+        $('.tree-g5').each(function(i,ul){
+          if($(ul).find('.p-man,.p-woman').length === 1){
+            $(ul).closest('.tree-section').find('.tree-g4').addClass('t-left');
+          }
+        });
 
-      // 辈分代数居中
-      $('.tree-part-1 .gen-info').each(function(i,elem){
-        var $c = $(elem).closest('ul').find('.active, .current');
-        var l = $c.position().left;
-        var w = $c.width();
-        $(elem).css('left',l+w/4);
-      });
-      $('.tree-part-2 .gen-info').each(function(i,elem){
-        if (i>=0) {
-          var $c = $(elem).closest('ul').find('.person:not(.p-wife,.p-husband)');
+        // 辈分代数居中
+        $('.tree-part-1 .gen-info').each(function(i,elem){
+          var $c = $(elem).closest('ul').find('.active, .current');
           var l = $c.position().left;
           var w = $c.width();
           $(elem).css('left',l+w/4);
+        });
+        $('.tree-part-2 .gen-info').each(function(i,elem){
+          if (i>=0) {
+            var $c = $(elem).closest('ul').find('.person:not(.p-wife,.p-husband)');
+            var l = $c.position().left;
+            var w = $c.width();
+            $(elem).css('left',l+w/4);
+          }
+        });
+
+        // 画横线
+        $('.family-tree ul').each(function(i,ul){
+          var $ul = $(ul);
+          var width_border = $ul.find('li:not(.p-wife,.p-husband)').eq(-1).position().left;
+          $ul.find('.border').width(width_border);
+        });
+        (function(){ 
+          var $s = $('.tree-part-2 .tree-section');
+          if ($s.length>0){
+            var $p = $s.find('.person');
+            var w = $p.width();
+            var p = parseInt($s.css('padding-left'));
+            var m = parseInt($p.css('margin-left'));
+            var left_1 = $s.eq(0).find('.person').position().left + w/2 + p + m;
+            var left_2 = $s.eq(-1).find('.person').position().left + w/2 + p + m;
+            var right = $s.eq(-1).width() + 2*p - left_2;
+            var width_boder = width_p2 - left_1 - right;
+            $('.tree-part-2 > .border').css({
+              'left' : left_1,
+              'width' : width_boder,
+            })
+          }
+        }());
+        // 当前居中
+        $('.family-tree').height($(window).height()-150);
+        $('.family-tree').scrollTop(426);
+        var t_w = $('.family-tree').width()/2 - 50;
+        var c_left = $('.current').offset().left - $('.family-tree').offset().left;
+        if(c_left<t_w){
+          $('.family-tree .container').css('margin-left',t_w-c_left);
+        }else{
+          $('.family-tree').scrollLeft(c_left-t_w);
         }
-      });
+        // 画完显示
+        $('.family-tree .container').addClass('active');
+      }
+      renderTree();
+      // $(window).resize(renderTree);
 
-      // 画横线
-      $('.family-tree ul').each(function(i,ul){
-        var $ul = $(ul);
-        var width_border = $ul.find('li:not(.p-wife,.p-husband)').eq(-1).position().left;
-        $ul.find('.border').width(width_border);
-      });
-      (function(){ 
-        var $s = $('.tree-part-2 .tree-section');
-        if ($s.length>0){
-          var $p = $s.find('.person');
-          var w = $p.width();
-          var p = parseInt($s.css('padding-left'));
-          var m = parseInt($p.css('margin-left'));
-          var left_1 = $s.eq(0).find('.person').position().left + w/2 + p + m;
-          var left_2 = $s.eq(-1).find('.person').position().left + w/2 + p + m;
-          var right = $s.eq(-1).width() + 2*p - left_2;
-          var width_boder = width_p2 - left_1 - right;
-          $('.tree-part-2 > .border').css({
-            'left' : left_1,
-            'width' : width_boder,
-          })
-        }
-      }());
-
-      // 画完显示
-      $('.family-tree .container').addClass('active')
-      $('.family-tree').height($(window).height()-150);
-      
-      // 当前居中
-      console.log($('.current').offset());
-
-
+  
 
       // var genWidth = [];
       // $('.family-tree .container').width(5000);

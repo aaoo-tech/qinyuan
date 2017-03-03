@@ -2,10 +2,11 @@ html { height: 100%; /* width: 1336px; */ }
 body { height: 100%; font-family: Helvetica, Arial, Microsoft Yahei, sans-serif; font-size: 14px; color: #27292C; }
 
 /* .narrow-width  */
-/* html{ background-color: #999; }
+/*html { background-color: #999; }
 body { width: 1200px; margin: 0 auto; background-color: #fff; box-shadow: 0 0 5px 1px #333 }
- */
- .xdebug-var-dump { margin-left: 200px; }
+body .page-left { left: 50%; margin-left: -600px; }*/
+
+/*.xdebug-var-dump { margin-left: 200px; }*/
 
 .fl { float:left; }
 .fr { float: right; }
@@ -351,7 +352,7 @@ body.personal-edit .operation { display: none; }
 .image-edit .album-list .pic-checkbox { display: block; }
 .album-list input:checked + .pic-checkbox { outline: 2px solid #135189; }
 .album-list input:checked + .pic-checkbox:before { position: absolute; top: 0; left: 0; width: 30px; height: 30px; font-size: 24px; line-height: 30px; color: #fff; padding-left: 4px; background-color: #135189; font-family: "iconfont" !important; content: "\e638" }
-.album-list .pic .pic-title { display: block; padding: 0 5px; font-size: 16px; line-height: 22px; overflow: hidden; text-overflow: ellipsis; }
+.album-list .pic .pic-title { display: block; height: 24px; padding: 0 5px; font-size: 16px;  line-height: 24px; overflow: hidden; text-overflow: ellipsis; }
 
 
 
