@@ -73,6 +73,54 @@
         </div>
       </div>
       <div class="pop-out">
+        <div class="pop-out-confirm album-add">
+          <div class="pop-close">
+            <a href="#" title="关闭">
+              <i class="iconfont icon-close"></i>
+            </a>
+          </div>
+          <div class="box-haader"><h2>创建相册</h2></div>
+          <div class="form-holder">
+            <form action="/image/createdir" method="post">
+              {{csrf_field()}}
+              @if(!empty($_GET['uid']))
+                <input type="hidden" name="uid" value="{{$_GET['uid']}}">
+              @endif
+              <div class="entry" style="display: none;">
+                <span class="label">类型：</span>
+                <select name="type">
+                  <option value="1" selected>家族</option>
+                  <option value="2">个人</option>
+                </select>
+              </div>
+              <div class="entry" style="display: none;">
+                <span class="label">权限：</span>
+                <select name="jurisdiction">
+                  <option value="1">私密</option>
+                  <option value="2" selected="">公开</option>
+                  <option value="3">上下1代公开</option>
+                  <option value="4">上下2代公开</option>
+                </select>
+              </div>
+              <div class="entry">
+                <span class="label">相册名称</span>
+                <input class="ipt-name" type="text" name="dirname"/>
+                <span class="tip">(相册名称最多8个字)</span>
+              </div>
+              <div class="fl">
+                <span class="err">相册名已被使用!</span>
+              </div>
+            </form>
+          </div>
+          <div class="box-footer clearfix">
+            <div class="btn-set fr">
+              <a class="btn btn-cancel"href="#">取消</a>
+            </div>
+            <div class="btn-set fr">
+              <a class="btn btn-submit" href="#">确定</a>
+            </div>
+          </div>
+        </div>
         <div class="pop-out-confirm album-edit">
           <div class="pop-close">
             <a href="#" title="关闭">
@@ -100,7 +148,7 @@
             </div>
           </div>
         </div>
-        <div class="pop-out-confirm album-add pop-cont-3">
+        <div class="pop-out-confirm album-goto pop-cont-3">
           <div class="pop-close">
             <a href="#" title="关闭">
               <i class="iconfont icon-close"></i>

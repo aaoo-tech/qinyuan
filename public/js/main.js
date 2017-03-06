@@ -134,7 +134,7 @@
       return false
     })
 
-    // famous|champion|merit edit
+    // famous|champion|merit|personal
     $('.table-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
@@ -215,25 +215,28 @@
       return false
     })
 
-
-    $('li .ajax-remove').on('click',function(){
+    // 删除管理员
+    $('.admin-list .ajax-remove').on('click',function(){
       var $elem = $(this);
       var url = $elem.attr('href');
-      $.ajax({
-        url: url,
-        beforeSend: function() { 
-          $('#loading').addClass('active');
-        }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          window.location.reload();
-        } else {
-
-        }
+      var name = $(this).closest('li').find('.admin-name').text();
+      _alert('你确定要删除管理员"'+ name +'"吗？',function(){
+        $.ajax({
+          url: url, 
+          beforeSend: function() {
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          if (response.success == true) {
+            window.location.reload();
+          } else {
+            alert('删除失败');
+          }
+        });
       });
       return false
-    })
+    });
 
     // table底部操作 启用／禁用
     $('.common-table table tr input[type="checkbox"]').on('change', function() {
@@ -249,7 +252,7 @@
     })
     $('.common-table .table-foot').on('click','.btn.disable', function() {
       return false;
-    })
+    });
     // 批量去回收站
     $('.common-table .table-foot').on('click','.btn-to-recycle.able', function() {
       var $tr = $('.common-table table tr');
@@ -321,7 +324,7 @@
       return false;
     });
 
-    // 还原或删除所有
+    // 回收站, 还原或删除所有
     $('.table-foot .btn-all.able').on('click', function() {
       var _href = $(this).attr('href');
       if($(this).hasClass('btn-remove')){
@@ -396,6 +399,36 @@
       });
       return false;
     });
+
+    // 影像中心，创建相册
+    $('.image-index .sub-menu .btn-add').on('click',function(){
+      $('.pop-out').addClass('active');
+      $('.pop-out .album-add').addClass('active');
+      return false;
+    });
+    $('.image-index .album-add .btn-submit').on('click',function(){
+      var $form = $(this).closest('.album-add').find('form');
+      var url = $form.attr('action');
+      $.ajax({
+        url: url,
+        data: $form.serialize(),
+        beforeSend: function() {
+          $('#loading').addClass('active');
+        }
+      }).done(function(response) {
+        $('#loading').removeClass('active');
+        if (response.success == true) {
+          window.location.reload();
+        } else {
+          $form.find('.err').addClass('active');
+        }
+      });
+      return false
+    });
+    $('.image-index .album-add .ipt-name').on('focus',function(){
+      $(this).closest('.album-add').find('form').find('.err').removeClass('active');
+    })
+
     // 影像中心，编辑框
     $('.album .btn-edit').on('click',function(){
       var $album = $(this).closest('.album');
@@ -427,7 +460,7 @@
       return false
     })
 
-    // 影像中心，批量管理
+    // 影像中心，相册详情,批量管理
     $('.image-detail .btn-show').on('click',function(){
       $('body').addClass('image-edit');
       $('.batch-show').show();
@@ -441,8 +474,13 @@
       return false
     });
     $('.image-detail .btn-edit').on('click',function(){
-      $('.pop-out').addClass('active');
-      $('.pop-out .pic-edit').addClass('active');
+      var num = parseInt($('.batch-info .num').text()) ;
+      if (num===0) {
+        alert('请选择相片')
+      }else{
+        $('.pop-out').addClass('active');
+        $('.pop-out .pic-edit').addClass('active');
+      }
       return false;
     });
     $('.image-detail .btn-upload').on('click',function(){
@@ -451,7 +489,8 @@
       return false;
     });
     
-    // 批量改名
+
+    // 影像中心，相册详情,批量改名
     $('.image-detail .btn-edit').on('click',function(){
       var ids = '';
       var idList = [];
@@ -484,7 +523,7 @@
         return false
     })
 
-    // 批量删除
+    // 影像中心，相册详情,批量删除
     $('.image-detail .btn-remove').on('click',function(){
       var url = '/image/delfile?';
       var idList = [];
@@ -493,24 +532,29 @@
           idList.push($(this).closest('.pic').data('id'));
         }
       });
-      _alert('你确定要删除这些相片吗？',function(){
-        idList.forEach(function(id){
-          url += 'fids[]='+ id + '&'
-        });
-        $.ajax({
-          url: url, 
-          beforeSend: function() { 
-            $('#loading').addClass('active');
-          }
-        }).done(function(response) {
-          $('#loading').removeClass('active');
-          if (response.success == true) {
-            window.location.reload();
-          } else {
+      var num = $('.batch-info .num').text();
+      if (parseInt(num)===0) {
+        alert('请选择相片')
+      }else{
+        _alert('共选择'+ num +'张相片，确认要删除选中相片吗？',function(){
+          idList.forEach(function(id){
+            url += 'fids[]='+ id + '&'
+          });
+          $.ajax({
+            url: url, 
+            beforeSend: function() { 
+              $('#loading').addClass('active');
+            }
+          }).done(function(response) {
+            $('#loading').removeClass('active');
+            if (response.success == true) {
+              window.location.reload();
+            } else {
 
-          }
+            }
+          });
         });
-      });
+      }
       return false;
     });
 
@@ -532,7 +576,7 @@
         $container.removeClass('active');
       });
       return false;
-    }
+    };
 
 
     $('.btn-logout').on('click',function(){

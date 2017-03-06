@@ -21,6 +21,10 @@
             </div>
           </div>
         </div>
+        <script type="text/javascript">
+          var a = <?php echo json_encode($data) ?>;
+          console.log('data',a);
+        </script>
         <div class="main-body">
           @if($data)
 <!--             {{$data['uid']}}
@@ -51,10 +55,10 @@
               <dd>{{$data['birthday']}}</dd>
               <dt>去世日期：</dt>
               <dd>
-              @if($data['isalive']==1)
-                未亡
-              @else
+              @if(!empty($data['death']))
                 {{$data['death']}}
+              @else
+                未亡
               @endif
               </dd>
               <dt>父亲姓名：</dt>
