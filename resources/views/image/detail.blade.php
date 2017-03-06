@@ -77,7 +77,7 @@
           </div>
           <div class="box-haader"><h2>上传相片</h2></div>
           <div class="box-haader">
-            <p class="upload-info">上传到《<span class="album-name">张氏家族相册</span>》</p>
+            <p class="upload-info">上传到《<span class="album-name">{{$dname}}</span>》</p>
           </div>
           <div class="form-holder">
             <form action="/image/uploadfile" class="dropzone" id="my-dropzone">

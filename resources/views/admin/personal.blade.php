@@ -111,7 +111,7 @@
               </div>
               <div class="entry">
                 <span class="label">姓名：</span>
-                <input id="ipt-title" name="uname" type="text" value="{{$data['uname']}}" />
+                <input id="ipt-title" name="uname" type="text" required value="{{$data['uname']}}" />
               </div>
               <div class="entry">
                 <span class="label">性别：</span>
@@ -129,15 +129,15 @@
               </div>
               <div class="entry">
                 <span class="label">父亲姓名：</span>
-                <input id="ipt-title" name="father" type="text" value="{{$data['father']}}" />
+                <input id="ipt-title" name="father" type="text" required value="{{$data['father']}}" />
               </div>
               <div class="entry">
                 <span class="label">母亲姓名：</span>
-                <input id="ipt-title" name="monther" type="text" value="{{$data['monther']}}" />
+                <input id="ipt-title" name="monther" type="text" required value="{{$data['monther']}}" />
               </div>
               <div class="entry">
                 <span class="label">兄弟排行：</span>
-                <input id="ipt-title" name="idx" type="text" value="{{$data['idx']}}" />
+                <input id="ipt-title" name="idx" type="text" required value="{{$data['idx']}}" />
               </div>
               <div class="entry">
                 <span class="label">出生日期：</span>

@@ -227,8 +227,12 @@ class ImageController extends Controller
                     'http://120.25.218.156:12001/dir/104/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'did' => $_params['did'], 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
-        // var_dump($_result);
-        return view('image.detail', ['title' => '相册名称', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
+        $_result1 = curlPost(
+                    'http://120.25.218.156:12001/center/111/',
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'fid' => $_params['did']])
+                );
+        // var_dump($_result1);
+        return view('image.detail', ['title' => '相册名称', 'dname'=> $_result1['data'][0]['fname'], 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
     }
 
     public function editfile(Request $request) {
