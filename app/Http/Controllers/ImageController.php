@@ -87,6 +87,7 @@ class ImageController extends Controller
 
     public function createdir(Request $request) {
         $_params = $request->all();
+        $_params['type'] = 2;
         $rules = [
             'uid' => [
                 'required',
@@ -95,10 +96,11 @@ class ImageController extends Controller
         $validator = Validator::make($_params, $rules);
         if ($validator->fails()) {
             $_params['uid'] = session('uid');
+            $_params['type'] = 1;
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/100/',
-                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'owner' => $_params['uid'], 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => 2, 'jurisdiction' => 2])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'owner' => $_params['uid'], 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => 2])
                 );
         if($_result['ok'] === true) {
             return response()->json([
