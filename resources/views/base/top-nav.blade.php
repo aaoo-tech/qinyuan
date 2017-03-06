@@ -16,7 +16,9 @@
   <div class="message fr">
     <a href="/message">
       <i class="iconfont icon-message"></i>
+      @if(session('total') > 0)
       <span class="message-tip">{{session('total')}}</span>
+      @endif
     </a>
   </div>
 </div>

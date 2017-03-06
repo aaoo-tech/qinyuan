@@ -226,6 +226,31 @@ class TreeController extends Controller
 
     public function create(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'uname' => [
+                'required',
+            ],
+            'father' => [
+                'required',
+            ],
+            'monther' => [
+                'required',
+            ],
+            'idx' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json([
+                    'success' => false,
+                    'message' => '失败',
+                    'data' => array(),
+                ]);
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/120/',
                     json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])

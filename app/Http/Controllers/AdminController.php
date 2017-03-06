@@ -66,7 +66,7 @@ class AdminController extends Controller
             $_params['page'] = '1';
         }
         $_result = curlPost(
-                    'http://120.25.218.156:12001/info/105/',
+                    'http://120.25.218.156:12001/info/124/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
                 );
         $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
@@ -295,8 +295,8 @@ class AdminController extends Controller
                     );
             $_result['data'][0]['uname'] = isset($_customer['data'][0]['uname'])?$_customer['data'][0]['uname']:'匿名';
             $_result1 = curlPost(
-                        'http://120.25.218.156:12001/info/105/',
-                        json_encode(['token' => $_result['data'][0]['token'], 'uid' => $_result['data'][0]['uid'], 'pageno' => 1, 'pagenum' => '10'])
+                        'http://120.25.218.156:12001/info/124/',
+                        json_encode(['token' => $_result['data'][0]['token'], 'uid' => $_result['data'][0]['uid'], 'pageno' => '1', 'pagenum' => '10'])
                     );
             $_result1['totalpage'] = (empty($_result1['totalpage']))?0:$_result1['totalpage'];
             session($_result['data'][0]);
