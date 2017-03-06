@@ -93,6 +93,7 @@
             </dl>
           </div>
           @endif
+          @if($data)
           <div class="personal-info table-form info-edit clearfix" style="display: none">
             <form action="/tree/update" method="post">
               {{csrf_field()}}
@@ -166,6 +167,7 @@
               </div>
             </form>
           </div>
+          @endif
         </div>
       </div>
     </div>
