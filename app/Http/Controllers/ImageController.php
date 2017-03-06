@@ -174,6 +174,10 @@ class ImageController extends Controller
             'uid' => [
                 'required',
             ],
+            'file' => [
+                'required',
+                'photo' => 'mimes:jpeg,bmp,png,gif'
+            ],
         ];
         $validator = Validator::make($_params, $rules);
         if ($validator->fails()) {

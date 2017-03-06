@@ -108,8 +108,14 @@ if(!function_exists('breadcrumb')) {
     function breadcrumb() {
         if(getCurrentMethodName() == 'index') {
             echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><span>'. navdata()[getCurrentControllerName()]['index'] .'</span>';
+        }elseif(getCurrentControllerName() == 'image'){
+            if(!empty($_GET['uid'])){
+                echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中</a><a href = "/'. getCurrentControllerName() .'?uid='. $_GET['uid'] .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
+            }else{
+                echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
+            }
         }else{
-            echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "'. $_SERVER['HTTP_REFERER'] .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
+            echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
         }
     }
 }
