@@ -160,7 +160,7 @@
                 alert('一次最多上传20张！')
               })
               this.on('success', function() {
-                window.location.reload();
+                // window.location.reload();
               })
             }
           };
