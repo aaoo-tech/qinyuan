@@ -15,9 +15,6 @@ class ImageController extends Controller
     public function index(Request $request) {
         $_params = $request->all();
         $rules = [
-            'uid' => [
-                'required',
-            ],
             'page' => [
                 'required',
             ]
@@ -27,17 +24,21 @@ class ImageController extends Controller
         ];
         $validator = Validator::make($_params, $rules, $messages);
         if ($validator->fails()) {
-            if(isset($validator->failed()['uid'])){
-                $_params['uid'] = session('uid');
-            }
             if(isset($validator->failed()['page'])){
                 $_params['page'] = '1';
             }
         }
-        $_result = curlPost(
-                    'http://120.25.218.156:12001/center/102/',
-                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
-                );
+        if(empty($_params['uid'])){
+            $_result = curlPost(
+                        'http://120.25.218.156:12001/center/102/',
+                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
+                    );
+        }else{
+            $_result = curlPost(
+                'http://120.25.218.156:12001/center/110/',
+                json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['uid'], 'zid' => session('zid'), 'pageno' => $_params['page'], 'pagenum' => '10'])
+            );
+        }
         // var_dump($_result);
         $_result['totalpage'] = (empty($_result['totalpage']))?0:$_result['totalpage'];
         return view('image.index', ['title' => '家族名片', 'data' => $_result['data'], 'total' => $_result['totalpage'], 'totalpage' => ceil($_result['totalpage']/10)]);
@@ -97,7 +98,7 @@ class ImageController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => $_params['uid'], 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => $_params['jurisdiction']])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'owner' => $_params['uid'], 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => 2, 'jurisdiction' => 2])
                 );
         if($_result['ok'] === true) {
             return response()->json([

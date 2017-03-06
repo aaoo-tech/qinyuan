@@ -32,7 +32,6 @@
           <div class="album-list clearfix">
           @if($data)
             @foreach ($data as $datum)
-            @if($datum['dtype'] == 1)
               <div class="album">
                 <a class="album-link" href="/image/detail?did={{$datum['fid']}}@if(!empty($_GET['uid']))&uid={{$_GET['uid']}}@endif" title="{{$datum['fname']}}">
                   <span class="pic-bg" style="background-image: url(@if($datum['picurl']){{$datum['picurl']}}@else{{asset('/img/album-bg.png')}}@endif)"></span>
@@ -55,16 +54,6 @@
                   </ul>
                 </div>
               </div>
-            @else
-              <div class="pic">
-                <label for="pic-1"></label>
-                <input type="checkbox" style="display:none" id="pic-1"/>
-                <a class="pic-name" target="_blank" href="{{$datum['picurl']}}" title="{{$datum['fname']}}">
-                  <img src="{{$datum['picurl']}}">
-                  <span>{{$datum['fname']}}</span>
-                </a>
-              </div>
-            @endif
             @endforeach
           @else
           @endif

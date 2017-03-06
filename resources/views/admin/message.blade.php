@@ -20,17 +20,21 @@
                 </tr>
               </thead>
               <tbody>
+              @if($data)
+              @foreach ($data as $datum)
               <tr>
-                <td>用户xxx上传了24张相片<a href="#">(查看详情)</a></td>
-                <td>2016-11-04 16:40:11</td>
+                <td>{{$datum['title']}}</td>
+                <td><?php echo date('Y-m-d H:i:s', $datum['create_time']); ?></td>
               </tr>
-              <tr>
-                <td>管理员xxx上传了12篇史料</td>
-                <td>2016-11-04 16:40:11</td>
-              </tr>
+              @endforeach
+              @else
+                <tr>
+                  <td colspan="2">空</td>
+                </tr>
+              @endif
             </table>
             <div class="table-foot">
-              <a class="btn" href="#" >清空全部消息</a>
+              <a class="btn" href="/msg_del" >清空全部消息</a>
             </div>
           </div>
           @include('base.pagination')

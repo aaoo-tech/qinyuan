@@ -16,7 +16,7 @@
   <div class="message fr">
     <a href="/message">
       <i class="iconfont icon-message"></i>
-      <span class="message-tip">1</span>
+      <span class="message-tip">{{session('total')}}</span>
     </a>
   </div>
 </div>
