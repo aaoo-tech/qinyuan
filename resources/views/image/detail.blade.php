@@ -159,8 +159,8 @@
               this.on('maxfilesexceeded', function() {
                 alert('一次最多上传20张！')
               })
-              this.on('success', function() {
-                // window.location.reload();
+              this.on('queuecomplete', function() {
+                window.location.reload();
               })
             }
           };
