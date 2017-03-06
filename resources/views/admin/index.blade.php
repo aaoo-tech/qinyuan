@@ -24,12 +24,12 @@
             <form action="#" method="POST">
               {{csrf_field()}}
               <div class="entry uname clearfix">
-                <span class="label">用户名</span>
-                <input class="fr" id="txt_uname" type="text" name="uname" maxlength="11" placeholder="手机号"/>
+                <span class="label">手机号</span>
+                <input class="fr" id="txt_uname" type="text" name="uname" maxlength="11" placeholder="请输入手机号"/>
               </div>
               <div class="entry upasswd clearfix">
                 <span class="label">密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
-                <input class="fr" id="txt_upasswd" type="password" maxlength="16" name="upasswd"/>
+                <input class="fr" id="txt_upasswd" type="password" maxlength="16" name="upasswd" placeholder="请输入密码"/>
               </div>
               <div class="entry clearfix">
                 <input class="checkbox" id="isAuto" type="checkbox"/>
@@ -66,7 +66,7 @@
         var $error = $('.error-info');
         var isRmb = $("#isAuto")[0].checked;
         var re = /^1\d{10}$/
-        if (re.test(uname)) {
+        // if (re.test(uname)) {
           $.ajax({
             url: '/login',
             data: $('.login-form form').serializeObject(),
@@ -94,9 +94,9 @@
               $error.text(response.message).addClass('active')
             }
           });
-        } else {
-          $('#txt_uname').addClass('error')
-        }
+        // } else {
+        //   $('#txt_uname').addClass('error')
+        // }
         return false;
       })
       $('#txt_uname').on('focus',function(){

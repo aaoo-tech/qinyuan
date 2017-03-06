@@ -2,6 +2,8 @@
   // getCurrentControllerName() }}-{{ getCurrentMethodName()
   if(getCurrentMethodName() == 'index'){
     $_base = '/'.getCurrentControllerName();
+  }elseif(getCurrentMethodName() == 'message'){
+    $_base = '/'.getCurrentMethodName();
   }else{
     $_base = '/'.getCurrentControllerName().'/'.getCurrentMethodName();
   }

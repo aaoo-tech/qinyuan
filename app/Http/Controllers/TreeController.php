@@ -108,11 +108,14 @@ class TreeController extends Controller
         if($_params['fid'] == -1){
             // $current = $_data[$generation[2]][0]['uid'];
             if(count($generation) > 2){
+                $current = $_data[$generation[2]][0]['uid'];
                 foreach ($_data[$generation[2]] as $value) {
                     if($value['child'] === true){
                         $current = $value['uid'];
                     }
                 }
+            }else{
+                $current = $_data[$generation[count($generation)-1]][0]['uid'];
             }
         }else{
             $current = $_params['fid'];
@@ -123,6 +126,8 @@ class TreeController extends Controller
                 $_current_generation = $value['generation'];
             }
         }
+        // var_dump($_data[$generation[count($generation)-1]][0]['uid']);
+        // var_dump($_data);
         // var_dump(array_search($_current_generation, $generation));
         if($_data[$generation[0]][0]['pid'] == -1){
             $ancestor = $_data[$generation[0]];
@@ -221,6 +226,31 @@ class TreeController extends Controller
 
     public function create(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'uname' => [
+                'required',
+            ],
+            'father' => [
+                'required',
+            ],
+            'monther' => [
+                'required',
+            ],
+            'idx' => [
+                'required',
+            ]
+        ];
+        $messages = [
+            'required' => '必须填写',
+        ];
+        $validator = Validator::make($_params, $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json([
+                    'success' => false,
+                    'message' => '失败',
+                    'data' => array(),
+                ]);
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/120/',
                     json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])

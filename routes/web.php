@@ -50,6 +50,7 @@ Route::group(['prefix' => '', 'middleware' => 'checklogin'], function() {
     Route::any('message', 'AdminController@message');
     Route::any('logout', 'AdminController@logout');
     Route::any('upload', 'AdminController@upload');
+    Route::any('msg_del', 'AdminController@msg_del');
 });
 
 Route::group(['prefix' => 'card', 'middleware' => 'checklogin'], function() {

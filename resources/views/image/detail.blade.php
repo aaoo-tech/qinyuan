@@ -76,14 +76,20 @@
             </a>
           </div>
           <div class="box-haader"><h2>上传相片</h2></div>
+          <div class="box-haader">
+            <p class="upload-info">上传到《<span class="album-name">{{$dname}}</span>》</p>
+          </div>
           <div class="form-holder">
             <form action="/image/uploadfile" class="dropzone" id="my-dropzone">
               {{csrf_field()}}
+              @if(!empty($_GET['uid']))
+              <input type="hidden" name="uid" value="{{$_GET['uid']}}" />
+              @endif
               <input name="did" value="{{$_GET['did']}}" type="hidden" />
               <div class="form-foot">
                 <div class="entry-name fl">
                   <span class="label">统一添加照片描述</span>
-                  <input type="text" name="desc" maxlength="20" value="" />
+                  <input type="text" name="desc" maxlength="20" value="相片" />
                   <span class="tip">(描述最多20个字)</span>
                 </div>
                 <div class="btn-set fr">
@@ -133,32 +139,31 @@
         $(function() {
           $('.fancybox').fancybox();
           Dropzone.options.myDropzone = {
-
-            // Prevents Dropzone from uploading dropped files immediately
             autoProcessQueue: false,
-            dictDefaultMessage: '点击选择文件或拖拽文件到该区域上传',
-            maxFiles: 10,
-            parallelUploads: 10,
-
+            dictDefaultMessage: '<img src="{{ asset('/img/img-upload.png') }}">',
+            maxFiles: 20,
+            parallelUploads: 20,
+            dictMaxFilesExceeded: "超过最大文件数量!",
+            addRemoveLinks: true,
+            dictRemoveFile: '',
+            acceptedFiles: ".gif, .jpg, .png, .bmp",
             init: function() {
               var submitButton = document.querySelector("#ipt-upload")
-                  myDropzone = this; // closure
-
+                  myDropzone = this;
               submitButton.addEventListener("click", function() {
-                myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+                myDropzone.processQueue();
               });
-
-              // You might want to show the submit button only when 
-              // files are dropped here:
               this.on("addedfile", function() {
-                // Show submit button here and/or inform user to click it.
+                $('.pop-out .pic-add .form-foot').addClass('active');
               });
-
+              this.on('maxfilesexceeded', function() {
+                alert('一次最多上传20张！')
+              })
+              this.on('success', function() {
+                window.location.reload();
+              })
             }
           };
-          // $('.dropzone').dropzone({
-          //     dictDefaultMessage: '点击选择文件或拖拽文件到该区域上传'
-          // });
         });
       })(jQuery)
     </script>
