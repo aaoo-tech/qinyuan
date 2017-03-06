@@ -66,7 +66,7 @@
         var $error = $('.error-info');
         var isRmb = $("#isAuto")[0].checked;
         var re = /^1\d{10}$/
-        if (re.test(uname)) {
+        // if (re.test(uname)) {
           $.ajax({
             url: '/login',
             data: $('.login-form form').serializeObject(),
@@ -94,9 +94,9 @@
               $error.text(response.message).addClass('active')
             }
           });
-        } else {
-          $('#txt_uname').addClass('error')
-        }
+        // } else {
+        //   $('#txt_uname').addClass('error')
+        // }
         return false;
       })
       $('#txt_uname').on('focus',function(){

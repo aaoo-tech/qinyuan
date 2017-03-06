@@ -109,7 +109,7 @@ if(!function_exists('breadcrumb')) {
         if(getCurrentMethodName() == 'index') {
             echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><span>'. navdata()[getCurrentControllerName()]['index'] .'</span>';
         }else{
-            echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "/'. getCurrentControllerName() .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
+            echo '<i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href = "'. $_SERVER['HTTP_REFERER'] .'">'. navdata()[getCurrentControllerName()]['index'] .'</a><span>'. navdata()[getCurrentControllerName()][getCurrentMethodName()] .'</span>';
         }
     }
 }

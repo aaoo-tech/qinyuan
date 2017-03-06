@@ -79,6 +79,9 @@
           <div class="form-holder">
             <form action="/image/uploadfile" class="dropzone" id="my-dropzone">
               {{csrf_field()}}
+              @if(!empty($_GET['uid']))
+              <input type="hidden" name="uid" value="{{$_GET['uid']}}" />
+              @endif
               <input name="did" value="{{$_GET['did']}}" type="hidden" />
               <div class="form-foot">
                 <div class="entry-name fl">
@@ -136,9 +139,12 @@
 
             // Prevents Dropzone from uploading dropped files immediately
             autoProcessQueue: false,
-            dictDefaultMessage: '点击选择文件或拖拽文件到该区域上传',
+            dictDefaultMessage: '<a>点击选择文件或拖拽文件到该区域上传</a>',
             maxFiles: 10,
             parallelUploads: 10,
+            addRemoveLinks: true,
+            dictRemoveFile: '取消',
+            acceptedFiles: ".gif, .jpg, .png, .bmp",
 
             init: function() {
               var submitButton = document.querySelector("#ipt-upload")

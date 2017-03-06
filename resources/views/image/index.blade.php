@@ -34,7 +34,7 @@
             @foreach ($data as $datum)
             @if($datum['dtype'] == 1)
               <div class="album">
-                <a class="album-link" href="/image/detail?did={{$datum['fid']}}" title="{{$datum['fname']}}">
+                <a class="album-link" href="/image/detail?did={{$datum['fid']}}@if(!empty($_GET['uid']))&uid={{$_GET['uid']}}@endif" title="{{$datum['fname']}}">
                   <span class="pic-bg" style="background-image: url(@if($datum['picurl']){{$datum['picurl']}}@else{{asset('/img/album-bg.png')}}@endif)"></span>
                   <span class="album-title">{{$datum['fname']}}</span>
                 </a>

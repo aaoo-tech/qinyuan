@@ -86,9 +86,18 @@ class ImageController extends Controller
 
     public function createdir(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'uid' => [
+                'required',
+            ],
+        ];
+        $validator = Validator::make($_params, $rules);
+        if ($validator->fails()) {
+            $_params['uid'] = session('uid');
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/100/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => $_params['jurisdiction']])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => $_params['uid'], 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => $_params['jurisdiction']])
                 );
         if($_result['ok'] === true) {
             return response()->json([
@@ -161,6 +170,15 @@ class ImageController extends Controller
 
     public function uploadfile(Request $request) {
         $_params = $request->all();
+        $rules = [
+            'uid' => [
+                'required',
+            ],
+        ];
+        $validator = Validator::make($_params, $rules);
+        if ($validator->fails()) {
+            $_params['uid'] = session('uid');
+        }
         if ($request->hasFile('file') && $request->file('file')->isValid()) {
             $file = $request->file('file');
             $mimeType = $file->getMimeType();
@@ -170,7 +188,7 @@ class ImageController extends Controller
         }
         $_result = curlPost(
                     'http://120.25.218.156:12001/dir/103/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => session('uid'), 'did' => $_params['did'], 'desc' => $_params['desc'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
+                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => $_params['uid'], 'did' => $_params['did'], 'desc' => $_params['desc'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
                 );
         if($_result['ok'] === true) {
             return response()->json([
