@@ -27,11 +27,11 @@
           var back_data = <?php echo json_encode($back_data) ?>;
           var tree_data_1 = <?php echo json_encode($tree_data_1) ?>;
           var tree_data_2 = <?php echo json_encode($tree_data_2) ?>;
-          // console.log('tree_data_1',tree_data_1);
+          console.log('tree_data_1',tree_data_1);
           // console.log('tree_data_2',tree_data_2);
           // console.log('back_data',back_data);
           var a = <?php echo json_encode($ancestor) ?>;
-          console.log('ancestor',a);
+          // console.log('ancestor',a);
         </script>
         <div class="main-body">
           <div class="family-tree">
@@ -72,7 +72,11 @@
                               <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                             </p>
                             <p class="p-name">{{$m['uname']}}</p>
+                            @if($m['idx'] == 1)
                             <p class="p-sort">配偶</p>
+                            @else
+                            <p class="p-sort">配{{$m['idx']}}</p>
+                            @endif
                           </li>
                         @endforeach
                       @endif
@@ -106,7 +110,11 @@
                           <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
                         <p class="p-name">{{$m['uname']}}</p>
+                        @if($m['idx'] == 1)
                         <p class="p-sort">配偶</p>
+                        @else
+                        <p class="p-sort">配{{$m['idx']}}</p>
+                        @endif
                       </li>
                       @endforeach
                     @endif
@@ -133,7 +141,11 @@
                           <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
                         <p class="p-name">{{$m['uname']}}</p>
+                        @if($m['idx'] == 1)
                         <p class="p-sort">配偶</p>
+                        @else
+                        <p class="p-sort">配{{$m['idx']}}</p>
+                        @endif
                       </li>
                       @endforeach
                     @endif
@@ -472,7 +484,8 @@
         e.stopPropagation();
         var $elem = $(this);
         var now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300) {
+        var isMate = $elem.hasClass('p-wife')||$elem.hasClass('p-husband');
+        if (now - lastTouchEnd <= 300 && !isMate ) {
           var url = '/tree?fid='+$elem.data('uid');
           window.location.replace(url);
         }

@@ -46,7 +46,7 @@
                   <th>父/母</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody valign="middle">
               @if($data)
               @foreach ($data as $datum)
                 <tr>

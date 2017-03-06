@@ -35,8 +35,8 @@
               <col width="50px"></col>
               <col width="80px"></col>
               <col></col>
-              <col></col>
-              <col></col>
+              <col width="120px"></col>
+              <col width="250px"></col>
               <col width="175px"></col>
               <thead>
                 <tr>
