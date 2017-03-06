@@ -187,22 +187,24 @@ class ImageController extends Controller
             $_result = $request->file('file')->move('storage/uploads', md5(uniqid($file->getfileName(), true)).'.'.$entension);
             $_pic = AliyunOss::ossUploadFile(['filename' => $_result->getfileName(), 'filepath' => $_result->getpathName()]);
         }
-        $_result = curlPost(
-                    'http://120.25.218.156:12001/dir/103/',
-                    json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => $_params['uid'], 'did' => $_params['did'], 'desc' => $_params['desc'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
-                );
-        if($_result['ok'] === true) {
+        if(!empty($_pic['info']['url'])){
+            $_result = curlPost(
+                        'http://120.25.218.156:12001/dir/103/',
+                        json_encode(['token' => session('token'), 'uid' => session('uid'), 'owner' => $_params['uid'], 'did' => $_params['did'], 'desc' => $_params['desc'], 'url' => 'http://img.aiyaapp.com/jiapu/'.basename($_pic['info']['url']), 'jurisdiction' => '2'])
+                    );
+            if($_result['ok'] === true) {
+                return response()->json([
+                        'success' => true,
+                        'message' => '',
+                        'data' => $_result,
+                    ]);
+            }
             return response()->json([
-                    'success' => true,
-                    'message' => '',
-                    'data' => $_result,
+                    'success' => false,
+                    'message' => '上传失败',
+                    'data' => array(),
                 ]);
         }
-        return response()->json([
-                'success' => false,
-                'message' => '上传失败',
-                'data' => array(),
-            ]);
     }
 
     public function detail(Request $request) {
