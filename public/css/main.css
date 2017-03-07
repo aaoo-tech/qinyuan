@@ -317,7 +317,7 @@ body.personal-edit .operation { display: none; }
 
 .table-form .entry { margin-bottom: 20px; line-height: 40px; }
 .table-form .label { display: inline-block; width: 80px;  font-weight: bold; }
-.table-form .entry select { width: 50px; height: 36px; padding: 5px 10px; font-size: 14px; }
+.table-form .entry select { width: 50px; height: 36px; /*padding: 5px 10px;*/ font-size: 14px; }
 .table-form .entry input { height: 36px; padding: 5px 10px; font-size: 14px; }
 .table-form .btn-set { margin: 20px 0 0 85px; }
 .table-form .btn-set .btn-cancel,
