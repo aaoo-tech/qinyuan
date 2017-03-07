@@ -28,6 +28,9 @@ class TreeController extends Controller
                     'http://120.25.218.156:12001/tree/100/',
                     json_encode(['token' => session('token'), 'uid' => session('uid'), 'fid' => $_params['fid'], 'genetation' => '2'])
                 );
+        if(count($_result['data']) <= 0){
+            return view('tree.index', ['title' => '家族树', 'data' => [], 'current' => [], 'tree_data_1' => [], 'tree_data_2' => [], 'ancestor' => [], 'back_data' => []]);
+        }
         // $_t['pid'] = 16080;
         // $_t['uid'] = 16082;
         // $_t['generation'] = 165;
@@ -184,8 +187,8 @@ class TreeController extends Controller
         // }
         // var_dump($current);
         // return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data' => $current]);
-
         return view('tree.index', ['title' => '家族树', 'data' => $_data, 'current' => $current, 'tree_data_1' => $tree_data_1, 'tree_data_2' => $tree_data_2, 'ancestor' => $ancestor, 'back_data' => $back_data]);
+
     }
 
     public function search(Request $request) {
