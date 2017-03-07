@@ -262,6 +262,8 @@ body.personal-edit .operation { display: none; }
 .family-tree { overflow: auto; -webkit-user-select: none; }
 .family-tree .container { position: relative; width: 5000px; opacity: 0; transition: opacity .2s; }
 .family-tree .container.active { opacity: 1; }
+.family-tree .container.empty { opacity: 1; width: 100%; height: 500px; }
+.family-tree .container.empty a { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 233px; height: 98px; margin: auto; }
 .family-tree ul { position: relative; font-size: 0; }
 .family-tree ul li { font-size: 14px; }
 .family-tree ul .gen-info { z-index: 1; position: absolute; top: -10px; padding: 5px; font-size: 18px; background-color: #fff; }
@@ -319,6 +321,9 @@ body.personal-edit .operation { display: none; }
 .table-form .label { display: inline-block; width: 80px;  font-weight: bold; }
 .table-form .entry select { width: 50px; height: 36px; /*padding: 5px 10px;*/ font-size: 14px; }
 .table-form .entry input { height: 36px; padding: 5px 10px; font-size: 14px; }
+.table-form .entry.err input { border-color: #F44336; }
+.table-form .entry .err-info { display: none; padding-left: 10px; color: #F44336; }
+.table-form .entry.err .err-info { display: inline; }
 .table-form .btn-set { margin: 20px 0 0 85px; }
 .table-form .btn-set .btn-cancel,
 .table-form .btn-set .btn-submit { width: 100px; height: 36px; line-height: 36px; color: #fff; background-color: #135189; }

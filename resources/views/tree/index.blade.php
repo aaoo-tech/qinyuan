@@ -23,18 +23,9 @@
             </div>
           </div>
         </div>
-        <script type="text/javascript">
-          var back_data = <?php echo json_encode($back_data) ?>;
-          var tree_data_1 = <?php echo json_encode($tree_data_1) ?>;
-          var tree_data_2 = <?php echo json_encode($tree_data_2) ?>;
-          console.log('tree_data_1',tree_data_1);
-          // console.log('tree_data_2',tree_data_2);
-          // console.log('back_data',back_data);
-          var a = <?php echo json_encode($ancestor) ?>;
-          // console.log('ancestor',a);
-        </script>
         <div class="main-body">
           <div class="family-tree">
+          @if($back_data)
             <div class="container clearfix">
               @if($ancestor)
               <ul class="tree-ancestor">
@@ -168,6 +159,13 @@
                 </ul>
               </div>
             </div>
+          @else
+            <div class="container empty">
+              <a href="/tree/add?pid=0">
+                <img src="{{ asset('/img/tree-add.png') }}">
+              </a>
+            </div>
+          @endif
           </div>
         </div>
         <div class="clear"></div>
@@ -264,8 +262,8 @@
           (function(){ 
             var $s = $('.tree-part-2 .tree-section');
             var s_width = $s.width();
-            var p_width = $s.find('.active').width();
-            var p_margin = $s.find('.active').css('margin-left');
+            var p_width = $s.find('.person').width();
+            var p_margin = $s.find('.person').css('margin-left');
             var m = s_width/2 - p_width/2 - parseInt(p_margin);
             $s.css('margin-left',m);
           }());
@@ -316,7 +314,8 @@
             })
           }
         }());
-        // 当前居中
+
+        // 当前节点居中
         $('.family-tree').height($(window).height()-150);
         $('.family-tree').scrollTop(426);
         var t_w = $('.family-tree').width()/2 - 50;
@@ -326,14 +325,14 @@
         }else{
           $('.family-tree').scrollLeft(c_left-t_w);
         }
+
         // 画完显示
         $('.family-tree .container').addClass('active');
       }
-      renderTree();
+      var back_data = <?php echo json_encode($back_data)?>;
+      back_data.length>0 && renderTree();
+      
       // $(window).resize(renderTree);
-
-  
-
       // var genWidth = [];
       // $('.family-tree .container').width(5000);
       // $('.gen').each(function(i,gen){
@@ -462,7 +461,7 @@
         }).show();
       }
 
-      // 左键打开菜单
+      // 右键打开菜单
       $('.person').each(function(i,p){
         p.oncontextmenu = function(e) {
           e.preventDefault();
@@ -474,6 +473,9 @@
         e.preventDefault();
         e.stopPropagation();
       }
+      // $('.family-tree .container.empty').on('click',function(){
+
+      // });
       $('.family-tree .container').on('click',function (){
         $('.family-tree .tree-menu').hide();
       });
