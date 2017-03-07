@@ -135,23 +135,44 @@
     })
 
     // famous|champion|merit|personal
+    $('.table-form input').on('focus',function(){
+      $(this).closest('.entry').removeClass('err');
+    });
     $('.table-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
       var url = $form.attr('action');
-      $.ajax({
-        url: url,
-        data: $form.serialize(),
-        beforeSend: function() {
-          $('#loading').addClass('active');
+      var re_type = {
+        name: /[\u4E00-\u9FA5]{2,4}/,
+        number: /\b[1-9]\d*/
+      }
+      var isErr = false;
+      $form.find('input').each(function(i,item){
+        var re = $(item).data('required');
+        if(!!re){
+          var value = $(item).val();
+          var $entry = $(item).closest('.entry');
+          if(!re_type[re].test(value)){
+            isErr = true;
+            $entry.addClass('err')
+          }
         }
-      }).done(function(response) {
-        $('#loading').removeClass('active');
-        if (response.success == true) {
-          self.location=document.referrer;
-        } else {
-        }
-      });
+      })
+      if(!isErr){
+        $.ajax({
+          url: url,
+          data: $form.serialize(),
+          beforeSend: function() {
+            $('#loading').addClass('active');
+          }
+        }).done(function(response) {
+          $('#loading').removeClass('active');
+          if (response.success == true) {
+            self.location=document.referrer;
+          } else {
+          }
+        });
+      }
       return false
     })
 

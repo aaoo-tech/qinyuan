@@ -12,8 +12,10 @@
           <div class="form-holder table-form">
             <form action="/tree/create" method="post">
               {{csrf_field()}}
-              @if(!empty($_GET['pid']) && !empty($_GET['generation']))
+              @if(!empty($_GET['pid']))
               <input name="pid" value="{{$_GET['pid']}}" type="hidden">
+              @endif
+              @if(!empty($_GET['generation']))
               <input name="generation" value="{{$_GET['generation']}}" type="hidden">
               @endif
               <div class="entry">
