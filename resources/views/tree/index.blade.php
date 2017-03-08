@@ -421,6 +421,9 @@
       $('.pop-out .pop-out-confirm .btn-submit').on('click', function(){
         var $form = $('.pop-out .pop-out-confirm form');
         var url = $form.attr('action');
+        if($form.serialize()['upasswd'].length <= 0){
+          return false
+        }
         $.ajax({
           url: url,
           data: $form.serialize(),
