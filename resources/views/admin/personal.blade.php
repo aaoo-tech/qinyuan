@@ -13,7 +13,7 @@
           <div class="operation fr">
             @if(!empty($_GET['fid']))
             <div class="btn-set fl">
-              <a class="btn-recycling" href="/image?fid={{$_GET['fid']}}"><i class="iconfont icon-img"></i>影像资料</a>
+              <a class="btn-recycling" href="/image?uid={{$_GET['fid']}}"><i class="iconfont icon-img"></i>影像资料</a>
             </div>
             @endif
             <div class="btn-set fr">
