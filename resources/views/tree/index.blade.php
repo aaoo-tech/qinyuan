@@ -184,7 +184,7 @@
               <input type="hidden" id="ipt-uid" name="uid" value="" />
               <div class="entry">
                 <span class="label">输入登录密码</span>
-                <input type="password" name="upasswd" value="" />
+                <input type="password" id="upasswd" name="upasswd" value="" />
                 <p class="fl red-tip">删除该节点，节点下面的树将会一起删除</p>
               </div>
             </form>
@@ -421,7 +421,7 @@
       $('.pop-out .pop-out-confirm .btn-submit').on('click', function(){
         var $form = $('.pop-out .pop-out-confirm form');
         var url = $form.attr('action');
-        if($form.serialize()['upasswd'].length <= 0){
+        if($("#upasswd").val().length <= 0){
           return false
         }
         $.ajax({
