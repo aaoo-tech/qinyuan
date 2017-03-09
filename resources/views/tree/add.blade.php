@@ -12,16 +12,21 @@
           <div class="form-holder table-form">
             <form action="/tree/create" method="post">
               {{csrf_field()}}
-              @if(!empty($_GET['pid']))
+              @if(isset($_GET['pid']))
               <input name="pid" value="{{$_GET['pid']}}" type="hidden">
-              @endif
-              @if(!empty($_GET['generation']))
-              <input name="generation" value="{{$_GET['generation']}}" type="hidden">
               @endif
               <div class="entry">
                 <span class="label">姓名：</span>
                 <input id="ipt-title" name="uname" type="text" value="" />
               </div>
+              @if(isset($_GET['generation']))
+              <input name="generation" value="{{$_GET['generation']}}" type="hidden">
+              @else
+              <div class="entry">
+                <span class="label">代数：</span>
+                <input id="ipt-title" name="generation" type="text" value="" />
+              </div>
+              @endif
               <div class="entry">
                 <span class="label">父亲姓名：</span>
                 <input id="ipt-title" name="father" type="text" value="" />
@@ -34,7 +39,7 @@
                 <span class="label">兄弟排行：</span>
                 <input id="ipt-title" name="idx" type="text" value="" />
               </div>
-              @if(!empty($_GET['sex']) && $_GET['sex'] > 1)
+              @if(isset($_GET['sex']) && $_GET['sex'] > 1)
               <input name="sex" value="{{$_GET['sex']}}" type="hidden">
               @else
               <div class="entry">
