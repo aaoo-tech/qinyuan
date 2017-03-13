@@ -102,11 +102,13 @@ class ImageController extends Controller
                     'http://120.25.218.156:12001/dir/100/',
                     json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'owner' => $_params['uid'], 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => 2])
                 );
+        // var_dump($_result['data'][0]['did']);
+        $_params['did'] = $_result['data'][0]['did'];
         if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,
                     'message' => '',
-                    'data' => $_result,
+                    'data' => $_params,
                 ]);
         }
         return response()->json([

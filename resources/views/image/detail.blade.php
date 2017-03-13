@@ -5,7 +5,7 @@
         @include('base.top-nav')
         <div class="sub-menu clearfix">
           <div class="breadcrumb fl">
-            <?php breadcrumb(); ?>
+            <?php breadcrumb(); ?>（<?php echo $dname; ?>）
           </div>
           <div class="btn-set batch-hidden fl">
             <a class="btn btn-upload" href="/image/upload?did={{$_GET['did']}}">上传图片</a>
@@ -137,6 +137,16 @@
     <script type="text/javascript">
       (function($) {
         $(function() {
+          function _alert(massage,doFunc){
+            var $container = $('#pop-out-alert');
+            $container.addClass('active');
+            $container.find('.alert-tip').text(massage);
+            $container.find('.btn-submit').on('click',doFunc);
+            $container.find('.btn-cancel').on('click',function(){
+              $container.removeClass('active');
+            });
+            return false;
+          };
           $('.fancybox').fancybox();
           Dropzone.options.myDropzone = {
             autoProcessQueue: false,
@@ -160,7 +170,9 @@
                 alert('一次最多上传20张！')
               })
               this.on('queuecomplete', function() {
-                window.location.reload();
+                _alert('成功上传'+$('.dz-success').length+'张相片!',function(){
+                  window.location.reload();
+                })
               })
             }
           };
