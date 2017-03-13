@@ -439,7 +439,18 @@
       }).done(function(response) {
         $('#loading').removeClass('active');
         if (response.success == true) {
-          window.location.reload();
+          var uid = '';
+          var key = window.location.search;
+          if(!!key.indexOf('uid')){
+            uid = '&uid=' + response.data.uid;
+          }
+          console.log(response);
+          window.location.href = '/image/detail?did='+response.data.did+uid;
+          // _alert('相册创建成功是否要进入该相册？',function(){
+          //    window.location.href = '/image/detail?did='+response.data.did+uid;
+          // });
+          return false;
+
         } else {
           $form.find('.err').addClass('active');
         }

@@ -422,7 +422,8 @@
         var $form = $('.pop-out .pop-out-confirm form');
         var url = $form.attr('action');
         if($("#upasswd").val().length <= 0){
-          return false
+          $('#upasswd').addClass('err');
+          return 
         }
         $.ajax({
           url: url,
@@ -432,13 +433,17 @@
           }
         }).done(function(response) {
           $('#loading').removeClass('active');
-          // if (response.success == true) {
+          if (response.success == true) {
             location.reload()
-          // } else {
-          // }
+          } else {
+            alert('密码错误！');
+          }
         });
         return false
       });
+      $('#upasswd').on('focus',function(){
+        $(this).removeClass('err');
+      })
 
       var _person;
       $('.family-tree .tree-menu a').on('click',function(){
