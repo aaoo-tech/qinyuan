@@ -93,7 +93,7 @@
                   <span class="tip">(描述最多20个字)</span>
                 </div>
                 <div class="btn-set fr">
-                  <a class="btn btn-submit" href="#" id="ipt-upload">保存</a>
+                  <a class="btn btn-submit" href="#" id="ipt-upload">开始上传</a>
                 </div>
               </div>
             </form>
