@@ -38,11 +38,11 @@
             <table>
               <col width="50px"></col>
               <col width="80px"></col>
+              <col width="130px"></col>
+              <col width="180px"></col>
+              <col width="150px"></col>
               <col></col>
-              <col></col>
-              <col></col>
-              <col></col>
-              <col></col>
+              <col width="130px"></col>
               <col width="175px"></col>
               <thead>
                 <tr>

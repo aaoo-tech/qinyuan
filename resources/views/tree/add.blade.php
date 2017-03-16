@@ -17,27 +17,32 @@
               @endif
               <div class="entry">
                 <span class="label">姓名：</span>
-                <input id="ipt-title" name="uname" type="text" value="" />
+                <input id="ipt-title" name="uname" type="text" value="" data-required="name"/>
+                <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               @if(isset($_GET['generation']))
               <input name="generation" value="{{$_GET['generation']}}" type="hidden">
               @else
               <div class="entry">
                 <span class="label">代数：</span>
-                <input id="ipt-title" name="generation" type="text" value="" />
+                <input id="ipt-title" name="generation" type="text" value="" data-required="number"/>
+                <span class="err-info">必填，请输入大于0的数字</span>
               </div>
               @endif
               <div class="entry">
                 <span class="label">父亲姓名：</span>
-                <input id="ipt-title" name="father" type="text" value="" />
+                <input id="ipt-title" name="father" type="text" value="" data-required="name"/>
+                <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               <div class="entry">
                 <span class="label">母亲姓名：</span>
-                <input id="ipt-title" name="monther" type="text" value="" />
+                <input id="ipt-title" name="monther" type="text" value="" data-required="name"/>
+                <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               <div class="entry">
                 <span class="label">兄弟排行：</span>
-                <input id="ipt-title" name="idx" type="text" value="" />
+                <input id="ipt-title" name="idx" type="text" value="" data-required="number"/>
+                <span class="err-info">必填，请输入大于0的数字</span>
               </div>
               @if(isset($_GET['sex']) && $_GET['sex'] > 1)
               <input name="sex" value="{{$_GET['sex']}}" type="hidden">

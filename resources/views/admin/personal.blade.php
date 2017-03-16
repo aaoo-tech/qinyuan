@@ -6,7 +6,11 @@
         <div class="sub-menu clearfix">
           <div class="breadcrumb fl">
             @if(!empty($_GET['fid']))
-            <i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href="/tree?fid={{$_GET['fid']}}">家族树</a>
+              @if($_GET['sex'] > 1)
+                <i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href="/tree?fid={{$_GET['pid']}}">家族树</a>
+              @else
+                <i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href="/tree?fid={{$_GET['fid']}}">家族树</a>
+              @endif
             @endif
             <span>个人资料</span>
           </div>

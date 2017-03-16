@@ -58,7 +58,7 @@
                       </li>
                       @if(count($p['mate']) > 0)
                         @foreach ($p['mate'] as $m)
-                          <li data-uid="{{$m['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" >
+                          <li data-uid="{{$m['uid']}}" data-pid="{{$m['pid']}}" data-sex="{{$m['sex']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif" >
                             <p class="p-pic">
                               <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                             </p>
@@ -96,7 +96,7 @@
                     </li>
                     @if(count($p['mate']) > 0)
                       @foreach ($p['mate'] as $m)
-                      <li data-uid="{{$m['uid']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
+                      <li data-uid="{{$m['uid']}}" data-pid="{{$m['pid']}}" data-sex="{{$m['sex']}}" class="person @if($m['sex'] == 2) p-wife @elseif($m['sex'] == 3) p-husband @endif">
                         <p class="p-pic">
                           <img src="@if(!!$m['avatar']){{$m['avatar']}} @elseif($m['sex'] == 2) {{asset('/img/p-woman.png')}} @else {{asset('/img/p-man.png')}}@endif">
                         </p>
@@ -271,7 +271,7 @@
         // 第5代，仅有一人时位移对齐
         $('.tree-g5').each(function(i,ul){
           if($(ul).find('.p-man,.p-woman').length === 1){
-            $(ul).closest('.tree-section').find('.tree-g4').addClass('t-left');
+            $(ul).closest('.tree-section').find('.tree-g5').addClass('t-left');
           }
         });
 
@@ -371,7 +371,7 @@
       var selectMenu = function(t,p){
         switch(t){
           case 'user_info':
-            var url = '/personal?fid=' + $(p).data('uid');
+            var url = '/personal?fid=' + $(p).data('uid') + '&pid=' + $(p).data('pid') + '&sex=' + $(p).data('sex');
             window.location.href = url;
             // $.ajax({
             //   url: url,
