@@ -6,7 +6,11 @@
         <div class="sub-menu clearfix">
           <div class="breadcrumb fl">
             @if(!empty($_GET['fid']))
-            <i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href="/tree?fid={{$_GET['fid']}}">家族树</a>
+              @if($_GET['sex'] > 1)
+                <i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href="/tree?fid={{$_GET['pid']}}">家族树</a>
+              @else
+                <i class="iconfont icon-home"></i><a href="/dashboard">家族中心</a><a href="/tree?fid={{$_GET['fid']}}">家族树</a>
+              @endif
             @endif
             <span>个人资料</span>
           </div>
@@ -55,8 +59,12 @@
               <dd>{{$data['birthday']}}</dd>
               <dt>去世日期：</dt>
               <dd>
-              @if(!empty($data['death']))
+              @if($data['isalive']==0)
+                @if($data['death'])
                 {{$data['death']}}
+                @else
+                死亡
+                @endif
               @else
                 未亡
               @endif
@@ -130,34 +138,36 @@
               </div>
               <div class="entry">
                 <span class="label">父亲姓名：</span>
-                <input id="ipt-title" name="father" type="text" value="{{$data['father']}}" data-required="name"/>
+                <input name="father" type="text" value="{{$data['father']}}" data-required="name"/>
                 <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               <div class="entry">
                 <span class="label">母亲姓名：</span>
-                <input id="ipt-title" name="monther" type="text" value="{{$data['monther']}}" data-required="name"/>
+                <input name="monther" type="text" value="{{$data['monther']}}" data-required="name"/>
                 <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               <div class="entry">
                 <span class="label">兄弟排行：</span>
-                <input id="ipt-title" name="idx" type="text" value="{{$data['idx']}}" data-required="number"/>
+                <input name="idx" type="text" value="{{$data['idx']}}" data-required="number"/>
                 <span class="err-info">必填，请输入大于0的数字</span>
               </div>
               <div class="entry">
                 <span class="label">出生日期：</span>
-                <input id="ipt-title" name="birthday" type="text" value="{{$data['birthday']}}" />
+                <input class="long-ipt" name="birthday" type="text" value="{{$data['birthday']}}" />
               </div>
               <div class="entry">
                 <span class="label">去世日期：</span>
-                <input id="ipt-title" name="death" type="text" value="{{$data['death']}}" />
+                <input class="long-ipt" name="death" type="text" value="{{$data['death']}}" @if($data['isalive'] == 1) disabled @endif />
+                <span class="check-label label">未亡：</span>
+                <input class="check-ipt" name="isalive" type="checkbox" @if($data['isalive'] == 1) checked="checked" @endif />
               </div>
               <div class="entry">
                 <span class="label">居住地址：</span>
-                <input id="ipt-title" name="addr" type="text" value="{{$data['addr']}}" />
+                <input class="long-ipt" name="addr" type="text" value="{{$data['addr']}}" />
               </div>
               <div class="entry">
                 <span class="label">手机号码：</span>
-                <input id="ipt-title" name="mobile" type="text" value="{{$data['mobile']}}" />
+                <input class="long-ipt" name="mobile" type="text" value="{{$data['mobile']}}" />
               </div>
               <div class="entry">
                 <span class="label">个人介绍：</span>

@@ -254,9 +254,17 @@ class TreeController extends Controller
                     'data' => array(),
                 ]);
         }
+        if(isset($_params['isalive']) === true && $_params['isalive'] != ''){
+            $_params['isalive'] = 1;
+        }else{
+            $_params['isalive'] = 0;
+        }
+        if(isset($_params['death']) === false){
+            $_params['death'] = '';
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/120/',
-                    json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
+                    json_encode(['token' => session('token'), 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'isalive' => $_params['isalive'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
                 );
         // var_dump($_result);
         if($_result['ok'] === true) {
@@ -295,10 +303,20 @@ class TreeController extends Controller
 
     public function update(Request $request) {
         $_params = $request->all();
+        if(isset($_params['isalive']) === true && $_params['isalive'] != ''){
+            $_params['isalive'] = 1;
+        }else{
+            $_params['isalive'] = 0;
+        }
+        if(isset($_params['death']) === false){
+            $_params['death'] = '';
+        }
         $_result = curlPost(
                     'http://120.25.218.156:12001/info/122/',
-                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
+                    json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'generation' => $_params['generation'], 'pid' => $_params['pid'], 'uname' => $_params['uname'], 'father' => $_params['father'], 'monther' => $_params['monther'], 'isalive' => $_params['isalive'], 'idx' => $_params['idx'], 'sex' => $_params['sex'], 'birthday' => $_params['birthday'], 'death' => $_params['death'], 'addr' => $_params['addr'], 'content' => $_params['content'], 'mobile' => $_params['mobile']])
                 );
+        // var_dump($_params);
+        // var_dump($_result);
         if($_result['ok'] === true) {
             return response()->json([
                     'success' => true,

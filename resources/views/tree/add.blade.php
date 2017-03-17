@@ -17,27 +17,32 @@
               @endif
               <div class="entry">
                 <span class="label">姓名：</span>
-                <input id="ipt-title" name="uname" type="text" value="" />
+                <input name="uname" type="text" value="" data-required="name"/>
+                <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               @if(isset($_GET['generation']))
               <input name="generation" value="{{$_GET['generation']}}" type="hidden">
               @else
               <div class="entry">
                 <span class="label">代数：</span>
-                <input id="ipt-title" name="generation" type="text" value="" />
+                <input name="generation" type="text" value="" data-required="number"/>
+                <span class="err-info">必填，请输入大于0的数字</span>
               </div>
               @endif
               <div class="entry">
                 <span class="label">父亲姓名：</span>
-                <input id="ipt-title" name="father" type="text" value="" />
+                <input name="father" type="text" value="" data-required="name"/>
+                <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               <div class="entry">
                 <span class="label">母亲姓名：</span>
-                <input id="ipt-title" name="monther" type="text" value="" />
+                <input name="monther" type="text" value="" data-required="name"/>
+                <span class="err-info">必填，请输入正确的姓名（1-4个中文汉字）</span>
               </div>
               <div class="entry">
                 <span class="label">兄弟排行：</span>
-                <input id="ipt-title" name="idx" type="text" value="" />
+                <input name="idx" type="text" value="" data-required="number"/>
+                <span class="err-info">必填，请输入大于0的数字</span>
               </div>
               @if(isset($_GET['sex']) && $_GET['sex'] > 1)
               <input name="sex" value="{{$_GET['sex']}}" type="hidden">
@@ -52,19 +57,22 @@
               @endif
               <div class="entry">
                 <span class="label">出生日期：</span>
-                <input id="ipt-title" name="birthday" type="text" value="" />
+                <input class="long-ipt" name="birthday" type="text" value="" />
+                
               </div>
               <div class="entry">
                 <span class="label">去世日期：</span>
-                <input id="ipt-title" name="death" type="text" value="" />
+                <input class="long-ipt" name="death" type="text" value="" />
+                <span class="check-label label">未亡：</span>
+                <input class="check-ipt" name="isalive" type="checkbox" />
               </div>
               <div class="entry">
                 <span class="label">居住地址：</span>
-                <input id="ipt-title" name="addr" type="text" value="" />
+                <input class="long-ipt" name="addr" type="text" value="" />
               </div>
               <div class="entry">
                 <span class="label">手机号码：</span>
-                <input id="ipt-title" name="mobile" type="text" value="" />
+                <input class="long-ipt" name="mobile" type="text" value="" />
               </div>
               <div class="entry">
                 <span class="label">个人介绍：</span>

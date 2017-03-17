@@ -248,10 +248,19 @@ input.error{ border-color: #E50012; color: #E50012; }
 .personal-info dl { line-height: 34px; }
 .personal-info dt { float: left;font-size: 14px;font-weight: bolder; }
 .personal-info dd { margin-left: 100px;color: #666; }
-.personal-info dd:empty:after { content: "*"; }
+.personal-info dd:empty:after { content: "无"; }
 .personal-info input { height: 24px; padding-left: 5px; }
 
-.personal-info textarea { height: 150px; width: 360px; margin-top: 5px; padding: 5px; vertical-align: text-top; }
+.tree-add .table-form .entry,
+.personal-edit .table-form .entry { margin-bottom: 10px; }
+.tree-add .table-form .long-ipt,
+.personal-edit .table-form .long-ipt { width: 360px; }
+.tree-add .table-form .check-label,
+.personal-edit .table-form .check-label { width: 45px; margin-left: 30px; }
+.tree-add .table-form .check-ipt,
+.personal-edit .table-form .check-ipt { zoom: 50%; width: 50px; height: 50px; vertical-align: middle; }
+.tree-add .table-form textarea,
+.personal-edit .table-form textarea { height: 150px; width: 360px; padding: 5px; border-color: #ccc; vertical-align: text-top; }
 /*.personal-info .alive { margin-left: 10px; }
 .personal-info .alive + input {height: 34px;width: 34px;vertical-align: middle;margin-left: 5px;}
 .personal-info .addr { width: 360px; }*/
@@ -301,7 +310,7 @@ body.personal-edit .operation { display: none; }
 
 .family-tree .p-pic { width: 80px; height: 80px; line-height: 80px; font-size: 60px; }
 .family-tree .p-pic img { width: 100%; height: 100%; }
-.family-tree .person .p-name { font-size: 18px; line-height: 26px; }
+.family-tree .person .p-name { font-size: 16px; line-height: 26px; }
 .family-tree .person .p-sort { font-size: 14px; line-height: 22px; color: #999; }
 
 .family-tree .tree-menu { display: none; position: absolute; z-index: 2; width: 120px; overflow: hidden; border-radius: 3px; box-shadow: 0 0 5px 0 #ccc; }
@@ -327,6 +336,7 @@ body.personal-edit .operation { display: none; }
 .table-form .btn-set { margin: 20px 0 0 85px; }
 .table-form .btn-set .btn-cancel,
 .table-form .btn-set .btn-submit { width: 100px; height: 36px; line-height: 36px; color: #fff; background-color: #135189; }
+.table-form .entry input.disabled { color: transparent; background-color: #dcd7c9; cursor: not-allowed; }
 
 .album-list { margin-right: -50px; }
 .album { position: relative; float: left; width: 150px; margin-right: 50px; margin-bottom: 50px; border: 1px solid #ccc; border-radius: 3px; }

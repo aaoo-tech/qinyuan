@@ -103,8 +103,8 @@ class ImageController extends Controller
                     json_encode(['token' => session('token'), 'uid' => $_params['uid'], 'owner' => $_params['uid'], 'pid' => '0', 'dirname' => $_params['dirname'], 'type' => $_params['type'], 'jurisdiction' => 2])
                 );
         // var_dump($_result['data'][0]['did']);
-        $_params['did'] = $_result['data'][0]['did'];
         if($_result['ok'] === true) {
+            $_params['did'] = $_result['data'][0]['did'];
             return response()->json([
                     'success' => true,
                     'message' => '',

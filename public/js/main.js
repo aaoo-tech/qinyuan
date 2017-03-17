@@ -138,6 +138,20 @@
     $('.table-form input').on('focus',function(){
       $(this).closest('.entry').removeClass('err');
     });
+    
+    $('.table-form .check-ipt').on('change',function(){
+      if($(this)[0].checked){
+        $(this).closest('.entry').find('input[type="text"]').each(function(i,elem){
+          $(elem).addClass('disabled');
+          elem.disabled = true;
+        })
+      }else{
+        $(this).closest('.entry').find('input[type="text"]').each(function(i,elem){
+          $(elem).removeClass('disabled');
+          elem.disabled = false
+        })
+      }
+    });
     $('.table-form .btn-submit').on('click',function(){
       var $elem = $(this);
       var $form = $(this).closest('form');
